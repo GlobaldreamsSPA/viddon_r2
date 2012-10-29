@@ -1,0 +1,7 @@
+bin
+.metadata
+.htaccess
+.project
+.DS_Store
+application/config/config.php
+application/logs
