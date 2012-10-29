@@ -8,8 +8,9 @@
 				<?php echo form_open_multipart('user/edit'); ?>
 				<div class="span3" id="image_upload">
 					<img src="<?php echo base_url(); ?>img/profile/user.jpg" class="img-polaroid">
-					<?php echo form_upload(array('name' => 'image')); ?>
-					<?php echo form_error('image'); ?>
+					<?php echo form_upload(array('name' => 'profile_image'));
+						  echo form_hidden('image','');
+						  echo form_error('image'); ?>
 				</div>
 				<!-- Texto -->
 				<div class="span9">
@@ -25,8 +26,8 @@
 						<?php echo form_dropdown('age', $age, 21, "class='span2'") ?> <br/>
 					<h3>Selecciona tus habilidades</h3>
 						<?php echo form_dropdown('skills1', $skills, 1,"class='span2'") ?>
-						<?php echo form_dropdown('skills2', $skills, 3,"class='span2'") ?>
-						<?php echo form_dropdown('skills3', $skills, 13,"class='span2'") ?>
+						<?php echo form_dropdown('skills2', $skills, 0,"class='span2'") ?>
+						<?php echo form_dropdown('skills3', $skills, 0,"class='span2'") ?>
 					<h3>Bio</h3>
 						<textarea class="user_description" rows="4" span="7" placeholder="Cuéntanos sobre ti. Cómo eres y que haces." name="bio"><?php echo set_value('bio'); ?></textarea>
 						<?php echo form_error('bio'); ?>

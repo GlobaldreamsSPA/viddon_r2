@@ -21,4 +21,38 @@ class Skills_model extends CI_Model
 
 		return $result;
 	}
+
+	function link_skills($profile)
+	{
+		if($profile['skills1'] != 0)
+		{
+			$data = array(
+					'user_id' => $profile['id'],
+					'skill_id' => $profile['skills1']
+				);
+
+			$this->db->insert('users_skills',$data);
+		}
+
+		if($profile['skills2'] != 0)
+		{
+			$data = array(
+					'user_id' => $profile['id'],
+					'skill_id' => $profile['skills2']
+				);
+
+			$this->db->insert('users_skills',$data);
+		}
+
+		if($profile['skills3'] != 0)
+		{
+			$data = array(
+					'user_id' => $profile['id'],
+					'skill_id' => $profile['skills3']
+				);
+
+			$this->db->insert('users_skills',$data);
+		}
+
+	}
 }

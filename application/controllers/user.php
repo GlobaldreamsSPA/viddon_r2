@@ -101,7 +101,7 @@ class User extends CI_Controller {
 		$this->form_validation->set_rules('bio', 'Bio', 'required');
 		$this->form_validation->set_rules('hobbies', 'Hobbies', 'required');
 		$this->form_validation->set_rules('dreams', 'Dreams', 'required');
-		$this->form_validation->set_rules('image', 'Image', 'required');
+		$this->form_validation->set_rules('image', 'Image', 'callback_check_upload');
 
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -119,17 +119,23 @@ class User extends CI_Controller {
 			$profile['skills3'] = $this->input->post('skills3');
 			$profile['sex'] = $this->input->post('sex');
 			$profile['age'] = $this->input->post('age');
-
-			print_r($profile);
 			
 			//ingresar los datos a la base de datos y obtener el id de usuario
-			//$id = $this->user_model->insert($data);
+			$id = $this->user_model->insert($profile);
+			
+			$profile['id'] = $id;
+			//Ahora linkear las habilidades del usuario
+			$this->skills_model->link_skills($profile);
 
-			//var_dump($this->_upload_image($id));
+			//Por ultimo subir la foto
+			$this->_upload_image($id);
+
+			echo "Datos ingresados exitosamente";
 		}
 
 		//Talentos del usuario
 		$skills = $this->skills_model->get_skills();
+		$skills['0'] = 'Ninguno';
 		
 		//Edad del usuario
 		$age = array();
@@ -154,7 +160,7 @@ class User extends CI_Controller {
 		$images_path = realpath(APPPATH.UPLOAD_DIR);
 		
 		//obtener la extension del archivo
-		$type = explode('/', $_FILES['image']['type']);
+		$type = explode('/', $_FILES['profile_image']['type']);
 		
 		$filename = $id. '.' .$type[1];
 		
@@ -193,5 +199,18 @@ class User extends CI_Controller {
 		
 		$this->image_lib->initialize($config);
 		$this->image_lib->resize();
+	}
+
+	function check_upload($image)
+	{
+		if($_FILES['profile_image']['error'] == 4)
+		{
+			$this->form_validation->set_message('check_upload', 'Ups, deber subir un archivo antes de continuar.');
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
 	}
 }
