@@ -35,9 +35,11 @@
 			</div>
 		</div>
 		
-		<div class="row-fluid">
-			
-			<div class="space1"></div>	
+		<div class="row-fluid">	
+			<div class="space2"></div>	
+		</div>
+		
+		<div class="row-fluid">			
 			<div class="span3">		
 				<img class="banner_image" src="<?php echo  base_url().'img/banner.jpg'; ?>">
 				<div class="space4"></div>
@@ -48,33 +50,36 @@
 			<div class="span6">
 				<?php if(isset($video_ID)){?>
 					<h2> <?php echo $video_title;?></h3>
-					<iframe width="650" height="400" src="http://www.youtube.com/embed/<?php echo $video_ID?>" frameborder="0" allowfullscreen></iframe>
-					<br>				
-					<div class="fb-like" data-href="http://www.youtube.com/watch?v=<?php echo $video_ID ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>			    							
-					<label style="display:inline;">
-					<?php
-						$JSON = file_get_contents("https://gdata.youtube.com/feeds/api/videos/{$video_ID}?v=2&alt=json");
-						$JSON_Data = json_decode($JSON);
-						if(array_key_exists('yt$statistics', $JSON_Data->{'entry'}))
-						{
-							$views = $JSON_Data->{'entry'}->{'yt$statistics'}->{'viewCount'};
-							$dislikes = $JSON_Data->{'entry'}->{'yt$rating'}->{'numDislikes'};
-							$likes = $JSON_Data->{'entry'}->{'yt$rating'}->{'numLikes'};
-						}
-						else
-						{
-							$views = "0";
-							$dislikes = "0";
-							$likes = "0";
-						}
-						
-						
-						echo "<span id='youtubedata' class='badge badge-important'><i class='icon-thumbs-down icon-white'></i>$dislikes</span>";
-						echo "<span id='youtubedata' class='badge badge-success'><i class='icon-thumbs-up icon-white'></i>$likes</span>";
-						echo "<span id='youtubedata' class='badge badge-info'><i class='icon-eye-open '></i>$views</span>";
-						
-					?>
-					</label>
+					<iframe width="600" height="400" src="http://www.youtube.com/embed/<?php echo $video_ID?>" frameborder="0" allowfullscreen></iframe>
+					<br>
+					
+					<div class="social_data_container">			
+						<div class="fb-like" data-href="http://www.youtube.com/watch?v=<?php echo $video_ID ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>			    							
+						<label class="youtubedata">
+						<?php
+							$JSON = file_get_contents("https://gdata.youtube.com/feeds/api/videos/{$video_ID}?v=2&alt=json");
+							$JSON_Data = json_decode($JSON);
+							if(array_key_exists('yt$statistics', $JSON_Data->{'entry'}))
+							{
+								$views = $JSON_Data->{'entry'}->{'yt$statistics'}->{'viewCount'};
+								$dislikes = $JSON_Data->{'entry'}->{'yt$rating'}->{'numDislikes'};
+								$likes = $JSON_Data->{'entry'}->{'yt$rating'}->{'numLikes'};
+							}
+							else
+							{
+								$views = "0";
+								$dislikes = "0";
+								$likes = "0";
+							}
+							
+							
+							echo "<span id='youtubedata' class='badge badge-important'><i class='icon-thumbs-down icon-white'></i>$dislikes</span>";
+							echo "<span id='youtubedata' class='badge badge-success'><i class='icon-thumbs-up icon-white'></i>$likes</span>";
+							echo "<span id='youtubedata' class='badge badge-info'><i class='icon-eye-open '></i>$views</span>";
+							
+						?>
+						</label>
+					</div>	
 					<div class="space1"></div>	
 					<div class="justify"><?php echo $video_description;?></div>				
 					
