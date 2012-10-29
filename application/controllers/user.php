@@ -92,10 +92,22 @@ class User extends CI_Controller {
 			var_dump($this->_upload_image($id));
 		}
 
+		//Talentos del usuario
 		$skills = $this->skills_model->get_skills();
-
-		$data['skills'] = $skills;
 		
+		//Edad del usuario
+		$age = array();
+		
+		for($i=1; $i<=100; $i++)
+		{
+			$age[$i] = $i;
+		}
+
+		$data = array(
+			'skills' => $skills,
+			'age' => $age
+			);
+
 		//Cargar el formulario
 		$this->load->view('templates/header');
 		$this->load->view('new', $data);
