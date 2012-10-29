@@ -35,6 +35,21 @@ class User extends CI_Controller {
 		$args["video_title"]="Super Titulo";
 		$args["video_description"]="Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
 					Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.";		
+		
+		
+		if(isset($_POST["id_cw"]) && $_POST["id_cw"]!="0" )
+		{
+			$args["video_ID"]=$_POST["id_cw"];
+		}
+		elseif(isset($_POST["url_ytb"]) && $_POST["id_cw"]!="")
+		{
+			$query_string = array();
+			
+			parse_str(parse_url($_POST["url_ytb"], PHP_URL_QUERY), $query_string);
+
+			$args["video_ID"]=$query_string["v"];
+		}
+		
 		#$args["video_ID"]="oHg5SJYRHA0";
 	
 		$args["content"]="user_profile";
@@ -42,7 +57,7 @@ class User extends CI_Controller {
 
 		//El usuario hace click en postular al concurso
 
-		if($this->input->post())
+		if($this->input->post("validate"))
 		{
 			//Obtener el Id del usuario a traves de la sesion
 			$user_id = 1;

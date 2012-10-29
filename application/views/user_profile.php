@@ -1,3 +1,4 @@
+
 <div class="content" id="content">
 	
 	<div class="container-fluid">
@@ -5,6 +6,7 @@
 	    	<div class="span3">
 				<img class="user_image" src="<?php echo base_url().'img/profile/'.$image_profile ?>"/>
 				<form action="user" method="POST">
+					<input type="hidden" name="validate" value="1"/>
 					<button id="participate_button" class="btn btn-large btn-success" type="submit" name="apply">POSTULAR A CONCURSO</button>
 	    		</form>
 	    	</div>
@@ -53,9 +55,19 @@
 					<?php
 						$JSON = file_get_contents("https://gdata.youtube.com/feeds/api/videos/{$video_ID}?v=2&alt=json");
 						$JSON_Data = json_decode($JSON);
-						$views = $JSON_Data->{'entry'}->{'yt$statistics'}->{'viewCount'};
-						$dislikes = $JSON_Data->{'entry'}->{'yt$rating'}->{'numDislikes'};
-						$likes = $JSON_Data->{'entry'}->{'yt$rating'}->{'numLikes'};
+						if(array_key_exists('yt$statistics', $JSON_Data->{'entry'}))
+						{
+							$views = $JSON_Data->{'entry'}->{'yt$statistics'}->{'viewCount'};
+							$dislikes = $JSON_Data->{'entry'}->{'yt$rating'}->{'numDislikes'};
+							$likes = $JSON_Data->{'entry'}->{'yt$rating'}->{'numLikes'};
+						}
+						else
+						{
+							$views = "0";
+							$dislikes = "0";
+							$likes = "0";
+						}
+						
 						
 						echo "<span id='youtubedata' class='badge badge-important'><i class='icon-thumbs-down icon-white'></i>$dislikes</span>";
 						echo "<span id='youtubedata' class='badge badge-success'><i class='icon-thumbs-up icon-white'></i>$likes</span>";
@@ -79,14 +91,14 @@
 				
 				</ul>
 					
-				<form action="" class="tab-content"  method="post">
+				<form id="video_upload_form" action="" class="tab-content"  method="post">
 					 
 					<div class='tab-pane active' id='tab1'>
 				   
 					   	<div id="form_camera_video" style="display: block"> 
-					   		<input class="input-xlarge" type="text" placeholder="nombre-video">
+					   		<input name="name_cw" class="input-xlarge" type="text" placeholder="nombre-video">
 							<div class="space1"></div>			
-							<textarea rows="3" id="video_description" placeholder="descripcion-video"></textarea>
+							<textarea name="description_cw" rows="3" class="video_description" placeholder="descripcion-video"></textarea>
 							<div class="space1"></div>			
 							<a onclick="toggleContent()" class="btn btn-primary">Siguiente</a>
 					   	</div>
@@ -117,7 +129,9 @@
 					    <div id="widget" style="display: none">
 					    </div>
 					    <div id="button-widget" style="display: none">
+					    	<div class="space1"></div>
 					    	<a onclick="toggleContent()" class="btn">cancelar</a>
+					    	<input type="hidden" name="id_cw" value="0"/>
 					    </div>
 					   
 					    <script>
@@ -136,14 +150,17 @@
 					        widget = new YT.UploadWidget('widget', {
 					          width: 500,
 					          events: {
-					            'onUploadSuccess': onUploadSuccess,
+					            'onUploadSuccess': onProcessingComplete
 					          }
 					        });
 					      }
 					
 					      // 4. This function is called when a video has been successfully uploaded.
-					      function onUploadSuccess(event) {
-					        alert('Video ID ' + event.data.videoId + ' was uploaded and is currently being processed.');
+					      function onProcessingComplete(event) {
+
+					      	document.forms["video_upload_form"].elements["id_cw"].value= event.data.videoId;
+					      	
+					      	document.forms["video_upload_form"].submit();
 					      }
 					
 					    </script>
@@ -151,10 +168,10 @@
 					
 					<div class='tab-pane' id='tab2'>
 							
-						<input class="input-xlarge" type="text" placeholder="url-video">
-						<input class="input-xlarge" type="text" placeholder="nombre-video">
+						<input name="url_ytb" class="input-xlarge" type="text" placeholder="url-video" value="">
+						<input name="name_ytb" class="input-xlarge" type="text" placeholder="nombre-video">
 						<div class="space1"></div>	
-						<textarea rows="3" id="video_description" placeholder="descripcion-video"></textarea>
+						<textarea name="description_ytb" rows="3" class="video_description" placeholder="descripcion-video"></textarea>
 						<div class="space1"></div>	
 						<button type="submit" class="btn btn-primary">Guardar</button>
 						<button type="button" class="btn">Cancelar</button>
