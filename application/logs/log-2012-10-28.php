@@ -1,0 +1,30 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2012-10-28 13:53:21 --> 404 Page Not Found --> js
+ERROR - 2012-10-28 15:04:26 --> 404 Page Not Found --> user/js
+ERROR - 2012-10-28 15:04:26 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 18:05:55 --> Severity: Notice  --> Undefined property: User::$skills_model /home/maty/www/mac/release1.0/home/application/controllers/user.php 94
+ERROR - 2012-10-28 18:25:15 --> 404 Page Not Found --> user/js
+ERROR - 2012-10-28 18:25:15 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 18:25:34 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 18:25:34 --> 404 Page Not Found --> user/js
+ERROR - 2012-10-28 18:25:34 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 18:25:59 --> 404 Page Not Found --> user/js
+ERROR - 2012-10-28 18:25:59 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 18:26:57 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 18:26:57 --> 404 Page Not Found --> user/js
+ERROR - 2012-10-28 18:54:53 --> 404 Page Not Found --> user/js
+ERROR - 2012-10-28 18:54:53 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 19:00:44 --> 404 Page Not Found --> user/js
+ERROR - 2012-10-28 19:00:44 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 19:02:08 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 19:02:08 --> 404 Page Not Found --> user/js
+ERROR - 2012-10-28 19:02:08 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 19:02:34 --> 404 Page Not Found --> user/js
+ERROR - 2012-10-28 19:02:34 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 19:03:17 --> 404 Page Not Found --> user/js
+ERROR - 2012-10-28 19:03:17 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 19:04:47 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 19:04:47 --> 404 Page Not Found --> user/js
+ERROR - 2012-10-28 19:24:03 --> 404 Page Not Found --> user/js
+ERROR - 2012-10-28 19:24:03 --> 404 Page Not Found --> user/img
