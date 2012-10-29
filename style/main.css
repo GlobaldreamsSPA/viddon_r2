@@ -13,6 +13,13 @@ div.content
 	top: -20px;
 }
 
+textarea.user_description
+{
+	min-width: 545px;
+	min-height: 150px;
+}
+
+
 textarea.video_description
 {
 	min-width: 560px;
@@ -92,6 +99,13 @@ button#participate_button
 	top: 60px;
 	left: 10%;
 }
+
+div#image_upload
+{
+	position:relative;
+	top: 20px;
+	left:2%;
+}
 		
 /* Color plateado perfil */
 #content div.row-fluid
@@ -119,6 +133,7 @@ div#main_videos
 {
 	margin-left:20px;
 }
+
 		
 		
 		/* Formato links en la parte superior del header */
