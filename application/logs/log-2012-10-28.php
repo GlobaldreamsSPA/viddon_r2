@@ -52,3 +52,21 @@ ERROR - 2012-10-28 21:50:21 --> 404 Page Not Found --> user/js
 ERROR - 2012-10-28 21:50:21 --> 404 Page Not Found --> user/img
 ERROR - 2012-10-28 21:50:24 --> 404 Page Not Found --> user/js
 ERROR - 2012-10-28 21:50:24 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 21:58:50 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 21:58:50 --> 404 Page Not Found --> user/js
+ERROR - 2012-10-28 21:58:50 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 22:01:57 --> 404 Page Not Found --> user/js
+ERROR - 2012-10-28 22:01:57 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 22:02:31 --> Severity: Notice  --> Undefined property: User::$skills_model /home/maty/www/mac/release1.0/home/application/controllers/user.php 93
+ERROR - 2012-10-28 22:02:34 --> Severity: Notice  --> Undefined property: User::$skills_model /home/maty/www/mac/release1.0/home/application/controllers/user.php 93
+ERROR - 2012-10-28 22:03:09 --> 404 Page Not Found --> user/js
+ERROR - 2012-10-28 22:03:09 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 22:11:28 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 22:11:28 --> 404 Page Not Found --> user/js
+ERROR - 2012-10-28 22:11:28 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 22:12:11 --> 404 Page Not Found --> user/js
+ERROR - 2012-10-28 22:12:11 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 22:12:12 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 22:12:12 --> 404 Page Not Found --> user/js
+ERROR - 2012-10-28 22:12:14 --> 404 Page Not Found --> js
+ERROR - 2012-10-28 22:12:27 --> 404 Page Not Found --> js

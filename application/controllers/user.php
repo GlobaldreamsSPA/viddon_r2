@@ -5,7 +5,7 @@ class User extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->library(array('upload', 'image_lib'));
+		$this->load->library(array('upload', 'image_lib', 'form_validation'));
 		$this->load->helper(array('url', 'file', 'form'));
 		
 		//Modelitos xD
@@ -97,7 +97,7 @@ class User extends CI_Controller {
 		
 		//Edad del usuario
 		$age = array();
-		
+
 		for($i=1; $i<=100; $i++)
 		{
 			$age[$i] = $i;
