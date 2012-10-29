@@ -119,7 +119,7 @@ class User extends CI_Controller {
 		//Edad del usuario
 		$age = array();
 
-		for($i=1; $i<=100; $i++)
+		for($i=100; $i>=1; $i--)
 		{
 			$age[$i] = $i;
 		}
