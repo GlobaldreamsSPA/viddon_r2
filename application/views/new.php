@@ -8,7 +8,7 @@
 				<?php echo form_open_multipart('user/edit'); ?>
 				<div class="span3" id="image_upload">
 					<img src="<?php echo base_url(); ?>img/profile/user.jpg" class="img-polaroid">
-					<?php echo form_upload(array('name' => 'profile_image'));
+					<?php echo form_upload(array('name' => 'image_profile'));
 						  echo form_hidden('image','');
 						  echo form_error('image'); ?>
 				</div>

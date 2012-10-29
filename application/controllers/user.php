@@ -105,7 +105,7 @@ class User extends CI_Controller {
 
 		if ($this->form_validation->run() == FALSE)
 		{
-
+			//No paso todas las validaciones
 		}
 		else
 		{
@@ -121,14 +121,14 @@ class User extends CI_Controller {
 			$profile['age'] = $this->input->post('age');
 			
 			//ingresar los datos a la base de datos y obtener el id de usuario
-			$id = $this->user_model->insert($profile);
-			
-			$profile['id'] = $id;
+			//$id = $this->user_model->insert($profile);
+
+			$profile['id'] = '13';
 			//Ahora linkear las habilidades del usuario
-			$this->skills_model->link_skills($profile);
+			//$this->skills_model->link_skills($profile);
 
 			//Por ultimo subir la foto
-			$this->_upload_image($id);
+			$this->_upload_image('13');
 
 			echo "Datos ingresados exitosamente";
 		}
@@ -160,7 +160,7 @@ class User extends CI_Controller {
 		$images_path = realpath(APPPATH.UPLOAD_DIR);
 		
 		//obtener la extension del archivo
-		$type = explode('/', $_FILES['profile_image']['type']);
+		$type = explode('/', $_FILES['image_profile']['type']);
 		
 		$filename = $id. '.' .$type[1];
 		
@@ -180,13 +180,13 @@ class User extends CI_Controller {
 		
 		$this->upload->initialize($config);
 		
-		if(!$this->upload->do_upload('image'))
+		if(!$this->upload->do_upload('image_profile'))
 		{
 			return $this->upload->display_errors();
 		}
 		
 		//ahora ajustar la imagen
-		$image = $this->upload->data();
+		$image = $this->upload->data('image_profile');
 
 		$config = array(
 			'image_library' => 'gd2',
@@ -203,7 +203,7 @@ class User extends CI_Controller {
 
 	function check_upload($image)
 	{
-		if($_FILES['profile_image']['error'] == 4)
+		if($_FILES['image_profile']['error'] == 4)
 		{
 			$this->form_validation->set_message('check_upload', 'Ups, deber subir un archivo antes de continuar.');
 			return FALSE;
