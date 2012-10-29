@@ -37,9 +37,8 @@ class User extends CI_Controller {
 					Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.";		
 		#$args["video_ID"]="oHg5SJYRHA0";
 	
-		$this->load->view('templates/header');
-		$this->load->view('user_profile',$args);
-		$this->load->view('templates/footer');
+		$args["content"]="user_profile";
+		$this->load->view('template',$args);
 
 		//El usuario hace click en postular al concurso
 
@@ -103,15 +102,15 @@ class User extends CI_Controller {
 			$age[$i] = $i;
 		}
 
-		$data = array(
+		$args = array(
 			'skills' => $skills,
 			'age' => $age
 			);
 
 		//Cargar el formulario
-		$this->load->view('templates/header');
-		$this->load->view('new', $data);
-		$this->load->view('templates/footer');
+		$args['content']="new";
+		//Cargar el formulario
+		$this->load->view('template', $args);
 	}
 
 	private function _upload_image($id)
