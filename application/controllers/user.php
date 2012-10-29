@@ -77,19 +77,41 @@ class User extends CI_Controller {
 	
 	public function edit()
 	{
-		if($this->input->post())
+
+		//Setear mensajes
+		$this->form_validation->set_message('required', 
+				'Ups! Todavia te falta este dato. Es muy importante para definirte como ganador(a) del concurso :)');
+
+		//Setear reglas
+		$this->form_validation->set_rules('name', 'Name', 'required');
+		$this->form_validation->set_rules('bio', 'Bio', 'required');
+		$this->form_validation->set_rules('hobbies', 'Hobbies', 'required');
+		$this->form_validation->set_rules('dreams', 'Dreams', 'required');
+		$this->form_validation->set_rules('image', 'Image', 'required');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			echo "Datos guardados satisfactoriamente";
+		}
+		else
 		{
 			//Guardar los datos de usuario
-			$data['name'] = $this->input->post('name');
-			$data['bio'] = $this->input->post('bio');
-			$data['hobbies'] = $this->input->post('hobbies');
-			$data['dreams'] = $this->input->post('dreams');
-			$data['image_profile'] = "hola.jpg";
+			$profile['name'] = $this->input->post('name');
+			$profile['bio'] = $this->input->post('bio');
+			$profile['hobbies'] = $this->input->post('hobbies');
+			$profile['dreams'] = $this->input->post('dreams');
+			$profile['skills1'] = $this->input->post('skills1');
+			$profile['skills2'] = $this->input->post('skills2');
+			$profile['skills3'] = $this->input->post('skills3');
+			$profile['sex'] = $this->input->post('sex');
+			$profile['age'] = $this->input->post('age');
+
+			print_r($profile);
 			
 			//ingresar los datos a la base de datos y obtener el id de usuario
-			$id = $this->user_model->insert($data);
+			//$id = $this->user_model->insert($data);
 
-			var_dump($this->_upload_image($id));
+			//var_dump($this->_upload_image($id));
 		}
 
 		//Talentos del usuario

@@ -70,3 +70,13 @@ ERROR - 2012-10-28 22:12:12 --> 404 Page Not Found --> user/img
 ERROR - 2012-10-28 22:12:12 --> 404 Page Not Found --> user/js
 ERROR - 2012-10-28 22:12:14 --> 404 Page Not Found --> js
 ERROR - 2012-10-28 22:12:27 --> 404 Page Not Found --> js
+ERROR - 2012-10-28 23:12:15 --> 404 Page Not Found --> js
+ERROR - 2012-10-28 23:12:16 --> Severity: Notice  --> Undefined variable: divInic /home/maty/www/mac/release1.0/home/application/controllers/user.php 82
+ERROR - 2012-10-28 23:12:16 --> Severity: Notice  --> Undefined variable: divFin /home/maty/www/mac/release1.0/home/application/controllers/user.php 82
+ERROR - 2012-10-28 23:12:16 --> Severity: Notice  --> Undefined variable: divInic /home/maty/www/mac/release1.0/home/application/controllers/user.php 84
+ERROR - 2012-10-28 23:12:16 --> Severity: Notice  --> Undefined variable: divFin /home/maty/www/mac/release1.0/home/application/controllers/user.php 84
+ERROR - 2012-10-28 23:12:16 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 23:12:16 --> 404 Page Not Found --> user/js
+ERROR - 2012-10-28 23:12:17 --> 404 Page Not Found --> user/img
+ERROR - 2012-10-28 23:47:14 --> 404 Page Not Found --> user/js
+ERROR - 2012-10-28 23:47:14 --> 404 Page Not Found --> user/img

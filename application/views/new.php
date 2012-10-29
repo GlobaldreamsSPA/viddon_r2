@@ -14,19 +14,16 @@
 				<?php echo form_dropdown('skills2', $skills, 3,"class='span2'") ?>
 				<?php echo form_dropdown('skills3', $skills, 13,"class='span2'") ?>
 			<label>Bio</label>
-				<textarea rows="4" span="7" placeholder="Cuentanos sobre ti. Cómo eres y que haces." value="<?php echo set_value('bio'); ?>" name="bio"></textarea>
+				<textarea rows="4" span="7" placeholder="Cuéntanos sobre ti. Cómo eres y que haces." value="<?php echo set_value('bio'); ?>" name="bio"></textarea>
 				<?php echo form_error('bio'); ?>
 			<label>Hobbies</label>
 				<textarea rows="4" span="7" placeholder="Háblanos sobre tus gustos y lo que te apasiona!" value="<?php echo set_value('hobbies'); ?>" name="hobbies"/></textarea>
 				<?php echo form_error('hobbies'); ?>
 			<label>Mi Sueño</label>
-				<textarea rows="4" span="7" placeholder="Háblanos de tus sueños y lo que quieres lograr!" value="<?php echo set_value('dreams'); ?>" name="dreams"/></textarea>
+				<textarea rows="4" span="7" placeholder="Cuéntanos de tus sueños y lo que quieres lograr!" value="<?php echo set_value('dreams'); ?>" name="dreams"/></textarea>
 				<?php echo form_error('dreams'); ?>
-			<label>Email</label>
-				<input type="text" class="span3" placeholder="Danos tu email!" value="<?php echo set_value('email'); ?>" name="email">
-				<?php echo form_error('email'); ?>
 			<label>¿Cúal es tu sexo?</label>
-			<select class="span2">
+			<select class="span2" name="sex">
 				<option value="0" selected="selected">Femenino</option>
 				<option value="1">Masculino</option>
 			</select>
