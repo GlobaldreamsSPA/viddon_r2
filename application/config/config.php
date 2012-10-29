@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/mac/release1.0/home';
+$config['base_url']	= "http://localhost/mac/release1.0/home/";
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ $config['base_url']	= 'http://localhost/mac/release1.0/home';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = '';
+$config['index_page'] = "";
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +44,7 @@ $config['index_page'] = '';
 | 'ORIG_PATH_INFO'	Uses the ORIG_PATH_INFO
 |
 */
-$config['uri_protocol']	= 'AUTO';
+$config['uri_protocol']	= "AUTO";
 
 /*
 |--------------------------------------------------------------------------
