@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/mac/release1.0/home';
+$config['base_url']	= 'http://localhost/viddon_r2';
 
 /*
 |--------------------------------------------------------------------------

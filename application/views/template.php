@@ -10,6 +10,8 @@
 
 	<link href="<?php echo base_url()?>style/bootstrap.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/main.css" rel="stylesheet">
+ 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>	
+	<script src="js/bootstrap.js"></script>
 </head>
 
 <body>	
@@ -25,7 +27,6 @@
 	}(document, 'script', 'facebook-jssdk'));
 	</script>
 	
-	<script src="js/bootstrap.js"></script>
 	<div id="headercontent">
 	    
 	    <div id="upperhalf">
@@ -57,4 +58,14 @@
 			</div>
 		</div>
 	</div>
+	
+	<?php $this->load->view($content);?>
 </body>
+
+
+
+<footer class="footer">
+
+VIDDON S.A. 2012
+
+</footer>

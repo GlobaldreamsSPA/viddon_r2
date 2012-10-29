@@ -20,7 +20,7 @@ class User extends CI_Controller {
 		$args = array();
 		$args['username']="pedrito";
 		$args['name']= "PEDRO PEDRITO PEDREZ";
-		$args['id'] = "user";
+		$args['image_profile'] = "14.jpeg";
 		$args['tags']= array("Hip-Hop","Metal","Animacion");
 		$args["bio"]="Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
 					Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.";
@@ -37,9 +37,8 @@ class User extends CI_Controller {
 					Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.";		
 		#$args["video_ID"]="oHg5SJYRHA0";
 	
-		$this->load->view('templates/header');
-		$this->load->view('user_profile',$args);
-		$this->load->view('templates/footer');
+		$args["content"]="user_profile";
+		$this->load->view('template',$args);
 
 		//El usuario hace click en postular al concurso
 
@@ -182,4 +181,3 @@ class User extends CI_Controller {
 		$this->image_lib->resize();
 	}
 }
-
