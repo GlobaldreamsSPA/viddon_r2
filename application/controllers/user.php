@@ -128,7 +128,7 @@ class User extends CI_Controller {
 			//$this->skills_model->link_skills($profile);
 
 			//Por ultimo subir la foto
-			$this->_upload_image('13');
+			$this->_upload_image(13);
 
 			echo "Datos ingresados exitosamente";
 		}
@@ -182,7 +182,7 @@ class User extends CI_Controller {
 		
 		if(!$this->upload->do_upload('image_profile'))
 		{
-			return $this->upload->display_errors();
+			print_r($this->upload->display_errors());
 		}
 		
 		//ahora ajustar la imagen
