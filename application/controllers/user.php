@@ -90,7 +90,7 @@ class User extends CI_Controller {
 
 		if ($this->form_validation->run() == FALSE)
 		{
-			echo "Datos guardados satisfactoriamente";
+
 		}
 		else
 		{
@@ -124,15 +124,14 @@ class User extends CI_Controller {
 			$age[$i] = $i;
 		}
 
-		$data = array(
+		$args = array(
+			'content' => 'new',
 			'skills' => $skills,
 			'age' => $age
 			);
 
 		//Cargar el formulario
-		$this->load->view('templates/header');
-		$this->load->view('new', $data);
-		$this->load->view('templates/footer');
+		$this->load->view('template', $args);
 	}
 
 	private function _upload_image($id)
