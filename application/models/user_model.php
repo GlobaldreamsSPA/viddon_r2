@@ -7,15 +7,22 @@ class User_model extends CI_Model
         parent::__construct();
     }
 
-	function insert($data)
+	function insert($profile)
 	{
-		$this->db->insert('users',$data);
-		
+
+		$data = array(
+				'name' => $profile['name'],
+				'bio' => $profile['bio'],
+				'dreams' => $profile['dreams'],
+				'hobbies' => $profile['hobbies'],
+				'sex' => $profile['sex'],
+				'age' => $profile['age']
+			);
+
+		$this->db->insert('users', $data);
 		$this->db->select('id');
 		$this->db->select_max('id');
 		$query = $this->db->get('users')->first_row('array');
-		
-		//Ahora guardar la imagen y hacer un resize
 		return $query['id'];
 	}
 }
