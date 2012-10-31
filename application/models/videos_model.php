@@ -26,6 +26,7 @@ class Videos_model extends CI_Model
 	{
 		$this->db->where('user_id', $id_user);
 		$query = $this->db->get('videos')->first_row('array');
+		$result["video_id"]=$query['video_id'];
 		$result["video_title"] = $query['title'];
 		$result["video_description"] = $query['description'];
 
