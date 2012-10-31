@@ -1,4 +1,5 @@
 
+
 <div class="content" id="content">
 	
 	<div class="container-fluid">
@@ -27,10 +28,10 @@
 				<div class="justify"><?php echo $bio;?></div>
 				
 				<h4 class="profile">Hobbies</h4>
-				<div class="justify"><?php echo $hobbies;?></div>
+				<div class="justify"><?php echo $bio;?></div>
 				
-				<h4 class="profile">Mi sueno</h4>
-				<div class="justify"><?php echo $dreams;?></div>
+				<h4 class="profile">Dreams</h4>
+				<div class="justify"><?php echo $bio;?></div>
 				
 			</div>
 		</div>
@@ -52,25 +53,8 @@
 					<h2> <?php echo $video_title;?></h3>
 					<iframe width="600" height="400" src="http://www.youtube.com/embed/<?php echo $video_ID?>" frameborder="0" allowfullscreen></iframe>
 					<br>
-<<<<<<< HEAD
 					
 					<div class="social_data_container">			
-=======
-					<br>
-					<br>
-					<br>
-					<img class="banner_image" src="<?php echo  base_url().'img/banner.jpg'; ?>">
-					<br>
-					<br>
-					<br>
-				</div>
-				
-				<div class="span6">
-					<?php if(isset($video_ID)){?>
-						<h2> <?php echo $video_title;?></h3>
-						<iframe width="650" height="400" src="http://www.youtube.com/embed/<?php echo $video_ID?>" frameborder="0" allowfullscreen></iframe>
-						<br>				
->>>>>>> e7f005f1596fff67dc68f46cd84c7c5da7b9dd6e
 						<div class="fb-like" data-href="http://www.youtube.com/watch?v=<?php echo $video_ID ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>			    							
 						<label class="youtubedata">
 						<?php
@@ -96,7 +80,6 @@
 							
 						?>
 						</label>
-<<<<<<< HEAD
 					</div>	
 					<div class="space1"></div>	
 					<div class="justify"><?php echo $video_description;?></div>				
@@ -111,77 +94,6 @@
 				<ul class='nav nav-tabs' id='tab'>
 					<li class="active"><a href="#tab1" data-toggle="tab">Subir Video Webcam</a></li>
 					<li><a href="#tab2" data-toggle="tab">Subir Via URL Youtube</a></li>
-=======
-						<br>
-						<div class="justify"><?php echo $video_description;?></div>				
-						
-					<?php 
-					} 
-					else
-					{?>
-												
-					<script>$('#tab a[href="#client_tab2"]').tab('show');​</script>
-					
-					<ul class='nav nav-tabs' id='tab'>
-					  <li class="active"><a href="#tab1" data-toggle="tab">Subir Video Webcam</a></li>
-					  <li><a href="#tab2" data-toggle="tab">Subir Via URL Youtube</a></li>
-					
-					</ul>
-					
-					<form action="" class="tab-content"  method="post" >
-					 
-					  <div class='tab-pane active' id='tab1'>
-					    <div id="widget"></div>
-					   
-					    <script>
-					      // 2. Asynchronously load the Upload Widget and Player API code.
-					      var tag = document.createElement('script');
-					      tag.src = "//www.youtube.com/iframe_api";
-					      var firstScriptTag = document.getElementsByTagName('script')[0];
-					      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-					
-					      // 3. Define global variables for the widget and the player.
-					      //    The function loads the widget after the JavaScript code
-					      //    has downloaded and defines event handlers for callback
-					      //    notifications related to the widget.
-					      var widget;
-					      function onYouTubeIframeAPIReady() {
-					        widget = new YT.UploadWidget('widget', {
-					          width: 500,
-					          events: {
-					            'onUploadSuccess': onUploadSuccess,
-					          }
-					        });
-					      }
-					
-					      // 4. This function is called when a video has been successfully uploaded.
-					      function onUploadSuccess(event) {
-					        alert('Video ID ' + event.data.videoId + ' was uploaded and is currently being processed.');
-					      }
-					
-					    </script>
-					  </div>
-					
-					  <div class='tab-pane' id='tab2'>
-							
-							<input class="input-xlarge" type="text" placeholder="url-video">
-							<input class="input-xlarge" type="text" placeholder="nombre-video">
-							
-							<textarea rows="3" id="video_description" placeholder="descripcion-video"></textarea>
-							<br>		
-							<button type="submit" class="btn btn-primary">Guardar</button>
-							<button type="button" class="btn">Cancel</button>
-							
-					
-					  </div>
-					</form>
-					<?php
-					}
-					?>
-					<br>
-					<br>
-				</div>
->>>>>>> e7f005f1596fff67dc68f46cd84c7c5da7b9dd6e
 				
 				</ul>
 					

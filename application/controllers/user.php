@@ -23,6 +23,7 @@ class User extends CI_Controller {
 		$args['tags'] = $this->skills_model->get_user_skills($id);
 		$video = $this->videos_model->get_video($id);
 		
+		$args['video_ID']=$video["video_id"];
 		$args["video_title"] = $video["video_title"];
 		$args["video_description"] = $video["video_description"];
 		
