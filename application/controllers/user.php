@@ -42,6 +42,7 @@ class User extends CI_Controller {
 		#$args["video_ID"]="oHg5SJYRHA0";
 	
 		$args["content"]="user_profile";
+
 		$this->load->view('template',$args);
 
 		//El usuario hace click en postular al concurso
