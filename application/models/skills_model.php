@@ -22,6 +22,25 @@ class Skills_model extends CI_Model
 		return $result;
 	}
 
+	function get_user_skills($id)
+	{
+		$this->db->select('skills.name');
+		$this->db->from('skills');
+		$this->db->join('users_skills', 'users_skills.skill_id = skills.id');
+		$this->db->join('users', 'users.id = users_skills.user_id');
+		$this->db->where('users.id', $id);
+		$query = $this->db->get();
+
+		$result = array();
+
+		foreach ($query->result_array() as $item)
+		{
+			$result[] = $item['name'];
+		}
+
+		return $result; 
+	}
+
 	function link_skills($profile)
 	{
 		if($profile['skills1'] != 0)

@@ -25,4 +25,17 @@ class User_model extends CI_Model
 		$query = $this->db->get('users')->first_row('array');
 		return $query['id'];
 	}
+
+	function select($id)
+	{
+		$profile = array();
+
+		//Rescatar los datos de la tabla usuario
+		$this->db->select('name, image_profile, bio, hobbies, dreams');
+		$this->db->from('users');
+		$this->db->where('id', $id);
+		$query = $this->db->get()->first_row('array');
+
+		return $query;
+	}
 }

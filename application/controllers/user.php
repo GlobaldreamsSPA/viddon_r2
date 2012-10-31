@@ -17,25 +17,14 @@ class User extends CI_Controller {
 
 	public function index()
 	{
-		$args = array();
-		$args['username']="pedrito";
-		$args['name']= "PEDRO PEDRITO PEDREZ";
-		$args['image_profile'] = "14.jpeg";
-		$args['tags']= array("Hip-Hop","Metal","Animacion");
-		$args["bio"]="Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
-					Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.";
-		$args["hobbie"]="Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
-					Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.";
-		$args["dream"]="Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
-					Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.";
+		$id = '1';
+
+		$args = $this->user_model->select($id);
+		$args['tags'] = $this->skills_model->get_user_skills($id);
+		$video = $this->videos_model->get_video($id);
 		
-		
-		
-		
-		$args["video_title"]="Super Titulo";
-		$args["video_description"]="Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.
-					Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.";		
-		
+		$args["video_title"] = $video["video_title"];
+		$args["video_description"] = $video["video_description"];
 		
 		if(isset($_POST["id_cw"]) && $_POST["id_cw"]!="0" )
 		{

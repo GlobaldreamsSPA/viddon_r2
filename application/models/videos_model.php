@@ -20,4 +20,15 @@ class Videos_model extends CI_Model
 		else
 			return 1;
 	}
+
+	//Retorna los datos del primer video que pertenece al usuario
+	function get_video($id_user)
+	{
+		$this->db->where('user_id', $id_user);
+		$query = $this->db->get('videos')->first_row('array');
+		$result["video_title"] = $query['title'];
+		$result["video_description"] = $query['description'];
+
+		return $result;
+	}
 }
