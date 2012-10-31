@@ -29,11 +29,11 @@
 				<div class="space1"></div>
 				
 				<h4 class="profile">Hobbies</h4>
-				<div class="justify"><?php echo $bio;?></div>
+				<div class="justify"><?php echo $hobbies;?></div>
 				<div class="space1"></div>
 				
 				<h4 class="profile">Dreams</h4>
-				<div class="justify"><?php echo $bio;?></div>
+				<div class="justify"><?php echo $dreams;?></div>
 				<div class="space1"></div>
 				
 			</div>
