@@ -15,7 +15,7 @@
 		    <div class="span6">
 		    		
 		    	<div class="space1"></div>			    			
-				<h1> <?php echo $name ?></h1>
+				<h2> <?php echo $name ?></h2>
 				<div class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>
 		    	<?php
 		    		echo '<ul>' ;
@@ -26,18 +26,21 @@
 				?>
 				<h4 class="profile">Bio</h4>
 				<div class="justify"><?php echo $bio;?></div>
+				<div class="space1"></div>
 				
 				<h4 class="profile">Hobbies</h4>
 				<div class="justify"><?php echo $bio;?></div>
+				<div class="space1"></div>
 				
 				<h4 class="profile">Dreams</h4>
 				<div class="justify"><?php echo $bio;?></div>
+				<div class="space1"></div>
 				
 			</div>
 		</div>
 		
 		<div class="row-fluid">	
-			<div class="space2"></div>	
+			<div class="space4"></div>	
 		</div>
 		
 		<div class="row-fluid">			
@@ -50,7 +53,7 @@
 				
 			<div class="span6">
 				<?php if(isset($video_ID)){?>
-					<h2> <?php echo $video_title;?></h3>
+					<h3> <?php echo $video_title;?></h3>
 					<iframe width="600" height="400" src="http://www.youtube.com/embed/<?php echo $video_ID?>" frameborder="0" allowfullscreen></iframe>
 					<br>
 					

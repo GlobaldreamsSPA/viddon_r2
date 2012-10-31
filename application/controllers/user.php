@@ -21,15 +21,12 @@ class User extends CI_Controller {
 
 		$args = $this->user_model->select($id);
 		$args['tags'] = $this->skills_model->get_user_skills($id);
-		$video = $this->videos_model->get_video($id);
-		
-		$args['video_ID']=$video["video_id"];
-		$args["video_title"] = $video["video_title"];
-		$args["video_description"] = $video["video_description"];
 		
 		if(isset($_POST["id_cw"]) && $_POST["id_cw"]!="0" )
 		{
 			$args["video_ID"]=$_POST["id_cw"];
+			$args["video_title"]=$_POST["name_cw"];
+			$args["video_description"]=$_POST["description_cw"];
 		}
 		elseif(isset($_POST["url_ytb"]) && $_POST["id_cw"]!="")
 		{
@@ -38,7 +35,19 @@ class User extends CI_Controller {
 			parse_str(parse_url($_POST["url_ytb"], PHP_URL_QUERY), $query_string);
 
 			$args["video_ID"]=$query_string["v"];
+			
+			$args["video_title"] = $_POST["name_ytb"];
+			$args["video_description"] = $_POST["description_ytb"];
+		
 		}
+		
+		$video = $this->videos_model->get_video($id);
+		
+		$args['video_ID']=$video["video_id"];
+		$args["video_title"] = $video["video_title"];
+		$args["video_description"] = $video["video_description"];
+		
+		
 		
 		#$args["video_ID"]="oHg5SJYRHA0";
 	

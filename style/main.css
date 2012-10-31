@@ -133,7 +133,7 @@ div.justify
 	text-align : justify;
 	
 	width: 600px;
-	height: 120px;
+	max-height: 120px;
 }
 
 /* formato vistas y likes youtube, bajo cada video*/		
