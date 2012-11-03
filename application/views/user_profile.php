@@ -1,4 +1,42 @@
 
+<div id="success" class="modal hide fade in" >  
+<div class="modal-header">  
+<a class="close" data-dismiss="modal">×</a>  
+<h3>This is a Modal Heading</h3>  
+</div>  
+<div class="modal-body">  
+<h4>Aviso</h4>  
+<p>Tu inscripcion ha sido realizada</p>                
+</div>  
+<div class="modal-footer">   
+<a href="#" class="btn" data-dismiss="modal">Close</a>  
+</div>  
+</div>
+
+
+<div id="error" class="modal hide fade in" >  
+<div class="modal-header">  
+<a class="close" data-dismiss="modal">×</a>  
+<h3>This is a Modal Heading</h3>  
+</div>  
+<div class="modal-body">  
+<h4>Aviso</h4>  
+<p><?php if(isset($postulation_message)) echo $postulation_message; ?></p>                
+</div>  
+<div class="modal-footer">   
+<a href="#" class="btn" data-dismiss="modal">Close</a>  
+</div>  
+</div>
+
+<?php if($success_flag){ ?>
+<script type="text/javascript">
+
+  $('#success').modal({
+    show: true
+  });
+</script>
+<?php } ?>
+
 
 <div class="content" id="content">
 	
@@ -7,8 +45,12 @@
 	    	<div class="span3">
 				<img class="user_image" src="<?php echo base_url().'img/profile/'.$image_profile ?>"/>
 				<form action="user" method="POST">
-					<input type="hidden" name="validate" value="1"/>
+					<?php if($postulation_flag) {?>
 					<button id="participate_button" class="btn btn-large btn-success" type="submit" name="apply">POSTULAR A CONCURSO</button>
+					<input type="hidden" name="validate" value="1"/>
+					<?php } else{ ?>
+					<button data-toggle="modal" id="participate_button" href="#error" class="btn btn-success btn-large">POSTULAR A CONCURSO</button>
+	    			<?php } ?>
 	    		</form>
 	    	</div>
 		    
@@ -198,3 +240,4 @@
   	</div>
   	<div class="space2"></div>	
 </div>
+

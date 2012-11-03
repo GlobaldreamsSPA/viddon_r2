@@ -18,7 +18,10 @@ class User extends CI_Controller {
 	public function index()
 	{
 		$id = '1';
+		$user_id = 1;
 
+		$casting_id = 1;
+		
 		$args = $this->user_model->select($id);
 		$args['tags'] = $this->skills_model->get_user_skills($id);
 		
@@ -52,41 +55,40 @@ class User extends CI_Controller {
 		#$args["video_ID"]="oHg5SJYRHA0";
 	
 		$args["content"]="user_profile";
-
-		$this->load->view('template',$args);
+		$args["success_flag"]=false;
+		
 
 		//El usuario hace click en postular al concurso
 
 		if($this->input->post("validate"))
 		{
-			//Obtener el Id del usuario a traves de la sesion
-			$user_id = 1;
+			
+			$result = $this->applies_model->apply($user_id, $casting_id);
 
-			//Obtener el id del casting/concurso
-			$casting_id = 1;
-
-			//Verificar que el usuario tenga un video grabado
-			if($this->videos_model->verify_videos($user_id) == 1)
+			if($result == 1)
+				$args["success_flag"]=true;
+		}
+		
+		if($this->videos_model->verify_videos($user_id) == 1)
+		{
+			if($this->applies_model->verify_apply($user_id, $casting_id) == 1)
 			{
-				//Verificar que el usuario no haya postulado dos veces
-				if($this->applies_model->verify_apply($user_id, $casting_id) == 1)
-					echo "El usuario ya ha postulado antes";
-				else
-				{
-					//Hacer que el usuario postule con el primer video que posee
-					$result = $this->applies_model->apply($user_id, $casting_id);
-
-					if($result == 1)
-					{
-						echo "Postulacion exitosa";
-					}
-				}
+				$args["postulation_flag"]=false;
+				$args["postulation_message"]="Ya estas inscrito en el Concurso";
 			}
 			else
-			{
-				echo "El usuario no posee videos";
-			}
+				$args["postulation_flag"]=true;
 		}
+		else 
+		{
+			$args["postulation_flag"]=false;
+			$args["postulation_message"]="Necesitas Tener Videos para poder postular";
+		}
+
+
+		
+		
+		$this->load->view('template',$args);
 	}
 	
 	public function edit()
