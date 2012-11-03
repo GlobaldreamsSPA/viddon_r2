@@ -13,12 +13,6 @@ div.content
 	top: -20px;
 }
 
-/* Fuente para el perfil */
-@font-face {  
-	font-family: "profile_font";
-	src: url(../font/Rokkitt-Bold.ttf); /* IE */
-	src: local("real_profile_font"), url(../font/Rokkitt-Bold.ttf) format("truetype"); /* non-IE */
-}
 
 /*Estilo del boton superior*/
 #login-button {
@@ -192,4 +186,10 @@ div#main_videos
 #headercontent a:visited {text-decoration:  none;color:#ffffff;} /* visited link */
 #headercontent a:hover {text-decoration:  none;color:#ffffff;}   /* mouse over link */
 #headercontent a:active {text-decoration:  none;color:#ffffff;} 
-    
+ 
+/* Fuente para el perfil */
+@font-face {  
+	font-family: "profile_font";
+	src: url(../font/Rokkitt-Bold.ttf); /* IE */
+	src: local("real_profile_font"), url(../font/Rokkitt-Bold.ttf) format("truetype"); /* non-IE */
+}    
