@@ -18,24 +18,9 @@
 						<div class="fb-like" data-href="http://www.youtube.com/watch?v=<?php echo $video[1] ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>			    							
 						<label style="display:inline;">
 						<?php
-							$JSON = file_get_contents("https://gdata.youtube.com/feeds/api/videos/{$video[1]}?v=2&alt=json");
-							$JSON_Data = json_decode($JSON);
-							
-							if(array_key_exists('yt$statistics', $JSON_Data->{'entry'}))
-							{
-								$views = $JSON_Data->{'entry'}->{'yt$statistics'}->{'viewCount'};
-								$dislikes = $JSON_Data->{'entry'}->{'yt$rating'}->{'numDislikes'};
-								$likes = $JSON_Data->{'entry'}->{'yt$rating'}->{'numLikes'};
-							}
-							else
-							{
-								$views = "0";
-								$dislikes = "0";
-								$likes = "0";
-							}	
-							echo "<span id='youtubedata' class='badge badge-important'><i class='icon-thumbs-down icon-white'></i>$dislikes</span>";
-							echo "<span id='youtubedata' class='badge badge-success'><i class='icon-thumbs-up icon-white'></i>$likes</span>";
-							echo "<span id='youtubedata' class='badge badge-info'><i class='icon-eye-open '></i>$views</span>";
+							echo "<span id='youtubedata' class='badge badge-important'><i class='icon-thumbs-down icon-white'></i>$video[4]</span>";
+							echo "<span id='youtubedata' class='badge badge-success'><i class='icon-thumbs-up icon-white'></i>$video[3]</span>";
+							echo "<span id='youtubedata' class='badge badge-info'><i class='icon-eye-open '></i>$video[2]</span>";
 							
 						?>
 						</label>
