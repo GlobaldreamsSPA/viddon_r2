@@ -94,15 +94,15 @@ class User extends CI_Controller {
 		if($this->input->post("validate"))
 		{
 			
-			$result = $this->applies_model->apply($user_id, $casting_id);
+			$result = $this->applies_model->apply($id, $casting_id);
 
 			if($result == 1)
 				$args["success_flag"]=true;
 		}
 		
-		if($this->videos_model->verify_videos($user_id) == 1)
+		if($this->videos_model->verify_videos($id) == 1)
 		{
-			if($this->applies_model->verify_apply($user_id, $casting_id) == 1)
+			if($this->applies_model->verify_apply($id, $casting_id) == 1)
 			{
 				$args["postulation_flag"]=false;
 				$args["postulation_message"]="Ya estas inscrito en el Concurso";
