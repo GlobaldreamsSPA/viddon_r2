@@ -13,7 +13,6 @@ class Home extends CI_Controller {
 		$args = array();
 		$args['username']="pedrito";
 
-		$args["video_list"]=array(array("Avicii - Levels","tenz01ic1D8"),array("Flo Rida - Wild Ones ft. Sia","5jWF0Yaxf2g"),
 		
 		$array_videos = array(array("Avicii - Levels","tenz01ic1D8"),array("Flo Rida - Wild Ones ft. Sia","5jWF0Yaxf2g"),
 		array("MGMT - Kids","fe4EK4HSPkI"),array("MGMT - Electric Feel","MmZexg8sxyk"),array("Kid Cudi - Pursuit Of Happiness ft. MGMT","7xzU9Qqdqww"),
