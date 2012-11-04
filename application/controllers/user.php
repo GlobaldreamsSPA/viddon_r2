@@ -64,6 +64,25 @@ class User extends CI_Controller {
 			$args['video_ID']=$video["video_id"];
 			$args["video_title"] = $video["video_title"];
 			$args["video_description"] = $video["video_description"];
+			
+			$JSON = file_get_contents("https://gdata.youtube.com/feeds/api/videos/{$video["video_id"]}?v=2&alt=json");
+			$JSON_Data = json_decode($JSON);
+			
+			if(array_key_exists('yt$statistics', $JSON_Data->{'entry'}))
+			{
+				$args["views"] = $JSON_Data->{'entry'}->{'yt$statistics'}->{'viewCount'};
+				$args["dislikes"] = $JSON_Data->{'entry'}->{'yt$rating'}->{'numDislikes'};
+				$args["likes"] = $JSON_Data->{'entry'}->{'yt$rating'}->{'numLikes'};
+			}
+			else
+			{
+				$args["views"] = "0";
+				$args["dislikes"] = "0";
+				$args["likes"] = "0";
+			}
+							
+			
+			
 		}
 	
 		$args["content"]="user_profile";
