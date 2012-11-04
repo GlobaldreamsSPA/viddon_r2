@@ -15,41 +15,54 @@ class User extends CI_Controller {
 		$this->load->model('skills_model');
 	}
 
-	public function index()
+	public function index($id = null)
 	{
-		$id = '1';
+		if(is_null($id))
+			$id = 1;
 
 		$args = $this->user_model->select($id);
 		$args['tags'] = $this->skills_model->get_user_skills($id);
 		
 		if(isset($_POST["id_cw"]) && $_POST["id_cw"]!="0" )
 		{
-			$args["video_ID"]=$_POST["id_cw"];
-			$args["video_title"]=$_POST["name_cw"];
-			$args["video_description"]=$_POST["description_cw"];
+			//Insertar estos datos
+			$video_to_save = array(
+				'title' => $_POST["name_cw"],
+				'video_id' => $_POST["id_cw"],
+				'type' => 'youtube',
+				'description' => $_POST["description_cw"],
+				'user_id' => $id
+				);
+
+			$this->videos_model->insert($video_to_save);
 		}
 		elseif(isset($_POST["url_ytb"]) && $_POST["id_cw"]!="")
 		{
 			$query_string = array();
 			
+			//Insertar estos datos
 			parse_str(parse_url($_POST["url_ytb"], PHP_URL_QUERY), $query_string);
 
-			$args["video_ID"]=$query_string["v"];
-			
-			$args["video_title"] = $_POST["name_ytb"];
-			$args["video_description"] = $_POST["description_ytb"];
-		
+			$video_to_save = array(
+				'title' => $_POST["name_ytb"],
+				'video_id' => $query_string["v"],
+				'type' => 'youtube',
+				'description' => $_POST["description_ytb"],
+				'user_id' => $id
+				);
+
+			$this->videos_model->insert($video_to_save);
 		}
 		
-		$video = $this->videos_model->get_video($id);
-		
-		$args['video_ID']=$video["video_id"];
-		$args["video_title"] = $video["video_title"];
-		$args["video_description"] = $video["video_description"];
-		
-		
-		
-		#$args["video_ID"]="oHg5SJYRHA0";
+		//Si el usuario tiene un video, setear los elementos siguientes, si no, no.
+		if($this->videos_model->verify_videos($id) != 0)
+		{
+			$video = $this->videos_model->get_video($id);
+
+			$args['video_ID']=$video["video_id"];
+			$args["video_title"] = $video["video_title"];
+			$args["video_description"] = $video["video_description"];
+		}
 	
 		$args["content"]="user_profile";
 
@@ -86,6 +99,49 @@ class User extends CI_Controller {
 			{
 				echo "El usuario no posee videos";
 			}
+		}
+	}
+
+	public function login()
+	{
+		require_once OPENID;
+		$openid = new LightOpenID("localhost");
+		
+		if ($openid->mode) {
+		    if ($openid->mode == 'cancel')
+		    {
+		    	//Esto es cuando el usuario cancela la autorizacion de login con google
+		        redirect(HOME);
+		    }
+		    elseif($openid->validate())
+		    {
+		     	//Ya que el usuario se encuentra logeado, se almacenan los datos en la BD.
+
+		        $data = $openid->getAttributes();
+
+				$query = array();
+				parse_str(parse_url($openid->identity, PHP_URL_QUERY), $query);
+
+				$result = $this->user_model->verify_openid($query['id']);
+				//Verificar que existe el usuario
+				if($result['exists'] == 1)
+				{
+					//Si el usuario existe se redirige al index del usuario
+					redirect(HOME.'/user/index/'.$result['id']);
+				}
+				else
+				{
+					//Si el usuario no existe, crea el usuario, guarda el openid y retorna el id.
+					$id_user = $this->user_model->create($query['id'], $data);
+					redirect(HOME.'/user/edit/'.$id_user);
+				}
+
+		    }
+		    else
+		    {
+		    	//Esto es cuando el usuario cancela la autorizacion de login con google
+		    	redirect(HOME);
+		    }
 		}
 	}
 	

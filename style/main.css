@@ -13,6 +13,21 @@ div.content
 	top: -20px;
 }
 
+/* Fuente para el perfil */
+@font-face {  
+	font-family: "profile_font";
+	src: url(../font/Rokkitt-Bold.ttf); /* IE */
+	src: local("real_profile_font"), url(../font/Rokkitt-Bold.ttf) format("truetype"); /* non-IE */
+}
+
+/*Estilo del boton superior*/
+#login-button {
+	width: 141px;
+	height: 22px;
+	background-image: url('../img/signin-google.png');
+	background-repeat: no-repeat;
+}
+
 /* tamaño de textareas en new*/
 textarea.user_description
 {
@@ -75,9 +90,13 @@ div.space4
 }
 
 /* Formato color titulos perfil	*/
-h4.profile 
+h1.profile-title{
+	font-family: "profile_font";
+}
+
+h2.profile 
 {
-	font-weight: bold;
+	font-family: "profile_font";
 	color:#fd816a;
 }
 		
@@ -125,7 +144,10 @@ div#image_upload
 }
 		
 /* Formato tags talentos */
-li.taglist {display:inline; margin-left:10px;}
+li.taglist {
+	display: inline;
+	margin-left: 10px;
+}
 		
 /* Formato parrafos justificados */
 div.justify

@@ -17,15 +17,28 @@
 <body>	
 	<div id="fb-root"></div>
 	<script>
-	(function(d, s, id) 
-	{
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) return;
-		js = d.createElement(s); js.id = id;
-		js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
+		(function(d, s, id) 
+		{
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
 	</script>
+
+	<!-- Codigo para el boton de loggin de google -->
+	<?php 
+		require_once OPENID;
+		$openid = new LightOpenID(HOME);
+		$openid->identity = 'https://www.google.com/accounts/o8/id';
+		$openid->required = array(
+					'contact/email',
+					'pref/language'
+					);
+		$openid->returnUrl = HOME.'/user/login';
+	?>
+
 	
 	<div id="headercontent">
 	    
@@ -41,7 +54,10 @@
 				
 				<div class="span4 offset4">
 					<ul>
-					  <li> <?php if(isset($username)) echo "Bienvenido ".$username.' <a href="#">(cerrar sesion)</a>';?> </li>
+					  <!-- <li> <?php if(isset($username)) echo "Bienvenido ".$username.' <a href="#">(cerrar sesion)</a>';?> </li> -->
+					<form action="<?php echo $openid->authUrl() ?>" method="POST">  
+					  <button id="login-button"/>
+					</form>
 					</ul>
 				</div>
 				

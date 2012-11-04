@@ -15,7 +15,7 @@
 		    <div class="span6">
 		    		
 		    	<div class="space1"></div>			    			
-				<h2> <?php echo $name ?></h2>
+				<h1 class="profile-title"> <?php echo $name ?></h1>
 				<div class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>
 		    	<?php
 		    		echo '<ul>' ;
@@ -24,16 +24,16 @@
 					}
 					echo '</ul>';
 				?>
-				<h4 class="profile">Bio</h4>
-				<div class="justify"><?php echo $bio;?></div>
+				<h2 class="profile">Bio</h2>
+				<div class="justify profile-content"><?php echo $bio;?></div>
 				<div class="space1"></div>
 				
-				<h4 class="profile">Hobbies</h4>
-				<div class="justify"><?php echo $hobbies;?></div>
+				<h2 class="profile">Hobbies</h2>
+				<div class="justify profile-content"><?php echo $hobbies;?></div>
 				<div class="space1"></div>
 				
-				<h4 class="profile">Dreams</h4>
-				<div class="justify"><?php echo $dreams;?></div>
+				<h2 class="profile">Dreams</h2>
+				<div class="justify profile-content"><?php echo $dreams;?></div>
 				<div class="space1"></div>
 				
 			</div>

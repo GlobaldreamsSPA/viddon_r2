@@ -7,6 +7,12 @@ class Videos_model extends CI_Model
         parent::__construct();
     }
 
+    function insert($data)
+    {
+    	$this->db->insert('videos', $data);
+    }
+
+
     //Verifica que el usuario tenga al menos un video
     function verify_videos($user_id)
 	{
