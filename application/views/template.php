@@ -55,7 +55,7 @@
 				<div class="span4 offset4">
 					<ul>
 					  <!-- <li> <?php if(isset($username)) echo "Bienvenido ".$username.' <a href="#">(cerrar sesion)</a>';?> </li> -->
-					<form action="<?php echo $openid->authUrl() ?>" method="POST">  
+					<form action="<?php echo $openid->authUrl() ?>" method="POST">
 					  <button id="login-button"/>
 					</form>
 					</ul>
