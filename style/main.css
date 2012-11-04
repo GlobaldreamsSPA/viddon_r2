@@ -39,7 +39,7 @@ textarea.user_description
 ul#pagination_bt
 {
 	position:relative;
-	left: 17px;
+	left: 33px;
 }
 
 /* tamaño descripcion video en perfil*/
@@ -52,7 +52,7 @@ textarea.video_description
 /* espacios estandar utilizados para separar conenido en la pagina*/
 div.space1
 {
-	min-height: 15px;
+	min-height: 20px;
 }
 
 div.space2
@@ -104,7 +104,7 @@ h2.profile
 img.user_image
 {
 	position:relative;
-	top: 35px;
+	top: 32px;
 	left: 10%;
 	height: 230px;
 	width: 230px;		
@@ -141,6 +141,8 @@ div#image_upload
 {	
 	position:relative;
 	background: #dddddd;
+	max-width: 98%;
+	left: 10px;
 }
 		
 /* Formato tags talentos */
@@ -153,7 +155,6 @@ li.taglist {
 div.justify
 { 
 	text-align : justify;
-	
 	width: 600px;
 	max-height: 120px;
 }
@@ -162,6 +163,7 @@ div.justify
 span#youtubedata
 {
 	margin-left:2px;
+	font-size:80%;
 	float:right;
 }
 
@@ -178,7 +180,8 @@ div.social_data_container
 /* formato videos pagina principal*/
 div#main_videos
 {
-	margin-left:17px;
+	width: 385px !important;
+	margin-left:32px;
 }
 
 		

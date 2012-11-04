@@ -1,13 +1,11 @@
 <div class="content" id="content">	
 	<div class="container-fluid">
-	  	
-			<?php
+	  		<?php
 				$i=0; 
 				foreach ($video_list as $video) {
 					$i++;
 					if(($i-1)%3 == 0 or $i==1) echo "<div class='row-fluid'>";
 			?>
-				
 			<div id="main_videos" class='span4'>
 				<div class="space2"></div>
 				<h4> <?php echo $video[0];?></h3>
@@ -42,17 +40,21 @@
 			
 			<div class="row-fluid">
 				<div class="space1"></div>
-				<div class="pagination">
+				<div class="pagination">  
 				  <ul id="pagination_bt">
-				  	<li class="disabled"><a href="#">back</a></li>
-				    <li class="disabled"><a href="#">1</a></li>
-					<li class="active"><a href="#">2</a></li>
-					<li class="active"><a href="#">3</a></li>
-				    <li class="active"><a href="#">next</a></li>
-				  </ul>
-				</div>
+				  	  
+				    <li <?php if($page==1) echo "class='disabled'";?> ><a href=<?php echo base_url()."home/index/".($page-1);?>>Prev</a></li>  
+					<?php for($i = 1; $i <= $chunks; $i++) { ?>
+						<li <?php if($page==$i) echo "class='disabled'";?> ><a href=<?php echo base_url()."home/index/".$i;?> > <?php echo $i; ?></a></li>  
+					<?php } ?>
+				    <li <?php if($page==$chunks) echo "class='disabled'";?> ><a href=<?php echo base_url()."home/index/".($page+1);?>>Next</a></li>
+				     
+				  </ul>  
+				</div>  
 				<div class="space1"></div>	
 			</div>	
+			
+
   	</div>
   	<div class="space2"></div>
 </div>
