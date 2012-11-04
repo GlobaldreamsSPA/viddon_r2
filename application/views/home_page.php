@@ -10,7 +10,7 @@
 				<div class="space2"></div>
 				<h4> <?php echo $video[0];?></h3>
 				<iframe width="410" height="260" src="http://www.youtube.com/embed/<?php echo $video[1]?>" frameborder="0" allowfullscreen></iframe>
-				<div class="space1"></div>				
+				<div class="space1"></div>		
 				<div class="fb-like" data-href="http://www.youtube.com/watch?v=<?php echo $video[1] ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>			    							
 				<label style="display:inline;">
 				<?php
