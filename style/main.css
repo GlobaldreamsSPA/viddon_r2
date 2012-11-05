@@ -7,12 +7,11 @@ body
 /* Fondo Contenido */
 div.content
 {
-	background: url(../img/bg-pattern.png);
+	background: url('../img/bg-pattern.png');
 	background-repeat:repeat;
 	position:relative;
 	top: -20px;
 }
-
 
 /*Estilo del boton superior*/
 #login-button {
@@ -64,7 +63,7 @@ div.space4
 /*  Header con logo pagina */
 #lowerhalf div 
 {
-	background: url(../img/bg-pattern.png);
+	background: url('../img/bg-pattern.png');
 	min-height: 200px;
 	background-repeat:repeat;
 }
@@ -86,12 +85,13 @@ div.space4
 /* Formato color titulos perfil	*/
 h1.profile-title{
 	font-family: "profile_font";
+	color: #3E3D40;
 }
 
 h2.profile 
 {
 	font-family: "profile_font";
-	color:#fd816a;
+	color: #FF6547;
 }
 		
 /* posicion imagen usuario */
@@ -129,12 +129,12 @@ div#image_upload
 	top: 20px;
 	left:2%;
 }
-		
+
 /* Color plateado perfil */
 #content div.row-fluid
 {	
-	position:relative;
-	background: #dddddd;
+	position: relative;
+	background: #F4F4F4;
 	max-width: 98%;
 	left: 10px;
 }
