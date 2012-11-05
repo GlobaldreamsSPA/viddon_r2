@@ -15,10 +15,12 @@ class User extends CI_Controller {
 		$this->load->model('skills_model');
 	}
 
-	public function index($id = null)
+	public function index()
 	{
-		if(is_null($id))
-			$id = 1;
+		if($this->session->userdata('id') === FALSE)
+			redirect(HOME);
+		else
+			$id = $this->session->userdata('id');
 
 		$casting_id = 1;
 		
@@ -139,15 +141,20 @@ class User extends CI_Controller {
 
 		        $data = $openid->getAttributes();
 
-				$query = array();
-				parse_str(parse_url($openid->identity, PHP_URL_QUERY), $query);
+				$user_openid = array();
+				parse_str(parse_url($openid->identity, PHP_URL_QUERY), $user_openid);
 
-				$result = $this->user_model->verify_openid($query['id']);
+				$result = $this->user_model->verify_openid($user_openid['id']);
 				//Verificar que existe el usuario
 				if($result['exists'] == 1)
 				{
-					//Si el usuario existe se redirige al index del usuario
-					redirect(HOME.'/user/index/'.$result['id']);
+					//Si el usuario existe se guardan datos en la sesion y se redirige al index del usuario
+					$new_session_data = array(
+						'id' => $result['id']
+						);
+
+					$this->session->set_userdata($new_session_data);
+					redirect(HOME.'/user/index');
 				}
 				else
 				{
@@ -167,68 +174,72 @@ class User extends CI_Controller {
 	
 	public function edit()
 	{
-
-		//Setear mensajes
-		$this->form_validation->set_message('required', 
-				'Ups! Todavia te falta este dato. Es muy importante para definirte como ganador(a) del concurso :)');
-
-		//Setear reglas
-		$this->form_validation->set_rules('name', 'Name', 'required');
-		$this->form_validation->set_rules('bio', 'Bio', 'required');
-		$this->form_validation->set_rules('hobbies', 'Hobbies', 'required');
-		$this->form_validation->set_rules('dreams', 'Dreams', 'required');
-		$this->form_validation->set_rules('image', 'Image', 'callback_check_upload');
-
-		if ($this->form_validation->run() == FALSE)
-		{
-			//No paso todas las validaciones
-		}
+		if($this->session->userdata('id') === FALSE)
+			redirect(HOME);
 		else
 		{
-			//Guardar los datos de usuario
-			$profile['name'] = $this->input->post('name');
-			$profile['bio'] = $this->input->post('bio');
-			$profile['hobbies'] = $this->input->post('hobbies');
-			$profile['dreams'] = $this->input->post('dreams');
-			$profile['skills1'] = $this->input->post('skills1');
-			$profile['skills2'] = $this->input->post('skills2');
-			$profile['skills3'] = $this->input->post('skills3');
-			$profile['sex'] = $this->input->post('sex');
-			$profile['age'] = $this->input->post('age');
+			//Setear mensajes
+			$this->form_validation->set_message('required', 
+					'Ups! Todavia te falta este dato. Es muy importante para definirte como ganador(a) del concurso :)');
+
+			//Setear reglas
+			$this->form_validation->set_rules('name', 'Name', 'required');
+			$this->form_validation->set_rules('bio', 'Bio', 'required');
+			$this->form_validation->set_rules('hobbies', 'Hobbies', 'required');
+			$this->form_validation->set_rules('dreams', 'Dreams', 'required');
+			$this->form_validation->set_rules('image', 'Image', 'callback_check_upload');
+
+			if ($this->form_validation->run() == FALSE)
+			{
+				//No paso todas las validaciones
+			}
+			else
+			{
+				//Guardar los datos de usuario
+				$profile['name'] = $this->input->post('name');
+				$profile['bio'] = $this->input->post('bio');
+				$profile['hobbies'] = $this->input->post('hobbies');
+				$profile['dreams'] = $this->input->post('dreams');
+				$profile['skills1'] = $this->input->post('skills1');
+				$profile['skills2'] = $this->input->post('skills2');
+				$profile['skills3'] = $this->input->post('skills3');
+				$profile['sex'] = $this->input->post('sex');
+				$profile['age'] = $this->input->post('age');
+				
+				//ingresar los datos a la base de datos y obtener el id de usuario
+				//$id = $this->user_model->insert($profile);
+
+				$profile['id'] = '13';
+				//Ahora linkear las habilidades del usuario
+				//$this->skills_model->link_skills($profile);
+
+				//Por ultimo subir la foto
+				$this->_upload_image(13);
+
+				echo "Datos ingresados exitosamente";
+			}
+
+			//Talentos del usuario
+			$skills = $this->skills_model->get_skills();
+			$skills['0'] = 'Ninguno';
 			
-			//ingresar los datos a la base de datos y obtener el id de usuario
-			//$id = $this->user_model->insert($profile);
+			//Edad del usuario
+			$age = array();
 
-			$profile['id'] = '13';
-			//Ahora linkear las habilidades del usuario
-			//$this->skills_model->link_skills($profile);
+			for($i=100; $i>=1; $i--)
+			{
+				$age[$i] = $i;
+			}
 
-			//Por ultimo subir la foto
-			$this->_upload_image(13);
+			$args = array(
+				'content' => 'new',
+				'skills' => $skills,
+				'age' => $age
+				);
 
-			echo "Datos ingresados exitosamente";
+			//Cargar el formulario
+			$this->load->view('template', $args);
 		}
-
-		//Talentos del usuario
-		$skills = $this->skills_model->get_skills();
-		$skills['0'] = 'Ninguno';
-		
-		//Edad del usuario
-		$age = array();
-
-		for($i=100; $i>=1; $i--)
-		{
-			$age[$i] = $i;
-		}
-
-		$args = array(
-			'content' => 'new',
-			'skills' => $skills,
-			'age' => $age
-			);
-
-		//Cargar el formulario
-		$this->load->view('template', $args);
 	}
 
 	private function _upload_image($id)
@@ -277,7 +288,7 @@ class User extends CI_Controller {
 		$this->image_lib->resize();
 	}
 
-	function check_upload($image)
+	private function check_upload($image)
 	{
 		if($_FILES['image_profile']['error'] == 4)
 		{

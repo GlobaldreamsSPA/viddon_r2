@@ -13,7 +13,6 @@ class Home extends CI_Controller {
 		$args = array();
 		$args['username']="pedrito";
 
-		
 		$array_videos = array(array("Avicii - Levels","tenz01ic1D8"),array("Flo Rida - Wild Ones ft. Sia","5jWF0Yaxf2g"),
 		array("MGMT - Kids","fe4EK4HSPkI"),array("MGMT - Electric Feel","MmZexg8sxyk"),array("Kid Cudi - Pursuit Of Happiness ft. MGMT","7xzU9Qqdqww"),
 		array("Kid Cudi vs. Crookers - Day 'n' Night","WSWrepLjTKc"),array("Chico Trujillo-Loca","ZwtcyXl5y9c"),
@@ -21,7 +20,6 @@ class Home extends CI_Controller {
 		array("MGMT - Kids","fe4EK4HSPkI"),array("MGMT - Electric Feel","MmZexg8sxyk"),array("Kid Cudi - Pursuit Of Happiness ft. MGMT","7xzU9Qqdqww"),
 		array("Kid Cudi vs. Crookers - Day 'n' Night","WSWrepLjTKc"),array("Chico Trujillo-Loca","ZwtcyXl5y9c"),
 		array("Chico Trujillo","g0zMiRftVY4"),array("Iron Maiden - Dance Of Death - En Vivo!","GoBok1xd93M"));
-
 		
 		$video_list= array_slice($array_videos, 9*($page-1), 9*$page);
 		$args["video_list"]=array();
