@@ -52,12 +52,22 @@
 					</ul>
 				</div>
 				
-				<div class="span4 offset4">
+				<div class="span5 offset3">
 					<ul>
-					  <!-- <li> <?php if(isset($username)) echo "Bienvenido ".$username.' <a href="#">(cerrar sesion)</a>';?> </li> -->
-					<form action="<?php echo $openid->authUrl() ?>" method="POST">
-					  <button id="login-button"/>
-					</form>
+					<?php
+						$id = $this->session->userdata('id');
+						if(!isset($user))
+							$user = "";
+
+						if($id)
+							echo "<li class='welcome-login'> Bienvenido ".$user.anchor('user/logout',' (Cerrar sesión)');
+						else
+						{
+							echo "<form action='".$openid->authUrl()."' method='POST'>";
+							echo "<button id='login-button'/>";
+							echo "</form>";
+						}
+					?>
 					</ul>
 				</div>
 				
@@ -75,13 +85,13 @@
 		</div>
 	</div>
 	
-	<?php $this->load->view($content);?>
+	<?php $this->load->view($content); ?>
 </body>
 
 
 
 <footer class="footer">
 
-VIDDON S.A. 2012
+Global Dreams S.P.A. 2012
 
 </footer>

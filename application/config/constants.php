@@ -22,7 +22,7 @@ define('DIR_WRITE_MODE', 0777);
 define('UPLOAD_DIR', '../img/uploads');
 define('IMAGES_DIR', '../img/profile');
 define('OPENID' , APPPATH.'../utils/openid.php');
-define('HOME', 'http://localhost/mac/release1.0/viddon_r2');
+define('HOME', 'http://localhost/release1.0/viddon_r2');
 
 /*
 |--------------------------------------------------------------------------

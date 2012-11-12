@@ -9,7 +9,6 @@ class User_model extends CI_Model
 
 	function insert($profile)
 	{
-
 		$data = array(
 				'name' => $profile['name'],
 				'bio' => $profile['bio'],
@@ -20,18 +19,31 @@ class User_model extends CI_Model
 			);
 
 		$this->db->insert('users', $data);
-		$this->db->select('id');
+
 		$this->db->select_max('id');
 		$query = $this->db->get('users')->first_row('array');
 		return $query['id'];
 	}
 
+	function update($profile)
+	{
+		$data = array(
+				'name' => $profile['name'],
+				'bio' => $profile['bio'],
+				'dreams' => $profile['dreams'],
+				'hobbies' => $profile['hobbies'],
+				'sex' => $profile['sex'],
+				'age' => $profile['age']
+			);
+
+		$this->db->where('id', $profile['id']);
+		$this->db->update('users', $data);
+	}
+
 	function select($id)
 	{
-		$profile = array();
-
 		//Rescatar los datos de la tabla usuario
-		$this->db->select('name, image_profile, bio, hobbies, dreams');
+		$this->db->select('name, email, image_profile, bio, hobbies, dreams');
 		$this->db->from('users');
 		$this->db->where('id', $id);
 		$query = $this->db->get()->first_row('array');
@@ -46,7 +58,6 @@ class User_model extends CI_Model
 		$this->db->where('google_login_token', $openid);
 		$query = $this->db->get();
 		
-
 		$data = array();
 
 		if($query->num_rows == 0)
@@ -65,7 +76,7 @@ class User_model extends CI_Model
 		return $data;
 	}
 
-	public function create($openid, $google_data)
+	function create($openid, $google_data)
 	{
 		$data = array(
 			'google_login_token' => $openid,
@@ -79,5 +90,18 @@ class User_model extends CI_Model
 		$query = $this->db->get('users')->first_row('array');
 	
 		return $query['id'];
+	}
+
+	
+	function welcome_name($id_user)
+	{
+		$result = $this->select($id_user);
+
+		if($result["name"] != NULL)
+			return $result["name"];
+		if($result["email"] != NULL)
+			return $result["email"];
+		
+		return 'Usuario';
 	}
 }

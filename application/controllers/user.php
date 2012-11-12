@@ -5,7 +5,7 @@ class User extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->library(array('upload', 'image_lib', 'form_validation'));
+		$this->load->library(array('upload', 'image_lib'));
 		$this->load->helper(array('url', 'file', 'form'));
 		
 		//Modelitos xD
@@ -17,6 +17,7 @@ class User extends CI_Controller {
 
 	public function index()
 	{
+		
 		if($this->session->userdata('id') === FALSE)
 			redirect(HOME);
 		else
@@ -25,14 +26,15 @@ class User extends CI_Controller {
 		$casting_id = 1;
 		
 		$args = $this->user_model->select($id);
-		$args['tags'] = $this->skills_model->get_user_skills($id);
+		$args["tags"] = $this->skills_model->get_user_skills($id);
+		$args["user"] = $this->user_model->welcome_name($id);
 		
 		if(isset($_POST["id_cw"]) && $_POST["id_cw"]!="0" )
 		{
 			//Insertar estos datos
 			$video_to_save = array(
 				'title' => $_POST["name_cw"],
-				'video_id' => $_POST["id_cw"],
+				'link' => $_POST["id_cw"],
 				'type' => 'youtube',
 				'description' => $_POST["description_cw"],
 				'user_id' => $id
@@ -49,7 +51,7 @@ class User extends CI_Controller {
 
 			$video_to_save = array(
 				'title' => $_POST["name_ytb"],
-				'video_id' => $query_string["v"],
+				'link' => $query_string["v"],
 				'type' => 'youtube',
 				'description' => $_POST["description_ytb"],
 				'user_id' => $id
@@ -67,10 +69,13 @@ class User extends CI_Controller {
 			$args["video_title"] = $video["video_title"];
 			$args["video_description"] = $video["video_description"];
 			
+			/*
 			$JSON = file_get_contents("https://gdata.youtube.com/feeds/api/videos/{$video["video_id"]}?v=2&alt=json");
 			$JSON_Data = json_decode($JSON);
+			$JSON_Data_entry = $JSON_Data->{'entry'};
 			
-			if(array_key_exists('yt$statistics', $JSON_Data->{'entry'}))
+			
+			if(!is_null($JSON_Data->{'entry'}) && array_key_exists('yt$statistics', $JSON_Data->{'entry'}))
 			{
 				$args["views"] = $JSON_Data->{'entry'}->{'yt$statistics'}->{'viewCount'};
 				$args["dislikes"] = $JSON_Data->{'entry'}->{'yt$rating'}->{'numDislikes'};
@@ -82,9 +87,7 @@ class User extends CI_Controller {
 				$args["dislikes"] = "0";
 				$args["likes"] = "0";
 			}
-							
-			
-			
+			*/		
 		}
 	
 		$args["content"]="user_profile";
@@ -118,16 +121,13 @@ class User extends CI_Controller {
 			$args["postulation_message"]="Necesitas Tener Videos para poder postular";
 		}
 
-
-		
-		
 		$this->load->view('template',$args);
 	}
 
 	public function login()
 	{
 		require_once OPENID;
-		$openid = new LightOpenID("localhost");
+		$openid = new LightOpenID(HOME);
 		
 		if ($openid->mode) {
 		    if ($openid->mode == 'cancel')
@@ -145,6 +145,7 @@ class User extends CI_Controller {
 				parse_str(parse_url($openid->identity, PHP_URL_QUERY), $user_openid);
 
 				$result = $this->user_model->verify_openid($user_openid['id']);
+				
 				//Verificar que existe el usuario
 				if($result['exists'] == 1)
 				{
@@ -159,8 +160,15 @@ class User extends CI_Controller {
 				else
 				{
 					//Si el usuario no existe, crea el usuario, guarda el openid y retorna el id.
-					$id_user = $this->user_model->create($query['id'], $data);
-					redirect(HOME.'/user/edit/'.$id_user);
+					$id_user = $this->user_model->create($user_openid['id'], $data);
+
+					//Guardar ID del usuario en ls session
+					$new_session_data = array(
+						'id' => $id_user
+						);
+
+					$this->session->set_userdata($new_session_data);
+					redirect(HOME.'/user/edit/');
 				}
 
 		    }
@@ -171,16 +179,24 @@ class User extends CI_Controller {
 		    }
 		}
 	}
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect(HOME);
+	}
 	
 	public function edit()
 	{
+		$this->load->library('form_validation');
+
 		if($this->session->userdata('id') === FALSE)
 			redirect(HOME);
 		else
 		{
 			//Setear mensajes
 			$this->form_validation->set_message('required', 
-					'Ups! Todavia te falta este dato. Es muy importante para definirte como ganador(a) del concurso :)');
+				'Ups! Todavia te falta este dato. Es muy importante para definirte como ganador(a) del concurso :)');
 
 			//Setear reglas
 			$this->form_validation->set_rules('name', 'Name', 'required');
@@ -193,9 +209,11 @@ class User extends CI_Controller {
 			{
 				//No paso todas las validaciones
 			}
+			
 			else
 			{
 				//Guardar los datos de usuario
+				$profile['id'] = $this->session->userdata('id');
 				$profile['name'] = $this->input->post('name');
 				$profile['bio'] = $this->input->post('bio');
 				$profile['hobbies'] = $this->input->post('hobbies');
@@ -206,17 +224,16 @@ class User extends CI_Controller {
 				$profile['sex'] = $this->input->post('sex');
 				$profile['age'] = $this->input->post('age');
 				
-				//ingresar los datos a la base de datos y obtener el id de usuario
-				//$id = $this->user_model->insert($profile);
-
-				$profile['id'] = '13';
+				//ingresar los datos a la base de datos
+				$this->user_model->update($profile);
+				
 				//Ahora linkear las habilidades del usuario
-				//$this->skills_model->link_skills($profile);
+				$this->skills_model->link_skills($profile);
 
 				//Por ultimo subir la foto
-				$this->_upload_image(13);
+				$this->_upload_image($profile['id']);
 
-				echo "Datos ingresados exitosamente";
+				redirect(HOME.'/user');
 			}
 
 			//Talentos del usuario
@@ -288,7 +305,7 @@ class User extends CI_Controller {
 		$this->image_lib->resize();
 	}
 
-	private function check_upload($image)
+	function check_upload($image)
 	{
 		if($_FILES['image_profile']['error'] == 4)
 		{
