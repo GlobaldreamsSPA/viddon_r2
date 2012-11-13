@@ -59,7 +59,6 @@ div.space4
 }
 
 
-
 /*  Header con logo pagina */
 #lowerhalf div 
 {
@@ -73,7 +72,6 @@ div.space4
 	position: relative;
 	left: 25%;
 	top: 50px;
-
 }
 		
 #lowerhalf form.form-search
@@ -176,10 +174,16 @@ div.social_data_container
 }
 
 /* formato videos pagina principal*/
+p.title-text
+{
+	font-size: 17px;
+	font-weight: bold;
+}
+
 div#main_videos
 {
-	width: 385px !important;
-	margin-left: 32px;
+	width: 350px !important;
+	margin-left: 38px;
 }
 
 

@@ -1,25 +1,21 @@
 <div class="content" id="content">	
 	<div class="container-fluid">
-	  	
-			
 			<?php
 				$i=0; 
 				foreach ($video_list as $video) {
 					$i++;
 					if(($i-1)%3 == 0 or $i==1) echo "<div class='row-fluid'>";
-
 					?>
-				
 					<div id="main_videos" class='span4'>
 						<div class="space1"></div>
-						<h4> <?php echo $video[0];?></h3>
-						<iframe width="385" height="220" src="http://www.youtube.com/embed/<?php echo $video[1]?>" frameborder="0" allowfullscreen></iframe>
-						<div class="space1"></div>				
+						<p class="title-text"><?php echo $video[0];?></p>
+						<iframe width="350" height="197" src="http://www.youtube.com/embed/<?php echo $video[1].'?rel=0'?>" frameborder="0" allowfullscreen></iframe>
+						<div class="space1"></div>
 						<div class="fb-like" data-href="http://www.youtube.com/watch?v=<?php echo $video[1] ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>			    							
 						<label style="display:inline;">
 						<?php
-							echo "<span id='youtubedata' class='badge badge-important'><i class='icon-thumbs-down icon-white'></i>$video[4]</span>";
-							echo "<span id='youtubedata' class='badge badge-success'><i class='icon-thumbs-up icon-white'></i>$video[3]</span>";
+							//echo "<span id='youtubedata' class='badge badge-important'><i class='icon-thumbs-down icon-white'></i>$video[4]</span>";
+							//echo "<span id='youtubedata' class='badge badge-success'><i class='icon-thumbs-up icon-white'></i>$video[3]</span>";
 							echo "<span id='youtubedata' class='badge badge-info'><i class='icon-eye-open '></i>$video[2]</span>";
 							
 						?>
