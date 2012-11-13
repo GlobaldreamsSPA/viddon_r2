@@ -69,7 +69,7 @@ class User extends CI_Controller {
 			$args["video_title"] = $video["video_title"];
 			$args["video_description"] = $video["video_description"];
 			
-			/*
+			
 			$JSON = file_get_contents("https://gdata.youtube.com/feeds/api/videos/{$video["video_id"]}?v=2&alt=json");
 			$JSON_Data = json_decode($JSON);
 			$JSON_Data_entry = $JSON_Data->{'entry'};
@@ -87,7 +87,7 @@ class User extends CI_Controller {
 				$args["dislikes"] = "0";
 				$args["likes"] = "0";
 			}
-			*/		
+					
 		}
 	
 		$args["content"]="user_profile";
@@ -121,6 +121,7 @@ class User extends CI_Controller {
 			$args["postulation_message"]="Necesitas Tener Videos para poder postular";
 		}
 
+		$args["user_id"]= $this->session->userdata('id');
 		$this->load->view('template',$args);
 	}
 
@@ -186,7 +187,7 @@ class User extends CI_Controller {
 		redirect(HOME);
 	}
 	
-	public function edit()
+	public function edit($user_id=null)
 	{
 		$this->load->library('form_validation');
 
@@ -203,7 +204,8 @@ class User extends CI_Controller {
 			$this->form_validation->set_rules('bio', 'Bio', 'required');
 			$this->form_validation->set_rules('hobbies', 'Hobbies', 'required');
 			$this->form_validation->set_rules('dreams', 'Dreams', 'required');
-			$this->form_validation->set_rules('image', 'Image', 'callback_check_upload');
+			if(!(isset($user_id) && !(is_numeric($user_id))))
+				$this->form_validation->set_rules('image', 'Image', 'callback_check_upload');
 
 			if ($this->form_validation->run() == FALSE)
 			{
@@ -221,7 +223,7 @@ class User extends CI_Controller {
 				$profile['skills1'] = $this->input->post('skills1');
 				$profile['skills2'] = $this->input->post('skills2');
 				$profile['skills3'] = $this->input->post('skills3');
-				$profile['sex'] = $this->input->post('sex');
+				$profile['sex'] = intval($this->input->post('sex'));
 				$profile['age'] = $this->input->post('age');
 				
 				//ingresar los datos a la base de datos
@@ -237,6 +239,7 @@ class User extends CI_Controller {
 			}
 
 			//Talentos del usuario
+			
 			$skills = $this->skills_model->get_skills();
 			$skills['0'] = 'Ninguno';
 			
@@ -253,6 +256,13 @@ class User extends CI_Controller {
 				'skills' => $skills,
 				'age' => $age
 				);
+
+			if(isset($user_id) && is_numeric($user_id))
+			{
+				$args["update_values"]=$this->user_model->select($user_id);
+				$args["update_user_skills"]= $this->skills_model->get_user_skills($user_id);
+			}
+			
 
 			//Cargar el formulario
 			$this->load->view('template', $args);

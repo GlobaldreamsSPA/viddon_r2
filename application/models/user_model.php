@@ -43,7 +43,7 @@ class User_model extends CI_Model
 	function select($id)
 	{
 		//Rescatar los datos de la tabla usuario
-		$this->db->select('name, email, image_profile, bio, hobbies, dreams');
+		$this->db->select('name, email, sex, age, image_profile, bio, hobbies, dreams');
 		$this->db->from('users');
 		$this->db->where('id', $id);
 		$query = $this->db->get()->first_row('array');

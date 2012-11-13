@@ -42,7 +42,7 @@
 	
 	<div class="container-fluid">
 	  	<div class="row-fluid">
-	    	<div class="span3 offset1 user-profile-left">
+	    	<div class="span3 user-profile-left">
 				<img class="user_image" src="<?php echo base_url().'img/profile/'.$image_profile ?>"/>
 				<form action="user" method="POST">
 					<?php if($postulation_flag) {?>
@@ -57,7 +57,9 @@
 		    <div class="span6 user-profile-right">
 		    		
 		    	<div class="space1"></div>
-				<h1 class="profile-title"> <?php echo $name ?></h1>
+		    	<h1 class="profile-title"> <?php echo $name; ?> <a href="<?php echo base_url().'user/edit/'.$user_id; ?>" style="font-size: 20px;">(editar datos)</a> </h1> 
+
+				
 				<div class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
 		    	<?php
 		    		echo '<ul class="nav nav-pills">' ;
@@ -86,14 +88,14 @@
 		</div>
 		
 		<div class="row-fluid">			
-			<div class="span3 offset1">		
+			<div class="span3 user-profile-left">		
 				<img class="banner_image" src="<?php echo  base_url().'img/banner.jpg'; ?>">
 				<div class="space4"></div>
 				<img class="banner_image" src="<?php echo  base_url().'img/banner.jpg'; ?>">
 				<div class="space4"></div>
 			</div>
 				
-			<div class="span6">
+			<div class="span6 user-profile-right">
 				<?php if(isset($video_ID)){?>
 					<h3> <?php echo $video_title;?></h3>
 					<iframe width="600" height="400" src="http://www.youtube.com/embed/<?php echo $video_ID?>" frameborder="0" allowfullscreen></iframe>
@@ -103,11 +105,10 @@
 						<div class="fb-like" data-href="http://www.youtube.com/watch?v=<?php echo $video_ID ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>			    							
 						<label class="youtubedata">
 						<?php
-							/*
 							echo "<span id='youtubedata' class='badge badge-important'><i class='icon-thumbs-down icon-white'></i>$dislikes</span>";
 							echo "<span id='youtubedata' class='badge badge-success'><i class='icon-thumbs-up icon-white'></i>$likes</span>";
 							echo "<span id='youtubedata' class='badge badge-info'><i class='icon-eye-open '></i>$views</span>";
-							*/
+							
 						?>
 						</label>
 					</div>	
