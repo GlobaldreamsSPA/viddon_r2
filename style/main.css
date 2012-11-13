@@ -98,11 +98,12 @@ h2.profile
 /* posicion imagen usuario */
 img.user_image
 {
-	position:relative;
+	position: relative;
 	top: 32px;
 	left: 10%;
-	height: 230px;
-	width: 230px;
+
+	max-height: 230px;
+	max-width: 230px;
 }
 		
 /* posicion banner */
