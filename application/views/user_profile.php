@@ -60,9 +60,9 @@
 				<h1 class="profile-title"> <?php echo $name ?></h1>
 				<div class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
 		    	<?php
-		    		echo '<ul class="nav nav-pills">' ;
+		    		echo '<ul class="skills-list">' ;
 		    		foreach ($tags as $tag) {
-						echo '<li class="taglist active"> <a href="#">'.$tag.'</a></li>';
+						echo '<li> <a href="#">'.$tag.'</a></li>';
 					}
 					echo '</ul>';
 				?>
@@ -87,10 +87,7 @@
 		
 		<div class="row-fluid">			
 			<div class="span3 offset1">		
-				<img class="banner_image" src="<?php echo  base_url().'img/banner.jpg'; ?>">
-				<div class="space4"></div>
-				<img class="banner_image" src="<?php echo  base_url().'img/banner.jpg'; ?>">
-				<div class="space4"></div>
+				
 			</div>
 				
 			<div class="span6">

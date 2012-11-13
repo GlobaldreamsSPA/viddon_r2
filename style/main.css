@@ -102,7 +102,7 @@ img.user_image
 	top: 32px;
 	left: 10%;
 	height: 230px;
-	/*width: 230px;*/	
+	width: 230px;
 }
 		
 /* posicion banner */
@@ -178,10 +178,32 @@ div.social_data_container
 div#main_videos
 {
 	width: 385px !important;
-	margin-left:32px;
+	margin-left: 32px;
 }
 
-		
+
+ul.skills-list
+{
+	margin-top: 10px;
+	margin-left: 0;
+}
+
+ul.skills-list li
+{
+	background-color: #FFFFFF;
+	margin-right: 10px;
+	display: inline;
+	padding: 5px 10px 5px 10px;
+	border: 2px solid #D6D6D6;
+	border-radius: 02px;
+}
+
+ul.skills-list li a
+{
+	text-decoration: none;
+	color: #6C6C6C;
+}
+
 /* Formato links en la parte superior del header */
 #headercontent li {display:inline; margin-left:12px;}	
 #headercontent a:link {text-decoration:  none;color:#ffffff;}    /* unvisited link */
