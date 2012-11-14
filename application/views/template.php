@@ -39,7 +39,6 @@
 		$openid->returnUrl = HOME.'/user/login';
 	?>
 
-	
 	<div id="headercontent">
 	    
 	    <div id="upperhalf">
@@ -76,10 +75,10 @@
 		
 		<div id="lowerhalf">
 		 	<div>
-				<img src="<?php echo  base_url(); ?>img/Logo.png">
+				<img class="image-logo" src="<?php echo  base_url(); ?>img/Logo.png">
 				<form class="form-search">
-			  		<input type="text" class="input-medium search-query">
-			  		<button type="submit" class="btn">Search</button>
+			  		<input type="text" class="input-medium">
+			  		<button type="submit" class="btn search-btn">Search</button>
 				</form>
 			</div>
 		</div>

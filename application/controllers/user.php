@@ -136,6 +136,7 @@ class User extends CI_Controller {
 		    	//Esto es cuando el usuario cancela la autorizacion de login con google
 		        redirect(HOME);
 		    }
+
 		    elseif($openid->validate())
 		    {
 		     	//Ya que el usuario se encuentra logeado, se almacenan los datos en la BD.
@@ -143,6 +144,7 @@ class User extends CI_Controller {
 		        $data = $openid->getAttributes();
 
 				$user_openid = array();
+				$user_email = array();
 				parse_str(parse_url($openid->identity, PHP_URL_QUERY), $user_openid);
 
 				$result = $this->user_model->verify_openid($user_openid['id']);

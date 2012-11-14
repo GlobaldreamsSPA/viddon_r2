@@ -39,6 +39,25 @@ class Videos_model extends CI_Model
 		return $result;
 	}
 
+	function get_videos($page, $cant)
+	{
+		$query = $this->db->get('videos', $cant, ($page-1)*$cant);
+
+		$result = array();
+
+		foreach ($query->result_array() as $value) 
+		{
+			$result[] = array($value['title'], $value['link']);
+		}
+
+		return $result;
+	}
+
+	function count()
+	{
+		return $this->db->count_all_results('videos');
+	}
+
 	function get_all_videos()
 	{
 		$query = $this->db->get('videos');

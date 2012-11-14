@@ -21,6 +21,20 @@ div.content
 	background-repeat: no-repeat;
 }
 
+
+/*Estilo logo*/
+.image-logo
+{
+	margin-left: 06%;
+}
+
+
+/* Boton de busqueda */
+.search-btn
+{
+	margin-left: 5px;
+}
+
 /* tamaño de textareas en new*/
 textarea.user_description
 {
@@ -56,6 +70,16 @@ div.space2
 div.space4
 {
 	min-height: 60px;
+}
+
+#upperhalf
+{
+	height: 25px;
+}
+
+#upperhalf div div ul
+{
+	padding-top: 2px;
 }
 
 
@@ -176,7 +200,7 @@ div.social_data_container
 /* formato videos pagina principal*/
 p.title-text
 {
-	font-size: 17px;
+	font-size: 14px;
 	font-weight: bold;
 }
 
