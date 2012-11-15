@@ -38,11 +38,15 @@ class Skills_model extends CI_Model
 			$result[] = $item['name'];
 		}
 
-		return $result; 
+		return $result;
 	}
 
 	function link_skills($profile)
 	{
+		//Primero borrar todas las habilidades linkeadas del usuario anteriormente existentes
+		$this->db->delete('users_skills', array('user_id' => $profile['id']));
+
+
 		if($profile['skills1'] != 0)
 		{
 			$data = array(
@@ -50,7 +54,16 @@ class Skills_model extends CI_Model
 					'skill_id' => $profile['skills1']
 				);
 
-			$this->db->insert('users_skills',$data);
+			//Verificar que el par no exista en la BD
+			$this->db->select('user_id, skill_id');
+			$this->db->from('users_skills');
+			$this->db->where('user_id', $data['user_id']);
+			$this->db->where('skill_id', $data['skill_id']);
+
+			$result = $this->db->get();
+
+			if($result->num_rows() == 0)
+				$this->db->insert('users_skills',$data);
 		}
 
 		if($profile['skills2'] != 0)
@@ -60,7 +73,16 @@ class Skills_model extends CI_Model
 					'skill_id' => $profile['skills2']
 				);
 
-			$this->db->insert('users_skills',$data);
+			//Verificar que el par no exista en la BD
+			$this->db->select('user_id, skill_id');
+			$this->db->from('users_skills');
+			$this->db->where('user_id', $data['user_id']);
+			$this->db->where('skill_id', $data['skill_id']);
+
+			$result = $this->db->get();
+
+			if($result->num_rows() == 0)
+				$this->db->insert('users_skills',$data);
 		}
 
 		if($profile['skills3'] != 0)
@@ -70,7 +92,16 @@ class Skills_model extends CI_Model
 					'skill_id' => $profile['skills3']
 				);
 
-			$this->db->insert('users_skills',$data);
+			//Verificar que el par no exista en la BD
+			$this->db->select('user_id, skill_id');
+			$this->db->from('users_skills');
+			$this->db->where('user_id', $data['user_id']);
+			$this->db->where('skill_id', $data['skill_id']);
+
+			$result = $this->db->get();
+
+			if($result->num_rows() == 0)
+				$this->db->insert('users_skills',$data);
 		}
 
 	}

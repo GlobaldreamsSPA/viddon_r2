@@ -8,11 +8,12 @@
 <h4>Aviso</h4>  
 <p>Tu inscripcion ha sido realizada</p>                
 </div>  
-<div class="modal-footer">   
-<a href="#" class="btn" data-dismiss="modal">Close</a>  
+<div class="modal-footer">
+<?php  ?>
+<a href="#" >Volver al Home</a>
+<a href="#" class="btn" data-dismiss="modal">Close</a>
 </div>  
 </div>
-
 
 <div id="error" class="modal hide fade in" >  
 <div class="modal-header">  
@@ -20,12 +21,12 @@
 <h3>This is a Modal Heading</h3>  
 </div>  
 <div class="modal-body">  
-<h4>Aviso</h4>  
+<h4>Aviso</h4>
 <p><?php if(isset($postulation_message)) echo $postulation_message; ?></p>                
 </div>  
-<div class="modal-footer">   
-<a href="#" class="btn" data-dismiss="modal">Close</a>  
-</div>  
+<div class="modal-footer">
+<a href="#" class="btn" data-dismiss="modal">Volver al Perfil</a>  
+</div>
 </div>
 
 <?php if($success_flag){ ?>
@@ -58,11 +59,9 @@
 		    		
 		    	<div class="space1"></div>
 		    	<h1 class="profile-title"> <?php echo $name; ?> <a href="<?php echo base_url().'user/edit/'.$user_id; ?>" style="font-size: 20px;">(editar datos)</a> </h1> 
-
-				
 				<div class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
 		    	<?php
-		    		echo '<ul class="skills-list">' ;
+		    		echo '<ul class="skills-list">';
 		    		foreach ($tags as $tag) {
 						echo '<li> <a href="#">'.$tag.'</a></li>';
 					}
@@ -87,29 +86,24 @@
 			<div class="space4"></div>	
 		</div>
 		
-		<div class="row-fluid">			
-			<div class="span3 offset1">
-			<div class="span3 user-profile-left">
-			</div>
-			
-			<div class="span6 user-profile-right">
+		<div class="row-fluid">
+			<div class="span10 offset3">		
+			<div class="span8 user-profile-right">
 				<?php if(isset($video_ID)){?>
-					<h3> <?php echo $video_title;?></h3>
+					<div class="justify video-title"><?php echo $video_title;?></div>
 					<iframe width="600" height="400" src="http://www.youtube.com/embed/<?php echo $video_ID?>" frameborder="0" allowfullscreen></iframe>
 					<br>
-					
 					<div class="social_data_container">			
 						<div class="fb-like" data-href="http://www.youtube.com/watch?v=<?php echo $video_ID ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>			    							
 						<label class="youtubedata">
 						<?php
-							echo "<span id='youtubedata' class='badge badge-important'><i class='icon-thumbs-down icon-white'></i>$dislikes</span>";
-							echo "<span id='youtubedata' class='badge badge-success'><i class='icon-thumbs-up icon-white'></i>$likes</span>";
-							echo "<span id='youtubedata' class='badge badge-info'><i class='icon-eye-open '></i>$views</span>";
+							//echo "<span id='youtubedata' class='badge badge-important'><i class='icon-thumbs-down icon-white'></i>$dislikes</span>";
+							//echo "<span id='youtubedata' class='badge badge-success'><i class='icon-thumbs-up icon-white'></i>$likes</span>";
+							//echo "<span id='youtubedata' class='badge badge-info'><i class='icon-eye-open '></i>$views</span>";
 							
 						?>
 						</label>
-					</div>	
-					<div class="space1"></div>	
+					</div>
 					<div class="justify"><?php echo $video_description;?></div>				
 					
 				<?php 

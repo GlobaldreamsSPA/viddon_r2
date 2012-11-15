@@ -9,7 +9,23 @@ class Videos_model extends CI_Model
 
     function insert($data)
     {
-    	$this->db->insert('videos', $data);
+    	//Primero verificar que el video no exista
+    	$this->db->select('id');
+    	$this->db->from('videos');
+    	$this->db->where('link', $data['link']);
+
+    	$result = $this->db->get();
+
+    	if($result->num_rows() == 0)
+			$this->db->insert('videos', $data);
+		else
+		{
+			$video = $result->first_row('array');
+			$data['id'] = $video['id'];
+
+			$this->db->where('id', $data['id']);
+			$this->db->update('videos', $data);
+		}
     }
 
 

@@ -34,32 +34,39 @@
 		$openid->identity = 'https://www.google.com/accounts/o8/id';
 		$openid->required = array(
 					'contact/email',
-					'pref/language'
+					'pref/language',
+					'namePerson'
 					);
 		$openid->returnUrl = HOME.'/user/login';
 	?>
 
 	<div id="headercontent">
-	    
 	    <div id="upperhalf">
 		    <div class="row-fluid">
-		    	
-		    	<div class="span4">
+		    	<div class="span4 header-text-left">
 					<ul>
 					  <li> <a href="#">POSTULANTES</a></li>
 					  <li> <a href="#">HUNTERS</a></li>
 					</ul>
 				</div>
-				
 				<div class="span5 offset3">
 					<ul>
 					<?php
 						$id = $this->session->userdata('id');
-						if(!isset($user))
+
+						if($this->session->userdata('name') != FALSE)
+						{
+							$user = $this->session->userdata('name');
+						}
+						else if($this->session->userdata('email') != FALSE)
+						{
+							$user = $this->session->userdata('email');
+						}
+						else
 							$user = "";
 
 						if($id)
-							echo "<li class='welcome-login'> Bienvenido ".$user.anchor('user/logout',' (Cerrar sesión)');
+							echo "<li class='welcome-login'> Bienvenido ".anchor('user/index/'.$id, $user).' '.anchor('user/logout',' (Cerrar sesión)');
 						else
 						{
 							echo "<form action='".$openid->authUrl()."' method='POST'>";
@@ -75,7 +82,9 @@
 		
 		<div id="lowerhalf">
 		 	<div>
-				<img class="image-logo" src="<?php echo  base_url(); ?>img/Logo.png">
+		 		<a class="image-logo" href=<?php echo HOME?> title="Volver a la Página Principal">
+					<img src="<?php echo  base_url(); ?>img/Logo.png">
+				</a>
 				<form class="form-search">
 			  		<input type="text" class="input-medium">
 			  		<button type="submit" class="btn search-btn">Search</button>

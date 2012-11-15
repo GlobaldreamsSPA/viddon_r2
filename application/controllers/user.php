@@ -144,7 +144,13 @@ class User extends CI_Controller {
 		        $data = $openid->getAttributes();
 
 				$user_openid = array();
-				$user_email = array();
+				$user_email = $data['contact/email'];
+
+				if(isset($data['namePerson']))
+					$user_name = $data['namePerson'];
+				else
+					$user_name = "";
+
 				parse_str(parse_url($openid->identity, PHP_URL_QUERY), $user_openid);
 
 				$result = $this->user_model->verify_openid($user_openid['id']);
@@ -154,7 +160,9 @@ class User extends CI_Controller {
 				{
 					//Si el usuario existe se guardan datos en la sesion y se redirige al index del usuario
 					$new_session_data = array(
-						'id' => $result['id']
+						'id' => $result['id'],
+						'email' => $user_email,
+						'name' => $user_name
 						);
 
 					$this->session->set_userdata($new_session_data);
@@ -167,7 +175,9 @@ class User extends CI_Controller {
 
 					//Guardar ID del usuario en ls session
 					$new_session_data = array(
-						'id' => $id_user
+						'id' => $result['id'],
+						'email' => $user_email,
+						'name' => $user_name
 						);
 
 					$this->session->set_userdata($new_session_data);
@@ -235,7 +245,12 @@ class User extends CI_Controller {
 				$this->skills_model->link_skills($profile);
 
 				//Por ultimo subir la foto
-				$this->_upload_image($profile['id']);
+				if($this->check_upload('') == TRUE)
+					$this->_upload_image($profile['id']);
+				
+				if($this->check_upload('') == TRUE && (isset($user_id) && is_numeric($user_id)))
+					$this->_upload_image($profile['id']);
+
 
 				redirect(HOME.'/user');
 			}
