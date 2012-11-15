@@ -9,8 +9,7 @@
 <p>Tu inscripcion ha sido realizada</p>                
 </div>  
 <div class="modal-footer">
-<?php  ?>
-<a href="#" >Volver al Home</a>
+<?php echo anchor(HOME,'Volver al Home',"class='btn btn-green'"); ?>
 <a href="#" class="btn" data-dismiss="modal">Close</a>
 </div>  
 </div>
@@ -25,6 +24,7 @@
 <p><?php if(isset($postulation_message)) echo $postulation_message; ?></p>                
 </div>  
 <div class="modal-footer">
+<?php echo anchor(HOME,'Volver al Home',"class='btn btn-green'"); ?>
 <a href="#" class="btn" data-dismiss="modal">Volver al Perfil</a>  
 </div>
 </div>

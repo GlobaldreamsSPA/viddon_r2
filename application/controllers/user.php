@@ -175,7 +175,7 @@ class User extends CI_Controller {
 
 					//Guardar ID del usuario en ls session
 					$new_session_data = array(
-						'id' => $result['id'],
+						'id' => $id_user,
 						'email' => $user_email,
 						'name' => $user_name
 						);
@@ -247,7 +247,7 @@ class User extends CI_Controller {
 				//Por ultimo subir la foto
 				if($this->check_upload('') == TRUE)
 					$this->_upload_image($profile['id']);
-				
+
 				if($this->check_upload('') == TRUE && (isset($user_id) && is_numeric($user_id)))
 					$this->_upload_image($profile['id']);
 
