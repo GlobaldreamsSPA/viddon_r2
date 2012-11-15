@@ -45,7 +45,7 @@
 	  	<div class="row-fluid">
 	    	<div class="span3 user-profile-left">
 				<img class="user_image" src="<?php echo base_url().'img/profile/'.$image_profile ?>"/>
-				<form action="user" method="POST">
+				<form action="" method="POST">
 					<?php if($postulation_flag) {?>
 					<button id="participate_button" class="btn btn-large btn-success" type="submit" name="apply">POSTULAR A CONCURSO</button>
 					<input type="hidden" name="validate" value="1"/>
