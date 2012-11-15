@@ -21,7 +21,7 @@
 						?>
 						</label>
 					</div>
-			<?php if($i%3 == 0) echo "</div>"; }?>
+			<?php if($i%3 == 0 || $i == count($video_list)) echo "</div>"; }?>
 			
 			<div class="row-fluid">
 				<div class="space1"></div>
