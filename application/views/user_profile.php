@@ -87,8 +87,7 @@
 		</div>
 		
 		<div class="row-fluid">
-			<div class="span10 offset3">		
-			<div class="span8 user-profile-right">
+			<div class="span6 offset3 user-profile-right">
 				<?php if(isset($video_ID)){?>
 					<div class="justify video-title"><?php echo $video_title;?></div>
 					<iframe width="600" height="400" src="http://www.youtube.com/embed/<?php echo $video_ID?>" frameborder="0" allowfullscreen></iframe>
