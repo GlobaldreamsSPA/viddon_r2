@@ -277,7 +277,8 @@ class User extends CI_Controller {
 			if(isset($user_id) && is_numeric($user_id))
 			{
 				$args["update_values"]=$this->user_model->select($user_id);
-				$args["update_user_skills"]= $this->skills_model->get_user_skills($user_id);
+				$args["update_user_skills"]= $this->skills_model->get_user_skills_id($user_id);
+
 			}
 			
 
