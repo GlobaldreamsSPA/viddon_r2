@@ -165,7 +165,6 @@ div#image_upload
 /* Formato tags talentos */
 li.taglist {
 	display: inline;
-	/*margin-left: 10px;*/
 	border-color: #BDBDBD;
 	background-color: #FFFFFF;
 }

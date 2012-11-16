@@ -66,7 +66,7 @@
 							$user = "";
 
 						if($id)
-							echo "<li class='welcome-login'> Bienvenido ".anchor('user/index/'.$id, $user).' '.anchor('user/logout',' (Cerrar sesión)');
+							echo "<li class='welcome-login'> Bienvenido ".anchor('user', $user).' '.anchor('user/logout',' (Cerrar sesión)');
 						else
 						{
 							echo "<form action='".$openid->authUrl()."' method='POST'>";
