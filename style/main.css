@@ -74,7 +74,6 @@ div.space4
 	padding-top: 2px;
 }
 
-
 /*  Header con logo pagina */
 #lowerhalf div 
 {
@@ -159,7 +158,7 @@ div#image_upload
 /* Formato tags talentos */
 li.taglist {
 	display: inline;
-	/*margin-left: 10px;*/
+	margin-left: 20%;
 	border-color: #BDBDBD;
 	background-color: #FFFFFF;
 }
@@ -204,7 +203,6 @@ div#main_videos
 	width: 350px !important;
 	margin-left: 38px;
 }
-
 
 ul.skills-list
 {
