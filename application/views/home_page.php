@@ -21,7 +21,7 @@
 								</div>
 								<div class="span7">
 									<p><?php echo $video[0]; ?></p>
-									<a><?php echo $video[3]; ?></a>								
+									<a href="<?php echo HOME.'/user/index/'.$video[2]; ?>"><?php echo $video[3]; ?></a>								
 								</div>
 							</div>
 							<div class="row row_text_main">
