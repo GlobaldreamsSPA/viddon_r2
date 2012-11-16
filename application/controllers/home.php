@@ -9,6 +9,7 @@ class Home extends CI_Controller {
 
 		//Modelos
 		$this->load->model('videos_model');
+		$this->load->model('user_model');
 	}
 
 	public function index($page = 1)
@@ -21,6 +22,7 @@ class Home extends CI_Controller {
 		
 		foreach ($video_list as $video_data)
 		{
+			/*
 			$JSON = file_get_contents("https://gdata.youtube.com/feeds/api/videos/{$video_data[1]}?v=2&alt=json");
 			$JSON_Data = json_decode($JSON);
 							
@@ -37,6 +39,9 @@ class Home extends CI_Controller {
 				$likes = "0";
 			}
 			array_push($video_data, $views, $dislikes,$likes);
+			*/
+			$user_data= $this->user_model->select($video_data["2"]);
+			array_push($video_data,$user_data["name"],$user_data["image_profile"]);
 			array_push($args["video_list"], $video_data);
 		}
     

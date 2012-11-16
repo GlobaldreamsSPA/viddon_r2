@@ -82,7 +82,8 @@
 				<div class="space1"></div>
 				
 				<h2 class="profile">Dreams</h2>
-				<div class="justify profile-content"><?php echo $dreams;?></div>
+				<div class="justify profile-content"><span class="arrow"></span><?php echo $dreams;?></div>
+				
 				<div class="space1"></div>
 				
 			</div>

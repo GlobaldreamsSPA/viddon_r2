@@ -63,7 +63,7 @@ class Videos_model extends CI_Model
 
 		foreach ($query->result_array() as $value) 
 		{
-			$result[] = array($value['title'], $value['link']);
+			$result[] = array($value['title'], $value['link'], $value['user_id']);
 		}
 
 		return $result;
