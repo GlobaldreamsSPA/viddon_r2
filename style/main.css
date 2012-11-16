@@ -101,6 +101,7 @@ h1.profile-title{
 	font-family: "profile_font";
 	color: #3E3D40;
 	font-size: 40px;
+	margin-bottom: 2px;
 }
 
 h2.profile 
@@ -238,6 +239,11 @@ div.video-title
 div.fb-like
 {
 	margin-bottom: 10px;
+}
+
+div.button-home-page
+{
+	margin-top: 03px;
 }
 
 

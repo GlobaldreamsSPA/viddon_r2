@@ -44,7 +44,13 @@
 	<div class="container-fluid">
 	  	<div class="row-fluid">
 	    	<div class="span3 user-profile-left">
-				<img class="user_image" src="<?php echo base_url().'img/profile/'.$image_profile ?>"/>
+	    		<?php 
+	    			if(file_exists(APPPATH.'/../img/profile/'.$image_profile) == TRUE)
+	    				echo "<img class='user_image' src='".HOME.'/img/profile/'.$image_profile."'/>";
+	    			else
+	    				echo "<img class='user_image' src='".HOME."/img/profile/user.jpg'/>";
+	    		?>
+				
 				<form action="" method="POST">
 					<?php if($postulation_flag) {?>
 					<button id="participate_button" class="btn btn-large btn-success" type="submit" name="apply">POSTULAR A CONCURSO</button>
