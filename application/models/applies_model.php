@@ -22,32 +22,41 @@ class Applies_model extends CI_Model
 
 	function apply($user_id, $casting_id)
 	{
-		//Crear postulacion (apply)
-		$apply = array(
-				'description' => '',
-				'user_id' => $user_id,
-				'casting_id' => $casting_id
-			);
+		//Verificar que el usuario no postule dos veces
+		$this->db->select('id');
+		$this->db->from('applies');
+		$this->db->where('user_id', $user_id);
+		$this->db->where('casting_id', $casting_id);
+		$query = $this->db->get();
 
-		$this->db->insert('applies', $apply);
+		if($query->num_rows() == 0)
+		{
+			//Crear postulacion (apply)
+			$apply = array(
+					'description' => '',
+					'user_id' => $user_id,
+					'casting_id' => $casting_id
+				);
 
-		//Obtener el max id de apply
-		$this->db->select_max('id');
-		$apply_result = $this->db->get('applies')->first_row('array');
+			$this->db->insert('applies', $apply);
 
-		//Ahora buscar el id del primer video del usuario
-		$this->db->select_min('id');
-		$videos_result = $this->db->get('videos')->first_row('array');
+			//Obtener el max id de apply
+			$this->db->select_max('id');
+			$apply_result = $this->db->get('applies')->first_row('array');
 
-		//Ahora crear el videos_applies
-		$videos_applies = array(
-				'apply_id' => $apply_result['id'],
-				'video_id' => $videos_result['id']
-			);
+			//Ahora buscar el id del primer video del usuario
+			$this->db->select_min('id');
+			$videos_result = $this->db->get('videos')->first_row('array');
 
-		$this->db->insert('videos_applies', $videos_applies);
+			//Ahora crear el videos_applies
+			$videos_applies = array(
+					'apply_id' => $apply_result['id'],
+					'video_id' => $videos_result['id']
+				);
 
-		return 1;
+			$this->db->insert('videos_applies', $videos_applies);
 
+			return 1;
+		}
 	}
 }
