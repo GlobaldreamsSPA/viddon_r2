@@ -19,6 +19,19 @@ div.content
 	height: 22px;
 	background-image: url('../img/signin-google.png');
 	background-repeat: no-repeat;
+	position: relative;
+	left: 110px;
+	top: -1px;
+}
+
+/* Estilo boton eliminar video  */
+.delete-video {
+	border: none;
+	background: none;
+	text-decoration: underline;
+	color: blue;
+	padding: 2px;
+	cursor: pointer;
 }
 
 /* Boton de busqueda */
@@ -80,26 +93,26 @@ div.space4
 	padding-top: 2px;
 }
 
-
 /*  Header con logo pagina */
 #lowerhalf div 
 {
-	background: url('../img/bg-pattern.png');
-	min-height: 200px;
-	background-repeat:repeat;
+	background: black;
+	min-height: 150px;
 }
 		
 #lowerhalf img
 {
 	position: relative;
 	left: 32%;
-	top: 50px;
+	top: 20px;
 }
 		
-#lowerhalf form.form-search
+.form-search
 {	
 	margin-right: 10%;
 	text-align: right;
+	position: relative;
+	bottom: 70px;
 }
 
 /* Formato color titulos perfil	*/
@@ -157,7 +170,7 @@ div#image_upload
 #content div.row-fluid
 {	
 	position: relative;
-	background: #F4F4F4;
+	background: url('../img/bg-pattern2.1.png');
 	max-width: 98%;
 	left: 10px;
 }
@@ -198,11 +211,11 @@ div.social_data_container
 }
 
 /* formato videos pagina principal*/
-
 div#main_videos
 {
 	width: 350px !important;
-	margin-left: 38px;
+	display: block;
+	margin-left: 3% !important;
 }
 
 div.video_text_main
@@ -211,11 +224,48 @@ div.video_text_main
 	left: -10px;
 	top: -25px;
 	background: white !important;
-	height: 150px;
+	height: 90px;
+	margin-bottom: 60px;
+}
+
+.home-video-title
+{
+	color: #FF6000;
+	font-weight: bold;
+}
+
+span.home-video-author
+{
+	font-size: 12px;
+	color: #979797;
+	font-weight: bold;
+}
+
+.home-video-author
+{
+	font-size: 12px;
+	position: relative;
+	top: -10px;
+	color: #646464;
+	font-weight: bold;
+}
+
+a.home-video-author:hover
+{
+	text-decoration: none;
+	color: #FF6000;
+}
+
+.fb-button
+{
+	margin-top: 15px;
 }
 
 div.row_text_main
 {
+	position:relative;
+	top: -05px;
+	margin-top: 0;
 	height: 75px;
 }
 span.arrow {
@@ -320,10 +370,6 @@ div.button-home-page
 	color: #FFFFFF;
 	font-weight: bold;
 }
-
-
-
-
 
 /* Fuente para el perfil */
 @font-face {  

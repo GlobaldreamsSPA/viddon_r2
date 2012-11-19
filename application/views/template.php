@@ -82,9 +82,11 @@
 		
 		<div id="lowerhalf">
 		 	<div>
-		 		<a class="image-logo" href=<?php echo HOME?> title="Volver a la Página Principal">
-					<img src="<?php echo  base_url(); ?>img/Logo.png">
+		 		<div class="image-logo">
+		 		<a href=<?php echo HOME?> title="Volver a la Página Principal">
+					<img src="<?php echo  base_url(); ?>img/Logo2.png">
 				</a>
+				</div>
 				<form class="form-search">
 			  		<input type="text" class="input-medium">
 			  		<button type="submit" class="btn search-btn">Search</button>
@@ -92,7 +94,6 @@
 			</div>
 		</div>
 	</div>
-	
 	<?php $this->load->view($content); ?>
 </body>
 

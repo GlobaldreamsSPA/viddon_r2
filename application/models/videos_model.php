@@ -28,6 +28,10 @@ class Videos_model extends CI_Model
 		}
     }
 
+    function delete($video_id)
+    {
+    	$this->db->delete('videos', array('id' => $video_id));
+    }
 
     //Verifica que el usuario tenga al menos un video
     function verify_videos($user_id)
@@ -37,6 +41,21 @@ class Videos_model extends CI_Model
 		$query = $this->db->get('videos');
 
 		//Retorna 0 si no tiene videos
+		if($query->num_rows == 0)
+			return 0;
+		else
+			return 1;
+	}
+
+	//Verifica que el video pertenezca al usuario user_id
+	function verify_user_video($youtube_video_id, $user_id)
+	{
+		$this->db->select('id');
+		$this->db->where('link', $youtube_video_id);
+		$this->db->where('user_id', $user_id);
+		$query = $this->db->get('videos');
+
+		//Retorna 0 si el video no pertenece al usuario
 		if($query->num_rows == 0)
 			return 0;
 		else
@@ -53,6 +72,15 @@ class Videos_model extends CI_Model
 		$result["video_description"] = $query['description'];
 
 		return $result;
+	}
+
+	function get_video_id($youtube_video_id)
+	{
+		$this->db->select('id');
+		$this->db->where('link', $youtube_video_id);
+		$query = $this->db->get('videos')->first_row('array');
+
+		return $query['id'];
 	}
 
 	function get_videos($page, $cant)

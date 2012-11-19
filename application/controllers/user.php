@@ -15,17 +15,23 @@ class User extends CI_Controller {
 		$this->load->model('skills_model');
 	}
 
-	public function index()
+	public function index($id = NULL)
 	{
-		
-		if($this->session->userdata('id') === FALSE)
-			redirect(HOME);
+		$args = array();
+		$public = FALSE;
+
+		if($this->session->userdata('id') === FALSE || ($id != NULL && $id != $this->session->userdata('id')))
+			$public = TRUE;
 		else
+		{
 			$id = $this->session->userdata('id');
+			$public = FALSE;
+		}
 
 		$casting_id = 1;
-		
+
 		$args = $this->user_model->select($id);
+		$args['public'] = $public;
 		$args["tags"] = $this->skills_model->get_user_skills($id);
 		$args["user"] = $this->user_model->welcome_name($id);
 		
@@ -90,8 +96,8 @@ class User extends CI_Controller {
 					
 		}
 	
-		$args["content"]="user_profile";
-		$args["success_flag"]=false;
+		$args["content"] = "user_profile";
+		$args["success_flag"] = FALSE;
 		
 
 		//El usuario hace click en postular al concurso
@@ -121,7 +127,41 @@ class User extends CI_Controller {
 			$args["postulation_message"]="Necesitas Tener Videos para poder postular";
 		}
 
-		$args["user_id"]= $this->session->userdata('id');
+		//El usuario hace click en borrar video
+
+		if($this->input->post("del-video"))
+		{
+			//Primero rescatar el id del usuario de la sesion
+			$user_id = $this->session->userdata('id');
+			$youtube_video_id = $this->input->post("del-video");
+			$video_id = $this->videos_model->get_video_id($youtube_video_id);
+
+			$del_video = TRUE;
+			
+			//Ahora verificar que el video pertenezca al usuario
+			if(!$this->videos_model->verify_user_video($youtube_video_id, $user_id))
+			{
+				$args["delete_video_message"] = "El Video que intentas borrar no te pertenece. Intenta nuevamente desde tu Perfil";
+				$del_video = FALSE;
+			}
+
+			//Ahora verificar que el usuario no haya postulado al concurso con ese video
+			if($this->applies_model->verify_video_apply($video_id, $user_id) == FALSE)
+			{
+				$args["delete_video_message"] = "Ya haz postulado a un casting activo con este video. No puedes borrarlo";
+				$del_video = FALSE;
+			}
+
+			//Si success flag sigue verdadero, se procede a borrar el video.
+			if($del_video == TRUE)
+			{
+				$this->videos_model->delete($video_id);
+				$args["delete_video_message"] = "Tu video ha sido borrado exitosamente";
+			}
+
+		}
+
+		$args["user_id"] = $this->session->userdata('id');
 		$this->load->view('template',$args);
 	}
 

@@ -14,27 +14,22 @@
 							<div class="space1"></div>
 							<div class="row row_text_main">
 								<div class="span3 offset1">
-									<?php 
-									
-									echo "<img class='user_image_main_page' src='".HOME.'/img/profile/'.$video[4]."'/>";
+									<?php
+										echo "<img class='user_image_main_page' src='".HOME.'/img/profile/'.$video[4]."'/>";
 									?>
 								</div>
 								<div class="span7">
-									<p><?php echo $video[0]; ?></p>
-									<a href="<?php echo HOME.'/user/index/'.$video[2]; ?>"><?php echo $video[3]; ?></a>								
+									<p class="home-video-title"><?php echo $video[0]; ?></p>
+									<span class="home-video-author">por </span><a class="home-video-author" href="<?php echo HOME.'/user/index/'.$video[2]; ?>"><?php echo $video[3]; ?></a>								
 								</div>
 							</div>
 							<div class="row row_text_main">
 								<div class="span11 offset1">
-									<div class="black_line"></div>
 									<div class="space05"></div>
-									<div class="fb-like button-home-page" data-href="http://www.youtube.com/watch?v=<?php echo $video[1] ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>			    							
-									<label style="display:inline;">
-									<?php
-										//echo "<span id='youtubedata' class='badge badge-important'><i class='icon-thumbs-down icon-white'></i>$video[4]</span>";
-										//echo "<span id='youtubedata' class='badge badge-success'><i class='icon-thumbs-up icon-white'></i>$video[3]</span>";
-										//echo "<span id='youtubedata' class='badge badge-info'><i class='icon-eye-open '></i>$video[2]</span>";		
-									?>						
+									<div class="fb-button">
+										<iframe src="http://www.facebook.com/plugins/like.php?href=<?php echo HOME.'/user/index/'.$video[2]; ?>" scrolling="no" frameborder="0" style="margin-top: 0; position: relative; top: -5px; margin-left: 5px; border:none; width:225px; height:80px"></iframe>									
+		        						<label style="display: inline;">
+		        					</div>					
 									</label>
 								</div>
 							</div>

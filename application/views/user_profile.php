@@ -29,6 +29,20 @@
 </div>
 </div>
 
+<div id="del-video" class="modal hide fade in" >
+<div class="modal-header">  
+<a class="close" data-dismiss="modal">×</a>  
+<h3>This is a Modal Heading</h3>  
+</div>
+<div class="modal-body">
+<h4>Aviso</h4>
+<p><?php if(isset($delete_video_message)) echo $delete_video_message; ?></p>      
+</div>
+<div class="modal-footer">
+<?php echo anchor('user', 'Volver al Perfil',"class='btn'") ?>
+</div>
+</div>
+
 <?php if($success_flag){ ?>
 <script type="text/javascript">
 
@@ -38,9 +52,16 @@
 </script>
 <?php } ?>
 
+<?php if(isset($delete_video_message)){ ?>
+<script type="text/javascript">
+
+  $('#del-video').modal({
+    show: true
+  });
+</script>
+<?php } ?>
 
 <div class="content" id="content">
-	
 	<div class="container-fluid">
 	  	<div class="row-fluid">
 	    	<div class="span3 user-profile-left">
@@ -50,7 +71,7 @@
 	    			else
 	    				echo "<img class='user_image' src='".HOME."/img/profile/user.jpg'/>";
 	    		?>
-				
+				<?php if(!$public) {?>
 				<form action="" method="POST">
 					<?php if($postulation_flag) {?>
 					<button id="participate_button" class="btn btn-large btn-success" type="submit" name="apply">POSTULAR A CONCURSO</button>
@@ -59,12 +80,17 @@
 					<button data-toggle="modal" id="participate_button" href="#error" class="btn btn-success btn-large">POSTULAR A CONCURSO</button>
 	    			<?php } ?>
 	    		</form>
+	    		<?php } ?>
 	    	</div>
 		    
 		    <div class="span6 user-profile-right">
 		    		
 		    	<div class="space1"></div>
-		    	<h1 class="profile-title"> <?php echo $name; ?> <a href="<?php echo base_url().'user/edit/'.$user_id; ?>" style="font-size: 20px;">(editar datos)</a> </h1> 
+		    	<h1 class="profile-title"> <?php echo $name; ?> 
+		    		<?php if(!$public) {?> 
+		    			<a href="<?php echo base_url().'user/edit/'.$user_id; ?>" style="font-size: 20px;">(Editar Datos)</a>
+		    		<?php } ?>
+		    	</h1> 
 				<div class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
 		    	<?php
 		    		echo '<ul class="skills-list">';
@@ -94,9 +120,19 @@
 		</div>
 		
 		<div class="row-fluid">
-			<div class="span6 offset3 user-profile-right">
+			<div class="span7 offset3 user-profile-right">
 				<?php if(isset($video_ID)){?>
-					<div class="justify video-title"><?php echo $video_title;?></div>
+					<div class="justify video-title"><?php echo $video_title;?>
+					
+					<?php if(!$public) {?>
+						<form action="" method="POST">
+							<button type="submit" class="delete-video">(Borrar Video)</button>
+							<input type="hidden" name="del-video" value="<?php echo $video_ID ?>"/>
+						</form>
+					<?php } ?>
+
+					</div>
+
 					<iframe width="600" height="400" src="http://www.youtube.com/embed/<?php echo $video_ID?>" frameborder="0" allowfullscreen></iframe>
 					<br>
 					<div class="social_data_container">			
