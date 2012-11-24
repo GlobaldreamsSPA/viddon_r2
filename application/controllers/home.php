@@ -54,4 +54,9 @@ class Home extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
+	public what_is()
+	{
+		
+	}
+
 }

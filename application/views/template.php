@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to viddon</title>
+	<title>Viddon - Tu Talento, Nuestra Pasión</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="keyword" content="">
@@ -28,7 +28,7 @@
 	</script>
 
 	<!-- Codigo para el boton de loggin de google -->
-	<?php 
+	<?php
 		require_once OPENID;
 		$openid = new LightOpenID(HOME);
 		$openid->identity = 'https://www.google.com/accounts/o8/id';
@@ -38,6 +38,7 @@
 					'namePerson'
 					);
 		$openid->returnUrl = HOME.'/user/login';
+		$auth_url = $openid->authUrl();
 	?>
 
 	<div id="headercontent">
@@ -69,7 +70,7 @@
 							echo "<li class='welcome-login'> Bienvenido ".anchor('user', $user).' '.anchor('user/logout',' (Cerrar sesión)');
 						else
 						{
-							echo "<form action='".$openid->authUrl()."' method='POST'>";
+							echo "<form action='".$auth_url."' method='POST'>";
 							echo "<button id='login-button'/>";
 							echo "</form>";
 						}
@@ -81,26 +82,69 @@
 	    </div>
 		
 		<div id="lowerhalf">
-		 	<div>
-		 		<div class="image-logo">
-		 		<a href=<?php echo HOME?> title="Volver a la Página Principal">
-					<img src="<?php echo  base_url(); ?>img/Logo2.png">
+			<div class="row offset4">
+		 		<a class="anchor-image-logo span4" href="<?php echo HOME?>" title="Volver a la Página Principal">
+					<img class="image-logo" src="<?php echo base_url(); ?>img/Logo2.png"/>
 				</a>
-				</div>
-				<form class="form-search">
+				<!--
+				<form class="form-search offset2 span3">
 			  		<input type="text" class="input-medium">
 			  		<button type="submit" class="btn search-btn">Search</button>
 				</form>
+				-->
 			</div>
 		</div>
 	</div>
 	<?php $this->load->view($content); ?>
 </body>
 
-
-
-<footer class="footer">
-
-Global Dreams S.P.A. 2012
-
+<footer>
+<ul class="row first">
+	<li class="span3 offset1 footer-logo">
+		<a href="<?php echo HOME?>"><img src="<?php echo base_url(); ?>img/logo-footer.png"/></a>
+	</li>
+	<li class="span2 offset1">
+		<ul id="que-es-viddon">
+			<li>
+				<p>¿QUÉ ES VIDDON?</p>
+			</li>
+			<li>
+				<button>ENTÉRATE AQUÍ</button>
+			</li>
+		</ul>
+	</li>
+	<li class="span2">
+		<ul id="siguenos">
+			<li>
+				<p>SÍGUENOS</p>
+			</li>
+			<li>
+				<ul>
+					<li><img src="<?php echo base_url(); ?>img/fb-logo.png"/></li>
+					<li><img src="<?php echo base_url(); ?>img/twitter-logo.png"/></li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+	<li class="span3">
+		<ul id="contacto">
+			<li >
+				<p>CONTACTO</p>
+			</li>
+			<li>
+				<ul>
+					<li><p>Email: <font color="#FF3D01">contacto@viddon.com</font></p></li>
+					<li><p>Dirección: <font color="#FF3D01">Las Violetas 2267</font></p></li>
+					<li><p><font color="#FF3D01">Providencia, Santiago</font></p></li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+</ul>
+<ul class"row">
+	<li class="span8 offset1"><p class="second">Global Dreams SPA - Copyright 2012</p></li>
+</ul>
+<ul class"row second">
+	<li class="span4 offset1"><p class="second">Todos los derechos reservados | Términos y condiciones</p></li>
+</ul>
 </footer>

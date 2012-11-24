@@ -1,5 +1,8 @@
 <div class="content" id="content">	
 	<div class="container-fluid">
+		<div class="row-fluid">
+			<img class="concurso" src="<?php echo HOME?>/img/Concurso.jpg"/>
+		</div>
 			<?php
 				$i=0; 
 				foreach ($video_list as $video) {

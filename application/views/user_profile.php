@@ -99,17 +99,17 @@
 					}
 					echo '</ul>';
 				?>
-				<h2 class="profile">Bio</h2>
+				<div class="space1"></div>
+				<h2 class="profile">Cuéntanos tu historia</h2>
 				<div class="justify profile-content"><?php echo $bio;?></div>
 				<div class="space1"></div>
 				
-				<h2 class="profile">Hobbies</h2>
+				<h2 class="profile">¿Qué te gusta hacer?</h2>
 				<div class="justify profile-content"><?php echo $hobbies;?></div>
 				<div class="space1"></div>
 				
-				<h2 class="profile">Dreams</h2>
+				<h2 class="profile">¿Cuáles son tus sueños?</h2>
 				<div class="justify profile-content"><?php echo $dreams;?></div>
-				
 				<div class="space1"></div>
 				
 			</div>
@@ -132,9 +132,11 @@
 					<?php } ?>
 
 					</div>
-
+					<!--
 					<iframe width="600" height="400" src="http://www.youtube.com/embed/<?php echo $video_ID?>" frameborder="0" allowfullscreen></iframe>
+					-->
 					<br>
+					<!--
 					<div class="social_data_container">			
 						<div class="fb-like" data-href="http://www.youtube.com/watch?v=<?php echo $video_ID ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>			    							
 						<label class="youtubedata">
@@ -146,6 +148,7 @@
 						?>
 						</label>
 					</div>
+					-->
 					<div class="justify"><?php echo $video_description;?></div>				
 					
 				<?php 
