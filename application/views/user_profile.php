@@ -1,38 +1,35 @@
 
-<div id="success" class="modal hide fade in" >  
-<div class="modal-header">  
-<a class="close" data-dismiss="modal">×</a>  
-<h3>This is a Modal Heading</h3>  
-</div>  
-<div class="modal-body">  
-<h4>Aviso</h4>  
-<p>Tu inscripcion ha sido realizada</p>                
-</div>  
+<div id="success" class="modal hide fade in">
+<div class="modal-header">
+<a class="close" data-dismiss="modal">×</a>
+</div>
+<div class="modal-body">
+<h4>Felicidades!</h4>
+<p>Tu inscripcion ha sido realizada</p>
+</div>
 <div class="modal-footer">
 <?php echo anchor(HOME,'Volver al Home',"class='btn btn-green'"); ?>
 <a href="#" class="btn" data-dismiss="modal">Close</a>
-</div>  
+</div>
 </div>
 
-<div id="error" class="modal hide fade in" >  
-<div class="modal-header">  
+<div id="error" class="modal hide fade in">
+<div class="modal-header">
 <a class="close" data-dismiss="modal">×</a>  
-<h3>This is a Modal Heading</h3>  
-</div>  
-<div class="modal-body">  
+</div>
+<div class="modal-body">
 <h4>Aviso</h4>
-<p><?php if(isset($postulation_message)) echo $postulation_message; ?></p>                
-</div>  
+<p><?php if(isset($postulation_message)) echo $postulation_message; ?></p>              
+</div>
 <div class="modal-footer">
 <?php echo anchor(HOME,'Volver al Home',"class='btn btn-green'"); ?>
-<a href="#" class="btn" data-dismiss="modal">Volver al Perfil</a>  
+<a href="#" class="btn" data-dismiss="modal">Volver al Perfil</a>
 </div>
 </div>
 
 <div id="del-video" class="modal hide fade in" >
 <div class="modal-header">  
-<a class="close" data-dismiss="modal">×</a>  
-<h3>This is a Modal Heading</h3>  
+<a class="close" data-dismiss="modal">×</a> 
 </div>
 <div class="modal-body">
 <h4>Aviso</h4>
@@ -74,10 +71,10 @@
 				<?php if(!$public) {?>
 				<form action="" method="POST">
 					<?php if($postulation_flag) {?>
-					<button id="participate_button" class="btn btn-large btn-success" type="submit" name="apply">POSTULAR A CONCURSO</button>
+					<button id="participate_button" class="btn btn-large btn-success" type="submit" name="apply">PARTICIPAR EN CONCURSO</button>
 					<input type="hidden" name="validate" value="1"/>
 					<?php } else{ ?>
-					<button data-toggle="modal" id="participate_button" href="#error" class="btn btn-success btn-large">POSTULAR A CONCURSO</button>
+					<button data-toggle="modal" id="participate_button" href="#error" class="btn btn-success btn-large">PARTICIPAR EN CONCURSO</button>
 	    			<?php } ?>
 	    		</form>
 	    		<?php } ?>
@@ -132,9 +129,7 @@
 					<?php } ?>
 
 					</div>
-					<!--
 					<iframe width="600" height="400" src="http://www.youtube.com/embed/<?php echo $video_ID?>" frameborder="0" allowfullscreen></iframe>
-					-->
 					<br>
 					<!--
 					<div class="social_data_container">			

@@ -1,7 +1,7 @@
 <div class="content" id="content">	
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<img class="concurso" src="<?php echo HOME?>/img/Concurso.jpg"/>
+			<img class="concurso" src="<?php echo HOME?>/img/Concurso.png"/>
 		</div>
 			<?php
 				$i=0; 

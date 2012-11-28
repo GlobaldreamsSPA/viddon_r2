@@ -80,22 +80,10 @@ class User extends CI_Controller {
 			$JSON_Data = json_decode($JSON);
 			$JSON_Data_entry = $JSON_Data->{'entry'};
 			
-			
-			if(!is_null($JSON_Data->{'entry'}) && array_key_exists('yt$statistics', $JSON_Data->{'entry'}))
-			{
-				$args["views"] = $JSON_Data->{'entry'}->{'yt$statistics'}->{'viewCount'};
-				$args["dislikes"] = $JSON_Data->{'entry'}->{'yt$rating'}->{'numDislikes'};
-				$args["likes"] = $JSON_Data->{'entry'}->{'yt$rating'}->{'numLikes'};
-			}
-			else
-			{
-				$args["views"] = "0";
-				$args["dislikes"] = "0";
-				$args["likes"] = "0";
-			}
-					
+			$args["views"] = "0";
+			$args["dislikes"] = "0";
+			$args["likes"] = "0";
 		}
-	
 		$args["content"] = "user_profile";
 		$args["success_flag"] = FALSE;
 		
@@ -146,14 +134,14 @@ class User extends CI_Controller {
 			}
 
 			//Ahora verificar que el usuario no haya postulado al concurso con ese video
-			if($this->applies_model->verify_video_apply($video_id, $user_id) == FALSE)
+			if($this->applies_model->verify_video_apply($video_id, $user_id) === FALSE)
 			{
 				$args["delete_video_message"] = "Ya haz postulado a un casting activo con este video. No puedes borrarlo";
 				$del_video = FALSE;
 			}
 
-			//Si success flag sigue verdadero, se procede a borrar el video.
-			if($del_video == TRUE)
+			//Si success flag sigue verdadero, se procede a borrar el video
+			if($del_video === TRUE)
 			{
 				$this->videos_model->delete($video_id);
 				$args["delete_video_message"] = "Tu video ha sido borrado exitosamente";

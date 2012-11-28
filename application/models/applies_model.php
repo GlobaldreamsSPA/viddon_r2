@@ -22,7 +22,7 @@ class Applies_model extends CI_Model
 
 	function verify_video_apply($video_id, $user_id)
 	{
-		$this->db->select('castings.active');
+		$this->db->select('castings.*');
 		$this->db->from('castings');
 		$this->db->join('applies', 'applies.casting_id = castings.id');
 		$this->db->join('videos_applies', 'videos_applies.apply_id = applies.id');
@@ -30,14 +30,14 @@ class Applies_model extends CI_Model
 		$this->db->where('applies.user_id', $user_id);
 		$this->db->group_by('castings.id');
 		$query = $this->db->get();
-		
-		//Verificar que este video no este ingresado en una postulacion activa
-		foreach ($query->result_array() as $casting) {
-			if($casting['active'] == 1)
-				return FALSE;
-				break;
-		}
 
+		//Verificar que este video no este ingresado en una postulacion activa
+		foreach($query->result_array() as $casting) {
+			if($casting['active'] == 1)
+			{
+				return FALSE;
+			}
+		}
 		return TRUE;
 	}
 

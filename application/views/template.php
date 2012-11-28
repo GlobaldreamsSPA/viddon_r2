@@ -109,7 +109,7 @@
 				<p>¿QUÉ ES VIDDON?</p>
 			</li>
 			<li>
-				<button>ENTÉRATE AQUÍ</button>
+				<a href="<?php echo HOME?>/home/what_is">ENTÉRATE AQUÍ</a>
 			</li>
 		</ul>
 	</li>
@@ -120,8 +120,8 @@
 			</li>
 			<li>
 				<ul>
-					<li><img src="<?php echo base_url(); ?>img/fb-logo.png"/></li>
-					<li><img src="<?php echo base_url(); ?>img/twitter-logo.png"/></li>
+					<li><a href="http://www.facebook.com/pages/Viddoncom/499177723428347?ref=hl"><img src="<?php echo base_url(); ?>img/fb-logo.png"/></a></li>
+					<li><a href="https://twitter.com/ViddonCom"><img src="<?php echo base_url(); ?>img/twitter-logo.png"/></a></li>
 				</ul>
 			</li>
 		</ul>
@@ -133,7 +133,7 @@
 			</li>
 			<li>
 				<ul>
-					<li><p>Email: <font color="#FF3D01">contacto@viddon.com</font></p></li>
+					<li><p>Email: <a href="mailto:contacto@viddon.com"><img src="<?php echo base_url(); ?>img/contacto.png"/></a></p></li>
 					<li><p>Dirección: <font color="#FF3D01">Las Violetas 2267</font></p></li>
 					<li><p><font color="#FF3D01">Providencia, Santiago</font></p></li>
 				</ul>
@@ -145,6 +145,6 @@
 	<li class="span8 offset1"><p class="second">Global Dreams SPA - Copyright 2012</p></li>
 </ul>
 <ul class"row second">
-	<li class="span4 offset1"><p class="second">Todos los derechos reservados | Términos y condiciones</p></li>
+	<li class="span4 offset1"><p class="second">Todos los derechos reservados | <a href="<?php echo base_url();?>docs/terms.pdf">Términos y condiciones</a></p></li>
 </ul>
 </footer>

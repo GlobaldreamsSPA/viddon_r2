@@ -13,13 +13,15 @@ div.content
 
 /*Estilo del boton superior*/
 #login-button {
-	width: 141px;
-	height: 22px;
-	background-image: url('../img/signin-google.png');
+	width: 155px;
+	height: 23px;
+	background-image: url('../img/login-google.png');
 	background-repeat: no-repeat;
 	position: relative;
-	left: 110px;
+	left: 165px;
 	top: -1px;
+	border: 0;
+	border-radius: 3px;
 }
 
 /* Estilo del banner del concurso */
@@ -42,7 +44,7 @@ a.anchor-image-logo
 
 img.image-logo 
 {
-	margin-top: 20px;
+	margin-top: 30px;
 	width: 357px;
 	height: 100px;
 }
@@ -161,6 +163,47 @@ img.banner_image
 	height: 230px;
 	width: 230px;
 			
+}
+
+/* Estilo de Que es Viddon */
+.what-is
+{
+	background: black;
+	min-height: 500px;
+	position: relative;
+	top:-20px;
+}
+
+.what-is ul
+{
+	display: inline;
+	list-style-type: none;
+}
+
+.what-is ul li h1
+{
+	color: white;
+	margin-bottom: 30px;
+}
+
+.what-is ul li p
+{
+	color: white;
+	text-align: justify;
+	font-size: 18px;
+	line-height: 25px;
+}
+
+/* Estilo de Terminos y Condiciones */
+.terms
+{
+	background: black;
+	height: 2000px;
+}
+
+.terms li
+{
+	color: white;
 }
 		
 /* Posicion boton participar */
@@ -393,6 +436,7 @@ footer
 	min-height: 360px;
 	position: relative;
 	top: -20px;
+	padding-top: 30px;
 }
 
 footer ul
@@ -401,9 +445,16 @@ footer ul
 	display: inline;
 }
 
-footer ul.second
+footer .second
 {
+	font-size: 13px;
 	display: block !important;
+	color: white !important;
+}
+
+footer .second a
+{
+	color: #FF3D01;
 }
 
 footer ul li.footer-logo
@@ -417,17 +468,23 @@ footer #que-es-viddon, #siguenos, #contacto li p
 	font-size: 17px;
 }
 
-footer #que-es-viddon li button
+footer #que-es-viddon li a
 {
 	color: white;
-	font-size: 16px;
+	font-size: 15px;
 	background-color: #1D1D1D;
 	border-style: none;
 	width: 168px;
 	height: 38px;
-	margin-top: 22px;
+	padding: 12px 20px 12px 20px;
+	cursor: pointer;
 	position: relative;
-	left: -7px;
+	bottom: -32px;
+}
+
+footer #que-es-viddon li a:hover
+{
+	text-decoration: none;
 }
 
 footer #siguenos
@@ -438,7 +495,7 @@ footer #siguenos
 
 footer #siguenos li p
 {
-	margin-bottom: 27px;
+	margin-bottom: 28px;
 }
 
 footer #siguenos li ul li
@@ -454,12 +511,6 @@ footer #siguenos li ul
 footer #contacto li ul li p 
 {
 	font-size: 14px;
-}
-
-footer .second
-{
-	font-size: 13px;
-	color: white;
 }
 
 /* Fuente para el perfil */

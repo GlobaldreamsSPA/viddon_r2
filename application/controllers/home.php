@@ -54,9 +54,16 @@ class Home extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
-	public what_is()
+	public function what_is()
 	{
-		
+		$args['content'] = 'what_is';
+		$this->load->view('template',$args);
+	}
+
+	public function terms()
+	{
+		$args['content'] = 'terms';
+		$this->load->view('template',$args);
 	}
 
 }
