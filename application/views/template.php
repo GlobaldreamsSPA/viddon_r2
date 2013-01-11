@@ -10,8 +10,10 @@
 
 	<link href="<?php echo base_url()?>style/bootstrap.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/main.css" rel="stylesheet">
+	<link href="<?php echo base_url()?>style/list-castings.css" rel="stylesheet">
  	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>	
 	<script src="<?php echo base_url()?>js/bootstrap.js"></script>
+
 </head>
 
 <body>	
@@ -142,7 +144,7 @@
 	</li>
 </ul>
 <ul class"row">
-	<li class="span8 offset1"><p class="second">Global Dreams SPA - Copyright 2012</p></li>
+	<li class="span8 offset1"><p class="second">Viddon - Copyright 2012</p></li>
 </ul>
 <ul class"row second">
 	<li class="span4 offset1"><p class="second">Todos los derechos reservados | <a href="<?php echo base_url();?>docs/terms.pdf">Términos y condiciones</a></p></li>

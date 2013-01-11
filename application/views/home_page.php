@@ -1,7 +1,6 @@
 <div class="content" id="content">	
 	<div class="container-fluid">
 		<div class="row-fluid">
-			<img class="concurso" src="<?php echo HOME?>/img/Concurso.png"/>
 		</div>
 			<?php
 				$i=0; 
@@ -59,4 +58,4 @@
 
   	</div>
   	<div class="space2"></div>
-</div>
+	</div>

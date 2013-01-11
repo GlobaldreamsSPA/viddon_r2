@@ -84,9 +84,6 @@
 		    		
 		    	<div class="space1"></div>
 		    	<h1 class="profile-title"> <?php echo $name; ?> 
-		    		<?php if(!$public) {?> 
-		    			<a href="<?php echo base_url().'user/edit/'.$user_id; ?>" style="font-size: 20px;">(Editar Datos)</a>
-		    		<?php } ?>
 		    	</h1> 
 				<div class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
 		    	<?php
@@ -109,6 +106,14 @@
 				<div class="justify profile-content"><?php echo $dreams;?></div>
 				<div class="space1"></div>
 				
+			</div>
+			<div class="span2 user-profile-lateral">
+				<p><a href="">Postular a Castings</a><p>
+				<p><?php if(!$public) {?>
+		    		<a href="<?php echo base_url().'user/edit/'.$user_id; ?>" >Editar Datos</a>
+		    	<?php } ?></p>
+		    	<p><?php if($this->session->userdata('id'))
+		    			echo anchor('user/logout','Cerrar sesión') ?></p>
 			</div>
 		</div>
 		
