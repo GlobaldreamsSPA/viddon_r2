@@ -436,6 +436,13 @@ div.button-home-page
 	font-weight: bold;
 }
 
+/* menu hunter*/
+
+.orange .active a,
+.orange .active a:hover {
+    background-color: #ff6547;
+}
+
 
 /* footer Stuff */
 footer

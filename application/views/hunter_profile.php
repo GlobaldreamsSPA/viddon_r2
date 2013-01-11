@@ -5,6 +5,18 @@
 	    		<?php 
 	    			echo "<img class='user_image' src='".HOME."/img/profile_hunter/hunter_1.jpg'/>";
 	    		?>
+	    		
+	    		<div class="space4"></div>
+	    		
+	    		<div class="span9 offset1">
+		    		<ul class="nav nav-pills nav-stacked orange">
+					  <li class="active">
+					    <a> <i class="icon-user"></i> Perfil</a>
+					  </li>
+					  <li><a href="#"> <i class="icon-pencil"></i> Nuevo Casting</a></li>
+					  <li><a href="#"> <i class="icon-edit"></i> Mis Castings</a></li>
+					</ul>
+				</div>
 	    	</div>
 		    
 		    <div class="span6 user-profile-right">
