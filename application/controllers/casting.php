@@ -9,6 +9,11 @@ class Casting extends CI_Controller {
 		$this->load->library('pagination');
 	}
 
+	public publish()
+	{
+		
+	}
+
 	public function list_castings()
 	{
 		

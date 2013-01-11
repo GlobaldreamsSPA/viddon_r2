@@ -13,4 +13,10 @@ class Hunter extends CI_Controller {
 		$args["content"]='hunter_profile';
 		$this->load->view('template',$args);
 	}
+
+	function publish()
+	{
+		$args['content']='castings/publish_view';
+		$this->load->view('template', $args);
+	}
 }
