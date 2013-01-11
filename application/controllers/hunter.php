@@ -5,10 +5,12 @@ class Hunter extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->helper(array('url', 'file', 'form'));
 	}
 
 	function index()
 	{
-		$this->load->view('hunter_profile');
+		$args["content"]='hunter_profile';
+		$this->load->view('template',$args);
 	}
 }

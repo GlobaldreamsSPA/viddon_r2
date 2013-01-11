@@ -7,7 +7,7 @@ body
 /* Fondo Contenido */
 div.content
 {
-	background: url('../img/bg-pattern.png');
+	background: black;
 	background-repeat: repeat;
 }
 
@@ -138,7 +138,7 @@ h1.profile-title{
 	margin-bottom: 2px;
 }
 
-h2.profile 
+#profile 
 {
 	font-family: "profile_font";
 	color: #FF6547;
@@ -220,6 +220,14 @@ div#image_upload
 	position:relative;
 	top: 20px;
 	left:2%;
+}
+
+img#image_casting
+{
+	position:relative;
+	margin: 8px;
+	height: 180px;
+	width: 300px;
 }
 
 /* Color plateado perfil */
@@ -432,7 +440,7 @@ div.button-home-page
 /* footer Stuff */
 footer
 {
-	background: #0B0B0B;
+	background: black;
 	min-height: 360px;
 	position: relative;
 	top: -20px;
