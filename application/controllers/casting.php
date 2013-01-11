@@ -9,7 +9,6 @@ class Casting extends CI_Controller {
 		$this->load->library('pagination');
 	}
 
-
 	public function list_castings()
 	{
 		
@@ -42,19 +41,6 @@ class Casting extends CI_Controller {
 					)
 			);
 		
-		
-		$config['base_url'] = HOME.'/casting/list_castings';
-		$config['total_rows'] = 2;
-		$config['per_page'] = 5;
-		$config['uri_segment'] = 3;
-
-		$this->pagination->initialize($config);
-		$page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-
-		$data['results'] = $castings;
-		$data['links'] = $this->pagination->create_links();
-
-		$args['data'] = $data;
 		$args['content']='castings/list_view';
 		$this->load->view('template',$args);
 	}
