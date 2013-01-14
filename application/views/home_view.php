@@ -3,7 +3,8 @@
 		<div class="row">
 			<div class= "span9">
 		  		<div class="row-fluid">
-		  				<img style="margin-top: 70px; margin-left: 70px; margin-bottom: 20px;" src="<?php echo HOME.'/img/banner_casting.png';?>">
+	  				<img style="margin-top: 70px; margin-left: 70px; margin-bottom: 20px;" src="<?php echo HOME.'/img/banner_casting.png';?>">
+		  			<h3 style=" margin-top: 10px; margin-left: 70px; font-weight:bold;"> Videos Mas Visitados</h3>
 
 				<?php
 				$i=0; 
@@ -38,14 +39,15 @@
 			</div>
 			<div class= "span4">
 		  		<div class="row-fluid">
-	  				<img style="margin-top: 62px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c1.png';?>">
-	  				<img style="margin-top: 61px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c2.png';?>">
-	  				<img style="margin-top: 62px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c1.png';?>">
-	  				<img style="margin-top: 61px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c2.png';?>">
-	  				<img style="margin-top: 62px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c1.png';?>">
-	  				<img style="margin-top: 61px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c2.png';?>">
-					<img style="margin-top: 62px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c1.png';?>">
-	  				<img style="margin-top: 61px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c2.png';?>">
+		  			<h3 style=" margin-top: 23px; margin-left: 35px; font-weight:bold;"> Concursos Mas Populares</h3>
+	  				<img style="margin-top: 52px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c1.png';?>">
+	  				<img style="margin-top: 52px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c2.png';?>">
+	  				<img style="margin-top: 52px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c1.png';?>">
+	  				<img style="margin-top: 52px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c2.png';?>">
+	  				<img style="margin-top: 52px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c1.png';?>">
+	  				<img style="margin-top: 52px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c2.png';?>">
+					<img style="margin-top: 52px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c1.png';?>">
+	  				<img style="margin-top: 52px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c2.png';?>">
 					<div class= "space4"></div>
 					<a style=" margin-left: 50px; "href="#">Ver Todos Los Castings</a>
 					<div class= "space2"></div>
