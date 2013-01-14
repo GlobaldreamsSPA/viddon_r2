@@ -38,8 +38,17 @@
 			</div>
 			<div class= "span4">
 		  		<div class="row-fluid">
-						<div class="space4"></div>
-
+	  				<img style="margin-top: 62px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c1.png';?>">
+	  				<img style="margin-top: 61px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c2.png';?>">
+	  				<img style="margin-top: 62px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c1.png';?>">
+	  				<img style="margin-top: 61px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c2.png';?>">
+	  				<img style="margin-top: 62px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c1.png';?>">
+	  				<img style="margin-top: 61px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c2.png';?>">
+					<img style="margin-top: 62px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c1.png';?>">
+	  				<img style="margin-top: 61px; margin-left: 35px;" src="<?php echo HOME.'/img/mini_banner_c2.png';?>">
+					<div class= "space4"></div>
+					<a style=" margin-left: 50px; "href="#">Ver Todos Los Castings</a>
+					<div class= "space2"></div>
 				</div>
 			</div>
 		
