@@ -1,0 +1,55 @@
+.list-view-title {
+	padding-left: 10px;
+	padding-top: 3px;
+}
+
+.list-view-applies-count {
+	background-image: url('../img/circle.png');
+	background-repeat: no-repeat;
+	color: white;
+}
+
+.list-view-applies-count p{
+	position: relative;
+	left: 7px;
+	top: 4px;
+}
+
+.list-view-applies-text {
+	font-weight: 500;
+	padding-top: 4px;
+}
+
+.list-view-applies-desc {
+	padding-top: 10px;
+	position: relative;
+	left: -50px;
+}
+
+.list-view-applies-desc h4 {
+	margin-bottom: 0 !important;
+	margin-top: 0 !important;
+}
+
+#list-view-logo {
+	margin-top: 10px;
+	width: 45px;
+	height: 42px;
+	background-image: url('../img/canal-13.png');
+	background-repeat: no-repeat;
+	position: relative;
+	left: -15px;
+}
+
+#time {
+	width: 160px;
+	height: 40px;
+	background-image: url('../img/time-left.png');
+	background-repeat: no-repeat;
+	padding-top: 7px;
+	padding-left: 35px;
+	margin-top: 03px; 
+	position: relative;
+	left: -4px;
+}
+
