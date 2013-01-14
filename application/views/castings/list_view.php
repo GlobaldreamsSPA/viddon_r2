@@ -26,9 +26,43 @@
 				<div class="row">
 					<div class="space1"></div>
 					<div class="span6">
-						<h4 class="list-view-title">Casting A Canal 13</h4>
+						<h3 class="list-view-title">Casting A Canal 13</h3>
 					</div>
-					<div class="span5">
+					<div class="span5 list-view-applies">
+						<h5 class="list-view-applies-count span2"><p>50</p></h5>
+						<h5 class="list-view-applies-text">Personas ya postularon</h5>
+					</div>
+					<div class="span11">
+						<div class="span7">
+							<img id="image_casting" src=<? echo HOME."/img/castings_dummy.png"?> />
+						</div>
+						<div class="space05"></div>
+						<div class="span2">
+							<img id="list-view-logo" src=<? echo HOME."/img/canal-13.jpg"?> />
+						</div>
+						<div class="span2 list-view-applies-desc">
+							<h4 id="profile">Descripci&oacuten:</h4>
+							<div class="justify profile-content">
+								Se buscan Bandas con la pasi&oacuten para triunfar.
+							</div>
+							<h4 id="profile">Requisitos:</h4>
+							<div class="justify profile-content">
+								Banda Pop, Rock, Punk.
+							</div>
+							<h4 id="profile">Categor&iacutea:</h4>
+							<div class="justify profile-content">
+								Musica - Grupo
+							</div>
+							<div id="time">Quedan 132 di&iacuteas</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="space1"></div>
+					<div class="span6">
+						<h3 class="list-view-title">Casting A Canal 13</h3>
+					</div>
+					<div class="span5 list-view-applies">
 						<h5 class="list-view-applies-count span2"><p>50</p></h5>
 						<h5 class="list-view-applies-text">Personas ya postularon</h5>
 					</div>
@@ -60,43 +94,9 @@
 				<div class="row">
 					<div class="space1"></div>
 					<div class="span6">
-						<h4 class="list-view-title">Casting A Canal 13</h4>
+						<h3 class="list-view-title">Casting A Canal 13</h3>
 					</div>
-					<div class="span5">
-						<h5 class="list-view-applies-count span2"><p>50</p></h5>
-						<h5 class="list-view-applies-text">Personas ya postularon</h5>
-					</div>
-					<div class="span11">
-						<div class="span7">
-							<img id="image_casting" src=<? echo HOME."/img/castings_dummy.png"?> />
-						</div>
-						<div class="space05"></div>
-						<div class="span2">
-							<img id="list-view-logo" src=<? echo HOME."/img/canal-13.jpg"?> />
-						</div>
-						<div class="span2 list-view-applies-desc">
-							<h4 id="profile">Descripci&oacuten:</h4>
-							<div class="justify profile-content">
-								Se buscan Bandas con la pasi&oacuten para triunfar.
-							</div>
-							<h4 id="profile">Requisitos:</h4>
-							<div class="justify profile-content">
-								Banda Pop, Rock, Punk.
-							</div>
-							<h4 id="profile">Categor&iacutea:</h4>
-							<div class="justify profile-content">
-								Musica - Grupo
-							</div>
-							<div id="time">Quedan 132 días</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="space1"></div>
-					<div class="span6">
-						<h4 class="list-view-title">Casting A Canal 13</h4>
-					</div>
-					<div class="span5">
+					<div class="span5 list-view-applies">
 						<h5 class="list-view-applies-count span2"><p>50</p></h5>
 						<h5 class="list-view-applies-text">Personas ya postularon</h5>
 					</div>

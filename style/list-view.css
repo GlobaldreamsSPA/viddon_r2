@@ -3,10 +3,17 @@
 	padding-top: 3px;
 }
 
+.list-view-applies {
+	padding-top: 12px;
+	position: relative;
+	left: 17px;
+}
+
 .list-view-applies-count {
 	background-image: url('../img/circle.png');
 	background-repeat: no-repeat;
 	color: white;
+	margin-left: 30px;
 }
 
 .list-view-applies-count p{

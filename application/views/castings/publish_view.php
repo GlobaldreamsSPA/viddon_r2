@@ -10,23 +10,45 @@
 	    		<div class="span9 offset1">
 		    		<ul class="nav nav-pills nav-stacked orange">
 					  <li><a href="<?php echo HOME."/hunter";?>"> <i class="icon-user"></i> Perfil</a></li>
-					  <li><a href="<?php echo HOME."/hunter/casting_list";?>"> <i class="icon-pencil"></i> Nuevo Casting</a></li>
-					  <li class="active"><a> <i class="icon-edit"></i> Mis Castings</a></li>
+					  <li class="active"><a> <i class="icon-pencil"></i> Nuevo Casting</a></li>
+					  <li><a href="<?php echo HOME."/hunter/casting_list";?>"> <i class="icon-edit"></i> Mis Castings</a></li>
 					</ul>
 				</div>
 	    	</div>
 		    
 		    <div class="span6 user-profile-right">
-		    		
+		    	
 		    	<div class="space1"></div>
-		    	<h1 class="profile-title"> Pedro Ramirez Soto
-		    	</h1> 
-				<h2 id="profile">Area Dramatica Canal 13</h2>
-
-			
 				<div class="space1"></div>
-
-		
+				<form class="form-horizontal">
+					<fieldset>
+					<legend><h2 class="profile-title"> Publicar un nuevo Casting </h2></legend>
+					<div class="control-group">
+						<label class="control-label">T&iacutetulo</label>
+						<div class="controls">
+							<input type="text" placeholder="Ingrese el título del Casting">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">Imagen para mostrar</label>
+						<div class="controls">
+							<input type="file">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">Descripci&oacuten o llamado a postular</label>
+						<div class="controls">
+							<textarea rows="5" cols="40" placeholder="Una descripción o llamado a postular a la oferta: si te apasiona el espectáculo, cantas, etc ¡ésta es tu oportunidad!"></textarea>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">Requerimientos</label>
+						<div class="controls">
+							<textarea rows="3" cols="10" placeholder="Requerimientos para el casting: color de ojos, color de pelo, etc."></textarea>
+						</div>
+					</div>
+					</fieldset>
+				</form>
 			</div>
 			<div class="span2 user-profile-lateral">
 			</div>
