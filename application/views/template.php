@@ -123,14 +123,14 @@
 				<p>&iquestQU&eacute ES VIDDON?</p>
 			</li>
 			<li>
-				<a href="<?php echo HOME?>/home/what_is">ENT&eacuteRATE AQ&iacute</a>
+				<a href="<?php echo HOME?>/home/what_is">ENT&EacuteRATE AQ&Iacute</a>
 			</li>
 		</ul>
 	</li>
 	<li class="span2">
 		<ul id="siguenos">
 			<li>
-				<p>S&iacuteGUENOS</p>
+				<p>S&IacuteGUENOS</p>
 			</li>
 			<li>
 				<ul>

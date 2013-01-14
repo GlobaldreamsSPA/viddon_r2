@@ -277,9 +277,10 @@ div.social_data_container
 /* formato videos pagina principal*/
 div#main_videos
 {
+	margin-top: 30px;
 	width: 350px !important;
 	display: block;
-	margin-left: 3% !important;
+	margin-left: 5% !important;
 }
 
 div.video_text_main
@@ -288,8 +289,6 @@ div.video_text_main
 	left: -10px;
 	top: -25px;
 	background: white !important;
-	height: 90px;
-	margin-bottom: 60px;
 	box-shadow: 01px 01px 01px #E2E2E2; 
 }
 

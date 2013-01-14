@@ -1,46 +1,49 @@
 <div class="content" id="content">
 	<div class="container-fluid">
-	  	<div class="row-fluid">
-	    	<div class="span3 user-profile-left">
-	    		<?php 
-	    			echo "<img class='user_image' src='".HOME."/img/profile_hunter/hunter_1.jpg'/>";
-	    		?>
-	    		<div class="space4"></div>
-	    		
-	    		<div class="span9 offset1">
-		    		<ul class="nav nav-pills nav-stacked orange">
-					  <li><a href="<?php echo HOME."/hunter";?>"> <i class="icon-user"></i> Perfil</a></li>
-					  <li><a href="<?php echo HOME."/hunter/casting_list";?>"> <i class="icon-pencil"></i> Nuevo Casting</a></li>
-					  <li class="active"><a> <i class="icon-edit"></i> Mis Castings</a></li>
-					</ul>
+		<div class="row">
+			<div class= "span9">
+		  		<div class="row-fluid">
+		  				<img style="margin-top: 70px; margin-left: 70px; margin-bottom: 20px;" src="<?php echo HOME.'/img/banner_casting.png';?>">
+
+				<?php
+				$i=0; 
+				foreach ($video_list as $video) {
+					$i++;
+					if(($i-1)%2 == 0 or $i==1) echo "<div class='row-fluid'>";
+					?>
+					<div id="main_videos" class='span4'>
+						<div class="space1"></div>
+						<iframe width="350" height="197" src="http://www.youtube.com/embed/<?php echo $video[1].'?rel=0'?>" frameborder="0" allowfullscreen></iframe>	
+						<span class="arrow"></span>
+						<div class="container video_text_main span12">
+							<div class="space1"></div>
+							<div class="row row_text_main">
+								<div class="span3 offset1">
+									<?php
+										echo "<img class='user_image_main_page' src='".HOME.'/img/profile/'.$video[4]."'/>";
+									?>
+								</div>
+								<div class="span7">
+									<p class="home-video-title"><?php echo $video[0]; ?></p>
+									<span class="home-video-author">por </span><a class="home-video-author" href="<?php echo HOME.'/user/index/'.$video[2]; ?>"><?php echo $video[3]; ?></a>								
+								</div>
+							</div>
+						</div>
+					</div>
+			<?php if($i%2 == 0 || $i == count($video_list)) echo "</div>"; }?>
+					<div class= "space2"></div>
+					<a style=" margin-left: 50px; "href="<?php echo HOME."/home/video_list"?>">Ver Todos Los Videos</a>
+					<div class= "space2"></div>
 				</div>
-	    	</div>
-		    
-		    <div class="span6 user-profile-right">
-		    		
-		    	<div class="space1"></div>
-		    	<h1 class="profile-title"> Pedro Ramirez Soto
-		    	</h1> 
-				<h2 id="profile">Area Dramatica Canal 13</h2>
+			</div>
+			<div class= "span4">
+		  		<div class="row-fluid">
+						<div class="space4"></div>
 
-			
-				<div class="space1"></div>
-
-		
+				</div>
 			</div>
-			<div class="span2 user-profile-lateral">
-			</div>
-		</div>
 		
-		<div class="row-fluid">	
-			<div class="space4"></div>	
-		</div>
-		
-		<div class="row-fluid">
-			<div class="span7 offset3 user-profile-right">
-							
-			</div>
 		</div>
   	</div>
-  	<div class="space2"></div> 	
+  	<div class="space4"></div> 	
 </div>
