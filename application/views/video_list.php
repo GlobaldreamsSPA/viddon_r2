@@ -44,11 +44,11 @@
 				<div class="pagination">  
 				  <ul id="pagination_bt">
 				  	  
-				    <li <?php if($page==1) echo "class='disabled'";?> ><a href=<?php echo base_url()."home/index/".($page-1);?>>Prev</a></li>  
+				    <li <?php if($page==1) echo "class='disabled'";?> ><a href=<?php echo base_url()."home/video_list/".($page-1);?>>Prev</a></li>  
 					<?php for($i = 1; $i <= $chunks; $i++) { ?>
-						<li <?php if($page==$i) echo "class='disabled'";?> ><a href=<?php echo base_url()."home/index/".$i;?> > <?php echo $i; ?></a></li>  
+						<li <?php if($page==$i) echo "class='disabled'";?> ><a href=<?php echo base_url()."home/video_list/".$i;?> > <?php echo $i; ?></a></li>  
 					<?php } ?>
-				    <li <?php if($page==$chunks) echo "class='disabled'";?> ><a href=<?php echo base_url()."home/index/".($page+1);?>>Next</a></li>
+				    <li <?php if($page==$chunks) echo "class='disabled'";?> ><a href=<?php echo base_url()."home/video_list/".($page+1);?>>Next</a></li>
 				     
 				  </ul>  
 				</div>  

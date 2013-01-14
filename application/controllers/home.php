@@ -12,7 +12,15 @@ class Home extends CI_Controller {
 		$this->load->model('user_model');
 	}
 
-	public function index($page = 1)
+	public function index()
+	{
+
+		$args= array();
+		$args["content"]="home_view";
+		$this->load->view('template',$args);
+	}
+
+	public function video_list($page = 1)
 	{
 		$args = array();
 
@@ -49,10 +57,11 @@ class Home extends CI_Controller {
 		
 		$args["chunks"]=ceil($this->videos_model->count() / 9);
 		$args["page"]=$page;
-		$args['content']='home_page';
+		$args['content']='video_list';
 		
 		$this->load->view('template',$args);
 	}
+
 
 	public function what_is()
 	{

@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Viddon - Tu Talento, Nuestra Pasión</title>
+	<title>Viddon - Tu Talento, Nuestra Pasi&oacuten</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="keyword" content="">
@@ -30,7 +30,7 @@
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 	</script>
-
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 	<!-- Codigo para el boton de loggin de google -->
 	<?php
 		require_once OPENID;
@@ -48,13 +48,14 @@
 	<div id="headercontent">
 	    <div id="upperhalf">
 		    <div class="row-fluid">
-		    	<div class="span4 header-text-left">
-					<ul>
-					  <li> <a href="#">POSTULANTES</a></li>
-					  <li> <a href="#">HUNTERS</a></li>
-					</ul>
+		    	<div class="span5 header-text-left">
+		    		<div style="float: right;margin-top: 3px;"class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+					<label style="color:white; font-weight: bold; margin-left: 55px; margin-top: 3px;">Viddon - Tu Talento, Nuestra Pasi&oacuten</label>
 				</div>
-				<div class="span5 offset3">
+				<div style="margin-top: 3px;" class="span2">
+					<a  href="https://twitter.com/viddoncom" class="twitter-follow-button" data-show-count="false" data-lang="es">Seguir a @viddoncom</a>					
+				</div>
+				<div class="span3 offset2">
 					<ul>
 					<?php
 						$id = $this->session->userdata('id');
@@ -74,9 +75,9 @@
 							echo "<li class='welcome-login'> Bienvenido ".anchor('user', $user).' '.anchor('user/logout',' (Cerrar sesión)');
 						else
 						{
-							echo "<form action='".$auth_url."' method='POST'>";
-							echo "<button id='login-button'/>";
-							echo "</form>";
+							echo "<img  src=".base_url()."img/target_logo.png />";
+							echo "<a href='#'>&iquestBuscas Talento?</a>";
+							
 						}
 					?>
 					</ul>
@@ -86,10 +87,19 @@
 	    </div>
 		
 		<div id="lowerhalf">
-			<div class="row offset4">
-		 		<a class="anchor-image-logo span4" href="<?php echo HOME?>" title="Volver a la Página Principal">
+			<div class="row offset1">
+		 		<a class="anchor-image-logo span4" href="<?php echo HOME?>" title="Volver a la P&aacuteina Principal">
 					<img class="image-logo" src="<?php echo base_url(); ?>img/Logo2.png"/>
 				</a>
+				
+				<?php		
+					if(!$id)
+					{
+						echo "<form action='".$auth_url."' method='POST'>";
+						echo "<button id='login-button'/>";
+						echo "</form>";
+					}
+				?>
 				<!--
 				<form class="form-search offset2 span3">
 			  		<input type="text" class="input-medium">
@@ -110,17 +120,17 @@
 	<li class="span2 offset1">
 		<ul id="que-es-viddon">
 			<li>
-				<p>¿QUÉ ES VIDDON?</p>
+				<p>&iquestQU&eacute ES VIDDON?</p>
 			</li>
 			<li>
-				<a href="<?php echo HOME?>/home/what_is">ENTÉRATE AQUÍ</a>
+				<a href="<?php echo HOME?>/home/what_is">ENT&eacuteRATE AQ&iacute</a>
 			</li>
 		</ul>
 	</li>
 	<li class="span2">
 		<ul id="siguenos">
 			<li>
-				<p>SÍGUENOS</p>
+				<p>S&iacuteGUENOS</p>
 			</li>
 			<li>
 				<ul>
@@ -138,7 +148,7 @@
 			<li>
 				<ul>
 					<li><p>Email: <a href="mailto:contacto@viddon.com"><img src="<?php echo base_url(); ?>img/contacto.png"/></a></p></li>
-					<li><p>Dirección: <font color="#FF3D01">Las Violetas 2267</font></p></li>
+					<li><p>Direcci&oacuten: <font color="#FF3D01">Las Violetas 2267</font></p></li>
 					<li><p><font color="#FF3D01">Providencia, Santiago</font></p></li>
 				</ul>
 			</li>
