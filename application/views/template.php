@@ -12,6 +12,7 @@
 	<link href="<?php echo base_url()?>style/main.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/list-castings.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/list-view.css" rel="stylesheet">
+	<link href="<?php echo base_url()?>style/publish-view.css" rel="stylesheet">
 
  	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>	
 	<script src="<?php echo base_url()?>js/bootstrap.js"></script>

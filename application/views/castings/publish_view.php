@@ -38,15 +38,19 @@
 					<div class="control-group">
 						<label class="control-label">Descripci&oacuten o llamado a postular</label>
 						<div class="controls">
-							<textarea rows="5" cols="40" placeholder="Una descripción o llamado a postular a la oferta: si te apasiona el espectáculo, cantas, etc ¡ésta es tu oportunidad!"></textarea>
+							<textarea rows="5" placeholder="Una descripción o llamado a postular a la oferta: si te apasiona el espectáculo, cantas, etc ¡ésta es tu oportunidad!"></textarea>
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label">Requerimientos</label>
 						<div class="controls">
-							<textarea rows="3" cols="10" placeholder="Requerimientos para el casting: color de ojos, color de pelo, etc."></textarea>
+							<textarea rows="3" placeholder="Requerimientos para el casting: color de ojos, color de pelo, etc."></textarea>
 						</div>
 					</div>
+					<label class="radio">
+  						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+  						Option one is this and that—be sure to include why it's great
+					</label>
 					</fieldset>
 				</form>
 			</div>
