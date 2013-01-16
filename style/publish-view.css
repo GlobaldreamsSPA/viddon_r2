@@ -5,3 +5,7 @@
 .controls textarea {
 	min-width: 300px;
 }
+
+.publish-submit-button {
+	float: right;
+}

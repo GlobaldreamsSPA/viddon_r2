@@ -47,11 +47,115 @@
 							<textarea rows="3" placeholder="Requerimientos para el casting: color de ojos, color de pelo, etc."></textarea>
 						</div>
 					</div>
+					<div class="control-group">
+						<label class="control-label">Habilidades</label>
+						<div class="controls">
+							<textarea rows="3" placeholder="Los talentos o habilidades necesarios para postular."></textarea>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">Categor&iacutea</label>
+					<div class="controls">
+						<select>
+						  <option>Reality</option>
+						  <option>Teleserie</option>
+						  <option selected="selected">Show de Talentos</option>
+						  <option>Documental</option>
+						  <option>Festival</option>
+						</select>
+					</div>
+					</div>
+					<fieldset>
+					<legend>Perfil del postulante a buscar</legend>
+					<div class="control-group">
+						<label class="control-label">Color de ojos</label>
+					<div class="controls">
+						<select>
+						  <option>Verde</option>
+						  <option>Azul</option>
+						  <option>Gris</option>
+						  <option>Castaño</option>
+						  <option>&Aacutembar</option>
+						  <option>Avellana</option>
+						</select>
+					</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">Color de cabello</label>
+					<div class="controls">
+						<select>
+						  <option>Castaño</option>
+						  <option>Negro</option>
+						  <option>Rubio</option>
+						  <option>Blanco</option>
+						  <option>Rojo</option>
+						  <option>Gris</option>
+						</select>
+					</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">Color de piel</label>
+					<div class="controls">
+						<select>
+						  <option>Blanca</option>
+						  <option>Negra</option>
+						  <option>Trigueña</option>
+						  <option>Morena</option>
+						</select>
+					</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">Estatura</label>
+					<div class="controls">
+						<select>
+						  <option>150 cm o -</option>
+						  <option selected="selected">150 cm</option>
+						  <option>160 cm</option>
+						  <option>170 cm</option>
+						  <option>180 cm</option>
+						  <option>190 cm</option>
+						  <option>200 cm</option>
+						  <option>200 cm o +</option>
+						</select>
+					</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">Edad</label>
+					<div class="controls">
+						<select>
+						  <option>10 años o -</option>
+						  <option>10-15 años</option>
+						  <option>15-20 años</option>
+						  <option selected="selected">20-25 años</option>
+						  <option>25-30 años</option>
+						  <option>30-35 años</option>
+						  <option>35-40 años</option>
+						  <option>40-45 años o +</option>
+						</select>
+					</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">Sexo</label>
+					<div class="controls">
 					<label class="radio">
-  						<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-  						Option one is this and that—be sure to include why it's great
+					  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+					  Femenino
 					</label>
-					</fieldset>
+					<label class="radio">
+					  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+					  Masculino
+					</label>
+					<label class="radio">
+					  <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+					  Ambos
+					</label>
+					</div>
+					</div>
+				</fieldset>
+				<row>
+  					<button type="submit" class="btn btn-primary publish-submit-button">Publicar casting</button>
+  				</row>
+				</fieldset>
 				</form>
 			</div>
 			<div class="span2 user-profile-lateral">
