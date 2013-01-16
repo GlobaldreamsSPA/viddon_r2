@@ -92,6 +92,11 @@ class Home extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
+	public function login_hunter()
+	{
+		$args['content'] = 'castings/login_hunter';
+		$this->load->view('template',$args);
+	}	
 
 	public function what_is()
 	{

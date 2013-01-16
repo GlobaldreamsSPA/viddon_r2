@@ -76,7 +76,7 @@
 						else
 						{
 							echo "<img  src=".base_url()."img/target_logo.png />";
-							echo "<a href='#'>&iquestBuscas Talento?</a>";
+							echo "<a href='".base_url()."home/login_hunter'>&iquestBuscas Talento?</a>";
 							
 						}
 					?>
@@ -87,6 +87,7 @@
 	    </div>
 		
 		<div id="lowerhalf">
+			<div class="space05"></div>
 			<div class="row offset1">
 		 		<a class="anchor-image-logo span4" href="<?php echo HOME?>" title="Volver a la P&aacuteina Principal">
 					<img class="image-logo" src="<?php echo base_url(); ?>img/Logo2.png"/>
