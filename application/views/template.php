@@ -55,7 +55,7 @@
 				<div style="margin-top: 3px;" class="span2">
 					<a  href="https://twitter.com/viddoncom" class="twitter-follow-button" data-show-count="false" data-lang="es">Seguir a @viddoncom</a>					
 				</div>
-				<div class="span3 offset2">
+				<div class="span4 offset1">
 					<ul>
 					<?php
 						$id = $this->session->userdata('id');
@@ -120,10 +120,10 @@
 	<li class="span2 offset1">
 		<ul id="que-es-viddon">
 			<li>
-				<p>&iquestQU&eacute ES VIDDON?</p>
+				<p>&iquestQU&Eacute ES VIDDON?</p>
 			</li>
 			<li>
-				<a href="<?php echo HOME?>/home/what_is">ENT&EacuteRATE AQ&Iacute</a>
+				<a href="<?php echo HOME?>/home/what_is">ENT&EacuteRATE AQU&Iacute</a>
 			</li>
 		</ul>
 	</li>

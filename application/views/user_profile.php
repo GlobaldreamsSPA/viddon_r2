@@ -94,15 +94,15 @@
 					echo '</ul>';
 				?>
 				<div class="space1"></div>
-				<h2 class="profile">Cuéntanos tu historia</h2>
+				<h2 id="profile">Mi Historia</h2>
 				<div class="justify profile-content"><?php echo $bio;?></div>
 				<div class="space1"></div>
 				
-				<h2 class="profile">¿Qué te gusta hacer?</h2>
+				<h2 id="profile">Mis Hobbies</h2>
 				<div class="justify profile-content"><?php echo $hobbies;?></div>
 				<div class="space1"></div>
 				
-				<h2 class="profile">¿Cuáles son tus sueños?</h2>
+				<h2 id="profile">Mis Sueños</h2>
 				<div class="justify profile-content"><?php echo $dreams;?></div>
 				<div class="space1"></div>
 				
