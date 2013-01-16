@@ -1,0 +1,11 @@
+.controls input{
+	min-width: 300px;
+}
+
+.controls textarea {
+	min-width: 300px;
+}
+
+.publish-submit-button {
+	float: right;
+}
