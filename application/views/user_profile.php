@@ -193,14 +193,14 @@
 			<div class="span4">
 				<div class="span3">
 					<div  style="border-radius: 25px; padding: 35px; min-width: 290px;" class="row-fluid">
-						<h3>Casting recomendado</h3>
+						<h3 id="profile" >Casting recomendado</h3>
 						<img style="margin-top: 16px;" src="<?php echo HOME.'/img/mini_banner_c1.png';?>">
 		  				<div class="space2"></div>
-						<h3>Galeria Videos</h3>
+						<h3 id="profile" >Galeria Videos</h3>
 						<img style="margin-top: 16px;" src="<?php echo HOME.'/img/dummy_galeria_videos.png';?>">
 		  				<a style="text-decoration: underline; float: right;" ref="#">(Ver mas)</a>
 		  				<div class="space2"></div>						
-						<h3>Galeria Fotos</h3>
+						<h3 id="profile" >Galeria Fotos</h3>
 						<img style="margin-top: 16px;"  src="<?php echo HOME.'/img/dummy_galeria_fotos.png';?>">
 						<a style="text-decoration: underline; float: right;" ref="#">(Ver mas)</a>
 						<div class="space4"></div>
