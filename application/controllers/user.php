@@ -35,20 +35,7 @@ class User extends CI_Controller {
 		$args["tags"] = $this->skills_model->get_user_skills($id);
 		$args["user"] = $this->user_model->welcome_name($id);
 		
-		if(isset($_POST["id_cw"]) && $_POST["id_cw"]!="0" )
-		{
-			//Insertar estos datos
-			$video_to_save = array(
-				'title' => $_POST["name_cw"],
-				'link' => $_POST["id_cw"],
-				'type' => 'youtube',
-				'description' => $_POST["description_cw"],
-				'user_id' => $id
-				);
-
-			$this->videos_model->insert($video_to_save);
-		}
-		elseif(isset($_POST["url_ytb"]) && $_POST["id_cw"]!="")
+		if(isset($_POST["url_ytb"]))
 		{
 			$query_string = array();
 			

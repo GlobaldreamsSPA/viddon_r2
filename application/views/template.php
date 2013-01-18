@@ -76,7 +76,7 @@
 							echo "<li class='welcome-login'> Bienvenido ".anchor('user', $user).' '.anchor('user/logout',' (Cerrar sesión)');
 						else
 						{
-							echo "<img  src=".base_url()."img/target_logo.png />";
+							echo "<i class='icon-star icon-white'></i>";
 							echo "<a href='".base_url()."home/login_hunter'>&iquestBuscas Talento?</a>";
 							
 						}
@@ -164,3 +164,4 @@
 	<li class="span4 offset1"><p class="second">Todos los derechos reservados | <a href="<?php echo base_url();?>docs/terms.pdf">Términos y condiciones</a></p></li>
 </ul>
 </footer>
+<div class="space1"></div>

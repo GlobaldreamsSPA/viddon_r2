@@ -49,15 +49,6 @@ img.image-logo
 	height: 100px;
 }
 
-/* Estilo boton eliminar video  */
-.delete-video {
-	border: none;
-	background: none;
-	text-decoration: underline;
-	color: blue;
-	padding: 2px;
-	cursor: pointer;
-}
 
 /* Boton de busqueda */
 .search-btn
@@ -79,12 +70,6 @@ ul#pagination_bt
 	left: 33px;
 }
 
-/* tamaño descripcion video en perfil*/
-textarea.video_description
-{
-	min-width: 600px;
-	min-height: 150px;
-}
 
 /* espacios estandar utilizados para separar contenido en la pagina*/
 
@@ -149,10 +134,9 @@ img.user_image
 {
 	position: relative;
 	top: 32px;
-	left: 10%;
 
-	max-height: 230px;
-	max-width: 230px;
+	max-height: 190px;
+	max-width: 190px;
 }
 		
 /* posicion banner */
@@ -211,7 +195,6 @@ button#participate_button
 {
 	position:relative;
 	top: 60px;
-	left: 10%;
 }
 
 /*posicion dummy imagen en formulario new*/
@@ -277,10 +260,10 @@ div.social_data_container
 /* formato videos pagina principal*/
 div#main_videos
 {
-	margin-top: 15px;
+	margin-left: 15px;
+	padding: 8px;
 	width: 350px !important;
 	display: block;
-	margin-left: 5% !important;
 }
 
 div.video_text_main
@@ -443,9 +426,8 @@ div.button-home-page
 footer
 {
 	background: black;
-	min-height: 360px;
+	min-height: 300px;
 	position: relative;
-	top: -20px;
 	padding-top: 30px;
 }
 

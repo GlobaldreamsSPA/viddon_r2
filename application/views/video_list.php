@@ -1,7 +1,6 @@
 <div class="content" id="content">	
 	<div class="container-fluid">
-		<div class="row-fluid">
-		</div>
+			<div style="border-radius:25px; padding:60px; max-width: 1150px;" class="row-fluid">
 			<?php
 				$i=0; 
 				foreach ($video_list as $video) {
@@ -10,7 +9,7 @@
 					?>
 					<div id="main_videos" class='span4'>
 						<div class="space1"></div>
-						<iframe width="350" height="197" src="http://www.youtube.com/embed/<?php echo $video[1].'?rel=0'?>" frameborder="0" allowfullscreen></iframe>	
+						<iframe width="334" height="197" src="http://www.youtube.com/embed/<?php echo $video[1].'?rel=0'?>" frameborder="0" allowfullscreen></iframe>	
 						<span class="arrow"></span>
 						<div class="container video_text_main span12">
 							<div class="space1"></div>
@@ -37,23 +36,24 @@
 							</div>
 						</div>
 					</div>
-			<?php if($i%3 == 0 || $i == count($video_list)) echo "</div>"; }?>
-			
-			<div class="row-fluid">
-				<div class="space1"></div>
-				<div class="pagination">  
-				  <ul id="pagination_bt">
-				  	  
-				    <li <?php if($page==1) echo "class='disabled'";?> ><a href=<?php echo base_url()."home/video_list/".($page-1);?>>Prev</a></li>  
-					<?php for($i = 1; $i <= $chunks; $i++) { ?>
-						<li <?php if($page==$i) echo "class='disabled'";?> ><a href=<?php echo base_url()."home/video_list/".$i;?> > <?php echo $i; ?></a></li>  
-					<?php } ?>
-				    <li <?php if($page==$chunks) echo "class='disabled'";?> ><a href=<?php echo base_url()."home/video_list/".($page+1);?>>Next</a></li>
-				     
-				  </ul>  
-				</div>  
-				<div class="space1"></div>	
-			</div>	
+				<?php if($i%3 == 0 || $i == count($video_list)) echo "</div>"; }?>
+				<div class="row-fluid">
+					<div class="space1"></div>
+					<div class="pagination">  
+					  <ul id="pagination_bt">
+					  	  
+					    <li <?php if($page==1) echo "class='disabled'";?> ><a href=<?php echo base_url()."home/video_list/".($page-1);?>>Prev</a></li>  
+						<?php for($i = 1; $i <= $chunks; $i++) { ?>
+							<li <?php if($page==$i) echo "class='disabled'";?> ><a href=<?php echo base_url()."home/video_list/".$i;?> > <?php echo $i; ?></a></li>  
+						<?php } ?>
+					    <li <?php if($page==$chunks) echo "class='disabled'";?> ><a href=<?php echo base_url()."home/video_list/".($page+1);?>>Next</a></li>
+					     
+					  </ul>  
+					</div>  
+					<div class="space1"></div>	
+				</div>	
+			</div>
+
 			
 
   	</div>

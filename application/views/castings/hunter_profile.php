@@ -22,9 +22,8 @@
 		    <div class="span6 user-profile-right">
 		    		
 		    	<div class="space1"></div>
-		    	<h1 class="profile-title"> Pedro Ramirez Soto
+		    	<h1 class="profile-title"> Area Dramatica Canal 13
 		    	</h1> 
-				<h2 id="profile">Area Dramatica Canal 13</h2>
 
 				<div class="space1"></div>
 				
