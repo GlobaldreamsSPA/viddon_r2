@@ -28,8 +28,6 @@ class User extends CI_Controller {
 			$public = FALSE;
 		}
 
-		$casting_id = 1;
-
 		$args = $this->user_model->select($id);
 		$args['public'] = $public;
 		$args["tags"] = $this->skills_model->get_user_skills($id);
@@ -72,34 +70,15 @@ class User extends CI_Controller {
 			$args["likes"] = "0";
 		}
 		$args["content"] = "user_profile";
-		$args["success_flag"] = FALSE;
-		
-
 		//El usuario hace click en postular al concurso
 
-		if($this->input->post("validate"))
-		{
-			
-			$result = $this->applies_model->apply($id, $casting_id);
-
-			if($result == 1)
-				$args["success_flag"]=true;
-		}
-		
-		if($this->videos_model->verify_videos($id) == 1)
-		{
-			if($this->applies_model->verify_apply($id, $casting_id) == 1)
-			{
-				$args["postulation_flag"]=false;
-				$args["postulation_message"]="Ya estas inscrito en el Concurso";
-			}
-			else
-				$args["postulation_flag"]=true;
-		}
-		else 
+		if($this->videos_model->verify_videos($id) != 1)
 		{
 			$args["postulation_flag"]=false;
 			$args["postulation_message"]="Necesitas Tener Videos para poder postular";
+		}
+		else {
+			$args["postulation_flag"]=true;
 		}
 
 		//El usuario hace click en borrar video
@@ -346,6 +325,39 @@ class User extends CI_Controller {
 		
 		$this->image_lib->initialize($config);
 		$this->image_lib->resize();
+	}
+
+	function casting_list($id = NULL)
+	{
+		$public = FALSE;
+
+		if($this->session->userdata('id') === FALSE || ($id != NULL && $id != $this->session->userdata('id')))
+			$public = TRUE;
+		else
+		{
+			$id = $this->session->userdata('id');
+			$public = FALSE;
+		}
+
+		$args = $this->user_model->select($id);
+		$args["content"]="casting_list";
+		$args['public'] = $public;
+
+		if($this->videos_model->verify_videos($id) != 1)
+		{
+			$args["postulation_flag"]=false;
+			$args["postulation_message"]="Necesitas Tener Videos para poder postular";
+		}
+		else {
+			$args["postulation_flag"]=true;
+		}
+		
+		$args["user_id"] = $this->session->userdata('id');
+		
+		
+
+		$this->load->view('template', $args);
+		
 	}
 
 	function check_upload($image)

@@ -260,9 +260,8 @@ div.social_data_container
 /* formato videos pagina principal*/
 div#main_videos
 {
-	margin-left: 15px;
-	padding: 8px;
-	width: 350px !important;
+	margin-left: 30px;
+	width: 370px !important;
 	display: block;
 }
 

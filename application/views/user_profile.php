@@ -1,18 +1,4 @@
 
-<div id="success" class="modal hide fade in">
-<div class="modal-header">
-<a class="close" data-dismiss="modal">×</a>
-</div>
-<div class="modal-body">
-<h4>Felicidades!</h4>
-<p>Tu inscripcion ha sido realizada</p>
-</div>
-<div class="modal-footer">
-<?php echo anchor(HOME,'Volver al Home',"class='btn btn-green'"); ?>
-<a href="#" class="btn" data-dismiss="modal">Close</a>
-</div>
-</div>
-
 <div id="error" class="modal hide fade in">
 <div class="modal-header">
 <a class="close" data-dismiss="modal">×</a>  
@@ -39,15 +25,6 @@
 <?php echo anchor('user', 'Volver al Perfil',"class='btn'") ?>
 </div>
 </div>
-
-<?php if($success_flag){ ?>
-<script type="text/javascript">
-
-  $('#success').modal({
-    show: true
-  });
-</script>
-<?php } ?>
 
 <?php if(isset($delete_video_message)){ ?>
 <script type="text/javascript">
@@ -89,7 +66,7 @@
 								    <a> <i class="icon-user"></i> Perfil</a>
 								  </li>
 								  <li><a href="<?php echo HOME."/user/edit/".$user_id;?>"> <i class="icon-pencil"></i> Editar Datos</a></li>
-								  <li><a href="#"> <i class="icon-star-empty"></i> Postulaciones</a></li>	
+								  <li><a href="<?php echo HOME."/user/casting_list";?>"> <i class="icon-star-empty"></i> Postulaciones</a></li>	
 								  <li><a href="<?php echo HOME."/user/logout";?>"> <i class="icon-edit"></i> Cerrar Sesi&oacuten</a></li>					
 								</ul>
 							</div>
@@ -212,4 +189,3 @@
 		
 		</div>
 </div>
-

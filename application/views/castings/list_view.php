@@ -53,7 +53,7 @@
 							<div class="justify profile-content">
 								Musica - Grupo
 							</div>
-							<div id="time">Quedan 132 di&iacuteas</div>
+							<div id="time">Quedan 132 d&iacuteas</div>
 						</div>
 					</div>
 				</div>
@@ -87,7 +87,7 @@
 							<div class="justify profile-content">
 								Musica - Grupo
 							</div>
-							<div id="time">Quedan 132 días</div>
+							<div id="time">Quedan 132 d&iacuteas</div>
 						</div>
 					</div>
 				</div>
@@ -121,7 +121,7 @@
 							<div class="justify profile-content">
 								Musica - Grupo
 							</div>
-							<div id="time">Quedan 132 días</div>
+							<div id="time">Quedan 132 d&iacuteas</div>
 						</div>
 					</div>
 				</div>
