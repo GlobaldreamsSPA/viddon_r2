@@ -12,14 +12,16 @@
 		  			<div class="row-fluid" style="border-radius:25px; padding:35px; min-width: 290px;">	
 				  		<?php echo form_open('hunter/verifylogin', array('class' => 'form-horizontal')); ?>
 				  			<h4>Ingreso Hunter</h4>
-							<input class="input-xlarge" type="text" id="inputEmail" placeholder="Email">
-							<div class="space1"></div>
-							<input class="input-medium" type="password" id="inputPassword" placeholder="Password">
+							<input class="input-xlarge" name="email" value="<?php echo set_value('email'); ?>" type="text" id="inputEmail" placeholder="Email">
+							<?php echo form_error('email'); ?>
+							<div class="space05"></div>
+							<input class="input-medium" name="password" value="<?php echo set_value('password'); ?>" type="password" id="inputPassword" placeholder="Password">
 							<button style="margin-left: 30px;" type="submit" class="btn btn-primary">Ingresar</button>
+							<?php echo form_error('password'); ?>
 						</form>
 					</div>
 					<div class="space1"></div>
-					<div class="row-fluid" style="border-radius:25px; padding:35px; min-width: 290px;">
+					<div class="row-fluid" style="border-radius:25px; padding:26px; min-width: 307px;">
 						<form class="form-horizontal">
 							<h4>Cont&aacutectanos</h4>
 				            <input class="input-xlarge" type="text" name="contact_name" id="input1" placeholder="Nombre">
