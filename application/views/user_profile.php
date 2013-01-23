@@ -62,12 +62,21 @@
 				    		<div class="span9 offset1">
 				    			<div class="space4"></div>
 					    		<ul class="nav nav-pills nav-stacked orange">
-								  <li class="active">
-								    <a> <i class="icon-user"></i> Perfil</a>
-								  </li>
-								  <li><a href="<?php echo HOME."/user/edit/".$user_id;?>"> <i class="icon-pencil"></i> Editar Datos</a></li>
-								  <li><a href="<?php echo HOME."/user/casting_list";?>"> <i class="icon-star-empty"></i> Postulaciones</a></li>	
-								  <li><a href="<?php echo HOME."/user/logout";?>"> <i class="icon-edit"></i> Cerrar Sesi&oacuten</a></li>					
+									<li class="active"><a> <i class="icon-user"></i> Perfil</a>
+									</li>
+									<li><a href="<?php echo HOME."/user/edit/".$user_id;?>"> <i class="icon-pencil"></i> Editar Datos</a></li>
+									<li>
+										<a data-toggle="collapse" href="#collapseOne">
+											<i class="icon-star-empty"></i> Postulaciones
+										</a>
+										<div id="collapseOne" class="collapse">
+											<ul style="padding-left: 30px;" class="nav nav-pills nav-stacked orange">
+												<li><a href="<?php echo HOME."/user/active_casting_list"?>">Activas</a></li>	
+												<li><a href="#">Resultados</a></li>	
+											</ul>
+										</div>
+									</li>	
+									<li><a href="<?php echo HOME."/user/logout";?>"> <i class="icon-edit"></i> Cerrar Sesi&oacuten</a></li>					
 								</ul>
 							</div>
 				    	</div>
@@ -96,15 +105,9 @@
 							
 							<h3 id="profile">Mis Sueños</h2>
 							<div class="justify profile-content"><?php echo $dreams;?></div>
-							<div class="space1"></div>
-							
-						</div>
-					
-						<div class="space4"></div>	
-	
-					</div>
-					<div class="row-fluid">
-						<div class="span8 offset4 user-profile-right">
+			
+							<div class="space4"></div>						
+			
 							<legend style="font-weight: bold;">Video Principal</legend>
 							<?php if(isset($video_ID)){?>
 								
@@ -160,10 +163,9 @@
 							<?php
 							}
 							?>
-							<div class="space4"></div>	
-						</div>				
+							<div class="space2"></div>									
+						</div>		
 					</div>
-
 				</div>
 			</div>	
 		

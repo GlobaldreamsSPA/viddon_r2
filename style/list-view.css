@@ -4,7 +4,7 @@
 }
 
 .list-view-applies {
-	padding-top: 12px;
+	padding-top: 8px;
 	position: relative;
 	left: 17px;
 }
@@ -13,7 +13,7 @@
 	background-image: url('../img/circle.png');
 	background-repeat: no-repeat;
 	color: white;
-	margin-left: 30px;
+	height: 40px !important;
 }
 
 .list-view-applies-count p{
@@ -30,7 +30,9 @@
 .list-view-applies-desc {
 	padding-top: 10px;
 	position: relative;
-	left: -50px;
+	text-align:justify;
+	text-justify:inter-word;
+	
 }
 
 .list-view-applies-desc h4 {
@@ -39,17 +41,12 @@
 }
 
 #list-view-logo {
-	margin-top: 10px;
-	width: 45px;
-	height: 42px;
-	background-image: url('../img/canal-13.png');
-	background-repeat: no-repeat;
+	margin-top: 15px;
 	position: relative;
-	left: -15px;
 }
 
 #time {
-	width: 160px;
+	width: 80px;
 	height: 40px;
 	background-image: url('../img/time-left.png');
 	background-repeat: no-repeat;
@@ -59,4 +56,3 @@
 	position: relative;
 	left: -4px;
 }
-

@@ -13,15 +13,21 @@
 	<link href="<?php echo base_url()?>style/list-castings.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/list-view.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/publish-view.css" rel="stylesheet">
+	<link rel="stylesheet" href="<?php echo base_url()?>style/uniform.default.css" media="screen" />
 
  	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>	
 	<script src="<?php echo base_url()?>js/bootstrap.js"></script>
+	<script src="<?php echo base_url()?>js/jquery.uniform.js"></script>
 
 </head>
 
 <body>	
 	<div id="fb-root"></div>
 	<script>
+	    $(function () {
+	        $("input").uniform();
+	    });
+	    
 		(function(d, s, id) 
 		{
 			var js, fjs = d.getElementsByTagName(s)[0];

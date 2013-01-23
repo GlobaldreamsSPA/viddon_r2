@@ -11,18 +11,25 @@
 					$flag = "";
 				
 				echo form_open_multipart('user/edit'.$flag); ?>
-				<div class="span3" id="image_upload">
-					<img src="<?php echo base_url(); ?>img/profile/<?php if(isset($update_values)) echo $update_values["image_profile"]; else echo "user.jpg"; ?>" class="img-polaroid">
-					<?php echo form_upload(array('name' => 'image_profile'));
-						  echo form_hidden('image','');
-						  echo form_error('image'); ?>
-				</div>
+
 				<!-- Texto -->
-				<div class="span9">
+				<div class="span9 offset3">
+					<div  id="image_upload">
+						<div class="space05"></div>
+						<?php 
+							/*<img src="<?php echo base_url(); ?>img/profile/<?php if(isset($update_values)) echo $update_values["image_profile"]; else echo "user.jpg"; ?>" class="img-polaroid">*/
+							echo form_upload(array('name' => 'image_profile'));
+							  
+						?>
+						<?php 
+							  echo form_hidden('image','');
+							  echo form_error('image'); 
+						?>
+					</div>
 					<h3>Quien eres</h3>
 					<input type="text" class="span7" placeholder="Escribe tu Nombre Aqui" value="<?php if(isset($update_values)) echo $update_values["name"]; else echo set_value('name');?>" name="name">
 					<?php echo form_error('name'); ?>
-					<h5>¿Cúal es tu sexo?</h5>
+					<h5>¿C&uacuteal es tu sexo?</h5>
 					<select class="span2" name="sex">
 						<option value="0" <?php if(isset($update_values) && $update_values["sex"]==0) echo "selected='selected'";?>>Femenino</option>
 						<option value="1"  <?php if(isset($update_values) && $update_values["sex"]==1) echo "selected='selected'";?>>Masculino</option>
@@ -57,7 +64,7 @@
 						<textarea class="user_description" rows="4" span="7" placeholder="Cuéntanos de tus sueños y lo que quieres lograr!" name="dreams"><?php if(isset($update_values)) echo $update_values["dreams"]; else echo set_value('dreams');?></textarea>
 						<?php echo form_error('dreams'); ?>
 					<div class="space2"></div>
-					<input class="btn btn-primary" type="submit" value="Guardar Datos" />
+						<button class="btn btn-primary" type="submit"> Guardar Datos </button>
 					</form>
 					<div class="space4"></div>
 				</div>

@@ -327,20 +327,39 @@ class User extends CI_Controller {
 		$this->image_lib->resize();
 	}
 
-	function casting_list($id = NULL)
+	function active_casting_list($id = NULL)
 	{
+		$id = $this->session->userdata('id');
+		$public = FALSE;
+		
+		$args = $this->user_model->select($id);
+		$args["content"]="active_casting_list";
+		$args['public'] = $public;
+
+		if($this->videos_model->verify_videos($id) != 1)
+		{
+			$args["postulation_flag"]=false;
+			$args["postulation_message"]="Necesitas Tener Videos para poder postular";
+		}
+		else {
+			$args["postulation_flag"]=true;
+		}
+		
+		$args["user_id"] = $this->session->userdata('id');
+		
+		
+
+		$this->load->view('template', $args);
+		
+	}
+
+	function results_casting($id = NULL)
+	{
+		$id = $this->session->userdata('id');
 		$public = FALSE;
 
-		if($this->session->userdata('id') === FALSE || ($id != NULL && $id != $this->session->userdata('id')))
-			$public = TRUE;
-		else
-		{
-			$id = $this->session->userdata('id');
-			$public = FALSE;
-		}
-
 		$args = $this->user_model->select($id);
-		$args["content"]="casting_list";
+		$args["content"]="results_casting_list";
 		$args['public'] = $public;
 
 		if($this->videos_model->verify_videos($id) != 1)
