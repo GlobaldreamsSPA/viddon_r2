@@ -1,2 +1,4 @@
 eclipse.preferences.version=1
+encoding//application/config/database.php=UTF-8
+encoding//application/views/results_casting_list.php=UTF-8
 encoding//application/views/user_profile.php=UTF-8
