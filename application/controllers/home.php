@@ -10,6 +10,7 @@ class Home extends CI_Controller {
 		//Modelos
 		$this->load->model('videos_model');
 		$this->load->model('user_model');
+		$this->load->model('hunter_model');
 	}
 
 	public function index()
@@ -94,9 +95,10 @@ class Home extends CI_Controller {
 
 	public function login_hunter()
 	{
+		$this->load->helper('form');
 		$args['content'] = 'castings/login_hunter';
 		$this->load->view('template',$args);
-	}	
+	}
 
 	public function what_is()
 	{

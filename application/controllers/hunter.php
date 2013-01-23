@@ -6,12 +6,60 @@ class Hunter extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper(array('url', 'file', 'form'));
+		$this->load->model('hunter_model');
 	}
 
 	function index()
 	{
 		$args["content"]='castings/hunter_profile';
 		$this->load->view('template',$args);
+	}
+
+	function verifylogin()
+ 	{
+	   //This method will have the credentials validation
+	   $this->load->library('form_validation');
+
+	   $this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');
+	   $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|callback_check_database');
+
+	   if($this->form_validation->run() == FALSE)
+	   {
+	     $args['content'] = 'castings/login_hunter';
+		 $this->load->view('template',$args);
+	   }
+	   else
+	   {
+	     redirect('hunter', 'refresh');
+	   }
+    }
+
+	function check_database($password)
+	{
+	   $email = $this->input->post('email');
+
+	   //query the database
+	   $result = $this->hunter_model->login($email, $password);
+
+	   if($result)
+	   {
+	     $sess_array = array();
+	     foreach($result as $row)
+	     {
+	       $sess_array = array(
+	         'id' => $row->id,
+	         'email' => $row->email
+	       );
+
+	       $this->session->set_userdata('logged_in', $sess_array);
+	     }
+	     return TRUE;
+	   }
+	   else
+	   {
+	     $this->form_validation->set_message('check_database', 'Email o contraseña inválidos');
+	     return FALSE;
+	   }
 	}
 
 	function publish()

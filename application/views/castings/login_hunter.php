@@ -10,7 +10,7 @@
 	  		<div class="span4">
 	  			<div class="span3">
 		  			<div class="row-fluid" style="border-radius:25px; padding:35px; min-width: 290px;">	
-				  		<form class="form-horizontal">
+				  		<?php echo form_open('hunter/verifylogin', array('class' => 'form-horizontal')); ?>
 				  			<h4>Ingreso Hunter</h4>
 							<input class="input-xlarge" type="text" id="inputEmail" placeholder="Email">
 							<div class="space1"></div>
@@ -35,8 +35,6 @@
 				</div>   	
 	  		</div>
 	  		<div class="space4"></div>
-	  	
-	  		 
 		</div>
   	</div>
   	<div class="space2"></div> 	
