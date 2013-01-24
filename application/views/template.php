@@ -25,7 +25,9 @@
 	<div id="fb-root"></div>
 	<script>
 	    $(function () {
+
 	        $("input").uniform();
+
 	    });
 	    
 		(function(d, s, id) 

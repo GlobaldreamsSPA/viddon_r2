@@ -14,18 +14,6 @@
 
 				<!-- Texto -->
 				<div class="span9 offset3">
-					<div  id="image_upload">
-						<div class="space05"></div>
-						<?php 
-							/*<img src="<?php echo base_url(); ?>img/profile/<?php if(isset($update_values)) echo $update_values["image_profile"]; else echo "user.jpg"; ?>" class="img-polaroid">*/
-							echo form_upload(array('name' => 'image_profile'));
-							  
-						?>
-						<?php 
-							  echo form_hidden('image','');
-							  echo form_error('image'); 
-						?>
-					</div>
 					<h3>Quien eres</h3>
 					<input type="text" class="span7" placeholder="Escribe tu Nombre Aqui" value="<?php if(isset($update_values)) echo $update_values["name"]; else echo set_value('name');?>" name="name">
 					<?php echo form_error('name'); ?>
@@ -38,6 +26,21 @@
 						<?php
 						if(isset($update_values)) $age_set=$update_values["age"]; else $age_set=18; 
 						echo form_dropdown('age', $age, $age_set, "class='span2'") ?> <br/>
+					
+					<div style="margin-left: -20px; margin-top: -20px;" id="image_upload">
+						<h5>Sube tu foto</h5>
+						<?php 
+							/*<img src="<?php echo base_url(); ?>img/profile/<?php if(isset($update_values)) echo $update_values["image_profile"]; else echo "user.jpg"; ?>" class="img-polaroid">*/
+							echo form_upload(array('name' => 'image_profile','id'=> 'image_upload'));
+							  
+						?>
+						<?php 
+							  echo form_hidden('image','');
+							  echo form_error('image'); 
+						?>
+					</div>
+					
+					<div class="space1"></div>
 					
 					<h3>Selecciona tus habilidades</h3>
 						<?php 
