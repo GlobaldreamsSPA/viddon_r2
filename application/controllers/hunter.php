@@ -11,7 +11,7 @@ class Hunter extends CI_Controller {
 
 	function index()
 	{
-		$args["content"]='castings/hunter_profile';
+		$args['content']='castings/hunter_profile';
 		$this->load->view('template',$args);
 	}
 
@@ -31,7 +31,9 @@ class Hunter extends CI_Controller {
 	   }
 	   else
 	   {
-	     redirect('hunter', 'refresh');
+	   	 $args['user_data'] = $this->session->userdata('logged_in');
+	     $args['content'] = 'castings/hunter_profile';
+		 $this->load->view('template', $args);
 	   }
     }
 

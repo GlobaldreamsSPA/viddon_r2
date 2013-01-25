@@ -5,10 +5,7 @@
 	  			<div  style="border-radius: 25px; padding: 25px;" class="row-fluid">
 		  			<div class="row-fluid">		
 				    	<div class="span3 user-profile-left">
-				    		<?php 
-				    			echo "<img class='user_image' src='".HOME."/img/profile_hunter/hunter_1.jpg'/>";
-				    		?>
-				    		
+				    		<img class='user_image' src="<?php echo HUNTER_PROFILE_IMAGE.$user_data['logo'] ?>"/>
 				    		<div class="space4"></div>
 				    		
 				    		<div class="span9 offset1">
@@ -25,23 +22,13 @@
 					    <div class="span9 user-profile-right">
 					    		
 					    	<div class="space1"></div>
-					    	<h1 class="profile-title"> Area Dramatica Canal 13
-					    	</h1> 
-			
+					    	<h1 class="profile-title"><?php echo $user_data['name'] ?></h1> 
 							<div class="space1"></div>
-							
 							<h3 id="profile">Nosotros</h3>
-							<div class="justify profile-content">
-								Son m&aacutes de mil personas las que d&iacutea a d&iacutea se esmeran en hacer de Canal 13 un producto especial. M&aacutes de mil talentos, los que cada uno y en su particular estilo, tienen el desaf&iacuteo de entregar lo mejor de s&iacute, desarrollando juntos creatividad para enriquecer la vida. 
-			Trabajar en Canal 13 es trabajar en una marca l&iacuteder, es encontrar el mejor entorno laboral, un espacio de formaci&oacuten continua, flexible, con grandes talentos, profesionales diversos, y con un alto sentido de trabajo en equipo.
-			&iquest;Quieres trabajar con nosotros?  Te esperamos!
-							</div>
+							<div class="justify profile-content"><?php echo $user_data['about_us'] ?></div>
 							<div class="space1"></div>
-							
 							<h3 id="profile">Buscamos</h3>
-							<div class="justify profile-content">
-								Artistas multifaceticos y proactivos, con la capacidad de luchar por sus objetivos y no quedar solo en palabaras. Si eres asi Nos vemos!
-							</div>
+							<div class="justify profile-content"><?php echo $user_data['we_look_for'] ?></div>
 							<div class="space1"></div>
 											
 						</div>
