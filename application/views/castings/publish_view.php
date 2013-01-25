@@ -32,7 +32,7 @@
 					<div class="control-group">
 						<label class="control-label">Imagen para mostrar</label>
 						<div class="controls">
-							<input type="file">
+							<input type="file" id="file">
 						</div>
 					</div>
 					<div class="control-group">

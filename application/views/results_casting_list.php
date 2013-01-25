@@ -70,8 +70,8 @@
 										</a>
 										<div id="collapseOne" class="collapse in">
 											<ul style="padding-left: 30px;" class="nav nav-pills nav-stacked orange">
-												<li class="active"><a>Activas</a></li>	
-												<li><a href="#">Resultados</a></li>	
+												<li><a href="<?php echo HOME;?>./user/active_casting_list">Activas</a></li>	
+												<li class="active"><a>Resultados</a></li>	
 											</ul>
 										</div>
 									</li>	
@@ -83,7 +83,173 @@
 					    <div class="span8 offset1 user-profile-right">
 					    		
 							<legend> <h2>Resultados Postulaciones</h2></legend>
-					
+							<table id="datatables" class="table">
+				              <thead>
+				                <tr>
+				                  <th>Fecha</th>
+				                  <th>Nombre</th>
+				                  <th>Descripcion</th>
+				                  <th>Estado</th>
+				                  <th>Acci&oacuten</th>
+				                </tr>
+				              </thead>
+				              <tbody>
+				                <tr>
+				                  <td>21/02/2013</td>
+				                  <td>Mark</td>
+				                  <td>Otto</td>
+				                  <td><span class="label label-warning">Pendiente</span></td>
+				                  <td class="center ">
+									<a class="btn" href="#">
+										<i class="icon-zoom-in"></i>                                            
+									</a>
+									<a class="btn" href="#">
+										<i class="icon-question-sign"></i>                                            
+									</a>
+								  </td>
+				                </tr>
+				                <tr>
+				                  <td>25/02/2013</td>
+				                  <td>Jacob</td>
+				                  <td>Thornton</td>
+				                  <td><span class="label label-warning">Pendiente</span></td>
+				                  <td class="center ">
+									<a class="btn" href="#">
+										<i class="icon-zoom-in"></i>                                            
+									</a>
+									<a class="btn" href="#">
+										<i class="icon-question-sign"></i>                                            
+									</a>
+								  </td>
+				                </tr>
+				                <tr>
+				                  <td>28/02/2013</td>
+				                  <td>Larry</td>
+				                  <td>the Bird</td>
+				                  <td><span class="label label-warning">Pendiente</span></td>
+				                  <td class="center ">
+									<a class="btn" href="#">
+										<i class="icon-zoom-in"></i>                                            
+									</a>
+									<a class="btn" href="#">
+										<i class="icon-question-sign"></i>                                            
+									</a>
+								  </td>
+				                </tr>
+				              	<tr>
+				                  <td>08/04/2013</td>
+				                  <td>Mark</td>
+				                  <td>Otto</td>
+				                  <td><span class="label label-info">Revisado</span></td>
+				                  <td class="center ">
+									<a class="btn" href="#">
+										<i class="icon-zoom-in"></i>                                            
+									</a>
+									<a class="btn" href="#">
+										<i class="icon-question-sign"></i>                                            
+									</a>
+								  </td>
+				                </tr>
+				                <tr>
+				                  <td>14/05/2013</td>
+				                  <td>Jacob</td>
+				                  <td>Thornton</td>
+				                  <td><span class="label label-info">Revisado</span></td>
+				                  <td class="center ">
+									<a class="btn" href="#">
+										<i class="icon-zoom-in"></i>                                            
+									</a>
+									<a class="btn" href="#">
+										<i class="icon-question-sign"></i>                                            
+									</a>
+								  </td>
+				                </tr>
+				                <tr>
+				                  <td>04/06/2013</td>
+				                  <td>Larry</td>
+				                  <td>the Bird</td>
+				                  <td><span class="label label-info">Revisado</span></td>
+				                  <td class="center ">
+									<a class="btn" href="#">
+										<i class="icon-zoom-in"></i>                                            
+									</a>
+									<a class="btn" href="#">
+										<i class="icon-question-sign"></i>                                            
+									</a>
+								  </td>
+				                </tr>
+				              	<tr>
+				                  <td>02/09/2013</td>
+				                  <td>Mark</td>
+				                  <td>Otto</td>
+				                  <td><span class="label label-success">Seleccionado</span></td>
+				                  <td class="center ">
+									<a class="btn" href="#">
+										<i class="icon-zoom-in"></i>                                            
+									</a>
+									<a class="btn" href="#">
+										<i class="icon-question-sign"></i>                                            
+									</a>
+								  </td>
+				                </tr>
+				                <tr>
+				                  <td>13/09/2013</td>
+				                  <td>Jacob</td>
+				                  <td>Thornton</td>
+				                  <td><span class="label label-success">Seleccionado</span></td>
+				                  <td class="center ">
+									<a class="btn" href="#">
+										<i class="icon-zoom-in"></i>                                            
+									</a>
+									<a class="btn" href="#">
+										<i class="icon-question-sign"></i>                                            
+									</a>
+								  </td>
+				                </tr>
+				                <tr>
+				                  <td>03/12/2013</td>
+				                  <td>Larry</td>
+				                  <td>the Bird</td>
+				                  <td><span class="label label-important">Rechazado</span></td>
+				                  <td class="center ">
+									<a class="btn" href="#">
+										<i class="icon-zoom-in"></i>                                            
+									</a>
+									<a class="btn" href="#">
+										<i class="icon-question-sign"></i>                                            
+									</a>
+								  </td>
+				                </tr>			
+				                <tr>
+				                  <td>05/12/2013</td>
+				                  <td>Jacob</td>
+				                  <td>Thornton</td>
+				                  <td><span class="label label-important">Rechazado</span></td>
+				                  <td class="center ">
+									<a class="btn" href="#">
+										<i class="icon-zoom-in"></i>                                            
+									</a>
+									<a class="btn" href="#">
+										<i class="icon-question-sign"></i>                                            
+									</a>
+								  </td>
+				                </tr>
+				                <tr>
+				                  <td>17/12/2013</td>
+				                  <td>Larry</td>
+				                  <td>the Bird</td>
+				                  <td><span class="label label-important">Rechazado</span></td>
+				                  <td class="center ">
+									<a class="btn" href="#">
+										<i class="icon-zoom-in"></i>                                            
+									</a>
+									<a class="btn" href="#">
+										<i class="icon-question-sign"></i>                                            
+									</a>
+								  </td>
+				                </tr>		              
+				              </tbody>
+				            </table>
 							<div class="space4"></div>	
 							<div class="space4"></div>						
 						</div>					

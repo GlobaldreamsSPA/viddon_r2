@@ -71,7 +71,7 @@
 										<div id="collapseOne" class="collapse in">
 											<ul style="padding-left: 30px;" class="nav nav-pills nav-stacked orange">
 												<li class="active"><a>Activas</a></li>	
-												<li><a href="#">Resultados</a></li>	
+												<li><a href="<?php echo HOME;?>/user/results_casting">Resultados</a></li>	
 											</ul>
 										</div>
 									</li>	
