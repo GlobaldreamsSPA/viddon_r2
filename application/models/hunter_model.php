@@ -9,7 +9,7 @@ Class Hunter_model extends CI_Model
 
    function login($email, $password)
    {
-     $this->db->select('id, email, password');
+     $this->db->select('id, email, password, about_us, we_look');
      $this->db->from('entities');
      $this->db->where('email', $email);
      $this->db->where('password', MD5($password));
