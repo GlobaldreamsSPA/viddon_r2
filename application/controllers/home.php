@@ -93,6 +93,32 @@ class Home extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
+	public function casting_list($page = 1)
+	{
+		$args = array();
+
+		$casting_list = array(array("mini_banner_c1"),array("mini_banner_c1"),array("mini_banner_c1"),array("mini_banner_c1")
+		,array("mini_banner_c1"),array("mini_banner_c1"),array("mini_banner_c1"),array("mini_banner_c1"),array("mini_banner_c1")
+		,array("mini_banner_c1"),array("mini_banner_c1"),array("mini_banner_c1"),array("mini_banner_c1"),array("mini_banner_c1")
+		,array("mini_banner_c1"),array("mini_banner_c1"));
+		
+		$args["casting_list"]=array();
+		
+		foreach ($casting_list as $casting_data)
+		{
+			$hunter_data= array("hunter_1","canal_13");
+			array_push($casting_data,$hunter_data["1"],$hunter_data["0"]);
+			array_push($args["casting_list"], $casting_data);
+		}
+		
+		$args["chunks"]=ceil(count($casting_list) / 9);
+		$args["casting_list"]= array_slice($args["casting_list"],9*($page-1),9*$page);
+		$args["page"]=$page;
+		$args['content']='castings_list';
+		
+		$this->load->view('template',$args);
+	}
+
 	public function login_hunter()
 	{
 		$this->load->helper('form');

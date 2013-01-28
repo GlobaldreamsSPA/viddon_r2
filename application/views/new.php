@@ -58,13 +58,13 @@
 						echo form_dropdown('skills3', $skills, $skill_selected[2],"class='span2'"); 
 						?>
 					<h3>Bio</h3>
-						<textarea placeholder="Cu&eacutentanos sobre ti. C&oacutemo eres y que haces." name="bio"><?php if(isset($update_values)) echo $update_values["bio"]; else echo set_value('bio');?></textarea>
+						<textarea class="rich_textarea" name="bio"><?php if(isset($update_values)) echo $update_values["bio"]; else echo set_value('bio');?></textarea>
 						<?php echo form_error('bio'); ?>
 					<h3>Hobbies</h3>
-						<textarea placeholder="H&aacuteblanos sobre tus gustos y lo que te apasiona!" name="hobbies"><?php if(isset($update_values)) echo $update_values["hobbies"]; else echo set_value('hobbies');?></textarea>
+						<textarea class="rich_textarea" name="hobbies"><?php if(isset($update_values)) echo $update_values["hobbies"]; else echo set_value('hobbies');?></textarea>
 						<?php echo form_error('hobbies'); ?>
 					<h3>Mi Sueño</h3>
-						<textarea placeholder="Cu&eacutentanos de tus sueños y lo que quieres lograr!" name="dreams"><?php if(isset($update_values)) echo $update_values["dreams"]; else echo set_value('dreams');?></textarea>
+						<textarea class="rich_textarea" name="dreams"><?php if(isset($update_values)) echo $update_values["dreams"]; else echo set_value('dreams');?></textarea>
 						<?php echo form_error('dreams'); ?>
 					<div class="space2"></div>
 						<button class="btn btn-primary" type="submit"> Guardar Datos </button>

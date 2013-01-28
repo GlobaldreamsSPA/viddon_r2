@@ -86,7 +86,6 @@ class Videos_model extends CI_Model
 	function get_videos($page, $cant)
 	{
 		$this->db->select('*');
-		$this->db->join('videos_applies', 'videos_applies.video_id = videos.id');
 		$query = $this->db->get('videos', $cant, ($page-1)*$cant);
 
 		$result = array();

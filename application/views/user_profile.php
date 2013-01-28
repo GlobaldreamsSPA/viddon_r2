@@ -151,10 +151,10 @@
 						
 								<div>
 										
-									<input name="url_ytb" class="input-xxlarge" type="text" placeholder="Dirección Video" value="">
-									<input name="name_ytb" class="input-xxlarge" type="text" placeholder="Nombre Video">
+									<input name="url_ytb" class="input-xlarge" type="text" placeholder="Dirección Video" value="">
+									<input name="name_ytb" class="input-xlarge" type="text" placeholder="Nombre Video">
 									<div class="space1"></div>	
-									<textarea name="description_ytb" class="input-xxlarge" rows="8" placeholder="Descripción Video"></textarea>
+									<textarea class="rich_textarea" name="description_ytb" rows="8" placeholder="Descripción Video"></textarea>
 									<div class="space1"></div>	
 									<button type="submit" class="btn btn-primary">Guardar</button>					
 								
