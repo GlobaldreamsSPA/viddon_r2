@@ -66,7 +66,7 @@
 						<img style="margin-top: 50px;" src="<?php echo HOME.'/img/mini_banner_c1.png';?>">
 		  				<img style="margin-top: 50px;" src="<?php echo HOME.'/img/mini_banner_c2.png';?>">
 						<div class= "space4"></div>
-						<a style="text-decoration: underline; float: right;" ref="#">(Ver Todos Los Castings)</a>
+						<a style="text-decoration: underline; float: right;" href="<?php echo HOME;?>/home/casting_list">(Ver Todos Los Castings)</a>
 					</div>
 				</div>
 			</div>	

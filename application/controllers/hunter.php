@@ -31,7 +31,8 @@ class Hunter extends CI_Controller {
 	   }
 	   else
 	   {
-	   	 $hunter_id = $this->session->userdata('logged_in')['id'];
+	   	 $hunter_id = $this->session->userdata('logged_in');
+		 $hunter_id= $hunter_id['id'];
 	   	 $args['castings'] = $this->castings_model->get_castings($hunter_id);
 	   	 $args['user_data'] = $this->session->userdata('logged_in');
 	     $args['content'] = 'castings/hunter_profile';
