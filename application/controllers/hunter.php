@@ -6,7 +6,7 @@ class Hunter extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper(array('url', 'file', 'form'));
-		$this->load->model('hunter_model');
+		$this->load->model(array('hunter_model', 'castings_model'));
 	}
 
 	function index()
@@ -31,6 +31,7 @@ class Hunter extends CI_Controller {
 	   }
 	   else
 	   {
+	   	 $args['castings'] = $this->castings_model->get_castings()
 	   	 $args['user_data'] = $this->session->userdata('logged_in');
 	     $args['content'] = 'castings/hunter_profile';
 		 $this->load->view('template', $args);
