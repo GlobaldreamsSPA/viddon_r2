@@ -80,7 +80,7 @@
 		 if ( $('#comment').val() == '' ){
 		 alert('Empty!!!');}
 		 else{
-		 $('#post').prepend('<img src="img/profile/user.jpg" width="40px" height="40px"style="display:inline;float:left;">&nbsp;'+'<span style="color:gray;font-family:times new roman;"> Usuario </span> &nbsp;'+input + '<br/><br/> <hr>');}
+		 $('#post').prepend('<img src="../img/profile/user.jpg" width="40px" height="40px"style="display:inline;float:left;">&nbsp;'+'<span style="color:gray;font-family:times new roman;"> Usuario </span> &nbsp;'+input + '<br/><br/> <hr>');}
 		 $('#comment').val('');
 		 };
 		
