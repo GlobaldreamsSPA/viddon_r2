@@ -93,7 +93,7 @@
 							</div>
 							<div class="row">
 								<div class="span6">
-									<img id="image_casting" src=<? echo HOME."/img/castings_dummy.png"?> />
+									<img id="image_casting" src=<? echo HOME."/img/casting_image/castings_dummy.png"?> />
 								</div>
 								<div class="span5 offset1 list-view-applies-desc">
 									<h4 id="profile">Descripci&oacuten:</h4>
@@ -128,7 +128,7 @@
 							</div>							
 							<div class="row">
 								<div class="span6">
-									<img id="image_casting" src=<? echo HOME."/img/castings_dummy.png"?> />
+									<img id="image_casting" src=<? echo HOME."/img/casting_image/castings_dummy.png"?> />
 								</div>
 								<div class="span5 offset1 list-view-applies-desc">
 									<h4 id="profile">Descripci&oacuten:</h4>
@@ -163,7 +163,7 @@
 							</div>
 							<div class="row">
 								<div class="span6">
-									<img id="image_casting" src=<? echo HOME."/img/castings_dummy.png"?> />
+									<img id="image_casting" src=<? echo HOME."/img/casting_image/castings_dummy.png"?> />
 								</div>
 								<div class="span5 offset1 list-view-applies-desc">
 									<h4 id="profile">Descripci&oacuten:</h4>
@@ -200,7 +200,7 @@
 				<div class="span3">
 					<div  style="border-radius: 25px; padding: 35px; min-width: 290px;" class="row-fluid">
 						<h3 id="profile" >Casting recomendado</h3>
-						<img style="margin-top: 16px;" src="<?php echo HOME.'/img/mini_banner_c1.png';?>">
+						<img style="margin-top: 16px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
 		  				<div class="space2"></div>
 						<h3 id="profile" >Galeria Videos</h3>
 						<img style="margin-top: 16px;" src="<?php echo HOME.'/img/dummy_galeria_videos.png';?>">

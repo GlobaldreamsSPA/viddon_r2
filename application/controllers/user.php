@@ -268,8 +268,21 @@ class User extends CI_Controller {
 				'age' => $age
 				);
 
+			$args["postulation_flag"]=false;
+			$args["postulation_message"]="Necesitas Tener Videos para poder postular";
+
+
 			if(isset($user_id) && is_numeric($user_id))
 			{
+				$id = $this->session->userdata('id');
+				$temp= array();
+				$args = array_merge ( $args, $temp);
+		
+				if($this->videos_model->verify_videos($id) == 1)
+					$args["postulation_flag"]=true;
+				
+				$args["user_id"] = $this->session->userdata('id');
+						
 				$args["update_values"]=$this->user_model->select($user_id);
 				$args["update_user_skills"]= $this->skills_model->get_user_skills_id($user_id);
 
@@ -277,6 +290,7 @@ class User extends CI_Controller {
 			
 
 			//Cargar el formulario
+			$args['public'] = FALSE;
 			$this->load->view('template', $args);
 		}
 	}

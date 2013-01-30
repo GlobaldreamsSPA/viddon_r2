@@ -21,7 +21,7 @@
 									?>
 								</div>
 								<div class="span4 offset3">
-									<button style="margin-top:15px; margin-left: 30px; font-weight:bold;" class="btn btn-success"> POSTULAR</button>
+									<button style="margin-top:10px; margin-left: 15px; font-weight:bold;" class="btn btn-success"> VER MAS INFORMACI&OacuteN</button>
 								</div>
 							</div>
 						</div>
@@ -48,4 +48,4 @@
 
   	</div>
   	<div class="space2"></div>
-	</div>
+/div>

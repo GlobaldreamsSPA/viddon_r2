@@ -138,7 +138,22 @@
 									</label>
 								</div>
 								-->
-								<div class="justify"><?php echo $video_description;?></div>				
+								<div class="justify"><?php echo $video_description;?></div>
+								
+								<div id="facebook" style="padding-top:40px;">
+									<form name="frm">
+										<br>
+											<textarea style="width:485px;height:100px;" type="text" name="comment" id="comment" Placeholder="Escribe un comentario..."></textarea>
+										<br>
+										<div id="post1">
+											<input type="button" class="btn btn-info"  value="Comentar" onclick="get()"/>										
+										</div>
+									</form>
+								</div>
+								<div id="facebook1">
+									<div id="post" style="width:400px;">
+								 	</div>
+								 </div>				
 								
 							<?php 
 							} 
@@ -163,7 +178,8 @@
 							<?php
 							}
 							?>
-							<div class="space2"></div>									
+							<div class="space1"></div>
+																
 						</div>		
 					</div>
 				</div>
@@ -173,7 +189,7 @@
 				<div class="span3">
 					<div  style="border-radius: 25px; padding: 35px; min-width: 290px;" class="row-fluid">
 						<h3 id="profile" >Casting recomendado</h3>
-						<img style="margin-top: 16px;" src="<?php echo HOME.'/img/mini_banner_c1.png';?>">
+						<img style="margin-top: 16px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
 		  				<div class="space2"></div>
 						<h3 id="profile" >Galeria Videos</h3>
 						<img style="margin-top: 16px;" src="<?php echo HOME.'/img/dummy_galeria_videos.png';?>">
