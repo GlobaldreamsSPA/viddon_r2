@@ -60,8 +60,35 @@ class Hunter extends CI_Controller {
 
 	function publish()
 	{
-		$args['content']='castings/publish_view';
-		$this->load->view('template', $args);
+		//Obtener el id del hunter
+		$hunter_data = $this->session->userdata('logged_in');
+		$id = $hunter_data['id'];
+		$logo = $hunter_data['logo'];
+
+		if($this->input->post())
+		{
+			//Guardar los datos a la BD
+			$casting['title'] = $this->input->post('title');
+			$casting['description'] = $this->input->post('description');
+			$casting['requirements'] = $this->input->post('requirements');
+			$casting['skills'] = $this->input->post('skills');
+			$casting['category'] = $this->input->post('category');
+			$casting['eyes-color'] = $this->input->post('eyes-color');
+			$casting['hair-color'] = $this->input->post('hair-color');
+			$casting['skin-color'] = $this->input->post('skin-color');
+			$casting['height'] = $this->input->post('height');
+			$casting['age'] = $this->input->post('age');
+			$casting['sex'] = $this->input->post('optionsRadios');
+			$casting['entity_id'] = $id;
+
+			$this->castings_model->insert($casting);
+		}
+		else
+		{
+			$args['user_data']['logo'] = $logo;
+			$args['content']='castings/publish_view';
+			$this->load->view('template', $args);
+		}
 	}
 	
 	function casting_list()

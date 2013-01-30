@@ -7,6 +7,11 @@ class Castings_model extends CI_Model
         parent::__construct();
     }
 
+    function insert($casting)
+    {
+      $this->db->insert('castings',$casting);
+    }
+
     function get_castings($hunter_id)
     {
     	$this->db->select('image');
