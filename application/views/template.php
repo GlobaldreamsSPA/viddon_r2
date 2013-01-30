@@ -15,14 +15,16 @@
 	<link href="<?php echo base_url()?>style/list-castings.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/list-view.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/publish-view.css" rel="stylesheet">
-	<link href="<?php echo base_url()?>style/uniform.default.css" rel="stylesheet" media="screen" />
+	<link href="<?php echo base_url()?>style/uniform.default.css" rel="stylesheet"/>
+	<link href="<?php echo base_url()?>style/datepicker.css" rel="stylesheet"/>
 
  	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>	
 	<script src="<?php echo base_url()?>js/bootstrap.js"></script>
 	<script src="<?php echo base_url()?>js/jquery.cleditor.js"></script>
 	<script src="<?php echo base_url()?>js/jquery.uniform.js"></script>
 	<script src="<?php echo base_url()?>js/jquery.dataTables.js"></script>
-	
+	<script src="<?php echo base_url()?>js/bootstrap-datepicker.js"></script>
+
 	<script type="text/javascript">
 	      $(document).ready(function() {
 	        $("textarea.rich_textarea").cleditor({
@@ -65,7 +67,11 @@
         	"sPaginationType": "full_numbers"
     		});
 		});
-		
+
+		$(function(){
+			window.prettyPrint && prettyPrint();
+			$('#dp1').datepicker();
+		});
 
 		
     </script>
