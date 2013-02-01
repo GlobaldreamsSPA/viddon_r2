@@ -20,8 +20,9 @@
 					    
 					    <div class="span9 user-profile-right">
 					    		
-							<h2 id="profile">Area Dramatica Canal 13</h2>
+							<legend><h2 class="profile-title"> Castings Publicados </h2></legend>
 			
+							
 							<div class="row">
 								<div class="space1"></div>
 								<div class="row">
@@ -45,20 +46,27 @@
 										<img id="image_casting" src=<? echo HOME."/img/casting_image/castings_dummy.png"?> />
 									</div>
 									<div class="space05"></div>
-									<div class="span2 list-view-applies-desc">
+									<div class="span5 list-view-applies-desc">
 										<h4 id="profile">Descripci&oacuten:</h4>
-										<div class="justify profile-content">
+										<p>
 											Se buscan Bandas con la pasi&oacuten para triunfar.
-										</div>
+										</p>
 										<h4 id="profile">Requisitos:</h4>
-										<div class="justify profile-content">
+										<p>
 											Banda Pop, Rock, Punk.
-										</div>
+										</p>
 										<h4 id="profile">Categor&iacutea:</h4>
-										<div class="justify profile-content">
+										<p>
 											Musica - Grupo
-										</div>
-										<div id="time">Quedan 132 d&iacuteas</div>
+										</p>
+										<div class="row">
+											<div class="span4 offset1">
+												<div id="time">132 d&iacuteas</div>
+											</div>
+											<div class="span4 offset3">
+												<button style="margin-top: 10px;" class="btn btn-small btn-info" type="button">Detalle</button>
+											</div>
+										</div>	
 									</div>
 								</div>
 							</div>
@@ -85,20 +93,27 @@
 										<img id="image_casting" src=<? echo HOME."/img/casting_image/castings_dummy.png"?> />
 									</div>
 									<div class="space05"></div>
-									<div class="span2 list-view-applies-desc">
+									<div class="span5 list-view-applies-desc">
 										<h4 id="profile">Descripci&oacuten:</h4>
-										<div class="justify profile-content">
+										<p>
 											Se buscan Bandas con la pasi&oacuten para triunfar.
-										</div>
+										</p>
 										<h4 id="profile">Requisitos:</h4>
-										<div class="justify profile-content">
+										<p>
 											Banda Pop, Rock, Punk.
-										</div>
+										</p>
 										<h4 id="profile">Categor&iacutea:</h4>
-										<div class="justify profile-content">
+										<p>
 											Musica - Grupo
-										</div>
-										<div id="time">Quedan 132 d&iacuteas</div>
+										</p>
+										<div class="row">
+											<div class="span4 offset1">
+												<div id="time">132 d&iacuteas</div>
+											</div>
+											<div class="span4 offset3">
+												<button style="margin-top: 10px;" class="btn btn-small btn-info" type="button">Detalle</button>
+											</div>
+										</div>	
 									</div>
 								</div>
 							</div>
@@ -125,25 +140,32 @@
 										<img id="image_casting" src=<? echo HOME."/img/casting_image/castings_dummy.png"?> />
 									</div>
 									<div class="space05"></div>
-									<div class="span2 list-view-applies-desc">
+									<div class="span5 list-view-applies-desc">
 										<h4 id="profile">Descripci&oacuten:</h4>
-										<div class="justify profile-content">
+										<p>
 											Se buscan Bandas con la pasi&oacuten para triunfar.
-										</div>
+										</p>
 										<h4 id="profile">Requisitos:</h4>
-										<div class="justify profile-content">
+										<p>
 											Banda Pop, Rock, Punk.
-										</div>
+										</p>
 										<h4 id="profile">Categor&iacutea:</h4>
-										<div class="justify profile-content">
+										<p>
 											Musica - Grupo
-										</div>
-										<div id="time">Quedan 132 d&iacuteas</div>
+										</p>
+										<div class="row">
+											<div class="span4 offset1">
+												<div id="time">132 d&iacuteas</div>
+											</div>
+											<div class="span4 offset3">
+												<button style="margin-top: 10px;" class="btn btn-small btn-info" type="button">Detalle</button>
+											</div>
+										</div>	
 									</div>
 								</div>
 							</div>
 							
-							</div>
+						</div>
 					</div>
 					<div class="row-fluid">	
 						<div class="space4"></div>	

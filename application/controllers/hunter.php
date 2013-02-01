@@ -127,4 +127,22 @@ class Hunter extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect(HOME);
 	}
+
+	function casting_detail()
+	{
+		if($this->session->userdata('logged_in'))
+		{
+			$hunter_id = $this->session->userdata('logged_in');
+		 	$hunter_id= $hunter_id['id'];
+	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id);
+	   	 	$args["tags"]=array("reality show","danza","actuaci&oacuten","m&uacutesica","canto");			
+	   	 	$args['user_data'] = $this->session->userdata('logged_in');
+			$args['content']='castings/hunter_casting_detail';
+			$this->load->view('template', $args);	
+		}
+		else
+			redirect(HOME);
+
+	}
+
 }
