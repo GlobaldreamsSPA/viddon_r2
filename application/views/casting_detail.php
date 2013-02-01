@@ -3,9 +3,11 @@
 		<div class="row">
 			<div class= "span9">
 		  		<div style="border-radius:25px; padding:25px;" class="row-fluid">
-		  			
+
+		  			<div class="space05"></div>
+		  			<h2 style="margin-left:75px;" id="profile" style="font-weight:bold;"> Casting A</h3>
 		  			<div class="space2"></div>
-					<img style="margin-left:75px; margin-top:30px; height: 350px; width: 700px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
+					<img style="margin-left:75px; margin-top:10px; height: 350px; width: 700px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
 					<div class="space2"></div>
 					<h2 style="margin-left:75px;" id="profile" style="font-weight:bold;"> Caza Talentos</h3>
 					<div class="row">

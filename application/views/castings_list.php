@@ -1,6 +1,27 @@
 <div class="content" id="content">	
 	<div class="container-fluid">
 			<div style="border-radius:25px; padding:20px; max-width: 1250px;" class="row-fluid">
+			
+			<div class="row control-group">
+				<div class="span2 offset1">
+					<h2 class="control-label" id="profile" name="category">Categor&iacutea</h2>
+				</div>
+				<div style="margin-top:15px;" class="span2 controls">
+					<select>
+						<option value="reality">Reality</option>
+						<option value="teleserie">Teleserie</option>
+						<option selected="selected" value="todos">Todos</option>			  			
+						<option value="show_talentos">Show de Talentos</option>
+			  			<option value="documental">Documental</option>
+			  			<option value="festival">Festival</option>
+			  			<option value="otros">Otros</option>
+					</select>
+				</div>
+				<div style="margin-top:15px;" class="span2">
+					<button class="btn btn-info">Actualizar</button>
+					
+				</div>
+			</div>
 			<?php
 				$i=0; 
 				foreach ($casting_list as $casting) {
@@ -20,7 +41,10 @@
 										echo "<img class='user_image_main_page' src='".HOME.'/img/logo_hunter/'.$casting[2].".jpg'/>";
 									?>
 								</div>
-								<div class="span4 offset3">
+								<div style="font-weight:bold;" class="span3">
+									<p>&Aacuterea Dram&aacutetica Canal 13</p>
+								</div>
+								<div class="span4">
 									<button style="margin-top:10px; margin-left: 15px; font-weight:bold;" class="btn btn-success"> VER MAS INFORMACI&OacuteN</button>
 								</div>
 							</div>
