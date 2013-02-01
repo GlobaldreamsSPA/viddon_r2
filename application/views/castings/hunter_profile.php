@@ -48,15 +48,11 @@
 							<div style="margin-left:75px; margin-top:30px; height: 250px; width: 450px;" id="myCarousel" class="carousel slide">
 							<!-- Carousel items -->
 								<div class="carousel-inner">
+									<?php ?>
 								    <div class="active item">
-										<img style="width:100%; height:100%;" id="image_casting" src=<? echo HOME."/img/castings_dummy.png"?> />
+										<img style="width:100%; height:100%;" id="image_casting" src=<? echo CASTINGS_PATH."/img/castings_dummy.png"?> />
 									</div>
-								    <div class="item">
-								    	<img style="width:100%; height:100%;" id="image_casting" src=<? echo HOME."/img/mini_banner_c1.png"?> />
-								    </div>
-								    <div class="item">
-								    	<img style="width:100%; height:100%;" id="image_casting" src=<? echo HOME."/img/mini_banner_c2.png"?> />
-								    </div>
+									<?php ?>
 							  	</div>
 								<!-- Carousel nav -->
 								<a style="margin-top:5%; margin-left: 10px;" class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
