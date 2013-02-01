@@ -5,7 +5,7 @@
 	  			<div  style="border-radius: 25px; padding: 25px;" class="row-fluid">
 		  			<div class="row-fluid">		
 				    	<div class="span3 user-profile-left">
-				    		<img class='user_image' src="<?php echo HUNTER_PROFILE_IMAGE.$user_data['logo'] ?>"/>
+				    		<img class='user_image' src="<?php echo HOME."/img/logo_hunter/".$user_data['logo'] ?>"/>
 				    		<div class="space4"></div>
 				    		
 				    		<div class="span9 offset1">
@@ -49,7 +49,7 @@
 								<div class="carousel-inner">
 									<?php ?>
 								    <div class="active item">
-										<img style="width:100%; height:100%;" id="image_casting" src=<? echo CASTINGS_PATH."/img/castings_dummy.png"?> />
+										<img style="width:100%; height:100%;" id="image_casting" src=<? echo HOME."/img/casting_image/castings_dummy.png"?> />
 									</div>
 									<?php ?>
 							  	</div>

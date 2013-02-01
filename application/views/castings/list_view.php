@@ -5,7 +5,7 @@
 	  			<div  style="border-radius: 25px; padding: 25px;" class="row-fluid">
 		  			<div class="row-fluid">		
 				    	<div class="span3 user-profile-left">
-				    		<img class='user_image' src="<?php echo HUNTER_PROFILE_IMAGE.$user_data['logo'] ?>"/>
+				    		<img class='user_image' src="<?php echo HOME."/img/logo_hunter/".$user_data['logo'] ?>"/>
 				    		<div class="space4"></div>
 				    		
 				    		<div class="span9 offset1">
@@ -24,21 +24,27 @@
 			
 							<div class="row">
 								<div class="space1"></div>
-								<div class="span6">
-									<h3 class="list-view-title">Casting A Canal 13</h3>
+								<div class="row">
+									<div style="margin-top: 13px;" class="span1 offset1">
+				    					<img class='list_view_logo' src="<?php echo HOME."/img/logo_hunter/".$user_data['logo'] ?>"/>
+									</div>
+									<div class="span5">
+										<h3 class="list-view-title">Casting A Canal 13</h3>
+									</div>
+										
+									<div class="span5 list-view-applies">
+										<h5 class="list-view-applies-count span2"><p>50</p></h5>
+										<h5 class="list-view-applies-text">Personas ya postularon</h5>
+									</div>
 								</div>
-								<div class="span5 list-view-applies">
-									<h5 class="list-view-applies-count span2"><p>50</p></h5>
-									<h5 class="list-view-applies-text">Personas ya postularon</h5>
-								</div>
+
+
+
 								<div class="span11">
 									<div class="span7">
-										<img id="image_casting" src=<? echo HOME."/img/castings_dummy.png"?> />
+										<img id="image_casting" src=<? echo HOME."/img/casting_image/castings_dummy.png"?> />
 									</div>
 									<div class="space05"></div>
-									<div class="span2">
-										<img id="list-view-logo" src=<? echo HOME."/img/canal-13.jpg"?> />
-									</div>
 									<div class="span2 list-view-applies-desc">
 										<h4 id="profile">Descripci&oacuten:</h4>
 										<div class="justify profile-content">
@@ -58,21 +64,27 @@
 							</div>
 							<div class="row">
 								<div class="space1"></div>
-								<div class="span6">
-									<h3 class="list-view-title">Casting A Canal 13</h3>
+								<div class="row">
+									<div style="margin-top: 13px;" class="span1 offset1">
+				    					<img class='list_view_logo' src="<?php echo HOME."/img/logo_hunter/".$user_data['logo'] ?>"/>
+									</div>
+									<div class="span5">
+										<h3 class="list-view-title">Casting A Canal 13</h3>
+									</div>
+										
+									<div class="span5 list-view-applies">
+										<h5 class="list-view-applies-count span2"><p>50</p></h5>
+										<h5 class="list-view-applies-text">Personas ya postularon</h5>
+									</div>
 								</div>
-								<div class="span5 list-view-applies">
-									<h5 class="list-view-applies-count span2"><p>50</p></h5>
-									<h5 class="list-view-applies-text">Personas ya postularon</h5>
-								</div>
+
+
+
 								<div class="span11">
 									<div class="span7">
-										<img id="image_casting" src=<? echo HOME."/img/castings_dummy.png"?> />
+										<img id="image_casting" src=<? echo HOME."/img/casting_image/castings_dummy.png"?> />
 									</div>
 									<div class="space05"></div>
-									<div class="span2">
-										<img id="list-view-logo" src=<? echo HOME."/img/canal-13.jpg"?> />
-									</div>
 									<div class="span2 list-view-applies-desc">
 										<h4 id="profile">Descripci&oacuten:</h4>
 										<div class="justify profile-content">
@@ -92,21 +104,27 @@
 							</div>
 							<div class="row">
 								<div class="space1"></div>
-								<div class="span6">
-									<h3 class="list-view-title">Casting A Canal 13</h3>
+								<div class="row">
+									<div style="margin-top: 13px;" class="span1 offset1">
+				    					<img class='list_view_logo' src="<?php echo HOME."/img/logo_hunter/".$user_data['logo'] ?>"/>
+									</div>
+									<div class="span5">
+										<h3 class="list-view-title">Casting A Canal 13</h3>
+									</div>
+										
+									<div class="span5 list-view-applies">
+										<h5 class="list-view-applies-count span2"><p>50</p></h5>
+										<h5 class="list-view-applies-text">Personas ya postularon</h5>
+									</div>
 								</div>
-								<div class="span5 list-view-applies">
-									<h5 class="list-view-applies-count span2"><p>50</p></h5>
-									<h5 class="list-view-applies-text">Personas ya postularon</h5>
-								</div>
+
+
+
 								<div class="span11">
 									<div class="span7">
-										<img id="image_casting" src=<? echo HOME."/img/castings_dummy.png"?> />
+										<img id="image_casting" src=<? echo HOME."/img/casting_image/castings_dummy.png"?> />
 									</div>
 									<div class="space05"></div>
-									<div class="span2">
-										<img id="list-view-logo" src=<? echo HOME."/img/canal-13.jpg"?> />
-									</div>
 									<div class="span2 list-view-applies-desc">
 										<h4 id="profile">Descripci&oacuten:</h4>
 										<div class="justify profile-content">
@@ -123,10 +141,9 @@
 										<div id="time">Quedan 132 d&iacuteas</div>
 									</div>
 								</div>
-											
-						</div>
-						
-						</div>
+							</div>
+							
+							</div>
 					</div>
 					<div class="row-fluid">	
 						<div class="space4"></div>	

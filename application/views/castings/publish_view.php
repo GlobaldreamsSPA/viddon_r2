@@ -5,7 +5,7 @@
 	  			<div  style="border-radius: 25px; padding: 25px;" class="row-fluid">
 		  			<div class="row-fluid">		
 				    	<div class="span3 user-profile-left">
-				    		<img class='user_image' src="<?php echo HUNTER_PROFILE_IMAGE.$user_data['logo'] ?>"/>
+				    		<img class='user_image' src="<?php echo HOME."/img/logo_hunter/".$user_data['logo'] ?>"/>
 				    		<div class="space4"></div>
 				    		
 				    		<div class="span9 offset1">
