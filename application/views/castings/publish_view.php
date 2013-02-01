@@ -64,6 +64,7 @@
 									  <option selected="selected" value="Show de Talentos">Show de Talentos</option>
 									  <option value="Documental">Documental</option>
 									  <option value="Festival">Festival</option>
+									  <option value="Otros">Otros</option>
 									</select>
 								</div>
 								</div>
@@ -79,6 +80,7 @@
 									  <option value="Casta&ntildeo">Casta&ntildeo</option>
 									  <option value="&aacutembar">&Aacutembar</option>
 									  <option value="Avellana">Avellana</option>
+									  <option value="Todos">Todos</option>
 									</select>
 								</div>
 								</div>
@@ -92,6 +94,7 @@
 									  <option value="Blanco">Blanco</option>
 									  <option value="Rojo">Rojo</option>
 									  <option value="Gris">Gris</option>
+									  <option value="Todos">Todos</option>
 									</select>
 								</div>
 								</div>
@@ -103,6 +106,7 @@
 									  <option value="Negra">Negra</option>
 									  <option value="Trigue&ntildea">Trigue&ntildea</option>
 									  <option value="Morena">Morena</option>
+									  <option value="Todos">Todos</option>
 									</select>
 								</div>
 								</div>
@@ -118,6 +122,7 @@
 									  <option value="190 cm">190 cm</option>
 									  <option value="200 cm">200 cm</option>
 									  <option value="200 cm o m&aacutes">200 cm o m&aacutes</option>
+									  <option value="Todos">Todos</option>
 									</select>
 								</div>
 								</div>
@@ -133,6 +138,7 @@
 									  <option value="30-35 a&ntildeos">30-35 a&ntildeos</option>
 									  <option value="35-40 a&ntildeos">35-40 a&ntildeos</option>
 									  <option value="40-45 anos o m&aacutes">40-45 a&ntildeos o m&aacutes</option>
+									  <option value="Todos">Todos</option>
 									</select>
 								</div>
 								</div>

@@ -21,11 +21,11 @@ define('DIR_WRITE_MODE', 0777);
 /*Variables locas*/
 define('UPLOAD_DIR', '../img/uploads');
 define('IMAGES_DIR', '../img/profile');
-define('USER_PROFILE_IMAGE','http://localhost/viddon_r2/img/profile');
-define('HUNTER_PROFILE_IMAGE', 'http://localhost/viddon_r2/img/logo_hunter/');
+define('USER_PROFILE_IMAGE','http://localhost/release1.0/viddon_r2/img/profile');
+define('HUNTER_PROFILE_IMAGE', 'http://localhost/release1.0/viddon_r2/img/logo_hunter/');
 define('CASTINGS_PATH', '../img/casting_image/');
 define('OPENID' , APPPATH.'../utils/openid.php');
-define('HOME', 'http://localhost/viddon_r2');
+define('HOME', 'http://localhost/release1.0/viddon_r2');
 
 /*
 |--------------------------------------------------------------------------
