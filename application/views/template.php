@@ -134,6 +134,8 @@
 				<div class="span4 offset1">
 					<ul>
 					<?php
+					
+						/*verificacion usuario postulante*/
 						$id = $this->session->userdata('id');
 
 						if($this->session->userdata('name') != FALSE)
@@ -146,9 +148,19 @@
 						}
 						else
 							$user = "";
-
+						
+						/*verificacion ususario hunter*/
+						$id_h = $this->session->userdata('logged_in');				
+						if($id_h)
+						{
+							$name = $this->session->userdata('logged_in');
+							$name= $name["name"];
+						}
+						
 						if($id)
-							echo "<li class='welcome-login'> Bienvenido ".anchor('user', $user).' '.anchor('user/logout',' (Cerrar sesión)');
+							echo "<li class='welcome-login'> Bienvenido ".anchor('user', $user).' '.anchor('user/logout',' (Cerrar sesi&oacuten)');
+						elseif ($id_h) 
+							echo "<li class='welcome-login'> Bienvenido ".anchor('user', $name).' '.anchor('hunter/logout',' (Cerrar sesi&oacuten)');
 						else
 						{
 							echo "<i class='icon-star icon-white'></i>";
@@ -170,7 +182,7 @@
 				</a>
 				
 				<?php		
-					if(!$id)
+					if(!$id && !$id_h)
 					{
 						echo "<form action='".$auth_url."' method='POST'>";
 						echo "<button id='login-button'/>";

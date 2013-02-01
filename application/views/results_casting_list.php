@@ -53,7 +53,7 @@
 											</ul>
 										</div>
 									</li>	
-									<li><a href="<?php echo HOME."/user/logout";?>"> <i class="icon-edit"></i> Cerrar Sesi&oacuten</a></li>					
+									<li><a href="<?php echo HOME."/user/logout";?>"> <i class="icon-off"></i> Cerrar Sesi&oacuten</a></li>					
 								</ul>
 							</div>
 				    	</div>

@@ -121,4 +121,10 @@ class Hunter extends CI_Controller {
 			redirect(HOME);
 
 	}
+	
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect(HOME);
+	}
 }
