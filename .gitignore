@@ -5,4 +5,5 @@ bin
 .DS_Store
 application/config/config.php
 application/config/database.php
+application/config/constants.php
 application/logs

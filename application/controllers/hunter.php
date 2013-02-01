@@ -42,9 +42,7 @@ class Hunter extends CI_Controller {
 	   }
 	   else
 	   {
-	   	
 		   redirect(HOME."/hunter");
-
 	   }
     }
 
@@ -89,9 +87,10 @@ class Hunter extends CI_Controller {
 				$casting['height'] = $this->input->post('height');
 				$casting['age'] = $this->input->post('age');
 				$casting['sex'] = $this->input->post('optionsRadios');
-				$casting['entity_id'] = $id;
+				$casting['entity_id'] = $hunter_id;
 	
 				$this->castings_model->insert($casting);
+				redirect('hunter/casting_list');
 			}
 			else
 			{

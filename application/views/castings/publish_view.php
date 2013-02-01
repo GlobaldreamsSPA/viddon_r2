@@ -56,9 +56,9 @@
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" name="category">Categor&iacutea</label>
+									<label class="control-label">Categor&iacutea</label>
 								<div class="controls">
-									<select>
+									<select name="category">
 									  <option value="Reality">Reality</option>
 									  <option value="Teleserie">Teleserie</option>
 									  <option selected="selected" value="Show de Talentos">Show de Talentos</option>
@@ -71,9 +71,9 @@
 								<fieldset>
 								<legend>Perfil del postulante a buscar</legend>
 								<div class="control-group">
-									<label class="control-label" name="eyes-color">Color de ojos</label>
+									<label class="control-label">Color de ojos</label>
 								<div class="controls">
-									<select>
+									<select name="eyes-color">
 									  <option value="Verde">Verde</option>
 									  <option value="Azul">Azul</option>
 									  <option value="Gris">Gris</option>
@@ -85,9 +85,9 @@
 								</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" name="hair-color">Color de cabello</label>
+									<label class="control-label">Color de cabello</label>
 								<div class="controls">
-									<select>
+									<select name="hair-color">
 									  <option value="Casta&ntildeo">Casta&ntildeo</option>
 									  <option value="Negro">Negro</option>
 									  <option value="Rubio">Rubio</option>
@@ -99,9 +99,9 @@
 								</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" name="skin-color">Color de piel</label>
+									<label class="control-label">Color de piel</label>
 								<div class="controls">
-									<select>
+									<select name="skin-color">
 									  <option value="Blanca">Blanca</option>
 									  <option value="Negra">Negra</option>
 									  <option value="Trigue&ntildea">Trigue&ntildea</option>
@@ -111,9 +111,9 @@
 								</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" name="height">Estatura</label>
+									<label class="control-label">Estatura</label>
 								<div class="controls">
-									<select>
+									<select name="height">
 									  <option value="150 cm o menos">150 cm o menos</option>
 									  <option selected="selected" value="150 cm">150 cm</option>
 									  <option value="160 cm">160 cm</option>
@@ -127,9 +127,9 @@
 								</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" name="age">Edad</label>
+									<label class="control-label">Edad</label>
 								<div class="controls">
-									<select>
+									<select name="age">
 									  <option value="10 a&ntildeos_o_menos">10 a&ntildeos o menos</option>
 									  <option value="10-15 a&ntildeos">10-15 a&ntildeos</option>
 									  <option value="15-20 a&ntildeos">15-20 a&ntildeos</option>
@@ -146,15 +146,15 @@
 									<label class="control-label">Sexo</label>
 									<div class="controls">
 										<label class="radio">
-										  <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+										  <input type="radio" name="optionsRadios" id="optionsRadios1" value="Femenino" checked>
 										  Femenino
 										</label>
 										<label class="radio">
-										  <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+										  <input type="radio" name="optionsRadios" id="optionsRadios2" value="Masculino">
 										  Masculino
 										</label>
 										<label class="radio">
-										  <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+										  <input type="radio" name="optionsRadios" id="optionsRadios3" value="Ambos">
 										  Ambos
 										</label>
 									</div>
