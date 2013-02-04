@@ -143,5 +143,21 @@ class Hunter extends CI_Controller {
 			redirect(HOME);
 
 	}
+	
+	function applicants_list()
+	{
+		if($this->session->userdata('logged_in'))
+		{
+			$hunter_id = $this->session->userdata('logged_in');
+		 	$hunter_id= $hunter_id['id'];
+	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id);
+	   	 	$args['user_data'] = $this->session->userdata('logged_in');
+			$args['content']='castings/applicants_list';
+			$this->load->view('template', $args);	
+		}
+		else
+			redirect(HOME);
 
+	}
+	
 }

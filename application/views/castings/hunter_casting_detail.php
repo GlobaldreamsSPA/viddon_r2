@@ -18,15 +18,16 @@
 							</div>
 				    	</div>
 						<div class= "span9">			
+					  			<legend><h2 class="profile-title"> Detalle Castings </h2></legend>
 					  			<div class="space05"></div>
 					  			<row>
-					  			<div class="span3">
-					  				<h2 id="profile" style="font-weight:bold;"> Casting A</h2>
-					  			</div>					  				
-					  			<div style="margin-top:15px;" class="span4">
-					  				<button> Vista Publica</button>
-					  				<button> Editar</button>
-					  			</div>
+						  			<div class="span3">
+						  				<h2 id="profile" style="font-weight:bold;"> Casting A</h2>
+						  			</div>					  				
+						  			<div style="margin-top:15px;" class="span4">
+						  				<button> Vista Publica</button>
+						  				<button> Editar</button>
+						  			</div>
 					  			</row>
 					  			<div class="space2"></div>
 								<img style=" margin-top:10px; height: 250px; width: 500px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">

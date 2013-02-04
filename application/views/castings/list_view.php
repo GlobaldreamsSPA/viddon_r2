@@ -32,14 +32,7 @@
 									<div class="span5">
 										<h3 class="list-view-title">Casting A Canal 13</h3>
 									</div>
-										
-									<div class="span5 list-view-applies">
-										<h5 class="list-view-applies-count span2"><p>50</p></h5>
-										<h5 class="list-view-applies-text">Personas ya postularon</h5>
-									</div>
 								</div>
-
-
 
 								<div class="span11">
 									<div class="span7">
@@ -47,24 +40,29 @@
 									</div>
 									<div class="space05"></div>
 									<div class="span5 list-view-applies-desc">
-										<h4 id="profile">Descripci&oacuten:</h4>
-										<p>
-											Se buscan Bandas con la pasi&oacuten para triunfar.
-										</p>
-										<h4 id="profile">Requisitos:</h4>
-										<p>
-											Banda Pop, Rock, Punk.
-										</p>
-										<h4 id="profile">Categor&iacutea:</h4>
-										<p>
-											Musica - Grupo
-										</p>
+																													
+										<div class="row">
+											<div class="list-view-applies">
+												<h5 class="list-view-applies-count span2"><p>50</p></h5>
+												<h5 class="list-view-applies-text">Personas ya postularon</h5>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="span6 offset1">
+												<label>Estado Casting: </label>
+											</div>
+											<div class="span4 offset1">
+										 		<span class="label label-info">En revisi&oacuten</span>
+											</div>
+										</div>
+										
 										<div class="row">
 											<div class="span4 offset1">
-												<div id="time">132 d&iacuteas</div>
+												<div id="time">0 d&iacuteas</div>
 											</div>
 											<div class="span4 offset3">
-												<button style="margin-top: 10px;" class="btn btn-small btn-info" type="button">Detalle</button>
+												<button style="margin-top: 10px;" class="btn btn-info" type="button">Detalle</button>
 											</div>
 										</div>	
 									</div>
@@ -79,14 +77,7 @@
 									<div class="span5">
 										<h3 class="list-view-title">Casting A Canal 13</h3>
 									</div>
-										
-									<div class="span5 list-view-applies">
-										<h5 class="list-view-applies-count span2"><p>50</p></h5>
-										<h5 class="list-view-applies-text">Personas ya postularon</h5>
-									</div>
 								</div>
-
-
 
 								<div class="span11">
 									<div class="span7">
@@ -94,24 +85,29 @@
 									</div>
 									<div class="space05"></div>
 									<div class="span5 list-view-applies-desc">
-										<h4 id="profile">Descripci&oacuten:</h4>
-										<p>
-											Se buscan Bandas con la pasi&oacuten para triunfar.
-										</p>
-										<h4 id="profile">Requisitos:</h4>
-										<p>
-											Banda Pop, Rock, Punk.
-										</p>
-										<h4 id="profile">Categor&iacutea:</h4>
-										<p>
-											Musica - Grupo
-										</p>
+																													
+										<div class="row">
+											<div class="list-view-applies">
+												<h5 class="list-view-applies-count span2"><p>50</p></h5>
+												<h5 class="list-view-applies-text">Personas ya postularon</h5>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="span6 offset1">
+												<label>Estado Casting: </label>
+											</div>
+											<div class="span4 offset1">
+										 		<span class="label label-info">En revisi&oacuten</span>
+											</div>
+										</div>
+										
 										<div class="row">
 											<div class="span4 offset1">
-												<div id="time">132 d&iacuteas</div>
+												<div id="time">0 d&iacuteas</div>
 											</div>
 											<div class="span4 offset3">
-												<button style="margin-top: 10px;" class="btn btn-small btn-info" type="button">Detalle</button>
+												<button style="margin-top: 10px;" class="btn btn-info" type="button">Detalle</button>
 											</div>
 										</div>	
 									</div>
@@ -126,14 +122,7 @@
 									<div class="span5">
 										<h3 class="list-view-title">Casting A Canal 13</h3>
 									</div>
-										
-									<div class="span5 list-view-applies">
-										<h5 class="list-view-applies-count span2"><p>50</p></h5>
-										<h5 class="list-view-applies-text">Personas ya postularon</h5>
-									</div>
 								</div>
-
-
 
 								<div class="span11">
 									<div class="span7">
@@ -141,24 +130,29 @@
 									</div>
 									<div class="space05"></div>
 									<div class="span5 list-view-applies-desc">
-										<h4 id="profile">Descripci&oacuten:</h4>
-										<p>
-											Se buscan Bandas con la pasi&oacuten para triunfar.
-										</p>
-										<h4 id="profile">Requisitos:</h4>
-										<p>
-											Banda Pop, Rock, Punk.
-										</p>
-										<h4 id="profile">Categor&iacutea:</h4>
-										<p>
-											Musica - Grupo
-										</p>
+																													
+										<div class="row">
+											<div class="list-view-applies">
+												<h5 class="list-view-applies-count span2"><p>50</p></h5>
+												<h5 class="list-view-applies-text">Personas ya postularon</h5>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="span6 offset1">
+												<label>Estado Casting: </label>
+											</div>
+											<div class="span4 offset1">
+										 		<span class="label label-info">En revisi&oacuten</span>
+											</div>
+										</div>
+										
 										<div class="row">
 											<div class="span4 offset1">
-												<div id="time">132 d&iacuteas</div>
+												<div id="time">0 d&iacuteas</div>
 											</div>
 											<div class="span4 offset3">
-												<button style="margin-top: 10px;" class="btn btn-small btn-info" type="button">Detalle</button>
+												<button style="margin-top: 10px;" class="btn btn-info" type="button">Detalle</button>
 											</div>
 										</div>	
 									</div>
@@ -199,7 +193,7 @@
 								<h4 class="list-view-title">Casting A2</h3>
 							</div>
 							<div class= "span6">
-								<div id="time">Quedan 132 d&iacuteas</div>
+								<div id="time">Quedan 120 d&iacuteas</div>
 							</div>
 						</div>
 						<div class="progress">
