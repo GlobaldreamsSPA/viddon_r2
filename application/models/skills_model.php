@@ -67,11 +67,11 @@ class Skills_model extends CI_Model
 		$this->db->delete('users_skills', array('user_id' => $profile['id']));
 
 
-		if($profile['skills1'] != 0)
+		foreach ($profile['skills'] as $skill)
 		{
 			$data = array(
 					'user_id' => $profile['id'],
-					'skill_id' => $profile['skills1']
+					'skill_id' => $skill
 				);
 
 			//Verificar que el par no exista en la BD
@@ -86,43 +86,6 @@ class Skills_model extends CI_Model
 				$this->db->insert('users_skills',$data);
 		}
 
-		if($profile['skills2'] != 0)
-		{
-			$data = array(
-					'user_id' => $profile['id'],
-					'skill_id' => $profile['skills2']
-				);
-
-			//Verificar que el par no exista en la BD
-			$this->db->select('user_id, skill_id');
-			$this->db->from('users_skills');
-			$this->db->where('user_id', $data['user_id']);
-			$this->db->where('skill_id', $data['skill_id']);
-
-			$result = $this->db->get();
-
-			if($result->num_rows() == 0)
-				$this->db->insert('users_skills',$data);
-		}
-
-		if($profile['skills3'] != 0)
-		{
-			$data = array(
-					'user_id' => $profile['id'],
-					'skill_id' => $profile['skills3']
-				);
-
-			//Verificar que el par no exista en la BD
-			$this->db->select('user_id, skill_id');
-			$this->db->from('users_skills');
-			$this->db->where('user_id', $data['user_id']);
-			$this->db->where('skill_id', $data['skill_id']);
-
-			$result = $this->db->get();
-
-			if($result->num_rows() == 0)
-				$this->db->insert('users_skills',$data);
-		}
-
+		
 	}
 }

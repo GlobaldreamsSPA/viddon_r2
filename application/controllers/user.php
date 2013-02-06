@@ -226,9 +226,7 @@ class User extends CI_Controller {
 				$profile['bio'] = $this->input->post('bio');
 				$profile['hobbies'] = $this->input->post('hobbies');
 				$profile['dreams'] = $this->input->post('dreams');
-				$profile['skills1'] = $this->input->post('skills1');
-				$profile['skills2'] = $this->input->post('skills2');
-				$profile['skills3'] = $this->input->post('skills3');
+				$profile['skills']  = $this->input->post('skills');
 				$profile['sex'] = intval($this->input->post('sex'));
 				$profile['age'] = $this->input->post('age');
 				
@@ -252,7 +250,6 @@ class User extends CI_Controller {
 			//Talentos del usuario
 			
 			$skills = $this->skills_model->get_skills();
-			$skills['0'] = 'Ninguno';
 			
 			//Edad del usuario
 			$age = array();

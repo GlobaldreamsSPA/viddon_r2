@@ -109,9 +109,7 @@
 										$skill_selected[$i]=0;
 										
 								}
-								echo form_dropdown('skills1', $skills, $skill_selected[0],"class='span3'"); 
-								echo form_dropdown('skills2', $skills, $skill_selected[1],"class='span3'"); 
-								echo form_dropdown('skills3', $skills, $skill_selected[2],"class='span3'"); 
+								echo form_multiselect('skills[]', $skills, $skill_selected,"class='chzn-select' style='width:200px' data-placeholder='Selecciona los tags...'");
 								?>
 							<h3>Bio</h3>
 								<textarea class="rich_textarea" name="bio"><?php if(isset($update_values)) echo $update_values["bio"]; else echo set_value('bio');?></textarea>
