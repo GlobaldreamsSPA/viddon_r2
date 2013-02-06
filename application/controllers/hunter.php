@@ -7,6 +7,7 @@ class Hunter extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('url', 'file', 'form'));
 		$this->load->model(array('hunter_model', 'castings_model'));
+		$this->load->library(array('upload', 'image_lib', 'form_validation'));
 	}
 
 	function index()
@@ -72,37 +73,56 @@ class Hunter extends CI_Controller {
 		 	$hunter_id= $hunter_id['id'];
 	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id);
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
-			
-			if($this->input->post())
+
+	   	 	//Setear mensajes
+			$this->form_validation->set_message('required', 
+				'Este dato es requerido para publicar el casting.');
+
+			//Setear reglas
+			$this->form_validation->set_rules('title', 'Title', 'required');
+			$this->form_validation->set_rules('description', 'Description', 'required');
+			$this->form_validation->set_rules('requirements', 'Requirements', 'required');
+			$this->form_validation->set_rules('skills', 'Skills', 'required');
+			/*$this->form_validation->set_rules('image', 'Image', 'callback_check_upload');*/
+
+			if ($this->form_validation->run() == FALSE)
 			{
-				//Guardar los datos a la BD
-				$casting['title'] = $this->input->post('title');
-				$casting['description'] = $this->input->post('description');
-				$casting['requirements'] = $this->input->post('requirements');
-				$casting['skills'] = $this->input->post('skills');
-				$casting['category'] = $this->input->post('category');
-				$casting['eyes-color'] = $this->input->post('eyes-color');
-				$casting['hair-color'] = $this->input->post('hair-color');
-				$casting['skin-color'] = $this->input->post('skin-color');
-				$casting['height'] = $this->input->post('height');
-				$casting['age'] = $this->input->post('age');
-				$casting['sex'] = $this->input->post('optionsRadios');
-				$casting['entity_id'] = $hunter_id;
-	
-				$this->castings_model->insert($casting);
-				redirect('hunter/casting_list');
+				//No paso todas las validaciones
 			}
+			
 			else
 			{
-				$args['content']='castings/publish_view';
-				$this->load->view('template', $args);
+				if($this->input->post())
+				{
+					//Guardar los datos a la BD
+					$casting['title'] = $this->input->post('title');
+					$casting['description'] = $this->input->post('description');
+					$casting['requirements'] = $this->input->post('requirements');
+					$casting['skills'] = $this->input->post('skills');
+					$casting['category'] = $this->input->post('category');
+					$casting['eyes-color'] = $this->input->post('eyes-color');
+					$casting['hair-color'] = $this->input->post('hair-color');
+					$casting['skin-color'] = $this->input->post('skin-color');
+					$casting['height'] = $this->input->post('height');
+					$casting['age'] = $this->input->post('age');
+					$casting['sex'] = $this->input->post('optionsRadios');
+					$casting['entity_id'] = $hunter_id;
+
+					$casting_id = $this->castings_model->insert($casting);
+
+					//Por ultimo subir la foto
+					$form_file_name = 'casting_image';
+					$this->_upload_image($casting_id, realpath(CASTINGS_PATH), $form_file_name);
+					redirect('hunter/casting_list');
+				}
 			}
+
+			$args['content']='castings/publish_view';
+			$this->load->view('template', $args);
 
 		}
 		else
 			redirect(HOME);
-		
-		
 	}
 	
 	function casting_list()
@@ -132,11 +152,11 @@ class Hunter extends CI_Controller {
 		if($this->session->userdata('logged_in'))
 		{
 			$hunter_id = $this->session->userdata('logged_in');
-		 	$hunter_id= $hunter_id['id'];
+		 	$hunter_id = $hunter_id['id'];
 	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id);
-	   	 	$args["tags"]=array("reality show","danza","actuaci&oacuten","m&uacutesica","canto");			
+	   	 	$args["tags"] = array("reality show","danza","actuaci&oacuten","m&uacutesica","canto");			
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
-			$args['content']='castings/hunter_casting_detail';
+			$args['content'] = 'castings/hunter_casting_detail';
 			$this->load->view('template', $args);	
 		}
 		else
@@ -173,7 +193,62 @@ class Hunter extends CI_Controller {
 		}
 		else
 			redirect(HOME);
-
 	}
-	
+
+
+	function check_upload($image)
+	{
+		if($_FILES['casting_image']['error'] == 4)
+		{
+			$this->form_validation->set_message('check_upload', 'Ups, deber subir un archivo antes de continuar.');
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
+
+	private function _upload_image($id, $images_path, $form_file_name)
+	{
+		$upload_path = realpath(APPPATH.UPLOAD_DIR);
+		
+		//obtener la extension del archivo
+		$type = explode('/', $_FILES[$form_file_name]['type']);
+		
+		$filename = $id. '.' .$type[1];
+		
+		$config = array(
+			'allowed_types' => 'jpg|jpeg|gif|png',
+			'upload_path' => $upload_path,
+			'file_name' => $filename,
+			'overwrite' => TRUE,
+			'max_size' => 2048,
+			'remove_spaces' =>TRUE
+		);
+		
+		$this->upload->initialize($config);
+		
+		if(!$this->upload->do_upload($form_file_name))
+		{
+			print_r($this->upload->display_errors());
+		}
+		
+		//ahora ajustar la imagen
+		$image = $this->upload->data($form_file_name);
+
+		$config = array(
+			'image_library' => 'gd2',
+			'source_image' => $image['full_path'],
+			'new_image' => $images_path,
+			'maintain_ratio' => TRUE,
+			'width' => '230',
+			'height' => '230'
+		);
+		
+		$this->image_lib->initialize($config);
+		$this->image_lib->resize();
+
+		unlink(realpath(APPPATH.UPLOAD_DIR.'/'.$filename));
+	}
 }

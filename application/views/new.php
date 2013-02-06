@@ -54,7 +54,7 @@
 												<li><a href="<?php echo HOME;?>./user/results_casting_list">Resultados</a></li>	
 											</ul>
 										</div>
-									</li>	
+									</li>
 									<li><a href="<?php echo HOME."/user/logout";?>"> <i class="icon-off"></i> Cerrar Sesi&oacuten</a></li>					
 								</ul>
 							</div>
@@ -85,11 +85,7 @@
 							
 							<div style="margin-left: -20px; margin-top: -20px;" id="image_upload">
 								<h5>Sube tu foto</h5>
-								<?php 
-									/*<img src="<?php echo base_url(); ?>img/profile/<?php if(isset($update_values)) echo $update_values["image_profile"]; else echo "user.jpg"; ?>" class="img-polaroid">*/
-									echo form_upload(array('name' => 'image_profile','id'=> 'file'));
-									  
-								?>
+								<?php echo form_upload(array('name' => 'image_profile','id'=> 'file')); ?>
 								<?php 
 									  echo form_hidden('image','');
 									  echo form_error('image'); 

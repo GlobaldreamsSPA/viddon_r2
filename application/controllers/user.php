@@ -265,8 +265,8 @@ class User extends CI_Controller {
 				'age' => $age
 				);
 
-			$args["postulation_flag"]=false;
-			$args["postulation_message"]="Necesitas Tener Videos para poder postular";
+			$args["postulation_flag"] = false;
+			$args["postulation_message"] = "Necesitas Tener Videos para poder postular";
 
 
 			if(isset($user_id) && is_numeric($user_id))

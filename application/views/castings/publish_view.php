@@ -22,37 +22,45 @@
 					    		
 							<div class="space1"></div>
 							<div class="space1"></div>
-							<?php echo form_open('hunter/publish', array('class' => 'form-horizontal')); ?>
+							<?php echo form_open_multipart('hunter/publish', array('class' => 'form-horizontal')); ?>
 								<fieldset>
 								<legend><h2 class="profile-title"> Publicar un nuevo Casting </h2></legend>
 								<div class="control-group">
 									<label class="control-label">T&iacutetulo</label>
 									<div class="controls">
 										<input type="text" name="title" placeholder="Ingrese el título del Casting">
+										<?php echo form_error('title'); ?>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label">Imagen para mostrar</label>
 									<div class="controls">
-										<input type="file" id="file">
+										<?php echo form_upload(array('name' => 'casting_image','id'=> 'file')); ?>
+										<?php
+									  		echo form_hidden('image','');
+									  		echo form_error('image');
+										?>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label">Descripci&oacuten o llamado a postular</label>
 									<div class="controls">
 										<textarea rows="5" name="description" placeholder="Una descripción o llamado a postular a la oferta: si te apasiona el espectáculo, cantas, etc ¡ésta es tu oportunidad!"></textarea>
+										<?php echo form_error('description'); ?>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label">Requerimientos</label>
 									<div class="controls">
 										<textarea rows="3" name="requirements" placeholder="Requerimientos para el casting: color de ojos, color de pelo, etc."></textarea>
+										<?php echo form_error('requirements'); ?>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label">Habilidades</label>
 									<div class="controls">
 										<textarea rows="3" name="skills" placeholder="Los talentos o habilidades necesarios para postular."></textarea>
+										<?php echo form_error('skills'); ?>
 									</div>
 								</div>
 								<div class="control-group">
@@ -178,7 +186,7 @@
 			<div class="span4">
 				<div class="span3">
 					<div  style="border-radius: 25px; padding: 35px; min-width: 290px;" class="row-fluid">
-						<h3 id="profile"> Estado Castings </h3>
+						<h3 id="profile">Estado Castings</h3>
 						<div class="row">
 							<div class= "span6">
 								<h4 class="list-view-title">Casting A1</h3>

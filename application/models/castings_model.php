@@ -10,6 +10,7 @@ class Castings_model extends CI_Model
     function insert($casting)
     {
       $this->db->insert('castings',$casting);
+      return $this->db->insert_id();
     }
 
     function get_castings($hunter_id)

@@ -23,7 +23,7 @@ define('UPLOAD_DIR', '../img/uploads');
 define('IMAGES_DIR', '../img/profile');
 define('USER_PROFILE_IMAGE','http://localhost/release1.0/viddon_r2/img/profile');
 define('HUNTER_PROFILE_IMAGE', 'http://localhost/release1.0/viddon_r2/img/logo_hunter/');
-define('CASTINGS_PATH', '../img/casting_image/');
+define('CASTINGS_PATH', APPPATH.'../img/casting_image/');
 define('OPENID' , APPPATH.'../utils/openid.php');
 define('HOME', 'http://localhost/release1.0/viddon_r2');
 
