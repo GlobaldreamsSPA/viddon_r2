@@ -6,7 +6,7 @@ class Hunter extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper(array('url', 'file', 'form'));
-		$this->load->model(array('hunter_model', 'castings_model'));
+		$this->load->model(array('hunter_model', 'castings_model', 'applies_model'));
 		$this->load->library(array('upload', 'image_lib', 'form_validation'));
 	}
 
@@ -130,15 +130,20 @@ class Hunter extends CI_Controller {
 		if($this->session->userdata('logged_in'))
 		{
 			$hunter_id = $this->session->userdata('logged_in');
-		 	$hunter_id= $hunter_id['id'];
+		 	$hunter_id = $hunter_id['id'];
 	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id);
+	   	 	
+	   	 	//Rescatar las personas que postularon a cada uno de los castings
+	   	 	foreach ($args['castings'] as &$casting) {
+	   	 		$casting['applies'] = $this->applies_model->get_applies_cant($casting['id']);
+	   	 	}
+
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
 			$args['content']='castings/list_view';
-			$this->load->view('template', $args);	
+			$this->load->view('template', $args);
 		}
 		else
 			redirect(HOME);
-
 	}
 	
 	public function logout()

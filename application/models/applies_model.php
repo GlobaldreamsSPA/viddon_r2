@@ -7,6 +7,13 @@ class Applies_model extends CI_Model
         parent::__construct();
     }
 
+    function get_applies_cant($casting_id)
+    {
+    	$this->db->where('casting_id', $casting_id);
+    	$this->db->from('applies');
+    	return $this->db->count_all_results();
+    }
+
     function verify_apply($user_id, $casting_id)
 	{
 		$this->db->where('user_id', $user_id);
