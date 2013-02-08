@@ -16,7 +16,7 @@
 	<div class="container-fluid">
 	  	<div class="row">
 	  		<div class="span9">
-	  			<div  style="border-radius: 25px; padding: 25px;" class="row-fluid">
+	  			<div  style="border-radius: 5px; padding: 25px;" class="row-fluid">
 		  			<div class="row-fluid">		
 				    	<div class="span3 user-profile-left">
 				    		<?php 
@@ -225,7 +225,7 @@
 		
 			<div class="span4">
 				<div class="span3">
-					<div  style="border-radius: 25px; padding: 35px; min-width: 290px;" class="row-fluid">
+					<div  style="border-radius: 5px; padding: 35px; min-width: 290px;" class="row-fluid">
 						<h3 id="profile" >Casting recomendado</h3>
 						<img style="margin-top: 16px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
 		  				<div class="space2"></div>

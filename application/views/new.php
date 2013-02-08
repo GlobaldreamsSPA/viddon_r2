@@ -16,7 +16,7 @@
 	<div class="container-fluid">
 	  	<div class="row">
 	  		<div class="span9">
-	  			<div  style="border-radius: 25px; padding: 25px;" class="row-fluid">
+	  			<div  style="border-radius: 5px; padding: 25px;" class="row-fluid">
 		  			<div class="row-fluid">		
 				    	<div class="span3 user-profile-left">
 				    		<?php 
@@ -70,56 +70,63 @@
 		
 						<!-- Texto -->
 						<div class="span8 offset1">
-							<h3>Quien eres</h3>
-							<input type="text" class="span7" placeholder="Escribe tu Nombre Aqui" value="<?php if(isset($update_values)) echo $update_values["name"]; else echo set_value('name');?>" name="name">
-							<?php echo form_error('name'); ?>
-							<h5>¿C&uacuteal es tu sexo?</h5>
-							<select class="span4" name="sex">
-								<option value="0" <?php if(isset($update_values) && $update_values["sex"]==0) echo "selected='selected'";?>>Femenino</option>
-								<option value="1"  <?php if(isset($update_values) && $update_values["sex"]==1) echo "selected='selected'";?>>Masculino</option>
-							</select>
-							<h5>¿Y tu edad?</h5>
-								<?php
-								if(isset($update_values)) $age_set=$update_values["age"]; else $age_set=18; 
-								echo form_dropdown('age', $age, $age_set, "class='span4'") ?> <br/>
-							
-							<div style="margin-left: -20px; margin-top: -20px;" id="image_upload">
-								<h5>Sube tu foto</h5>
-								<?php echo form_upload(array('name' => 'image_profile','id'=> 'file')); ?>
-								<?php 
-									  echo form_hidden('image','');
-									  echo form_error('image'); 
-								?>
+							<legend><h3>Cu&eacutentanos Sobre T&iacute</h3></legend>
+							<div style="margin-left:15px;">
+								<h5>¿C&uacuteal es tu nombre?</h5>
+								<input type="text" style="width: 235px;" placeholder="Escribe tu Nombre Aqui" value="<?php if(isset($update_values)) echo $update_values["name"]; else echo set_value('name');?>" name="name">
+								
+								<?php echo form_error('name'); ?>
+								<h5>¿C&uacuteal es tu sexo?</h5>
+								<select style='width: 245px;' class="span4" name="sex">
+									<option value="0" <?php if(isset($update_values) && $update_values["sex"]==0) echo "selected='selected'";?>>Femenino</option>
+									<option value="1"  <?php if(isset($update_values) && $update_values["sex"]==1) echo "selected='selected'";?>>Masculino</option>
+								</select>
+								<h5>¿Y tu edad?</h5>
+									<?php
+									if(isset($update_values)) $age_set=$update_values["age"]; else $age_set=18; 
+									echo form_dropdown('age', $age, $age_set, "style='width: 245px;'") ?> <br/>
+								
+								<div style="margin-left: -15px; margin-top: -20px;" id="image_upload">
+									<h5>Sube una imagen de t&iacute</h5>
+									<?php echo form_upload(array('name' => 'image_profile','id'=> 'file')); ?>
+									<?php 
+										  echo form_hidden('image','');
+										  echo form_error('image'); 
+									?>
+								</div>
+								
+								<div class="space2"></div>
 							</div>
+							<legend>Informaci&oacuten P&uacuteblica</legend>
 							
-							<div class="space1"></div>
-							
-							<h3>Selecciona tus habilidades</h3>
-								<?php 
-								$skill_selected= array();
-								for ($i=0; $i<3; $i++)
-								{
-									if(isset($update_user_skills[$i]))
-										$skill_selected[$i]=$update_user_skills[$i];
-									else 
-										$skill_selected[$i]=0;
-										
-								}
-								echo form_multiselect('skills[]', $skills, $skill_selected,"class='chzn-select' style='width:200px' data-placeholder='Selecciona los tags...'");
-								?>
-							<h3>Bio</h3>
-								<textarea class="rich_textarea" name="bio"><?php if(isset($update_values)) echo $update_values["bio"]; else echo set_value('bio');?></textarea>
-								<?php echo form_error('bio'); ?>
-							<h3>Hobbies</h3>
-								<textarea class="rich_textarea" name="hobbies"><?php if(isset($update_values)) echo $update_values["hobbies"]; else echo set_value('hobbies');?></textarea>
-								<?php echo form_error('hobbies'); ?>
-							<h3>Mi Sueño</h3>
-								<textarea class="rich_textarea" name="dreams"><?php if(isset($update_values)) echo $update_values["dreams"]; else echo set_value('dreams');?></textarea>
-								<?php echo form_error('dreams'); ?>
-							<div class="space2"></div>
-								<button class="btn btn-primary" type="submit"> Guardar Datos </button>
-							</form>
-							<div class="space4"></div>
+							<div style="margin-left:15px;">
+								<h5>Selecciona tus habilidades</h5>
+									<?php 
+									$skill_selected= array();
+									for ($i=0; $i<3; $i++)
+									{
+										if(isset($update_user_skills[$i]))
+											$skill_selected[$i]=$update_user_skills[$i];
+										else 
+											$skill_selected[$i]=0;
+											
+									}
+									echo form_multiselect('skills[]', $skills, $skill_selected,"class='chzn-select' style='width:245px' data-placeholder='Selecciona los tags...'");
+									?>
+								<h5>Biograf&iacutea</h5>
+									<textarea class="rich_textarea" name="bio"><?php if(isset($update_values)) echo $update_values["bio"]; else echo set_value('bio');?></textarea>
+									<?php echo form_error('bio'); ?>
+								<h5>tus Hobbies</h5>
+									<textarea class="rich_textarea" name="hobbies"><?php if(isset($update_values)) echo $update_values["hobbies"]; else echo set_value('hobbies');?></textarea>
+									<?php echo form_error('hobbies'); ?>
+								<h5>Tus Sueños</h5>
+									<textarea class="rich_textarea" name="dreams"><?php if(isset($update_values)) echo $update_values["dreams"]; else echo set_value('dreams');?></textarea>
+									<?php echo form_error('dreams'); ?>
+								<div class="space2"></div>
+									<button class="btn btn-primary" type="submit"> Guardar Datos </button>
+								</form>
+								<div class="space4"></div>
+							</div>
 						</div>
 					
 					</div>
@@ -128,7 +135,7 @@
 		
 			<div class="span4">
 				<div class="span3">
-					<div  style="border-radius: 25px; padding: 35px; min-width: 290px;" class="row-fluid">
+					<div  style="border-radius: 5px; padding: 35px; min-width: 290px;" class="row-fluid">
 						<h3 id="profile" >Casting recomendado</h3>
 						<img style="margin-top: 16px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
 		  				<div class="space2"></div>

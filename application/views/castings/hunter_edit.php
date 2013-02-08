@@ -2,7 +2,7 @@
 	<div class="container-fluid">
 	  	<div class="row">
 	  		<div class="span9">
-	  			<div  style="border-radius: 25px; padding: 25px;" class="row-fluid">
+	  			<div  style="border-radius: 5px; padding: 25px;" class="row-fluid">
 		  			<div class="row-fluid">		
 				    	<div class="span3 user-profile-left">
 				    		<?php 
@@ -26,41 +26,43 @@
 					    <div class="span9 user-profile-right">
 
 							<div class="space1"></div>
-							<Legend><h3>Identificaci&oacuten Empresa/Agencia</h3></Legend>
-							<h5>Nombre Empresa</h5>
-							<div class="space05"></div>
-							<input type="text" class="span5" placeholder="Nombre Empresa/Agencia" value="<?php if(isset($update_values)) echo $update_values["name"]; else echo set_value('name');?>" name="name">
-							<?php echo form_error('name'); ?>
-							<h5>Correo de Contacto</h5>
-							<div class="space05"></div>
-							<input type="text" class="span5" placeholder="Correo Contacto" value="<?php if(isset($update_values)) echo $update_values["email"]; else echo set_value('email');?>" name="name">
-							<?php echo form_error('email'); ?>
-														
-							<div style="margin-left: -15px; margin-top: -20px;" id="image_upload">
-								<h5>Logo Corporativo</h5>
+								<Legend><h3>Identificaci&oacuten Empresa/Agencia</h3></Legend>
+								<div  style="margin-left: 20px;">
+								<h5>Nombre Empresa</h5>
 								<div class="space05"></div>
-								<?php echo form_upload(array('name' => 'image_profile','id'=> 'file')); ?>
-								<?php 
-									  echo form_hidden('image','');
-									  echo form_error('image'); 
-								?>
+								<input type="text" class="span5" placeholder="Nombre Empresa/Agencia" value="<?php if(isset($update_values)) echo $update_values["name"]; else echo set_value('name');?>" name="name">
+								<?php echo form_error('name'); ?>
+								<h5>Correo de Contacto</h5>
+								<div class="space05"></div>
+								<input type="text" class="span5" placeholder="Correo Contacto" value="<?php if(isset($update_values)) echo $update_values["email"]; else echo set_value('email');?>" name="name">
+								<?php echo form_error('email'); ?>
+															
+								<div style="margin-left: -15px; margin-top: -20px;" id="image_upload">
+									<h5>Logo Corporativo</h5>
+									<div class="space05"></div>
+									<?php echo form_upload(array('name' => 'image_profile','id'=> 'file')); ?>
+									<?php 
+										  echo form_hidden('image','');
+										  echo form_error('image'); 
+									?>
+								</div>
+								
+								<div class="space2"></div>
+								
+								<h5>Nosotros</h5>
+								<div class="space05"></div>
+								<textarea class="rich_textarea" name="us"><?php if(isset($update_values)) echo $update_values["bio"]; else echo set_value('bio');?></textarea>
+								<?php echo form_error('us'); ?>
+								
+								<h5>Buscamos</h5>
+								<div class="space05"></div>
+								<textarea class="rich_textarea" name="looking_for"><?php if(isset($update_values)) echo $update_values["hobbies"]; else echo set_value('hobbies');?></textarea>
+								<?php echo form_error('looking_for'); ?>
+								<div class="space2"></div>
+									<button class="btn btn-primary" type="submit"> Guardar Datos </button>
+								</form>
+								<div class="space4"></div>
 							</div>
-							
-							<div class="space2"></div>
-							
-							<h5>Nosotros</h5>
-							<div class="space05"></div>
-							<textarea class="rich_textarea" name="us"><?php if(isset($update_values)) echo $update_values["bio"]; else echo set_value('bio');?></textarea>
-							<?php echo form_error('us'); ?>
-							
-							<h5>Buscamos</h5>
-							<div class="space05"></div>
-							<textarea class="rich_textarea" name="looking_for"><?php if(isset($update_values)) echo $update_values["hobbies"]; else echo set_value('hobbies');?></textarea>
-							<?php echo form_error('looking_for'); ?>
-							<div class="space2"></div>
-								<button class="btn btn-primary" type="submit"> Guardar Datos </button>
-							</form>
-							<div class="space4"></div>
 						</div>
 					</div>
 					<div class="row-fluid">	
@@ -72,7 +74,7 @@
 		
 			<div class="span4">
 				<div class="span3">
-					<div  style="border-radius: 25px; padding: 35px; min-width: 290px;" class="row-fluid">
+					<div  style="border-radius: 5px; padding: 35px; min-width: 290px;" class="row-fluid">
 						<h3 id="profile"> Estado Castings </h3>
 						<div class="row">
 							<div class= "span6">

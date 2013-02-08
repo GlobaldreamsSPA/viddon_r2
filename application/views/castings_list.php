@@ -1,6 +1,6 @@
 <div class="content" id="content">	
 	<div class="container-fluid">
-			<div style="border-radius:25px; padding:20px; max-width: 1250px;" class="row-fluid">
+			<div style="border-radius: 5px; padding:20px; max-width: 1250px;" class="row-fluid">
 			
 			<div class="row control-group">
 				<div class="span2 offset1">

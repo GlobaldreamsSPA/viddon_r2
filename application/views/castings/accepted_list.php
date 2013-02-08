@@ -2,7 +2,7 @@
 	<div class="container-fluid">
 	  	<div class="row">
 	  		<div class="span9">
-	  			<div  style="border-radius: 25px; padding: 25px;" class="row-fluid">
+	  			<div  style="border-radius: 5px; padding: 25px;" class="row-fluid">
 		  			<div class="row-fluid">		
 				    	<div class="span3 user-profile-left">
 				    		<img class='user_image' src="<?php echo HOME."/img/logo_hunter/".$user_data['logo'] ?>"/>
@@ -306,7 +306,7 @@
 		
 			<div class="span4">
 				<div class="span3">
-					<div  style="border-radius: 25px; padding: 35px; min-width: 290px;" class="row-fluid">
+					<div  style="border-radius: 5px; padding: 35px; min-width: 290px;" class="row-fluid">
 						<h3 id="profile"> Estado Castings </h3>
 						<div class="row">
 							<div class= "span6">
