@@ -1,3 +1,19 @@
+<?php	for ($i=1; $i <5 ; $i++) {?>
+	<div id="modal<?php echo $i; ?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+	    <h3 id="myModalLabel">Observaciones</h3>
+	  </div>
+	  <div class="modal-body">
+		<input type="text" value="" placeholder="campo no obligatorio">
+	  </div>
+	  <div class="modal-footer">
+	    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+	    <button class="btn btn-primary">Guardar</button>
+	  </div>
+	</div>
+<?php }	?>
+
 <div class="content" id="content">
 	<div class="container-fluid">
 	  	<div class="row">
@@ -78,13 +94,13 @@
 									
 									<row style="float: right;">
 										
-										<button style="text-align: right;" class="btn btn-success">
+										<a data-toggle="modal" href="#modal1" style="text-align: right;" class="btn btn-success">
 											<i class="icon-ok"></i>
-										</button>
+										</a>
 										
-										<button style="text-align: right;" class="btn btn-danger">
+										<a style="text-align: right;" class="btn btn-danger">
 											<i class="icon-remove"></i>
-										</button>
+										</a>
 										
 									</row>
 								</div>
@@ -130,13 +146,13 @@
 									
 									<row style="float: right;">
 										
-										<button style="text-align: right;" class="btn btn-success">
+										<a data-toggle="modal" href="#modal2" style="text-align: right;" class="btn btn-success">
 											<i class="icon-ok"></i>
-										</button>
+										</a>
 										
-										<button style="text-align: right;" class="btn btn-danger">
+										<a style="text-align: right;" class="btn btn-danger">
 											<i class="icon-remove"></i>
-										</button>
+										</a>
 										
 									</row>
 								</div>
@@ -182,13 +198,13 @@
 									
 									<row style="float: right;">
 										
-										<button style="text-align: right;" class="btn btn-success">
+										<a data-toggle="modal" href="#modal3" style="text-align: right;" class="btn btn-success">
 											<i class="icon-ok"></i>
-										</button>
+										</a>
 										
-										<button style="text-align: right;" class="btn btn-danger">
+										<a style="text-align: right;" class="btn btn-danger">
 											<i class="icon-remove"></i>
-										</button>
+										</a>
 										
 									</row>
 								</div>
@@ -233,13 +249,13 @@
 									</row>
 									<row style="float: right;">
 										
-										<button style="text-align: right;" class="btn btn-success">
+										<a data-toggle="modal" href="#modal4" style="text-align: right;" class="btn btn-success">
 											<i class="icon-ok"></i>
-										</button>
+										</a>
 										
-										<button style="text-align: right;" class="btn btn-danger">
+										<a style="text-align: right;" class="btn btn-danger">
 											<i class="icon-remove"></i>
-										</button>
+										</a>
 										
 									</row>
 								</div>
