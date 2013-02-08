@@ -23,8 +23,6 @@ class Hunter extends CI_Controller {
 		}
 		else
 			redirect(HOME);
-
-
 	}
 
 	function verifylogin()
@@ -112,7 +110,9 @@ class Hunter extends CI_Controller {
 
 					//Por ultimo subir la foto
 					$form_file_name = 'casting_image';
-					$this->_upload_image($casting_id, realpath(CASTINGS_PATH), $form_file_name);
+					$filename = $this->_upload_image($casting_id, realpath(CASTINGS_PATH), $form_file_name);
+
+					$this->castings_model->insert_image($casting_id, $filename);
 					redirect('hunter/casting_list');
 				}
 			}
@@ -154,10 +154,10 @@ class Hunter extends CI_Controller {
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id = $hunter_id['id'];
 	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id);
-	   	 	$args["tags"] = array("reality show","danza","actuaci&oacuten","m&uacutesica","canto");			
+	   	 	$args["tags"] = array("reality show","danza","actuaci&oacuten","m&uacutesica","canto");		
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
 			$args['content'] = 'castings/hunter_casting_detail';
-			$this->load->view('template', $args);	
+			$this->load->view('template', $args);
 		}
 		else
 			redirect(HOME);
@@ -250,5 +250,7 @@ class Hunter extends CI_Controller {
 		$this->image_lib->resize();
 
 		unlink(realpath(APPPATH.UPLOAD_DIR.'/'.$filename));
+
+		return $filename;
 	}
 }

@@ -13,6 +13,13 @@ class Castings_model extends CI_Model
       return $this->db->insert_id();
     }
 
+    function insert_image($casting_id, $filename)
+    {
+        $data = array('image' => $filename);
+        $this->db->where('id', $casting_id);
+        $this->db->update('castings', $data);
+    }
+
     function get_castings($hunter_id)
     {
     	$this->db->select('image');
