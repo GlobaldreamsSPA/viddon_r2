@@ -21,29 +21,28 @@
 					    <div class="span9 user-profile-right">
 					    		
 							<legend><h2 class="profile-title"> Castings Publicados </h2></legend>
-			
-							
+							<?php foreach($castings as $casting){ ?>
 							<div class="row">
 								<div class="space1"></div>
 								<div class="row">
 									<div style="margin-top: 13px;" class="span1 offset1">
-				    					<img class='list_view_logo' src="<?php echo HOME."/img/logo_hunter/".$user_data['logo'] ?>"/>
+				    					<img class='list_view_logo' src="<?php echo $casting['logo'] ?>"/>
 									</div>
 									<div class="span5">
-										<h3 class="list-view-title">Casting A Canal 13</h3>
+										<h3 class="list-view-title"><?php echo $casting['title'] ?></h3>
 									</div>
 								</div>
 
 								<div class="span11">
 									<div class="span7">
-										<img id="image_casting" src=<? echo HOME."/img/casting_image/castings_dummy.png"?> />
+										<img id="image_casting" src="<?php echo $casting['image'] ?>"/>
 									</div>
 									<div class="space05"></div>
 									<div class="span5 list-view-applies-desc">
 																													
 										<div class="row">
 											<div class="list-view-applies">
-												<h5 class="list-view-applies-count span2"><p>50</p></h5>
+												<h5 class="list-view-applies-count span2"><p><?php echo $casting['applies'] ?></p></h5>
 												<h5 class="list-view-applies-text">Personas ya postularon</h5>
 											</div>
 										</div>
@@ -53,13 +52,13 @@
 												<label>Estado Casting: </label>
 											</div>
 											<div class="span4 offset1">
-										 		<span class="label label-info">En revisi&oacuten</span>
+										 		<span class="label label-info"><?php echo $casting['status'] ?></span>
 											</div>
 										</div>
 										
 										<div class="row">
 											<div class="span4 offset1">
-												<div id="time">0 d&iacuteas</div>
+												<div id="time"><?php echo $casting['days'] ?> d&iacuteas</div>
 											</div>
 											<div class="span4 offset3">
 												<button style="margin-top: 10px;" class="btn btn-info" type="button">Detalle</button>
@@ -68,97 +67,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="space1"></div>
-								<div class="row">
-									<div style="margin-top: 13px;" class="span1 offset1">
-				    					<img class='list_view_logo' src="<?php echo HOME."/img/logo_hunter/".$user_data['logo'] ?>"/>
-									</div>
-									<div class="span5">
-										<h3 class="list-view-title">Casting A Canal 13</h3>
-									</div>
-								</div>
-
-								<div class="span11">
-									<div class="span7">
-										<img id="image_casting" src=<? echo HOME."/img/casting_image/castings_dummy.png"?> />
-									</div>
-									<div class="space05"></div>
-									<div class="span5 list-view-applies-desc">
-																													
-										<div class="row">
-											<div class="list-view-applies">
-												<h5 class="list-view-applies-count span2"><p>50</p></h5>
-												<h5 class="list-view-applies-text">Personas ya postularon</h5>
-											</div>
-										</div>
-
-										<div class="row">
-											<div class="span6 offset1">
-												<label>Estado Casting: </label>
-											</div>
-											<div class="span4 offset1">
-										 		<span class="label label-info">En revisi&oacuten</span>
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="span4 offset1">
-												<div id="time">0 d&iacuteas</div>
-											</div>
-											<div class="span4 offset3">
-												<button style="margin-top: 10px;" class="btn btn-info" type="button">Detalle</button>
-											</div>
-										</div>	
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="space1"></div>
-								<div class="row">
-									<div style="margin-top: 13px;" class="span1 offset1">
-				    					<img class='list_view_logo' src="<?php echo HOME."/img/logo_hunter/".$user_data['logo'] ?>"/>
-									</div>
-									<div class="span5">
-										<h3 class="list-view-title">Casting A Canal 13</h3>
-									</div>
-								</div>
-
-								<div class="span11">
-									<div class="span7">
-										<img id="image_casting" src=<? echo HOME."/img/casting_image/castings_dummy.png"?> />
-									</div>
-									<div class="space05"></div>
-									<div class="span5 list-view-applies-desc">
-																													
-										<div class="row">
-											<div class="list-view-applies">
-												<h5 class="list-view-applies-count span2"><p>50</p></h5>
-												<h5 class="list-view-applies-text">Personas ya postularon</h5>
-											</div>
-										</div>
-
-										<div class="row">
-											<div class="span6 offset1">
-												<label>Estado Casting: </label>
-											</div>
-											<div class="span4 offset1">
-										 		<span class="label label-info">En revisi&oacuten</span>
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="span4 offset1">
-												<div id="time">0 d&iacuteas</div>
-											</div>
-											<div class="span4 offset3">
-												<button style="margin-top: 10px;" class="btn btn-info" type="button">Detalle</button>
-											</div>
-										</div>	
-									</div>
-								</div>
-							</div>
-							
+							<?php } ?>
 						</div>
 					</div>
 					<div class="row-fluid">	
