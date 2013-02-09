@@ -26,6 +26,7 @@
 	<script src="<?php echo base_url()?>js/jquery.uniform.js"></script>
 	<script src="<?php echo base_url()?>js/jquery.dataTables.js"></script>
 	<script src="<?php echo base_url()?>js/bootstrap-datepicker.js"></script>
+	<script src="<?php echo base_url()?>js/jquery.ba-resize.js"></script>
 
 
 
@@ -125,8 +126,9 @@
 		</div>
 	</div>
 
-	<?php $this->load->view($content); ?>
-		<script type="text/javascript">
+	<?php $this->load->view($content,$inner_args); ?>
+	
+	<script type="text/javascript">
 	      $(document).ready(function() {
 	        $("textarea.rich_textarea").cleditor({
 	          width:        500, // width not including margins, borders or padding
@@ -203,6 +205,18 @@
 		}(document, 'script', 'facebook-jssdk'));
 
 		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+    	
+    	$('#grow').css({
+			'height': $('#variable').height()
+		});
+    	
+    	jQuery('#variable').bind( 'resize', function(e) {
+			  
+			$('#grow').css({
+				    'height': $('#variable').height()
+			});
+		});
+			    	    
     </script>
 </body>
 

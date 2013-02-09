@@ -47,7 +47,8 @@ class Home extends CI_Controller {
 			array_push($args["video_list"], $video_data);
 		}
     
-		$args["content"]="home_view";
+		$args["content"]="home/home_view";
+		$args["inner_args"]=NULL;
 		$this->load->view('template',$args);
 	}
 
@@ -88,7 +89,8 @@ class Home extends CI_Controller {
 		
 		$args["chunks"]=ceil($this->videos_model->count() / 9);
 		$args["page"]=$page;
-		$args['content']='video_list';
+		$args['content']='home/video_list';		
+		$args["inner_args"]=NULL;
 		
 		$this->load->view('template',$args);
 	}
@@ -114,7 +116,8 @@ class Home extends CI_Controller {
 		$args["chunks"]=ceil(count($casting_list) / 9);
 		$args["casting_list"]= array_slice($args["casting_list"],9*($page-1),9*$page);
 		$args["page"]=$page;
-		$args['content']='castings_list';
+		$args['content']='home/castings_list';	
+		$args["inner_args"]=NULL;
 		
 		$this->load->view('template',$args);
 	}
@@ -122,20 +125,30 @@ class Home extends CI_Controller {
 	public function login_hunter()
 	{
 		$this->load->helper('form');
-		$args['content'] = 'castings/login_hunter';
+		$args['content'] = 'home/login_hunter';
+		$args['inner_args'] = NULL;
 		$this->load->view('template',$args);
 	}
 
 	public function what_is()
 	{
-		$args['content'] = 'what_is';
+		$args['content'] = 'home/what_is';		
+		$args["inner_args"]=NULL;
 		$this->load->view('template',$args);
 	}
 
 	public function terms()
 	{
-		$args['content'] = 'terms';
+		$args['content'] = 'home/terms';		
+		$args["inner_args"]=NULL;
 		$this->load->view('template',$args);
 	}
 
+	public function casting_detail()
+	{
+		$args["content"]="home/casting_detail";
+		$args["inner_args"]=NULL;
+		$args["tags"]=array("reality show","danza","actuaci&oacuten","m&uacutesica","canto");
+		$this->load->view('template',$args);
+	}
 }

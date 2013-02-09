@@ -1,23 +1,4 @@
-<div id="error" class="modal hide fade in">
-<div class="modal-header">
-<a class="close" data-dismiss="modal">×</a>  
-</div>
-<div class="modal-body">
-<h4>Aviso</h4>
-<p><?php if(isset($postulation_message)) echo $postulation_message; ?></p>              
-</div>
-<div class="modal-footer">
-<?php echo anchor(HOME,'Volver al Home',"class='btn btn-green'"); ?>
-<a href="#" class="btn" data-dismiss="modal">Volver al Perfil</a>
-</div>
-</div>
-
-<div class="content" id="content">
-	<div class="container-fluid">
-	  	<div class="row">
-	  		<div class="span9">
-	  			<div  style="border-radius: 5px; padding: 25px;" class="row-fluid">
-		  			<div class="row-fluid">		
+	  			<div class="row-fluid">		
 				    	<div class="span3 user-profile-left">
 				    		<?php 
 				    			if(file_exists(APPPATH.'/../img/profile/'.$image_profile) == TRUE)
@@ -220,28 +201,4 @@
 							<div class="space4"></div>						
 						</div>					
 					</div>
-				</div>
-			</div>	
-		
-			<div class="span4">
-				<div class="span3">
-					<div  style="border-radius: 5px; padding: 35px; min-width: 290px;" class="row-fluid">
-						<h3 id="profile" >Casting recomendado</h3>
-						<img style="margin-top: 16px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
-		  				<div class="space2"></div>
-						<h3 id="profile" >Galeria Videos</h3>
-						<img style="margin-top: 16px;" src="<?php echo HOME.'/img/dummy_galeria_videos.png';?>">
-		  				<a style="text-decoration: underline; float: right;" ref="#">(Ver mas)</a>
-		  				<div class="space2"></div>						
-						<h3 id="profile" >Galeria Fotos</h3>
-						<img style="margin-top: 16px;"  src="<?php echo HOME.'/img/dummy_galeria_fotos.png';?>">
-						<a style="text-decoration: underline; float: right;" ref="#">(Ver mas)</a>
-						<div class="space4"></div>
-					</div>
-				</div>
-			</div>
-			
-		</div>
-		
-		</div>
-</div>
+				

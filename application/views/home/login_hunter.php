@@ -2,14 +2,14 @@
 	<div class="container-fluid">
 	  	<div class="row">
 	  		<div class="span9">
-	  			<div style="padding: 25px; border-radius: 5px; height:610px;"class="row-fluid">
+	  			<div style="padding: 25px; border-radius: 5px; height:560px;"class="row-fluid">
 	  				<div class="space2"></div>
 	  				<image src='<?php echo HOME; ?>/img/foto_login_hunter.png' />
 	  			</div>
 	  		</div>
 	  		<div class="span4">
 	  			<div class="span3">
-		  			<div class="row-fluid" style="border-radius: 5px; padding:35px; min-width: 290px;">	
+		  			<div class="row-fluid" style="border-radius: 5px; padding:25px; min-width: 290px;">	
 				  		<?php echo form_open('hunter/verifylogin', array('class' => 'form-horizontal')); ?>
 				  			<h4>Ingreso Hunter</h4>
 							<input class="input-xlarge" name="email" value="<?php echo set_value('email'); ?>" type="text" id="inputEmail" placeholder="Email">
@@ -21,7 +21,7 @@
 						</form>
 					</div>
 					<div class="space1"></div>
-					<div class="row-fluid" style="border-radius: 5px; padding:26px; min-width: 307px;">
+					<div class="row-fluid" style="border-radius: 5px; padding:25px; min-width: 290px;">
 						<form class="form-horizontal">
 							<h4>Cont&aacutectanos</h4>
 				            <input class="input-xlarge" type="text" name="contact_name" id="input1" placeholder="Nombre">

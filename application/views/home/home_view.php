@@ -2,7 +2,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class= "span9">
-		  		<div style="border-radius: 5px; padding:25px;" class="row-fluid">
+		  		<div style="border-radius: 5px; padding:25px;" id="variable" class="row-fluid">
 		  			
 		  			<div style="margin-left:75px; margin-top:30px; height: 250px; width: 700px;" id="myCarousel" class="carousel slide">
 					  <!-- Carousel items -->
@@ -55,7 +55,7 @@
 			</div>
 			<div class="span4">
 				<div class="span3">
-			  		<div style="border-radius: 5px; padding:35px; min-width: 290px;"class="row-fluid">
+			  		<div style="border-radius: 5px; padding:25px; min-width: 290px;" id="grow" class="row-fluid">
 			  			<h2 id="profile"  style="font-weight:bold;">Castings Destacados</h3>
 		  				<img style="margin-top: 41px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
 		  				<img style="margin-top: 50px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
@@ -64,7 +64,7 @@
 		  				<img style="margin-top: 50px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
 		  				<img style="margin-top: 50px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
 						<img style="margin-top: 50px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
-		  				<img style="margin-top: 50px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
+						<img style="margin-top: 50px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
 						<div class= "space4"></div>
 						<a style="text-decoration: underline; float: right;" href="<?php echo HOME;?>/home/casting_list">(Ver Todos Los Castings)</a>
 					</div>

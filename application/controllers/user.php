@@ -69,7 +69,9 @@ class User extends CI_Controller {
 			$args["dislikes"] = "0";
 			$args["likes"] = "0";
 		}
-		$args["content"] = "user_profile";
+		$args["content"]="applicants/applicants_template";
+		$inner_args["applicant_content"]="applicants/user_profile";
+		$args["inner_args"]=$inner_args;
 		//El usuario hace click en postular al concurso
 
 		if($this->videos_model->verify_videos($id) != 1)
@@ -260,10 +262,13 @@ class User extends CI_Controller {
 			}
 
 			$args = array(
-				'content' => 'new',
 				'skills' => $skills,
 				'age' => $age
 				);
+				
+			$args["content"]="applicants/applicants_template";
+			$inner_args["applicant_content"]="applicants/new";
+			$args["inner_args"]=$inner_args;
 
 			$args["postulation_flag"] = false;
 			$args["postulation_message"] = "Necesitas Tener Videos para poder postular";
@@ -344,7 +349,9 @@ class User extends CI_Controller {
 		$public = FALSE;
 		
 		$args = $this->user_model->select($id);
-		$args["content"]="active_casting_list";
+		$args["content"]="applicants/applicants_template";
+		$inner_args["applicant_content"]="applicants/active_casting_list";
+		$args["inner_args"]=$inner_args;
 		$args['public'] = $public;
 
 		if($this->videos_model->verify_videos($id) != 1)
@@ -370,7 +377,9 @@ class User extends CI_Controller {
 		$public = FALSE;
 
 		$args = $this->user_model->select($id);
-		$args["content"]="results_casting_list";
+		$args["content"]="applicants/applicants_template";
+		$inner_args["applicant_content"]="applicants/results_casting_list";
+		$args["inner_args"]=$inner_args;
 		$args['public'] = $public;
 
 		if($this->videos_model->verify_videos($id) != 1)
