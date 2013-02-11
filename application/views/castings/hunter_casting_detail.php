@@ -13,11 +13,11 @@
 							</div>
 				    	</div>
 						<div class= "span9">			
-					  			<legend><h2 class="profile-title"> Detalle Castings </h2></legend>
+					  			<legend><h3 class="profile-title"> <a href="<?php echo HOME.'/hunter/casting_list' ?>">Castings/</a> Detalle Castings </h3></legend>
 					  			<div class="space05"></div>
 					  			<row>
 						  			<div class="span3">
-						  				<h2 id="profile" style="font-weight:bold;"> Casting A</h2>
+						  				<h3 id="profile" style="font-weight:bold;"> Casting A</h3>
 						  			</div>					  				
 						  			<div style="margin-top:15px;" class="span4">
 						  				<button> Vista Publica</button>
@@ -37,7 +37,7 @@
 											echo '</ul>';
 								?>
 								<div class="space2"></div>
-								<h2 id="profile" style="font-weight:bold;"> Estadisticas</h2>
+								<h3 id="profile" style="font-weight:bold;"> Estadisticas</h3>
 								<div class ="row">
 									<div style="margin-left: 30px;"  class="span8">						
 										<div class="space1"></div>
@@ -75,13 +75,13 @@
 										<div class="space1"></div>
 									</div>
 								</div>
-								<h2 id="profile" style="font-weight:bold;"> Postulantes</h2>
+								<h3 id="profile" style="font-weight:bold;"> Postulantes</h3>
 								<img style=" margin-top:10px; height: 150px; width: 600px;" src="<?php echo HOME.'/img/lista_usuarios_dummy.png';?>">
-								<a style="text-decoration: underline; float: right;"> (Ver Todos Los Postulantes)</a>
+								<a href="<?php echo HOME.'/hunter/applicants_list' ?>" style="float: right;"> (Ver Todos Los Postulantes)</a>
 								<div class="space2"></div>
-								<h2 id="profile" style="font-weight:bold;"> Seleccionados</h2>
+								<h3 id="profile" style="font-weight:bold;"> Seleccionados</h3>
 								<img style=" margin-top:10px; height: 150px; width: 600px;" src="<?php echo HOME.'/img/lista_usuarios_dummy.png';?>">
-								<a style="text-decoration: underline; float: right;"> (Ver Todos Los Seleccionados)</a>
+								<a href="<?php echo HOME.'/hunter/accepted_list' ?>" style="float: right;"> (Ver Todos Los Seleccionados)</a>
 						</div>
 						    
 					    

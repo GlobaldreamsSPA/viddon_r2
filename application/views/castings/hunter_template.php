@@ -12,11 +12,11 @@
 					<div  style="border-radius: 5px; padding: 25px; min-width: 290px;" id="grow" class="row-fluid">
 						<h3 id="profile"> Estado Castings </h3>
 						<div class="row">
-							<div class= "span6">
+							<div class= "span5 offset1">
 								<h4 class="list-view-title">Casting A1</h3>
 							</div>
-							<div class= "span6">
-								<div id="time">Quedan 102 d&iacuteas</div>
+							<div class= "span5 offset1">
+								<div id="time">102 d&iacuteas</div>
 							</div>
 						</div>
 						<div class="progress">
@@ -28,11 +28,11 @@
 						</div>
 						
 						<div class="row">
-							<div class= "span6">
+							<div class= "span5 offset1">
 								<h4 class="list-view-title">Casting A2</h3>
 							</div>
-							<div class= "span6">
-								<div id="time">Quedan 132 d&iacuteas</div>
+							<div class= "span5 offset1">
+								<div id="time">132 d&iacuteas</div>
 							</div>
 						</div>
 						<div class="progress">
@@ -44,11 +44,11 @@
 						</div>
 						
 						<div class="row">
-							<div class= "span6">
+							<div class= "span5 offset1">
 								<h4 class="list-view-title">Casting B</h3>
 							</div>
-							<div class= "span6">
-								<div id="time">Quedan 72 d&iacuteas</div>
+							<div class= "span5 offset1">
+								<div id="time">72 d&iacuteas</div>
 							</div>
 						</div>
 						<div class="progress">
@@ -60,11 +60,11 @@
 						</div>
 						
 						<div class="row">
-							<div class= "span6">
+							<div class= "span5 offset1">
 								<h4 class="list-view-title">Casting C</h3>
 							</div>
-							<div class= "span6">
-								<div id="time">Quedan 12 d&iacuteas</div>
+							<div class= "span5 offset1">
+								<div id="time">12 d&iacuteas</div>
 							</div>
 						</div>
 						<div class="progress">
@@ -76,11 +76,11 @@
 						</div>
 						
 						<div class="row">
-							<div class= "span6">
+							<div class= "span5 offset1">
 								<h4 class="list-view-title">Casting D</h3>
 							</div>
-							<div class= "span6">
-								<div id="time">Quedan 0 d&iacuteas</div>
+							<div class= "span5 offset1">
+								<div id="time">0 d&iacuteas</div>
 							</div>
 						</div>
 						<div class="progress">
@@ -92,11 +92,11 @@
 						</div>
 
 						<div class="row">
-							<div class= "span6">
+							<div class= "span5 offset1">
 								<h4 class="list-view-title">Casting E</h3>
 							</div>
-							<div class= "span6">
-								<div id="time">Quedan 0 d&iacuteas</div>
+							<div class= "span5 offset1">
+								<div id="time">0 d&iacuteas</div>
 							</div>
 						</div>
 						<div class="progress">

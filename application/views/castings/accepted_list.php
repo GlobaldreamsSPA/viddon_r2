@@ -17,7 +17,7 @@
 					    		
 							<row>								
 								<div class="span9"> 
-									<h2 class="profile-title"> Postulantes Seleccionados </h2>
+									<h3 class="profile-title"><a href="<?php echo HOME.'/hunter/casting_list' ?>">Castings/</a><a href="<?php echo HOME.'/hunter/casting_detail' ?>">Casting A/</a> Seleccionados </h3>
 								</div>
 								<div class="span3">
 									<a style="margin-top: 15px;" class="btn" href="#">

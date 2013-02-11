@@ -15,7 +15,7 @@
 					    
 					    <div class="span9 user-profile-right">
 					    		
-							<legend><h2 class="profile-title"> Castings Publicados </h2></legend>
+							<legend><h3 class="profile-title"> Castings Publicados </h3></legend>
 							<?php foreach($castings as $casting){ ?>
 							<div class="row">
 								<div class="space1"></div>
@@ -24,7 +24,7 @@
 				    					<img class='list_view_logo' src="<?php echo $casting['logo'] ?>"/>
 									</div>
 									<div class="span5">
-										<h3 class="list-view-title"><?php echo $casting['title'] ?></h3>
+										<h4 class="list-view-title"><?php echo $casting['title'] ?></h4>
 									</div>
 								</div>
 
@@ -56,7 +56,7 @@
 												<div id="time"><?php echo $casting['days'] ?> d&iacuteas</div>
 											</div>
 											<div class="span4 offset3">
-												<button style="margin-top: 10px;" class="btn btn-info" type="button">Detalle</button>
+												<a style="margin-top: 10px;" class="btn btn-info" href="<?php echo HOME.'/hunter/casting_detail' ?>" type="button">Detalle</a>
 											</div>
 										</div>	
 									</div>

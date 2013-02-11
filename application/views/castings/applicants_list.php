@@ -51,7 +51,7 @@
 					    
 					    <div class="span9 user-profile-right">
 					    		
-							<legend><h2 class="profile-title"> Lista Postulantes </h2></legend>
+							<legend><h3 class="profile-title"><a href="<?php echo HOME.'/hunter/casting_list' ?>">Castings/</a><a href="<?php echo HOME.'/hunter/casting_detail' ?>">Casting A/</a> Lista Postulantes </h3></legend>
 							<div class="row" style="margin-left:1px; width: 600px; height: 180px;"> 
 					    		<div class="span6">
 					    		<iframe width="290" height="210" src="http://www.youtube.com/embed/vHmGyrq2YhE" frameborder="0" allowfullscreen></iframe>

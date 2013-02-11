@@ -1,14 +1,22 @@
 /* Color pagina */
 body 
 { 
-	background: #ff6547 !important;
+	background: black !important;
+	
 }
+
+a:link {text-decoration: none}
+
+a:visited {text-decoration: none}
+
+a:hover {	text-decoration: underline}
+
+#variable{min-height: 950px;}
 
 /* Fondo Contenido */
 div.content
 {
-	background: black;
-	background-repeat: repeat;
+	background: white;
 }
 
 /*Estilo del boton superior*/
@@ -95,18 +103,15 @@ div.space4
 
 #upperhalf
 {
-	height: 25px;
+    vertical-align: middle;
+	padding-top: 13px;
 }
 
-#upperhalf div div ul
-{
-	padding-top: 2px;
-}
 
 /*  Header con logo pagina */
 #lowerhalf
 {
-	background: black;
+	background: white;
 	min-height: 190px;
 }
 
@@ -126,7 +131,7 @@ h1.profile-title{
 #profile 
 {
 	font-family: "profile_font";
-	color: #FF6547;
+	color: #6699CC;
 }
 		
 /* posicion imagen usuario */
@@ -149,49 +154,25 @@ img.banner_image
 			
 }
 
-/* Estilo de Que es Viddon */
-.what-is
-{
-	background: black;
-	min-height: 500px;
-	position: relative;
-	top:-20px;
-}
 
-.what-is ul
-{
-	display: inline;
-	list-style-type: none;
-}
 
-.what-is ul li h1
+.what-is h1
 {
-	color: white;
+	color: black;
 	margin-bottom: 30px;
 }
 
-.what-is ul li p
+.what-is p
 {
-	color: white;
+	color: black;
 	text-align: justify;
 	font-size: 18px;
 	line-height: 25px;
 }
 
-/* Estilo de Terminos y Condiciones */
-.terms
-{
-	background: black;
-	height: 2000px;
-}
-
-.terms li
-{
-	color: white;
-}
 		
 /* Posicion boton participar */
-button#participate_button
+a#participate_button
 {
 	position:relative;
 	top: 60px;
@@ -217,7 +198,7 @@ img#image_casting
 #content div.row-fluid
 {	
 	position: relative;
-	background: url('../img/bg-pattern2.1.png');
+	background: url('../img/test_bg.png');
 	max-width: 98%;
 	left: 10px;
 }
@@ -276,7 +257,7 @@ div.video_text_main
 
 .home-video-title
 {
-	color: #FF6000;
+	color: #6699CC;
 	font-weight: bold;
 }
 
@@ -298,9 +279,9 @@ span.home-video-author
 
 a.home-video-author:hover
 {
-	text-decoration: none;
-	color: #FF6000;
+	color: #6699CC;
 }
+
 
 .fb-button
 {
@@ -358,7 +339,6 @@ ul.skills-list li
 
 ul.skills-list li a
 {
-	text-decoration: none;
 	color: #6C6C6C;
 }
 
@@ -390,25 +370,23 @@ div.button-home-page
 
 #headercontent a:link 
 {
-	text-decoration: underline;
 	color: #ffffff;
 }
 
 #headercontent a:visited 
 {
-	text-decoration: underline;
 	color: #ffffff;
 }
 
-#headercontent a:active 
+#headercontent a:hover 
 {
-	text-decoration: underline;
 	color: #ffffff;
 }
 
 
 /* Estilo para el texto del usuario logeado en el sistema */
 .welcome-login {
+	font-size: 13px;
 	color: #FFFFFF;
 	font-weight: bold;
 }
@@ -417,15 +395,15 @@ div.button-home-page
 
 .orange .active a,
 .orange .active a:hover {
-    background-color: #ff6547;
+    background-color: #6699CC;
 }
 
 
 /* footer Stuff */
 footer
 {
-	background: black;
-	min-height: 300px;
+	background: white;
+	min-height: 90px;
 	position: relative;
 	padding-top: 30px;
 }
@@ -436,32 +414,16 @@ footer ul
 	display: inline;
 }
 
-footer .second
-{
-	font-size: 13px;
-	display: block !important;
-	color: white !important;
-}
-
-footer .second a
-{
-	color: #FF3D01;
-}
-
-footer ul li.footer-logo
-{
-	margin-top: 3%;
-}
 
 footer #que-es-viddon, #siguenos, #contacto li p
 {
-	color: white;
+	color: black;
 	font-size: 17px;
 }
 
 footer #que-es-viddon li a
 {
-	color: white;
+	color: black;
 	font-size: 15px;
 	background-color: #1D1D1D;
 	border-style: none;
@@ -473,31 +435,6 @@ footer #que-es-viddon li a
 	bottom: -32px;
 }
 
-footer #que-es-viddon li a:hover
-{
-	text-decoration: none;
-}
-
-footer #siguenos
-{
-	position: relative;
-	right: -26px;
-}
-
-footer #siguenos li p
-{
-	margin-bottom: 28px;
-}
-
-footer #siguenos li ul li
-{
-	display: inline;
-}
-footer #siguenos li ul
-{
-	position: relative;
-	left: -28px;
-}
 
 footer #contacto li ul li p 
 {

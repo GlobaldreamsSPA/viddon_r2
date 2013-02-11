@@ -11,7 +11,7 @@
 							if(!$public) {?>
 							<form action="" method="POST">
 								<?php if($postulation_flag) {?>
-								<button id="participate_button" class="btn btn-large btn-success" type="submit" name="apply">POSTULAR CASTINGS</button>
+								<a href="<?php echo HOME.'/home/casting_list'?>" id="participate_button" class="btn btn-large btn-success" type="submit" name="apply">POSTULAR CASTINGS</a>
 								<input type="hidden" name="validate" value="1"/>
 								<?php } else{ ?>
 								<button data-toggle="modal" id="participate_button" href="#error" class="btn btn-success btn-large">POSTULAR CASTINGS</button>

@@ -18,7 +18,7 @@
 							<div class="space1"></div>
 							<div class="space1"></div>
 							<?php echo form_open_multipart('hunter/publish', array('class' => 'form-horizontal')); ?>
-								<legend><h2 class="profile-title"> Publicar un nuevo Casting </h2></legend>
+								<legend><h3 class="profile-title"> Publicar un nuevo Casting </h3></legend>
 								<div style="margin-left:15px;">
 									<h5>T&iacutetulo</h5>
 									<input type="text" name="title" class="span5" placeholder="Ingrese el t&iacute;tulo del Casting">

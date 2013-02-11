@@ -16,7 +16,7 @@
 					    <div class="span9 user-profile-right">
 					    		
 					    	<div class="space1"></div>
-					    	<h1 class="profile-title"><?php echo $user_data['name'] ?></h1> 
+					    	<h2 class="profile-title"><?php echo $user_data['name'] ?></h2> 
 							<div class="space1"></div>
 							<h3 id="profile">Nosotros</h3>
 							<div class="justify profile-content"><?php echo $user_data['about_us'] ?></div>

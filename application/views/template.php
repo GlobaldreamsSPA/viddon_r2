@@ -50,13 +50,15 @@
 
 	<div id="headercontent">
 	    <div id="upperhalf">
-		    <div class="row-fluid">
+		    <div class="row-fluid" >
 		    	<div class="span5 header-text-left">
-		    		<div style="float: right;margin-top: 3px;"class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
-					<label style="color:white; font-weight: bold; margin-left: 55px; margin-top: 3px;">Viddon - Tu Talento, Nuestra Pasi&oacuten</label>
+		    		<div style="float: right;"class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+					<a href="<?php echo HOME?>/home/what_is" style="color:white; font-weight: bold; margin-left: 55px;">Viddon - Tu Talento, Nuestra Pasi&oacuten</a>
+					
 				</div>
-				<div style="margin-top: 3px;" class="span2">
-					<a  href="https://twitter.com/viddoncom" class="twitter-follow-button" data-show-count="false" data-lang="es">Seguir a @viddoncom</a>					
+				<div class="span2">
+					<a  href="http://www.facebook.com/pages/Viddoncom/499177723428347?ref=hl"> <img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/fb-logo.png"/></a>
+					<a href="https://twitter.com/ViddonCom"><img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/twitter-logo.png"/></a>
 				</div>
 				<div class="span4 offset1">
 					<ul>
@@ -105,7 +107,7 @@
 			<div class="space05"></div>
 			<div class="row offset1">
 		 		<a class="anchor-image-logo span4" href="<?php echo HOME?>" title="Volver a la P&aacuteina Principal">
-					<img class="image-logo" src="<?php echo base_url(); ?>img/Logo2.png"/>
+					<img class="image-logo" src="<?php echo base_url(); ?>img/logo.png"/>
 				</a>
 				
 				<?php		
@@ -209,65 +211,25 @@
     	$('#grow').css({
 			'height': $('#variable').height()
 		});
-    	
-    	jQuery('#variable').bind( 'resize', function(e) {
-			  
+	    	
+	    jQuery('#variable').bind( 'resize', function(e) {
+				  
 			$('#grow').css({
 				    'height': $('#variable').height()
 			});
 		});
+		
+    	
 			    	    
     </script>
 </body>
 
 <footer>
-<ul class="row first">
-	<li class="span3 offset1 footer-logo">
-		<a href="<?php echo HOME?>"><img src="<?php echo base_url(); ?>img/logo-footer.png"/></a>
-	</li>
-	<li class="span2 offset1">
-		<ul id="que-es-viddon">
-			<li>
-				<p>&iquestQU&Eacute ES VIDDON?</p>
-			</li>
-			<li>
-				<a href="<?php echo HOME?>/home/what_is">ENT&EacuteRATE AQU&Iacute</a>
-			</li>
-		</ul>
-	</li>
-	<li class="span2">
-		<ul id="siguenos">
-			<li>
-				<p>S&IacuteGUENOS</p>
-			</li>
-			<li>
-				<ul>
-					<li><a href="http://www.facebook.com/pages/Viddoncom/499177723428347?ref=hl"><img src="<?php echo base_url(); ?>img/fb-logo.png"/></a></li>
-					<li><a href="https://twitter.com/ViddonCom"><img src="<?php echo base_url(); ?>img/twitter-logo.png"/></a></li>
-				</ul>
-			</li>
-		</ul>
-	</li>
-	<li class="span3">
-		<ul id="contacto">
-			<li >
-				<p>CONTACTO</p>
-			</li>
-			<li>
-				<ul>
-					<li><p>Email: <a href="mailto:contacto@viddon.com"><img src="<?php echo base_url(); ?>img/contacto.png"/></a></p></li>
-					<li><p>Direcci&oacuten: <font color="#FF3D01">Las Violetas 2267</font></p></li>
-					<li><p><font color="#FF3D01">Providencia, Santiago</font></p></li>
-				</ul>
-			</li>
-		</ul>
-	</li>
+
+<ul class"row">
+	<li class="span8"><p class="second">GlobalDreams SPA | Las Violetas 2267, Providencia, Santiago | <a href="<?php echo base_url();?>docs/terms.pdf">T&eacuterminos y condiciones</a> | <a href="mailto:contacto@viddon.com">Cont&aacutectanos</a></p></p></li>
 </ul>
 <ul class"row">
-	<li class="span8 offset1"><p class="second">Viddon - Copyright 2012</p></li>
-</ul>
-<ul class"row second">
-	<li class="span4 offset1"><p class="second">Todos los derechos reservados | <a href="<?php echo base_url();?>docs/terms.pdf">Términos y condiciones</a></p></li>
+	<li class="span8"><p class="second">Viddon &copy; 2013 | Todos los derechos reservados</p></li>
 </ul>
 </footer>
-<div class="space1"></div>

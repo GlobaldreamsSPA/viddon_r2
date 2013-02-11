@@ -137,13 +137,6 @@ class Home extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
-	public function terms()
-	{
-		$args['content'] = 'home/terms';		
-		$args["inner_args"]=NULL;
-		$this->load->view('template',$args);
-	}
-
 	public function casting_detail()
 	{
 		$args["content"]="home/casting_detail";
