@@ -18,7 +18,9 @@ class Hunter extends CI_Controller {
 		 	$hunter_id= $hunter_id['id'];
 	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id);
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
-			$args['content']='castings/hunter_profile';
+			$args["content"]="castings/hunter_template";
+			$inner_args["hunter_content"]="castings/hunter_profile";
+			$args["inner_args"]=$inner_args;
 			$this->load->view('template',$args);
 		}
 		else
@@ -36,8 +38,11 @@ class Hunter extends CI_Controller {
 
 	   if($this->form_validation->run() == FALSE)
 	   {
-	     $args['content'] = 'castings/login_hunter';
-		 $this->load->view('template', $args);
+			$args["content"]="castings/hunter_template";
+			$inner_args["hunter_content"]="castings/login_hunter";
+			$args["inner_args"]=$inner_args;
+			
+			$this->load->view('template', $args);
 	   }
 	   else
 	   {
@@ -117,7 +122,10 @@ class Hunter extends CI_Controller {
 				}
 			}
 
-			$args['content']='castings/publish_view';
+			$args["content"]="castings/hunter_template";
+			$inner_args["hunter_content"]="castings/publish_view";
+			$args["inner_args"]=$inner_args;
+			
 			$this->load->view('template', $args);
 
 		}
@@ -139,7 +147,10 @@ class Hunter extends CI_Controller {
 	   	 	}
 
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
-			$args['content']='castings/list_view';
+			$args["content"]="castings/hunter_template";
+			$inner_args["hunter_content"]="castings/list_view";
+			$args["inner_args"]=$inner_args;
+			
 			$this->load->view('template', $args);
 		}
 		else
@@ -161,7 +172,10 @@ class Hunter extends CI_Controller {
 	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id);
 	   	 	$args["tags"] = array("reality show","danza","actuaci&oacuten","m&uacutesica","canto");		
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
-			$args['content'] = 'castings/hunter_casting_detail';
+			$args["content"]="castings/hunter_template";
+			$inner_args["hunter_content"]="castings/hunter_casting_detail";
+			$args["inner_args"]=$inner_args;
+			
 			$this->load->view('template', $args);
 		}
 		else
@@ -177,7 +191,10 @@ class Hunter extends CI_Controller {
 		 	$hunter_id= $hunter_id['id'];
 	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id);
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
-			$args['content']='castings/applicants_list';
+			$args["content"]="castings/hunter_template";
+			$inner_args["hunter_content"]="castings/applicants_list";
+			$args["inner_args"]=$inner_args;
+			
 			$this->load->view('template', $args);	
 		}
 		else
@@ -193,7 +210,10 @@ class Hunter extends CI_Controller {
 		 	$hunter_id= $hunter_id['id'];
 	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id);
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
-			$args['content']='castings/accepted_list';
+			$args["content"]="castings/hunter_template";
+			$inner_args["hunter_content"]="castings/accepted_list";
+			$args["inner_args"]=$inner_args;
+			
 			$this->load->view('template', $args);	
 		}
 		else
@@ -208,7 +228,10 @@ class Hunter extends CI_Controller {
 		 	$hunter_id= $hunter_id['id'];
 	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id);
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
-			$args['content']='castings/hunter_edit';
+			$args["content"]="castings/hunter_template";
+			$inner_args["hunter_content"]="castings/hunter_edit";
+			$args["inner_args"]=$inner_args;
+			
 			$this->load->view('template', $args);	
 		}
 		else
