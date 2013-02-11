@@ -8,7 +8,9 @@
 	<meta name="description" content="">
 	<meta name="keyword" content="">
 
+
 	<link href="<?php echo base_url()?>style/bootstrap.css" rel="stylesheet">
+	<link href="<?php echo base_url()?>style/bootstrap-responsive.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/jquery.dataTables.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/jquery.cleditor.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/main.css" rel="stylesheet">
