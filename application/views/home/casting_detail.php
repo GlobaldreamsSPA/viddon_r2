@@ -5,21 +5,21 @@
 		  		<div style="border-radius: 5px; padding:25px;" id="variable" class="row-fluid">
 
 		  			<div class="space05"></div>
-		  			<h2 style="margin-left:75px;" id="profile" style="font-weight:bold;"> Casting A</h3>
+		  			<h2 style="margin-left:75px;" id="profile" style="font-weight:bold;"><?php echo $casting['title']; ?></h3>
 		  			<div class="space2"></div>
-					<img style="margin-left:75px; margin-top:10px; height: 350px; width: 700px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
+					<img style="margin-left:75px; margin-top:10px; height: 350px; width: 700px;" src="<?php echo $casting['image'] ?>">
 					<div class="space2"></div>
-					<h2 style="margin-left:75px;" id="profile" style="font-weight:bold;"> Caza Talentos</h3>
+					<h2 style="margin-left:75px;" id="profile" style="font-weight:bold;">Caza Talentos</h3>
 					<div class="row">
 						<div style="margin-left: 85px;" class="span1">
-							<img class='user_image_main_page' src='<?php echo HOME."/img/logo_hunter/hunter_1"?>.jpg'/>
+							<img class='user_image_main_page' src="<?php echo $casting['logo'] ?>"/>
 						</div>
 						<div class="span5">
-							<h4  style="margin-left:75px; margin-top: 15px;" style="font-weight:bold;"> &Aacuterea dramatica Canal 13</h4> 
+							<h4  style="margin-left:75px; margin-top: 15px;" style="font-weight:bold;"><?php echo $casting['deparment'] ?></h4>
 						</div>
 					</div>
 					<div class="space2"></div>
-					<h2 style="margin-left:75px;" id="profile" style="font-weight:bold;"> Categorias</h3>
+					<h2 style="margin-left:75px;" id="profile" style="font-weight:bold;">Categorias</h3>
 					<div class="space05"></div>
 					<?php
 					    		echo '<ul style="margin-left:75px;" class="skills-list">';

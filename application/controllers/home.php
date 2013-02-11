@@ -11,6 +11,7 @@ class Home extends CI_Controller {
 		$this->load->model('videos_model');
 		$this->load->model('user_model');
 		$this->load->model('hunter_model');
+		$this->load->model('castings_model');
 	}
 
 	public function index()
@@ -98,25 +99,10 @@ class Home extends CI_Controller {
 	public function casting_list($page = 1)
 	{
 		$args = array();
-
-		$casting_list = array(array("mini_banner_c1"),array("mini_banner_c1"),array("mini_banner_c1"),array("mini_banner_c1")
-		,array("mini_banner_c1"),array("mini_banner_c1"),array("mini_banner_c1"),array("mini_banner_c1"),array("mini_banner_c1")
-		,array("mini_banner_c1"),array("mini_banner_c1"),array("mini_banner_c1"),array("mini_banner_c1"),array("mini_banner_c1")
-		,array("mini_banner_c1"),array("mini_banner_c1"));
-		
-		$args["casting_list"]=array();
-		
-		foreach ($casting_list as $casting_data)
-		{
-			$hunter_data= array("hunter_1","canal_13");
-			array_push($casting_data,$hunter_data["1"],$hunter_data["0"]);
-			array_push($args["casting_list"], $casting_data);
-		}
-		
-		$args["chunks"]=ceil(count($casting_list) / 9);
-		$args["casting_list"]= array_slice($args["casting_list"],9*($page-1),9*$page);
+		$args["chunks"]=ceil($this->castings_model->count_all(NULL)/9);
+		$args["casting_list"]= $this->castings_model->get_castings(NULL, 9, $page, TRUE);
 		$args["page"]=$page;
-		$args['content']='home/castings_list';	
+		$args['content']='home/castings_list';
 		$args["inner_args"]=NULL;
 		
 		$this->load->view('template',$args);

@@ -139,7 +139,7 @@ class Hunter extends CI_Controller {
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id = $hunter_id['id'];
-	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id);
+	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id, NULL, NULL, NULL);
 	   	 	
 	   	 	//Rescatar las personas que postularon a cada uno de los castings
 	   	 	foreach ($args['castings'] as &$casting) {
