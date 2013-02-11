@@ -20,6 +20,11 @@ class Castings_model extends CI_Model
         $this->db->update('castings', $data);
     }
 
+    function get_all_castings()
+    {
+        
+    }
+
     function get_castings($hunter_id)
     {
     	$this->db->select('id, title, logo, image, end_date, status');
