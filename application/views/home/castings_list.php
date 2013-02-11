@@ -30,22 +30,18 @@
 					?>
 					<div id="main_casting" class='span4'>
 						<div class="space1"></div>
-						<?php
-							echo "<img style='height:100%; width: 100%;' src='".HOME.'/img/casting_image/'.$casting[0].".png'/>";
-						?>
+							<img style='height:100%; width: 100%;' src="<?php echo $casting['image']; ?>"/>
 						<div class="container video_text_main span12">
 							<div class="space1"></div>
 							<div class="row row_text_main">
 								<div class="span3 offset1">
-									<?php
-										echo "<img class='user_image_main_page' src='".HOME.'/img/logo_hunter/'.$casting[2].".jpg'/>";
-									?>
+									<img class='user_image_main_page' src="<?php echo $casting['logo'] ?>"/>
 								</div>
 								<div style="font-weight:bold;" class="span3">
-									<p>&Aacuterea Dram&aacutetica Canal 13</p>
+									<p><?php echo $casting['title'] ?></p>
 								</div>
 								<div class="span4">
-									<button style="margin-top:10px; margin-left: 15px; font-weight:bold;" class="btn btn-success"> VER MAS INFORMACI&OacuteN</button>
+									<button style="margin-top:10px; margin-left: 15px; font-weight:bold;" class="btn btn-success" onclick="window.location = '<?php echo site_url("home/casting_detail"); ?>'">MAS INFORMACI&OacuteN</button>
 								</div>
 							</div>
 						</div>
