@@ -40,7 +40,6 @@
 										<option value="Festival">Festival</option>
 										<option value="Otros">Otros</option>
 									</select>
-									
 									<h5>Descripci&oacuten o llamado a postular</h5>
 									<textarea class="rich_textarea" name="description"> </textarea>
 									<?php echo form_error('description'); ?>
