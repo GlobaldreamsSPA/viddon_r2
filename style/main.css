@@ -13,6 +13,10 @@ a:hover {	text-decoration: underline}
 
 #variable{min-height: 1080px;}
 
+.profile-content{
+	min-height: 80px;
+}
+
 /* Fondo Contenido */
 div.content
 {
@@ -110,11 +114,9 @@ h1.profile-title{
 /* posicion imagen usuario */
 img.user_image
 {
-	position: relative;
-	top: 32px;
-
-	max-height: 190px;
-	max-width: 190px;
+	margin-top: 32px;
+	max-height: 100%;
+	max-width: 100%;
 }
 		
 
@@ -137,8 +139,7 @@ img.user_image
 /* Posicion boton participar */
 a#participate_button
 {
-	position:relative;
-	top: 60px;
+	margin-top: 20px;
 }
 
 /*posicion dummy imagen en formulario new*/

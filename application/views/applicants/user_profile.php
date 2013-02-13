@@ -1,42 +1,47 @@
 		  			<div class="row-fluid">		
 				    	<div class="span3 user-profile-left">
+				    		<div class="row">
 				    		<?php 
 				    			if(file_exists(APPPATH.'/../img/profile/'.$image_profile) == TRUE)
 				    				echo "<img class='user_image' src='".HOME.'/img/profile/'.$image_profile."'/>";
 				    			else
 				    				echo "<img class='user_image' src='".HOME."/img/profile/user.jpg'/>";
 				    		?>
-							<?php if(!$public) {?>
-							<form action="" method="POST">
-								<?php if($postulation_flag) {?>
-								<a href="<?php echo HOME.'/home/casting_list'?>" id="participate_button" class="btn btn-large btn-success" type="submit" name="apply">POSTULAR CASTINGS</a>
-								<input type="hidden" name="validate" value="1"/>
-								<?php } else{ ?>
-								<button data-toggle="modal" id="participate_button" href="#error" class="btn btn-success btn-large">POSTULAR CASTINGS</button>
-				    			<?php } ?>
-				    		</form>
-				    		<?php } ?>
-				    		
-				    		<div class="span9 offset1">
-				    			<div class="space4"></div>
-					    		<ul class="nav nav-pills nav-stacked orange">
-									<li class="active"><a> <i class="icon-user"></i> Perfil</a>
-									</li>
-									<li><a href="<?php echo HOME."/user/edit/".$user_id;?>"> <i class="icon-pencil"></i> Editar Datos</a></li>
-									<li>
-										<a data-toggle="collapse" href="#collapseOne">
-											<i class="icon-star-empty"></i> Postulaciones
-										</a>
-										<div id="collapseOne" class="collapse">
-											<ul style="padding-left: 30px;" class="nav nav-pills nav-stacked orange">
-												<li><a href="<?php echo HOME."/user/active_casting_list"?>">Activas</a></li>	
-												<li><a href="<?php echo HOME."/user/results_casting"?>">Resultados</a></li>	
-											</ul>
-										</div>
-									</li>	
-									<li><a href="<?php echo HOME."/user/logout";?>"> <i class="icon-off"></i> Cerrar Sesi&oacuten</a></li>					
-								</ul>
-							</div>
+				    		</div>
+				    		<div class="row">
+								<?php if(!$public) {?>
+								<form action="" method="POST">
+									<?php if($postulation_flag) {?>
+									<a href="<?php echo HOME.'/home/casting_list'?>" id="participate_button" class="btn btn-success" type="submit" name="apply">POSTULAR CASTINGS</a>
+									<input type="hidden" name="validate" value="1"/>
+									<?php } else{ ?>
+									<button data-toggle="modal" id="participate_button" href="#error" class="btn btn-success">POSTULAR CASTINGS</button>
+					    			<?php } ?>
+					    		</form>
+					    		<?php } ?>
+				    		</div>
+				    		<div class="row">
+					    		<div class="span10 offset1">
+					    			<div class="space4"></div>
+						    		<ul class="nav nav-pills nav-stacked orange">
+										<li class="active"><a> <i class="icon-user"></i> Perfil</a>
+										</li>
+										<li><a href="<?php echo HOME."/user/edit/".$user_id;?>"> <i class="icon-pencil"></i> Editar Datos</a></li>
+										<li>
+											<a data-toggle="collapse" href="#collapseOne">
+												<i class="icon-star-empty"></i> Postulaciones
+											</a>
+											<div id="collapseOne" class="collapse">
+												<ul style="padding-left: 30px;" class="nav nav-pills nav-stacked orange">
+													<li><a href="<?php echo HOME."/user/active_casting_list"?>">Activas</a></li>	
+													<li><a href="<?php echo HOME."/user/results_casting"?>">Resultados</a></li>	
+												</ul>
+											</div>
+										</li>	
+										<li><a href="<?php echo HOME."/user/logout";?>"> <i class="icon-off"></i> Cerrar Sesi&oacuten</a></li>					
+									</ul>
+								</div>
+				    		</div>
 				    	</div>
 				    
 					    <div class="span8 offset1 user-profile-right">
@@ -75,13 +80,13 @@
 									</div>
 									<?php if(!$public) {?>
 										<form action="" method="POST">
-											<button style="margin-top:20px; margin-left:20px;" type="submit"><i class="icon-remove"></i></button>
+											<button style="margin-top:20px; margin-left:19%;" type="submit"><i class="icon-remove"></i></button>
 											<input type="hidden" name="del-video" value="<?php echo $video_ID ?>"/>
 										</form>
 									<?php } ?>
 				
 								</div>
-								<iframe width="500" height="300" src="http://www.youtube.com/embed/<?php echo $video_ID?>" frameborder="0" allowfullscreen></iframe>
+								<iframe width="100%" height="300" src="http://www.youtube.com/embed/<?php echo $video_ID?>" frameborder="0" allowfullscreen></iframe>
 								<div class="space05"></div>
 								<!--
 								<div class="social_data_container">			
