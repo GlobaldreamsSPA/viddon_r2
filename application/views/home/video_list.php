@@ -1,6 +1,6 @@
 <div class="content" id="content">	
 	<div class="container-fluid">
-			<div style="border-radius: 5px; padding:20px; max-width: 1250px;" class="row-fluid">
+			<div style="border-radius: 5px;" class="row-fluid">
 						
 			<div class="row control-group">
 				<div class="span2 offset1">
@@ -27,9 +27,9 @@
 					$i++;
 					if(($i-1)%3 == 0 or $i==1) echo "<div class='row-fluid'>";
 					?>
-					<div id="main_videos" class='span4'>
+					<div id="main_videos_list" class='span4'>
 						<div class="space1"></div>
-						<iframe width="370" height="200" src="http://www.youtube.com/embed/<?php echo $video[1].'?rel=0'?>" frameborder="0" allowfullscreen></iframe>	
+						<iframe width="100%" height="200" src="http://www.youtube.com/embed/<?php echo $video[1].'?rel=0'?>" frameborder="0" allowfullscreen></iframe>	
 						<span class="arrow"></span>
 						<div class="container video_text_main span12">
 							<div class="space1"></div>

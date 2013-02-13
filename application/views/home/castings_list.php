@@ -1,6 +1,6 @@
 <div class="content" id="content">	
 	<div class="container-fluid">
-			<div style="border-radius: 5px; padding:20px; max-width: 1250px;" class="row-fluid">
+			<div style="border-radius: 5px;" class="row-fluid">
 			
 			<div class="row control-group">
 				<div class="span2 offset1">
@@ -30,18 +30,18 @@
 					?>
 					<div id="main_casting" class='span4'>
 						<div class="space1"></div>
-							<img style='height:100%; width: 100%;' src="<?php echo $casting['image']; ?>"/>
+							<img style='height:100%; width: 99%;' src="<?php echo $casting['image']; ?>"/>
 						<div class="container video_text_main span12">
 							<div class="space1"></div>
 							<div class="row row_text_main">
 								<div class="span3 offset1">
 									<img class='user_image_main_page' src="<?php echo $casting['logo'] ?>"/>
 								</div>
-								<div style="font-weight:bold;" class="span3">
+								<div style="margin-top:2%;font-weight:bold;" class="span3">
 									<p><?php echo $casting['title'] ?></p>
 								</div>
 								<div class="span4">
-									<button style="margin-top:10px; margin-left: 15px; font-weight:bold;" class="btn btn-success" onclick="window.location = '<?php echo site_url("home/casting_detail"); ?>'">MAS INFORMACI&OacuteN</button>
+									<button style="margin-top:3%; margin-left: 5%; font-weight:bold;" class="btn btn-success" onclick="window.location = '<?php echo site_url("home/casting_detail"); ?>'">MAS INFORMACI&OacuteN</button>
 								</div>
 							</div>
 						</div>

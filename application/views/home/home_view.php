@@ -1,10 +1,10 @@
 <div class="content" id="content">
 	<div class="container-fluid">
 		<div class="row">
-			<div class= "span9">
-		  		<div style="border-radius: 5px; padding:2%;" id="variable" class="row-fluid">
+			<div class= "span8">
+		  		<div style="border-radius: 5px; margin-left:3%;" id="variable" class="row-fluid">
 		  			
-		  			<div style="margin-left:75px; margin-top:30px; height: 250px; width: 700px;" id="myCarousel" class="carousel slide">
+		  			<div style="margin-left: 7%; margin-top:30px; height: 250px; width: 85%;" id="myCarousel" class="carousel slide">
 					  <!-- Carousel items -->
 					  <div class="carousel-inner">
 					    <div class="active item">
@@ -20,7 +20,7 @@
 					</div>
 					<div class="space4"></div>
 					<div class="space2"></div>
-		  			<h2 style="margin-left:35px;" id="profile" style="font-weight:bold;"> Videos Mas Visitados</h3>
+		  			<h2 style="margin-left:5%;" id="profile" style="font-weight:bold;"> Videos Mas Visitados</h3>
 
 				<?php
 				$i=0; 
@@ -49,25 +49,23 @@
 					</div>
 			<?php if($i%2 == 0 || $i == count($video_list)) echo "</div>"; }?>
 					<div class= "space2"></div>
-					<a style="text-decoration: underline; float: right;" href="<?php echo HOME."/home/video_list"?>">(Ver Todos Los Videos)</a>
+					<a style="float: right;" href="<?php echo HOME."/home/video_list"?>">(Ver Todos Los Videos)</a>
 					<div class= "space2"></div>
 				</div>
 			</div>
 			<div class="span4">
-				<div class="span3">
-			  		<div style="border-radius: 5px; padding:7%; min-width: 125%;" id="grow" class="row-fluid">
-			  			<h2 id="profile"  style="font-weight:bold;">Castings Destacados</h3>
-		  				<img style="margin-top: 5%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
-		  				<img style="margin-top: 5%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
-		  				<img style="margin-top: 5%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
-		  				<img style="margin-top: 5%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
-		  				<img style="margin-top: 5%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
-		  				<img style="margin-top: 5%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
-						<img style="margin-top: 5%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
-						<img style="margin-top: 5%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
-						<div class= "space4"></div>
-						<a style="text-decoration: underline; float: right;" href="<?php echo HOME;?>/home/casting_list">(Ver Todos Los Castings)</a>
-					</div>
+			  	<div style="border-radius: 5px; margin-left:8%; text-align:center;" id="grow" class="row-fluid">
+			  		<h2 id="profile"  style="font-weight:bold;">Castings Destacados</h3>
+		  			<img style="margin-top: 12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
+		  			<img style="margin-top: 12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
+		  			<img style="margin-top: 12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
+		  			<img style="margin-top: 12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
+		  			<img style="margin-top: 12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
+		  			<img style="margin-top: 12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
+					<img style="margin-top:	12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
+					<img style="margin-top: 12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
+					<div class= "space4"></div>
+					<a style="float: right;" href="<?php echo HOME;?>/home/casting_list">(Ver Todos Los Castings)</a>
 				</div>
 			</div>	
 		</div>

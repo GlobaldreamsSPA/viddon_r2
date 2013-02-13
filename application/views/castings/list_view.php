@@ -13,7 +13,7 @@
 							</div>
 				    	</div>
 					    
-					    <div class="span9 user-profile-right">
+					    <div class="span8 offset1 user-profile-right">
 					    		
 							<legend><h3 class="profile-title"> Castings Publicados </h3></legend>
 							<?php foreach($castings as $casting){ ?>

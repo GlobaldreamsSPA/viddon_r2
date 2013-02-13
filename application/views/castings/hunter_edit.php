@@ -18,7 +18,7 @@
 							</div>
 				    	</div>
 					    
-					    <div class="span9 user-profile-right">
+					    <div class="span8 offset1 user-profile-right">
 
 							<div class="space1"></div>
 								<Legend><h3>Identificaci&oacuten Empresa/Agencia</h3></Legend>

@@ -12,7 +12,7 @@
 								</ul>
 							</div>
 				    	</div>
-						<div class= "span9">			
+						<div class= "span8 offset1">			
 					  			<legend><h3 class="profile-title"> <a href="<?php echo HOME.'/hunter/casting_list' ?>">Castings/</a> Detalle Castings </h3></legend>
 					  			<div class="space05"></div>
 					  			<row>

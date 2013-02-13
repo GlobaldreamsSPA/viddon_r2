@@ -49,17 +49,17 @@
 							</div>
 					    </div>
 					    
-					    <div class="span9 user-profile-right">
+					    <div class="span8 offset1 user-profile-right">
 					    		
 							<legend><h3 class="profile-title"><a href="<?php echo HOME.'/hunter/casting_list' ?>">Castings/</a><a href="<?php echo HOME.'/hunter/casting_detail' ?>">Casting A/</a> Lista Postulantes </h3></legend>
-							<div class="row" style="margin-left:1px; width: 600px; height: 180px;"> 
-					    		<div class="span6">
-					    		<iframe width="290" height="210" src="http://www.youtube.com/embed/vHmGyrq2YhE" frameborder="0" allowfullscreen></iframe>
+							<div class="row" style="margin-left:1px; width: 100%; height: 180px;"> 
+					    		<div class="span7">
+					    		<iframe width="100%" height="210" src="http://www.youtube.com/embed/vHmGyrq2YhE" frameborder="0" allowfullscreen></iframe>
 					    		</div>
-					    		<div class="span6">
+					    		<div class="span5">
 						    		<row>
 							    		<div class="span4">
-							    			<img style="max-width: 80px; max-height: 80px;" src="<?php echo HOME."/img/profile/5.jpeg" ?>"/>
+							    			<img style="max-width: 80%; max-height: 80%;" src="<?php echo HOME."/img/profile/5.jpeg" ?>"/>
 										</div>
 										<div class="span6">
 											<h5>
@@ -67,7 +67,7 @@
 											</h5>
 										</div>
 										<div class="span1">
-											<button>
+											<button style="margin-top: 100%;">
 												<i class="icon-search"></i>
 											</button>
 										</div>
@@ -83,7 +83,6 @@
 									<row>
 							    		<p style="text-align:justify;">
 							    			La inform&aacutetica es mi hobby, mi profesi&oacuten y mi pasi&oacuten. Soy un afortunado usuario y desarrollador de software libre.
-							    			Disfruto de esta libertad desde hace ya m&aacutes de 10 a&ntildeos.
 							    		</p>
 									</row>
 									
@@ -104,14 +103,14 @@
 							<div class="space4"></div>
 							<div class="space2"></div>
 							
-							<div class="row" style="margin-left:1px; width: 600px; height: 180px;"> 
-					    		<div class="span6">
-					    		<iframe width="290" height="210" src="http://www.youtube.com/embed/vHmGyrq2YhE" frameborder="0" allowfullscreen></iframe>
+							<div class="row" style="margin-left:1px; width: 100%; height: 180px;"> 
+					    		<div class="span7">
+					    		<iframe width="100%" height="210" src="http://www.youtube.com/embed/vHmGyrq2YhE" frameborder="0" allowfullscreen></iframe>
 					    		</div>
-					    		<div class="span6">
+					    		<div class="span5">
 						    		<row>
 							    		<div class="span4">
-							    			<img style="max-width: 80px; max-height: 80px;" src="<?php echo HOME."/img/profile/5.jpeg" ?>"/>
+							    			<img style="max-width: 80%; max-height: 80%;" src="<?php echo HOME."/img/profile/5.jpeg" ?>"/>
 										</div>
 										<div class="span6">
 											<h5>
@@ -119,7 +118,7 @@
 											</h5>
 										</div>
 										<div class="span1">
-											<button>
+											<button style="margin-top: 100%;">
 												<i class="icon-search"></i>
 											</button>
 										</div>
@@ -135,13 +134,12 @@
 									<row>
 							    		<p style="text-align:justify;">
 							    			La inform&aacutetica es mi hobby, mi profesi&oacuten y mi pasi&oacuten. Soy un afortunado usuario y desarrollador de software libre.
-							    			Disfruto de esta libertad desde hace ya m&aacutes de 10 a&ntildeos.
 							    		</p>
 									</row>
 									
 									<row style="float: right;">
 										
-										<a data-toggle="modal" href="#modal2" style="text-align: right;" class="btn btn-success">
+										<a data-toggle="modal" href="#modal1" style="text-align: right;" class="btn btn-success">
 											<i class="icon-ok"></i>
 										</a>
 										
@@ -156,14 +154,14 @@
 							<div class="space4"></div>
 							<div class="space2"></div>
 
-							<div class="row" style="margin-left:1px; width: 600px; height: 180px;"> 
-					    		<div class="span6">
-					    		<iframe width="290" height="210" src="http://www.youtube.com/embed/vHmGyrq2YhE" frameborder="0" allowfullscreen></iframe>
+							<div class="row" style="margin-left:1px; width: 100%; height: 180px;"> 
+					    		<div class="span7">
+					    		<iframe width="100%" height="210" src="http://www.youtube.com/embed/vHmGyrq2YhE" frameborder="0" allowfullscreen></iframe>
 					    		</div>
-					    		<div class="span6">
+					    		<div class="span5">
 						    		<row>
 							    		<div class="span4">
-							    			<img style="max-width: 80px; max-height: 80px;" src="<?php echo HOME."/img/profile/5.jpeg" ?>"/>
+							    			<img style="max-width: 80%; max-height: 80%;" src="<?php echo HOME."/img/profile/5.jpeg" ?>"/>
 										</div>
 										<div class="span6">
 											<h5>
@@ -171,7 +169,7 @@
 											</h5>
 										</div>
 										<div class="span1">
-											<button>
+											<button style="margin-top: 100%;">
 												<i class="icon-search"></i>
 											</button>
 										</div>
@@ -187,13 +185,12 @@
 									<row>
 							    		<p style="text-align:justify;">
 							    			La inform&aacutetica es mi hobby, mi profesi&oacuten y mi pasi&oacuten. Soy un afortunado usuario y desarrollador de software libre.
-							    			Disfruto de esta libertad desde hace ya m&aacutes de 10 a&ntildeos.
 							    		</p>
 									</row>
 									
 									<row style="float: right;">
 										
-										<a data-toggle="modal" href="#modal3" style="text-align: right;" class="btn btn-success">
+										<a data-toggle="modal" href="#modal1" style="text-align: right;" class="btn btn-success">
 											<i class="icon-ok"></i>
 										</a>
 										
@@ -208,14 +205,14 @@
 							<div class="space4"></div>
 							<div class="space2"></div>
 							
-							<div class="row" style="margin-left:1px; width: 600px; height: 180px;"> 
-					    		<div class="span6">
-					    		<iframe width="290" height="210" src="http://www.youtube.com/embed/vHmGyrq2YhE" frameborder="0" allowfullscreen></iframe>
+							<div class="row" style="margin-left:1px; width: 100%; height: 180px;"> 
+					    		<div class="span7">
+					    		<iframe width="100%" height="210" src="http://www.youtube.com/embed/vHmGyrq2YhE" frameborder="0" allowfullscreen></iframe>
 					    		</div>
-					    		<div class="span6">
+					    		<div class="span5">
 						    		<row>
 							    		<div class="span4">
-							    			<img style="max-width: 80px; max-height: 80px;" src="<?php echo HOME."/img/profile/5.jpeg" ?>"/>
+							    			<img style="max-width: 80%; max-height: 80%;" src="<?php echo HOME."/img/profile/5.jpeg" ?>"/>
 										</div>
 										<div class="span6">
 											<h5>
@@ -223,7 +220,7 @@
 											</h5>
 										</div>
 										<div class="span1">
-											<button>
+											<button style="margin-top: 100%;">
 												<i class="icon-search"></i>
 											</button>
 										</div>
@@ -239,12 +236,12 @@
 									<row>
 							    		<p style="text-align:justify;">
 							    			La inform&aacutetica es mi hobby, mi profesi&oacuten y mi pasi&oacuten. Soy un afortunado usuario y desarrollador de software libre.
-							    			Disfruto de esta libertad desde hace ya m&aacutes de 10 a&ntildeos.
 							    		</p>
 									</row>
+									
 									<row style="float: right;">
 										
-										<a data-toggle="modal" href="#modal4" style="text-align: right;" class="btn btn-success">
+										<a data-toggle="modal" href="#modal1" style="text-align: right;" class="btn btn-success">
 											<i class="icon-ok"></i>
 										</a>
 										

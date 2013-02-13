@@ -1,4 +1,4 @@
-	  			<div class="row-fluid">		
+	  				<div class="row-fluid">		
 				    	<div class="span3 user-profile-left">
 				    		<img class='user_image' src="<?php echo HOME."/img/logo_hunter/".$user_data['logo'] ?>"/>
 				    		<div class="space4"></div>
@@ -13,7 +13,7 @@
 							</div>
 				    	</div>
 					    
-					    <div class="span9 user-profile-right">
+					    <div class="span8 offset1 user-profile-right">
 					    		
 					    	<div class="space1"></div>
 					    	<h2 class="profile-title"><?php echo $user_data['name'] ?></h2> 
@@ -25,21 +25,11 @@
 							<div class="justify profile-content"><?php echo $user_data['we_look_for'] ?></div>
 							<div class="space1"></div>
 											
-						</div>
-						<div class="span2 user-profile-lateral">
-					</div>
-					</div>
-		
-					<div class="row-fluid">	
-						<div class="space4"></div>	
-					</div>
-		
-					<div class="row-fluid">
-						<div class="span9 offset3 user-profile-right">
-								
+							<div class="space4"></div>	
+			
 							<legend>Nuestros Castings</legend>
 							
-							<div style="margin-left:75px; margin-top:30px; height: 250px; width: 450px;" id="myCarousel" class="carousel slide">
+							<div style="margin-left:10%; margin-top:30px; height: 250px; width: 80%;" id="myCarousel" class="carousel slide">
 							<!-- Carousel items -->
 								<div class="carousel-inner">
 									<?php ?>
@@ -56,6 +46,5 @@
 							<div class="space2"></div>	
 							
 							<a style="text-decoration: underline; float: right;" href="<?php echo HOME."/hunter/casting_list";?>"> (Ver Todos Los Castings)</a>
-							<div class="space2"></div> 				
 						</div>
 					</div>

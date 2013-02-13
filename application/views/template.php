@@ -3,8 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Viddon - Tu Talento, Nuestra Pasi&oacuten</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Viddon - Tu Talento, Nuestra Pasi&oacute;n</title>
 	<meta name="description" content="">
 	<meta name="keyword" content="">
 
@@ -54,7 +53,7 @@
 		    <div class="row-fluid" >
 		    	<div class="span5 header-text-left">
 		    		<div style="float: right;"class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
-					<a href="<?php echo HOME?>/home/what_is" style="color:white; font-weight: bold; margin-left: 55px;">Viddon - Tu Talento, Nuestra Pasi&oacuten</a>
+					<a href="<?php echo HOME?>/home/what_is" style="color:white; font-weight: bold; margin-left: 55px;">Viddon - Tu Talento, Nuestra Pasi&oacute;n</a>
 					
 				</div>
 				<div class="span2">
@@ -107,7 +106,7 @@
 		<div id="lowerhalf">
 			<div class="space05"></div>
 			<div class="row offset1">
-		 		<a class="anchor-image-logo span4" href="<?php echo HOME?>" title="Volver a la P&aacuteina Principal">
+		 		<a class="anchor-image-logo span4" href="<?php echo HOME?>" title="Volver a la P&aacute;ina Principal">
 					<img class="image-logo" src="<?php echo base_url(); ?>img/logo.png"/>
 				</a>
 				
@@ -134,7 +133,7 @@
 	<script type="text/javascript">
 	      $(document).ready(function() {
 	        $("textarea.rich_textarea").cleditor({
-	          width:        500, // width not including margins, borders or padding
+	          width:        450, // width not including margins, borders or padding
 	          height:       200, // height not including margins, borders or padding
 	          controls:     // controls to add to the toolbar
 	                        "bold italic underline strikethrough subscript superscript | font size " +
