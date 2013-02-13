@@ -30,7 +30,9 @@
 					?>
 					<div id="main_casting" class='span4'>
 						<div class="space1"></div>
+						<a href="<?php echo site_url("home/casting_detail/".$casting['id']); ?>">
 							<img style='height:100%; width: 100%;' src="<?php echo $casting['image']; ?>"/>
+						</a>
 						<div class="container video_text_main span12">
 							<div class="space1"></div>
 							<div class="row row_text_main">
@@ -41,7 +43,7 @@
 									<p><?php echo $casting['title'] ?></p>
 								</div>
 								<div class="span4">
-									<button style="margin-top:10px; margin-left: 15px; font-weight:bold;" class="btn btn-success" onclick="window.location = '<?php echo site_url("home/casting_detail"); ?>'">MAS INFORMACI&OacuteN</button>
+									<button style="margin-top:10px; margin-left: 15px; font-weight:bold;" class="btn btn-success" onclick="window.location = '<?php echo site_url("home/casting_detail/".$casting['id']); ?>'">MAS INFORMACI&OacuteN</button>
 								</div>
 							</div>
 						</div>

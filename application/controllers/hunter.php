@@ -115,7 +115,7 @@ class Hunter extends CI_Controller {
 
 					//Por ultimo subir la foto
 					$form_file_name = 'casting_image';
-					$filename = $this->_upload_image($casting_id, realpath(CASTINGS_PATH), $form_file_name);
+					$filename = $this->_upload_image($casting_id, realpath(APPPATH.'..'.CASTINGS_PATH), $form_file_name);
 
 					$this->castings_model->insert_image($casting_id, $filename);
 					redirect('hunter/casting_list');

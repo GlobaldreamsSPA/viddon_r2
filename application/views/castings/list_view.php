@@ -30,7 +30,9 @@
 
 								<div class="span11">
 									<div class="span7">
-										<img id="image_casting" src="<?php echo $casting['image'] ?>"/>
+										<a href="<?php echo site_url("home/casting_detail/".$casting['id']); ?>">
+											<img style='height:100%; width: 100%;' src="<?php echo $casting['image'] ?>"/>
+										</a>
 									</div>
 									<div class="space05"></div>
 									<div class="span5 list-view-applies-desc">
@@ -56,7 +58,7 @@
 												<div id="time"><?php echo $casting['days'] ?> d&iacuteas</div>
 											</div>
 											<div class="span4 offset3">
-												<a style="margin-top: 10px;" class="btn btn-info" href="<?php echo HOME.'/hunter/casting_detail' ?>" type="button">Detalle</a>
+												<a style="margin-top: 10px;" class="btn btn-info" href="<?php echo site_url("home/casting_detail/".$casting['id']); ?>" type="button">Detalle</a>
 											</div>
 										</div>	
 									</div>

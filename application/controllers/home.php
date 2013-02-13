@@ -8,10 +8,7 @@ class Home extends CI_Controller {
 		$this->load->helper('url');
 
 		//Modelos
-		$this->load->model('videos_model');
-		$this->load->model('user_model');
-		$this->load->model('hunter_model');
-		$this->load->model('castings_model');
+		$this->load->model(array('videos_model', 'user_model', 'hunter_model', 'castings_model','applies_model'));
 	}
 
 	public function index()
@@ -123,8 +120,21 @@ class Home extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
-	public function casting_detail()
+	public function terms()
 	{
+		$args['content'] = 'home/terms';		
+		$args["inner_args"]=NULL;
+		$this->load->view('template',$args);
+	}
+
+	public function casting_detail($id)
+	{
+		if(is_numeric($id))
+		{
+			$args["casting"] = $this->castings_model->get_full_casting($id);
+			$args["casting"]["applies"] = $this->applies_model->get_applies_cant($id);
+		}
+
 		$args["content"]="home/casting_detail";
 		$args["inner_args"]=NULL;
 		$args["tags"]=array("reality show","danza","actuaci&oacuten","m&uacutesica","canto");
