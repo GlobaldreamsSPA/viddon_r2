@@ -13,6 +13,24 @@ class Castings_model extends CI_Model
       return $this->db->insert_id();
     }
 
+    function _routes($casting)
+    {
+        $casting['logo'] = HOME.HUNTER_PROFILE_IMAGE.$casting['logo'];
+        $casting['image'] = HOME.CASTINGS_PATH.$casting['image'];
+        
+        return $casting;
+    }
+
+    function _days($casting)
+    {
+        $end_date = date_create($casting['end_date']);
+        $today = new DateTime(date('Y-m-d'));
+        $interval = date_diff($today, $end_date);
+        $casting['days'] = $interval->format('%d');
+
+        return $casting;
+    }
+
     function insert_image($casting_id, $filename)
     {
         $data = array('image' => $filename);
@@ -33,6 +51,29 @@ class Castings_model extends CI_Model
         }
     }
 
+    function get_full_casting($id)
+    {
+        $this->db->select('*');
+        $this->db->where('id', $id);
+        $this->db->from('castings');
+        $result = $this->db->get();
+        $casting = $result->first_row('array');
+        //Almacenar los dias que quedan
+        $casting = $this->_days($casting);
+
+        //Entregar las rutas de las imagenes
+        $casting = $this->_routes($casting);
+
+        //Buscar datos del hunter: department
+        $this->db->select('department');
+        $this->db->from('entities');
+        $this->db->where('id', $casting['entity_id']);
+        $result = $this->db->get();
+        $hunter = $result->first_row('array');
+        $casting['department'] = $hunter['department'];
+        return $casting;
+    }
+
     function get_castings($hunter_id=NULL, $cant=NULL, $page=NULL, $all=NULL)
     {
     	$this->db->select('id, title, logo, image, end_date, status');
@@ -50,14 +91,10 @@ class Castings_model extends CI_Model
         foreach($results as &$casting)
         {
             //Almacenar los dias que quedan
-            $end_date = date_create($casting['end_date']);
-            $today = new DateTime(date('Y-m-d'));
-            $interval = date_diff($today, $end_date);
-            $casting['days'] = $interval->format('%d');
+            $casting = $this->_days($casting);
 
             //Entregar las rutas de las imagenes
-            $casting['logo'] = HOME.HUNTER_PROFILE_IMAGE.$casting['logo'];
-            $casting['image'] = HOME.CASTINGS_PATH.$casting['image'];
+            $casting = $this->_routes($casting);
         }
 
         return $results;
