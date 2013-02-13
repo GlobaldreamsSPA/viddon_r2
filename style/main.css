@@ -135,13 +135,6 @@ img.user_image
 	line-height: 25px;
 }
 
-		
-/* Posicion boton participar */
-a#participate_button
-{
-	margin-top: 20px;
-}
-
 /*posicion dummy imagen en formulario new*/
 div#image_upload
 {

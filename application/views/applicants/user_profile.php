@@ -8,22 +8,22 @@
 				    				echo "<img class='user_image' src='".HOME."/img/profile/user.jpg'/>";
 				    		?>
 				    		</div>
+				    		<div class="space2"></div>
 				    		<div class="row">
 								<?php if(!$public) {?>
 								<form action="" method="POST">
 									<?php if($postulation_flag) {?>
-									<a href="<?php echo HOME.'/home/casting_list'?>" id="participate_button" class="btn btn-success" type="submit" name="apply">POSTULAR CASTINGS</a>
+									<a href="<?php echo HOME.'/home/casting_list'?>" class="btn btn-success" type="submit" name="apply">POSTULAR CASTINGS</a>
 									<input type="hidden" name="validate" value="1"/>
 									<?php } else{ ?>
-									<button data-toggle="modal" id="participate_button" href="#error" class="btn btn-success">POSTULAR CASTINGS</button>
+									<button data-toggle="modal"  href="#error" class="btn btn-success">POSTULAR CASTINGS</button>
 					    			<?php } ?>
 					    		</form>
 					    		<?php } ?>
 				    		</div>
 				    		<div class="row">
-					    		<div class="span10 offset1">
-					    			<div class="space4"></div>
-						    		<ul class="nav nav-pills nav-stacked orange">
+					    		<div class="span9 offset1">
+					    			<ul class="nav nav-pills nav-stacked orange">
 										<li class="active"><a> <i class="icon-user"></i> Perfil</a>
 										</li>
 										<li><a href="<?php echo HOME."/user/edit/".$user_id;?>"> <i class="icon-pencil"></i> Editar Datos</a></li>
@@ -32,7 +32,7 @@
 												<i class="icon-star-empty"></i> Postulaciones
 											</a>
 											<div id="collapseOne" class="collapse">
-												<ul style="padding-left: 30px;" class="nav nav-pills nav-stacked orange">
+												<ul style="padding-left: 5%;" class="nav nav-pills nav-stacked orange">
 													<li><a href="<?php echo HOME."/user/active_casting_list"?>">Activas</a></li>	
 													<li><a href="<?php echo HOME."/user/results_casting"?>">Resultados</a></li>	
 												</ul>
