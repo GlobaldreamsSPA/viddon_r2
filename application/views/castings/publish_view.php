@@ -40,6 +40,11 @@
 										<option value="Festival">Festival</option>
 										<option value="Otros">Otros</option>
 									</select>
+									<?php $today = new DateTime(date('Y-m-d')); ?>
+									<h5>Fecha de inicio</h5>
+									<input type="text" class="span3" value="<?php echo $today->format('Y-m-d'); ?>" id="dp1" data-date-format="yyyy-mm-dd" name="start-date">
+									<h5>Fecha de t&eacutermino</h5>
+									<input type="text" class="span3" value="<?php echo $today->format('Y-m-d'); ?>" id="dp2" data-date-format="yyyy-mm-dd" name="end-date">
 									<h5>Descripci&oacuten o llamado a postular</h5>
 									<textarea class="rich_textarea" name="description"> </textarea>
 									<?php echo form_error('description'); ?>
@@ -98,12 +103,12 @@
 											<h5>Estatura</h5>
 											<select style="width: 240px;" name="height">
 												<option value="150 cm o menos">150 cm o menos</option>
-												<option selected="selected" value="150 cm">150 cm</option>
-												<option value="160 cm">160 cm</option>
-												<option value="170 cm">170 cm</option>
-												<option value="180 cm">180 cm</option>
-												<option value="190 cm">190 cm</option>
-												<option value="200 cm">200 cm</option>
+												<option selected="selected" value="150 cm">150 cm o m&aacutes</option>
+												<option value="160 cm">160 cm o m&aacutes</option>
+												<option value="170 cm">170 cm o m&aacutes</option>
+												<option value="180 cm">180 cm o m&aacutes</option>
+												<option value="190 cm">190 cm o m&aacutes</option>
+												<option value="200 cm">200 cm o m&aacutes</option>
 												<option value="200 cm o m&aacutes">200 cm o m&aacutes</option>
 												<option value="Todos">Todos</option>
 											</select>

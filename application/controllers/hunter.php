@@ -99,6 +99,8 @@ class Hunter extends CI_Controller {
 				{
 					//Guardar los datos a la BD
 					$casting['title'] = $this->input->post('title');
+					$casting['start_date'] = $this->input->post('start-date');
+					$casting['end_date'] = $this->input->post('end-date');
 					$casting['description'] = $this->input->post('description');
 					$casting['requirements'] = $this->input->post('requirements');
 					$casting['skills'] = $this->input->post('skills');

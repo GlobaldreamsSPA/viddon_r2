@@ -25,9 +25,9 @@ class Castings_model extends CI_Model
     {
         $end_date = date_create($casting['end_date']);
         $today = new DateTime(date('Y-m-d'));
-        $interval = date_diff($today, $end_date);
-        $casting['days'] = $interval->format('%d');
-
+        $interval = $this->date_diff($today->format('Y-m-d'), $end_date->format('Y-m-d'));
+        $casting['days'] = $interval;
+        log_message('info','End_date:'.$end_date->format('Y-m-d').' today:'.$today->format('Y-m-d').' Days:'.$casting['days']);
         return $casting;
     }
 
@@ -98,5 +98,15 @@ class Castings_model extends CI_Model
         }
 
         return $results;
+    }
+
+    function date_diff($start, $end="NOW")
+    {
+        $ts1 = strtotime($start);
+        $ts2 = strtotime($end);
+
+        $seconds_diff = $ts2 - $ts1;
+
+        return floor($seconds_diff/3600/24);
     }
 }
