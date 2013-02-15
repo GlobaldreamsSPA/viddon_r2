@@ -27,7 +27,8 @@ class Castings_model extends CI_Model
         $today = new DateTime(date('Y-m-d'));
         $interval = $this->date_diff($today->format('Y-m-d'), $end_date->format('Y-m-d'));
         $casting['days'] = $interval;
-        log_message('info','End_date:'.$end_date->format('Y-m-d').' today:'.$today->format('Y-m-d').' Days:'.$casting['days']);
+        if($interval < 0)
+            $casting['days'] = 0;
         return $casting;
     }
 
@@ -71,6 +72,7 @@ class Castings_model extends CI_Model
         $result = $this->db->get();
         $hunter = $result->first_row('array');
         $casting['department'] = $hunter['department'];
+        $casting['status'] = $this->_get_status($casting);
         return $casting;
     }
 
@@ -95,6 +97,9 @@ class Castings_model extends CI_Model
 
             //Entregar las rutas de las imagenes
             $casting = $this->_routes($casting);
+
+            //Entregar estado del casting
+            $casting['status'] = $this->_get_status($casting);
         }
 
         return $results;
@@ -108,5 +113,27 @@ class Castings_model extends CI_Model
         $seconds_diff = $ts2 - $ts1;
 
         return floor($seconds_diff/3600/24);
+    }
+
+    function _get_status($casting)
+    {
+        if($casting['days'] == 0)
+            return 'En Revisión';
+        else
+        {
+            switch($casting['status'])
+            {
+                case '0':
+                    $casting['status'] = 'Activo';
+                    break;
+                case '1':
+                    $casting['status'] = 'En Revisión';
+                    break;
+                case '2':
+                    $casting['status'] = 'Finalizado';
+                    break;
+            }
+        }
+        return $casting['status'];
     }
 }
