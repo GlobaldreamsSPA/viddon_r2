@@ -31,7 +31,7 @@
 					<div id="main_casting" class='span4'>
 						<div class="space1"></div>
 							<a href="<?php echo site_url("home/casting_detail/".$casting['id']); ?>">
-	 							<img style='height:100%; width: 99%;' src="<?php echo $casting['image']; ?>"/>
+	 							<img style='height:100%; width: 99%;' src="<?php echo $casting['full_image']; ?>"/>
 							</a>
 							<div class="container video_text_main span12">
 							<div class="space1"></div>

@@ -86,7 +86,7 @@ class Hunter extends CI_Controller {
 			$this->form_validation->set_rules('description', 'Description', 'required');
 			$this->form_validation->set_rules('requirements', 'Requirements', 'required');
 			$this->form_validation->set_rules('skills', 'Skills', 'required');
-			/*$this->form_validation->set_rules('image', 'Image', 'callback_check_upload');*/
+			$this->form_validation->set_rules('image', 'Image', 'callback_check_upload');
 
 			if ($this->form_validation->run() == FALSE)
 			{
@@ -117,7 +117,20 @@ class Hunter extends CI_Controller {
 
 					//Por ultimo subir la foto
 					$form_file_name = 'casting_image';
-					$filename = $this->_upload_image($casting_id, realpath(APPPATH.'..'.CASTINGS_PATH), $form_file_name);
+					$images = array(
+						array(
+							'path' => realpath(APPPATH.'..'.CASTINGS_PATH),
+							'width'=> 230,
+							'height' => 230
+						),
+						array(
+							'path' => realpath(APPPATH.'..'.CASTINGS_FULL_PATH),
+							'width'=> 600,
+							'height' => 300
+						)
+					);
+
+					$filename = $this->_upload_image($casting_id, $images, $form_file_name);
 
 					$this->castings_model->insert_image($casting_id, $filename);
 					redirect('hunter/casting_list');
@@ -253,7 +266,24 @@ class Hunter extends CI_Controller {
 		}
 	}
 
-	private function _upload_image($id, $images_path, $form_file_name)
+	private function _resize_image($images_path, $form_file_name, $width, $height)
+	{
+		$image = $this->upload->data($form_file_name);
+
+		$config = array(
+			'image_library' => 'gd2',
+			'source_image' => $image['full_path'],
+			'new_image' => $images_path,
+			'maintain_ratio' => TRUE,
+			'width' => $width,
+			'height' => $height
+		);
+		
+		$this->image_lib->initialize($config);
+		$this->image_lib->resize();
+	}
+
+	private function _upload_image($id, $images, $form_file_name)
 	{
 		$upload_path = realpath(APPPATH.UPLOAD_DIR);
 		
@@ -277,22 +307,13 @@ class Hunter extends CI_Controller {
 		{
 			print_r($this->upload->display_errors());
 		}
-		
-		//ahora ajustar la imagen
-		$image = $this->upload->data($form_file_name);
 
-		$config = array(
-			'image_library' => 'gd2',
-			'source_image' => $image['full_path'],
-			'new_image' => $images_path,
-			'maintain_ratio' => TRUE,
-			'width' => '230',
-			'height' => '230'
-		);
+		//ahora ajustar la imagen de lista
+		foreach($images as $image)
+		{
+			$this->_resize_image($image['path'], $form_file_name, $image['width'], $image['height']);
+		}
 		
-		$this->image_lib->initialize($config);
-		$this->image_lib->resize();
-
 		unlink(realpath(APPPATH.UPLOAD_DIR.'/'.$filename));
 
 		return $filename;

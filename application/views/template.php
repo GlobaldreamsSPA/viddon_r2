@@ -8,10 +8,10 @@
 	<meta name="keyword" content="">
 
 
+	<link href="<?php echo base_url()?>style/main.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/bootstrap.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/jquery.dataTables.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/jquery.cleditor.css" rel="stylesheet">
-	<link href="<?php echo base_url()?>style/main.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/list-castings.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/list-view.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/publish-view.css" rel="stylesheet">
@@ -52,14 +52,13 @@
 	    <div id="upperhalf">
 		    <div class="row-fluid" >
 		    	<div class="span5 header-text-left">
-		    		<div style="float: right;"class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
 					<a class="anchor-image-logo" href="<?php echo HOME?>" style="margin-left: 50px;"title="Volver a la P&aacute;ina Principal">
 						<img class="image-logo" src="<?php echo base_url(); ?>img/logo.png"/>
 					</a>
 					<a href="<?php echo HOME?>/home/what_is" style="color:white; font-weight: bold; margin-left: 15px;">
 						Tu Talento, Nuestra Pasi&oacute;n
 					</a>
-					
+					<div style="float: right;" class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
 				</div>
 				<div class="span2">
 					<a  href="http://www.facebook.com/pages/Viddoncom/499177723428347?ref=hl"> <img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/fb-logo.png"/></a>

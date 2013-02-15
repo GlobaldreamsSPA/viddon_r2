@@ -121,8 +121,6 @@ class Home extends CI_Controller {
 		{
 			$args["postulation_message"]=$this->session->userdata('msj');		
 			$this->session->unset_userdata('msj');
-
-				
 		}
 
 		$args["castings"] = $this->castings_model->get_castings(NULL, 8, 1, NULL);
@@ -154,6 +152,5 @@ class Home extends CI_Controller {
 		$this->session->set_userdata('msj', $postulation_message);
 		
 		redirect(HOME."/home/casting_detail/".$id_casting);
-		
 	}
 }
