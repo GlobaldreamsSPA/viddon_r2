@@ -15,7 +15,7 @@ class Castings_model extends CI_Model
 
     function _routes($casting, $full_image = FALSE)
     {
-        $casting['logo'] = HOME.HUNTER_PROFILE_IMAGE.$casting['logo'];
+        $casting['logo'] = HOME.HUNTER_PROFILE_IMAGE.$this->_get_hunter_logo($casting['entity_id']);
         
         if($full_image == TRUE)
             $casting['full_image'] = HOME.CASTINGS_FULL_PATH.$casting['image'];
@@ -82,7 +82,7 @@ class Castings_model extends CI_Model
 
     function get_castings($hunter_id=NULL, $cant=NULL, $page=NULL, $all=NULL)
     {
-    	$this->db->select('id, title, logo, image, end_date, status');
+    	$this->db->select('id, title, image, end_date, status, entity_id');
         
         if(!is_null($hunter_id))
             $this->db->where('entity_id', $hunter_id);
@@ -133,6 +133,16 @@ class Castings_model extends CI_Model
         $seconds_diff = $ts2 - $ts1;
 
         return floor($seconds_diff/3600/24);
+    }
+
+    private function _get_hunter_logo($hunter_id)
+    {
+        $this->db->select('logo');
+        $this->db->from('entities');
+        $this->db->where('id', $hunter_id);
+        $query = $this->db->get();
+        $query = $query->first_row('array');
+        return $query['logo'];
     }
 
     function _get_status($casting)
