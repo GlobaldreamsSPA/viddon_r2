@@ -13,9 +13,12 @@ class Castings_model extends CI_Model
       return $this->db->insert_id();
     }
 
-    function _routes($casting)
+    function _routes($casting, $full_image = FALSE)
     {
         $casting['logo'] = HOME.HUNTER_PROFILE_IMAGE.$casting['logo'];
+        
+        if($full_image == TRUE)
+            $casting['full_image'] = HOME.CASTINGS_FULL_PATH.$casting['image'];
         $casting['image'] = HOME.CASTINGS_PATH.$casting['image'];
         
         return $casting;
@@ -59,11 +62,12 @@ class Castings_model extends CI_Model
         $this->db->from('castings');
         $result = $this->db->get();
         $casting = $result->first_row('array');
+        
         //Almacenar los dias que quedan
         $casting = $this->_days($casting);
 
         //Entregar las rutas de las imagenes
-        $casting = $this->_routes($casting);
+        $casting = $this->_routes($casting, TRUE);
 
         //Buscar datos del hunter: department
         $this->db->select('department');
@@ -96,7 +100,7 @@ class Castings_model extends CI_Model
             $casting = $this->_days($casting);
 
             //Entregar las rutas de las imagenes
-            $casting = $this->_routes($casting);
+            $casting = $this->_routes($casting ,TRUE);
 
             //Entregar estado del casting
             $casting['status'] = $this->_get_status($casting);

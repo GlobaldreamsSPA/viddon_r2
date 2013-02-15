@@ -24,6 +24,7 @@ define('IMAGES_DIR', '../img/profile');
 define('USER_PROFILE_IMAGE', '../img/profile');
 define('HUNTER_PROFILE_IMAGE', '/img/logo_hunter/');
 define('CASTINGS_PATH', '/img/casting_image/');
+define('CASTINGS_FULL_PATH', '/img/casting_image_full/');
 define('OPENID' , realpath(APPPATH.'../utils/openid.php'));
 define('HOME', 'http://localhost/release1.0/viddon_r2');
 
