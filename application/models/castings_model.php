@@ -105,6 +105,22 @@ class Castings_model extends CI_Model
         return $results;
     }
 
+
+    function get_castings_especific($ids)
+    {
+    	$this->db->select('id, title, logo, image, end_date, status');
+        
+        foreach ($ids as $id_casting) {
+            $this->db->where('id', $id_casting);
+        }
+            
+        
+        $results = $query->result_array();
+
+        return $results;
+    }
+
+
     function date_diff($start, $end="NOW")
     {
         $ts1 = strtotime($start);

@@ -13,6 +13,13 @@ class Applies_model extends CI_Model
     	$this->db->from('applies');
     	return $this->db->count_all_results();
     }
+	
+	function get_applicant_applies($applicant_id)
+    {
+    	$this->db->where('user_id', $applicant_id);
+    	$this->db->from('applies');
+    	return $this->db->count_all_results();
+    }
 
     function verify_apply($user_id, $casting_id)
 	{
