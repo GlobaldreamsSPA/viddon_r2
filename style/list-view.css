@@ -9,18 +9,6 @@
 	left: 17px;
 }
 
-.list-view-applies-count {
-	background-image: url('../img/circle.png');
-	background-repeat: no-repeat;
-	color: white;
-	height: 40px !important;
-}
-
-.list-view-applies-count p{
-	position: relative;
-	left: 7px;
-	top: 4px;
-}
 
 .list-view-applies-text {
 	font-weight: 500;

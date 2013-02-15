@@ -4,7 +4,7 @@
 			<div class= "span8">
 		  		<div style="border-radius: 5px; margin-left:3%;" id="variable" class="row-fluid">
 		  			
-		  			<div style="margin-left: 7%; margin-top:30px; height: 250px; width: 85%;" id="myCarousel" class="carousel slide">
+		  			<div style="margin-left: 12%; margin-top:40px; height: 200px; width: 75%;" id="myCarousel" class="carousel slide">
 					  <!-- Carousel items -->
 					  <div class="carousel-inner">
 					    <div class="active item">
@@ -49,7 +49,7 @@
 					</div>
 			<?php if($i%2 == 0 || $i == count($video_list)) echo "</div>"; }?>
 					<div class= "space2"></div>
-					<a style="float: right;" href="<?php echo HOME."/home/video_list"?>">(Ver Todos Los Videos)</a>
+					<a class="MBT-readmore" style="float: right;" href="<?php echo HOME."/home/video_list"?>">Todos Los Videos >></a>
 					<div class= "space2"></div>
 				</div>
 			</div>
@@ -65,7 +65,7 @@
 					<img style="margin-top:	12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
 					<img style="margin-top: 12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
 					<div class= "space4"></div>
-					<a style="float: right;" href="<?php echo HOME;?>/home/casting_list">(Ver Todos Los Castings)</a>
+					<a class="MBT-readmore" style="float: right;" href="<?php echo HOME;?>/home/casting_list">Todos Los Castings >></a>
 				</div>
 			</div>	
 		</div>

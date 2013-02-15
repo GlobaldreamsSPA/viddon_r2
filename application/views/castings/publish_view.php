@@ -6,8 +6,9 @@
 				    		<div class="span9 offset1">
 					    		<ul class="nav nav-pills nav-stacked orange">
 								  <li><a href="<?php echo HOME."/hunter";?>"> <i class="icon-user"></i> Perfil</a> </li>
-								  <li class="active"><a> <i class="icon-pencil"></i> Nuevo Casting</a></li>
-								  <li><a  href="<?php echo HOME."/hunter/casting_list";?>"> <i class="icon-edit"></i> Mis Castings</a></li>
+								  <li><a href="<?php echo HOME."/hunter/edit/";?>"> <i class="icon-pencil"></i> Editar Datos</a></li>
+								  <li class="active"><a> <i class="icon-edit"></i> Nuevo Casting</a></li>
+								  <li><a  href="<?php echo HOME."/hunter/casting_list";?>"> <i class="icon-list"></i> Mis Castings</a></li>
 								  <li><a href="<?php echo HOME."/hunter/logout";?>"> <i class="icon-off"></i> Cerrar Sesi&oacuten</a></li>					
 								</ul>
 							</div>
@@ -24,12 +25,7 @@
 									<input type="text" name="title" class="span5" placeholder="Ingrese el t&iacute;tulo del Casting">
 									<?php echo form_error('title'); ?>
 	
-									<h5>Imagen para mostrar</h5>
-									<?php echo form_upload(array('name' => 'casting_image','id'=> 'file')); ?>
-									<?php
-										echo form_hidden('image','');
-										echo form_error('image');
-									?>
+									
 									
 									<h5>Categor&iacutea</h5>
 									<select class="span5" name="category">
@@ -40,6 +36,14 @@
 										<option value="Festival">Festival</option>
 										<option value="Otros">Otros</option>
 									</select>
+									
+									<h5>Imagen para mostrar</h5>
+									<?php echo form_upload(array('name' => 'casting_image','id'=> 'file')); ?>
+									<?php
+										echo form_hidden('image','');
+										echo form_error('image');
+									?>
+									
 									<h5>Descripci&oacuten o llamado a postular</h5>
 									<textarea class="rich_textarea" name="description"> </textarea>
 									<?php echo form_error('description'); ?>
@@ -57,9 +61,9 @@
 								<legend>Perfil del postulante a buscar</legend>
 								<div>		
 									<div style="margin-left:15px;" class="row">
-										<div class="span5">
+										<div class="span6">
 										<h5>Color de ojos</h5>
-										<select style="width: 240px;" name="eyes-color">
+										<select style="width: 100%;" name="eyes-color">
 											<option value="Verde">Verde</option>
 											<option value="Azul">Azul</option>
 											<option value="Gris">Gris</option>
@@ -71,7 +75,7 @@
 										</div>
 										<div class="span6">
 										<h5>Color de cabello</h5>
-										<select style="width: 240px;" name="hair-color">
+										<select style="width: 100%;" name="hair-color">
 											<option value="Casta&ntildeo">Casta&ntildeo</option>
 											<option value="Negro">Negro</option>
 											<option value="Rubio">Rubio</option>
@@ -83,9 +87,9 @@
 										</div>
 									</div>
 									<div style="margin-left:15px;" class="row">
-										<div class="span5">
+										<div class="span6">
 											<h5>Color de piel</h5>
-											<select style="width: 240px;" name="skin-color">
+											<select style="width: 100%;" name="skin-color">
 												<option value="Blanca">Blanca</option>
 												<option value="Negra">Negra</option>
 												<option value="Trigue&ntildea">Trigue&ntildea</option>
@@ -96,7 +100,7 @@
 										
 										<div class="span6">
 											<h5>Estatura</h5>
-											<select style="width: 240px;" name="height">
+											<select style="width: 100%;" name="height">
 												<option value="150 cm o menos">150 cm o menos</option>
 												<option selected="selected" value="150 cm">150 cm</option>
 												<option value="160 cm">160 cm</option>
@@ -113,7 +117,7 @@
 									<div style="margin-left:15px;">
 										<h5>Edad</h5>
 											
-										<select style="width: 240px;" name="age">
+										<select style="width: 49%;" name="age">
 											<option value="10 a&ntildeos_o_menos">10 a&ntildeos o menos</option>
 											<option value="10-15 a&ntildeos">10-15 a&ntildeos</option>
 											<option value="15-20 a&ntildeos">15-20 a&ntildeos</option>

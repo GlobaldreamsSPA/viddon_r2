@@ -22,21 +22,22 @@
 				    		<div class="span9 offset1">
 					    		<ul class="nav nav-pills nav-stacked orange">
 								  	<li><a href="<?php echo HOME."/hunter";?>"> <i class="icon-user"></i> Perfil</a> </li>
-								  	<li><a href="<?php echo HOME."/hunter/publish";?>"> <i class="icon-pencil"></i> Nuevo Casting</a></li>
-									<li class="active"><a> <i class="icon-edit"></i> Mis Castings</a></li>
+								  	<li><a href="<?php echo HOME."/hunter/edit/";?>"> <i class="icon-pencil"></i> Editar Datos</a></li>
+								  	<li><a href="<?php echo HOME."/hunter/publish";?>"> <i class="icon-edit"></i> Nuevo Casting</a></li>
+									<li class="active"><a> <i class="icon-list"></i> Mis Castings</a></li>
 									<li><a href="<?php echo HOME."/hunter/logout";?>"> <i class="icon-off"></i> Cerrar Sesi&oacuten</a></li>					
 								</ul>
 							</div>
 							
 							<div class="span9 offset1">
-								<select style="width:150px;">
+								<select style="width:100%;">
 									<option value="sin_revisar">Sin Revisar</option>
 									<option value="aceptados">Aceptados</option>
 									<option value="rechazados">Rechazados</option>
 									<option value="todos">Todos</option>
 								</select>
 								
-								<select data-placeholder="Selecciona los tags..." class="chzn-select" style="width:150px;" multiple>
+								<select data-placeholder="Selecciona los tags..." class="chzn-select" style="width:100%;" multiple>
 								 	<option value=""></option> 
 								 	<option value="sin_revisar">Cantante</option>
 									<option value="aceptados">Actor</option>
@@ -54,26 +55,26 @@
 							<legend><h3 class="profile-title"><a href="<?php echo HOME.'/hunter/casting_list' ?>">Castings/</a><a href="<?php echo HOME.'/hunter/casting_detail' ?>">Casting A/</a> Lista Postulantes </h3></legend>
 							<div class="row" style="margin-left:1px; width: 100%; height: 180px;"> 
 					    		<div class="span7">
-					    		<iframe width="100%" height="210" src="http://www.youtube.com/embed/vHmGyrq2YhE" frameborder="0" allowfullscreen></iframe>
+					    		<iframe width="100%" height="110%" src="http://www.youtube.com/embed/vHmGyrq2YhE" frameborder="0" allowfullscreen></iframe>
 					    		</div>
 					    		<div class="span5">
 						    		<row>
 							    		<div class="span4">
-							    			<img style="max-width: 80%; max-height: 80%;" src="<?php echo HOME."/img/profile/5.jpeg" ?>"/>
+							    			<img style="max-width: 60%; max-height: 60%;" src="<?php echo HOME."/img/profile/5.jpeg" ?>"/>
 										</div>
 										<div class="span6">
-											<h5>
+											<p style="font-size: 12px;">
 												Iv&aacuten Vald&eacutes Riesco
-											</h5>
+											</p>
 										</div>
 										<div class="span1">
-											<button style="margin-top: 100%;">
+											<button>
 												<i class="icon-search"></i>
 											</button>
 										</div>
 									</row>
 									<row>
-										<ul style="font-size: 9px;"class="skills-list">
+										<ul style="font-size: 8px;"class="skills-list">
 											<li>Cantante</li>
 											<li>Actor</li>
 											<li>Bailarin</li>
@@ -81,7 +82,7 @@
 									</row>
 									
 									<row>
-							    		<p style="text-align:justify;">
+							    		<p style="font-size: 12px; text-align:justify;">
 							    			La inform&aacutetica es mi hobby, mi profesi&oacuten y mi pasi&oacuten. Soy un afortunado usuario y desarrollador de software libre.
 							    		</p>
 									</row>
@@ -105,26 +106,26 @@
 							
 							<div class="row" style="margin-left:1px; width: 100%; height: 180px;"> 
 					    		<div class="span7">
-					    		<iframe width="100%" height="210" src="http://www.youtube.com/embed/vHmGyrq2YhE" frameborder="0" allowfullscreen></iframe>
+					    		<iframe width="100%" height="110%" src="http://www.youtube.com/embed/vHmGyrq2YhE" frameborder="0" allowfullscreen></iframe>
 					    		</div>
 					    		<div class="span5">
 						    		<row>
 							    		<div class="span4">
-							    			<img style="max-width: 80%; max-height: 80%;" src="<?php echo HOME."/img/profile/5.jpeg" ?>"/>
+							    			<img style="max-width: 60%; max-height: 60%;" src="<?php echo HOME."/img/profile/5.jpeg" ?>"/>
 										</div>
 										<div class="span6">
-											<h5>
+											<p style="font-size: 12px;">
 												Iv&aacuten Vald&eacutes Riesco
-											</h5>
+											</p>
 										</div>
 										<div class="span1">
-											<button style="margin-top: 100%;">
+											<button>
 												<i class="icon-search"></i>
 											</button>
 										</div>
 									</row>
 									<row>
-										<ul style="font-size: 9px;"class="skills-list">
+										<ul style="font-size: 8px;"class="skills-list">
 											<li>Cantante</li>
 											<li>Actor</li>
 											<li>Bailarin</li>
@@ -132,7 +133,7 @@
 									</row>
 									
 									<row>
-							    		<p style="text-align:justify;">
+							    		<p style="font-size: 12px; text-align:justify;">
 							    			La inform&aacutetica es mi hobby, mi profesi&oacuten y mi pasi&oacuten. Soy un afortunado usuario y desarrollador de software libre.
 							    		</p>
 									</row>
@@ -156,26 +157,26 @@
 
 							<div class="row" style="margin-left:1px; width: 100%; height: 180px;"> 
 					    		<div class="span7">
-					    		<iframe width="100%" height="210" src="http://www.youtube.com/embed/vHmGyrq2YhE" frameborder="0" allowfullscreen></iframe>
+					    		<iframe width="100%" height="110%" src="http://www.youtube.com/embed/vHmGyrq2YhE" frameborder="0" allowfullscreen></iframe>
 					    		</div>
 					    		<div class="span5">
 						    		<row>
 							    		<div class="span4">
-							    			<img style="max-width: 80%; max-height: 80%;" src="<?php echo HOME."/img/profile/5.jpeg" ?>"/>
+							    			<img style="max-width: 60%; max-height: 60%;" src="<?php echo HOME."/img/profile/5.jpeg" ?>"/>
 										</div>
 										<div class="span6">
-											<h5>
+											<p style="font-size: 12px;">
 												Iv&aacuten Vald&eacutes Riesco
-											</h5>
+											</p>
 										</div>
 										<div class="span1">
-											<button style="margin-top: 100%;">
+											<button>
 												<i class="icon-search"></i>
 											</button>
 										</div>
 									</row>
 									<row>
-										<ul style="font-size: 9px;"class="skills-list">
+										<ul style="font-size: 8px;"class="skills-list">
 											<li>Cantante</li>
 											<li>Actor</li>
 											<li>Bailarin</li>
@@ -183,7 +184,7 @@
 									</row>
 									
 									<row>
-							    		<p style="text-align:justify;">
+							    		<p style="font-size: 12px; text-align:justify;">
 							    			La inform&aacutetica es mi hobby, mi profesi&oacuten y mi pasi&oacuten. Soy un afortunado usuario y desarrollador de software libre.
 							    		</p>
 									</row>
@@ -207,26 +208,26 @@
 							
 							<div class="row" style="margin-left:1px; width: 100%; height: 180px;"> 
 					    		<div class="span7">
-					    		<iframe width="100%" height="210" src="http://www.youtube.com/embed/vHmGyrq2YhE" frameborder="0" allowfullscreen></iframe>
+					    		<iframe width="100%" height="110%" src="http://www.youtube.com/embed/vHmGyrq2YhE" frameborder="0" allowfullscreen></iframe>
 					    		</div>
 					    		<div class="span5">
 						    		<row>
 							    		<div class="span4">
-							    			<img style="max-width: 80%; max-height: 80%;" src="<?php echo HOME."/img/profile/5.jpeg" ?>"/>
+							    			<img style="max-width: 60%; max-height: 60%;" src="<?php echo HOME."/img/profile/5.jpeg" ?>"/>
 										</div>
 										<div class="span6">
-											<h5>
+											<p style="font-size: 12px;">
 												Iv&aacuten Vald&eacutes Riesco
-											</h5>
+											</p>
 										</div>
 										<div class="span1">
-											<button style="margin-top: 100%;">
+											<button>
 												<i class="icon-search"></i>
 											</button>
 										</div>
 									</row>
 									<row>
-										<ul style="font-size: 9px;"class="skills-list">
+										<ul style="font-size: 8px;"class="skills-list">
 											<li>Cantante</li>
 											<li>Actor</li>
 											<li>Bailarin</li>
@@ -234,7 +235,7 @@
 									</row>
 									
 									<row>
-							    		<p style="text-align:justify;">
+							    		<p style="font-size: 12px; text-align:justify;">
 							    			La inform&aacutetica es mi hobby, mi profesi&oacuten y mi pasi&oacuten. Soy un afortunado usuario y desarrollador de software libre.
 							    		</p>
 									</row>

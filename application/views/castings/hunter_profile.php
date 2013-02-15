@@ -6,8 +6,9 @@
 				    		<div class="span9 offset1">
 					    		<ul class="nav nav-pills nav-stacked orange">
 									<li class="active"><a> <i class="icon-user"></i> Perfil</a></li>
-								 	<li><a href="<?php echo HOME."/hunter/publish";?>"> <i class="icon-pencil"></i> Nuevo Casting</a></li>
-								 	<li><a href="<?php echo HOME."/hunter/casting_list";?>"> <i class="icon-edit"></i> Mis Castings</a></li>
+								 	<li><a href="<?php echo HOME."/hunter/edit/";?>"> <i class="icon-pencil"></i> Editar Datos</a></li>
+								 	<li><a href="<?php echo HOME."/hunter/publish";?>"> <i class="icon-edit"></i> Nuevo Casting</a></li>
+								 	<li><a href="<?php echo HOME."/hunter/casting_list";?>"> <i class="icon-list"></i> Mis Castings</a></li>
 									<li><a href="<?php echo HOME."/hunter/logout";?>"> <i class="icon-off"></i> Cerrar Sesi&oacuten</a></li>					
 								</ul>
 							</div>
@@ -20,13 +21,11 @@
 							<div class="space1"></div>
 							<h3 id="profile">Nosotros</h3>
 							<div class="justify profile-content"><?php echo $user_data['about_us'] ?></div>
-							<div class="space1"></div>
+							<div class="space4"></div>
 							<h3 id="profile">Buscamos</h3>
 							<div class="justify profile-content"><?php echo $user_data['we_look_for'] ?></div>
 							<div class="space1"></div>
-											
-							<div class="space4"></div>	
-			
+								
 							<legend>Nuestros Castings</legend>
 							
 							<div style="margin-left:10%; margin-top:30px; height: 250px; width: 80%;" id="myCarousel" class="carousel slide">
@@ -45,6 +44,6 @@
 							
 							<div class="space2"></div>	
 							
-							<a style="text-decoration: underline; float: right;" href="<?php echo HOME."/hunter/casting_list";?>"> (Ver Todos Los Castings)</a>
+							<a  class="MBT-readmore" style="float: right;" href="<?php echo HOME."/hunter/casting_list";?>"> Ver Todos Los Castings >></a>
 						</div>
 					</div>

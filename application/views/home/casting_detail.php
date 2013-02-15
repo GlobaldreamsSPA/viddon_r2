@@ -1,13 +1,13 @@
 <div class="content" id="content">
 	<div class="container-fluid">
 		<div class="row">
-			<div class= "span9">
-		  		<div style="border-radius: 5px; padding:25px;" id="variable" class="row-fluid">
+			<div class= "span8">
+		  		<div style="border-radius: 5px; margin-left:3%;" id="variable" class="row-fluid">
 
 		  			<div class="space05"></div>
-		  			<h2 style="margin-left:75px;" id="profile" style="font-weight:bold;"><?php echo $casting['title']; ?></h3>
+		  			<h2 style="margin-left:5%;" style="font-weight:bold;"><a href="<?php echo site_url("home/casting_list"); ?>">Castings/ </a> <?php echo $casting['title']; ?></h3>
 		  			<div class="space2"></div>
-					<img style="margin-left:75px; margin-top:10px; height: 350px; width: 700px;" src="<?php echo $casting['image'] ?>">
+					<img style="margin-left:75px; margin-top:10px; height: 30%; width: 80%;" src="<?php echo $casting['image'] ?>">
 					<div class="space2"></div>
 					<h2 style="margin-left:75px;" id="profile" style="font-weight:bold;">Caza Talentos</h3>
 					<div class="row">
@@ -59,18 +59,16 @@
 				</div>
 			</div>
 			<div class="span4">
-				<div class="span3">
-			  		<div style="border-radius: 5px; padding:25px; min-width: 290px;" id="grow" class="row-fluid">
-			  			<h2 id="profile"  style="font-weight:bold;">Castings Relacionados</h3>
-		  				<img style="margin-top: 41px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
-		  				<img style="margin-top: 50px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
-		  				<img style="margin-top: 50px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
-		  				<img style="margin-top: 50px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
-		  				<img style="margin-top: 50px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
-		  				<img style="margin-top: 50px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
-						<div class= "space4"></div>
-						<a style="text-decoration: underline; float: right;" href="<?php echo HOME;?>/home/casting_list">(Ver Todos Los Castings)</a>
-					</div>
+			  	<div style="border-radius: 5px; margin-left:8%; text-align:center;" id="grow" class="row-fluid">
+			  		<h2 id="profile"  style="font-weight:bold;">Castings Relacionados</h3>
+		  			<img style="margin-top: 12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
+		  			<img style="margin-top: 12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
+		  			<img style="margin-top: 12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
+		  			<img style="margin-top: 12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
+		  			<img style="margin-top: 12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
+		  			<img style="margin-top: 12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
+					<div class= "space4"></div>
+					<a style="float: right;" href="<?php echo HOME;?>/home/casting_list">(Ver Todos Los Castings)</a>
 				</div>
 			</div>	
 		</div>

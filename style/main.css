@@ -13,6 +13,27 @@ a:hover {	text-decoration: underline}
 
 #variable{min-height: 1080px;}
 
+/*---------- Black --------------*/ 
+.MBT-readmore{ 
+background:#000800; 
+text-align:right; 
+cursor:pointer; 
+color:#fff; 
+margin-top: 10px;
+margin-bottom:10px; 
+margin-right: 10px;
+float:right; 
+border:2px solid #ddd; 
+padding:5px; 
+-moz-border-radius:6px; 
+-webkit-border-radius:6px; 
+font:bold 11px sans-serif; 
+} 
+.MBT-readmore:hover{ 
+font:bold 11px sans-serif; 
+color:#fff; 
+}
+
 .profile-content{
 	min-height: 80px;
 }
@@ -24,30 +45,27 @@ div.content
 }
 
 /*Estilo del boton superior*/
-#login-button {
-	width: 220px;
-	height: 34px;
-	background-image: url('../img/login-gmail-es.png');
-	background-repeat: no-repeat;
-	position: relative;
-	left: 30%;
-	top: 60px;
-	border: 0;
-	border-radius: 3px;
+#login-button-image {
+	width: 100%;
 }
 
+#login-button {
+	width: 100%;
+}
+
+#login-button-container{
+	position: relative;
+	top: -5px;
+	height: 22px !important;
+}
 
 /* Estilo del logo */
-a.anchor-image-logo
-{
-	margin: auto;
-	display: block;
-	height: 100px !important;
-}
 
 img.image-logo 
 {
-	margin-top: 30px;
+	position: relative;
+	top: -5px;
+	width:	15% !important;
 }
 
 
@@ -93,7 +111,7 @@ div.space4
 #lowerhalf
 {
 	background: white;
-	min-height: 190px;
+	min-height: 70px;
 }
 
 
@@ -362,6 +380,9 @@ div.button-home-page
 }
 
 /* menu hunter*/
+.orange{
+	font-size: 12px;
+}
 
 .orange .active a,
 .orange .active a:hover {

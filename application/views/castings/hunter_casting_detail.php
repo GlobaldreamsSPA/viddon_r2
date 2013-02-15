@@ -6,8 +6,9 @@
 				    		<div class="span9 offset1">
 					    		<ul class="nav nav-pills nav-stacked orange">
 								  	<li><a href="<?php echo HOME."/hunter";?>"> <i class="icon-user"></i> Perfil</a> </li>
-								  	<li><a href="<?php echo HOME."/hunter/publish";?>"> <i class="icon-pencil"></i> Nuevo Casting</a></li>
-									<li class="active"><a> <i class="icon-edit"></i> Mis Castings</a></li>
+								  	<li><a href="<?php echo HOME."/hunter/edit/";?>"> <i class="icon-pencil"></i> Editar Datos</a></li>
+								  	<li><a href="<?php echo HOME."/hunter/publish";?>"> <i class="icon-edit"></i> Nuevo Casting</a></li>
+									<li class="active"><a> <i class="icon-list"></i> Mis Castings</a></li>
 									<li><a href="<?php echo HOME."/hunter/logout";?>"> <i class="icon-off"></i> Cerrar Sesi&oacuten</a></li>					
 								</ul>
 							</div>
@@ -16,16 +17,16 @@
 					  			<legend><h3 class="profile-title"> <a href="<?php echo HOME.'/hunter/casting_list' ?>">Castings/</a> Detalle Castings </h3></legend>
 					  			<div class="space05"></div>
 					  			<row>
-						  			<div class="span3">
+						  			<div class="span5">
 						  				<h3 id="profile" style="font-weight:bold;"> Casting A</h3>
 						  			</div>					  				
-						  			<div style="margin-top:15px;" class="span4">
-						  				<button> Vista Publica</button>
-						  				<button> Editar</button>
+						  			<div style="margin-top:15px;" class="span7">
+						  				<a class="btn"> Vista Publica</a>
+						  				<a class="btn"> Editar</a>
 						  			</div>
 					  			</row>
 					  			<div class="space2"></div>
-								<img style=" margin-top:10px; height: 250px; width: 500px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
+								<img style=" margin-top:10px; height: 250px; width: 100%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
 								<div class="space2"></div>
 								<h2 id="profile" style="font-weight:bold;"> Categorias</h2>
 								<div class="space05"></div>
@@ -76,12 +77,12 @@
 									</div>
 								</div>
 								<h3 id="profile" style="font-weight:bold;"> Postulantes</h3>
-								<img style=" margin-top:10px; height: 150px; width: 600px;" src="<?php echo HOME.'/img/lista_usuarios_dummy.png';?>">
-								<a href="<?php echo HOME.'/hunter/applicants_list' ?>" style="float: right;"> (Ver Todos Los Postulantes)</a>
+								<img style=" margin-top:10px; height: 30%; width: 100%;" src="<?php echo HOME.'/img/lista_usuarios_dummy.png';?>">
+								<a class="MBT-readmore" href="<?php echo HOME.'/hunter/applicants_list' ?>" style="float: right;">Todos Los Postulantes >></a>
 								<div class="space2"></div>
 								<h3 id="profile" style="font-weight:bold;"> Seleccionados</h3>
-								<img style=" margin-top:10px; height: 150px; width: 600px;" src="<?php echo HOME.'/img/lista_usuarios_dummy.png';?>">
-								<a href="<?php echo HOME.'/hunter/accepted_list' ?>" style="float: right;"> (Ver Todos Los Seleccionados)</a>
+								<img style=" margin-top:10px; height: 30%; width: 100%;" src="<?php echo HOME.'/img/lista_usuarios_dummy.png';?>">
+								<a class="MBT-readmore" href="<?php echo HOME.'/hunter/accepted_list' ?>" style="float: right;">Todos Los Seleccionados >></a>
 						</div>
 						    
 					    

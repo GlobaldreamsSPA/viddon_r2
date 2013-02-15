@@ -17,8 +17,8 @@
 							<div class= "span5">
 								<h4 class="list-view-title">Casting A1</h3>
 							</div>
-							<div class= "span5 offset1">
-								<div id="time">102 d&iacuteas</div>
+							<div style="margin-top: 5%;"class= "span5 offset1">
+								<i class="icon-time"></i> 102 d&iacute;as
 							</div>
 						</div>
 						<div class="progress">
@@ -33,8 +33,8 @@
 							<div class= "span5">
 								<h4 class="list-view-title">Casting A2</h3>
 							</div>
-							<div class= "span5 offset1">
-								<div id="time">132 d&iacuteas</div>
+							<div style="margin-top: 5%;"class= "span5 offset1">
+								<i class="icon-time"></i>132 d&iacute;as
 							</div>
 						</div>
 						<div class="progress">
@@ -49,8 +49,8 @@
 							<div class= "span5">
 								<h4 class="list-view-title">Casting B</h3>
 							</div>
-							<div class= "span5 offset1">
-								<div id="time">72 d&iacuteas</div>
+							<div style="margin-top: 5%;"class= "span5 offset1">
+								<i class="icon-time"></i>72 d&iacute;as
 							</div>
 						</div>
 						<div class="progress">
@@ -65,8 +65,8 @@
 							<div class= "span5">
 								<h4 class="list-view-title">Casting C</h3>
 							</div>
-							<div class= "span5 offset1">
-								<div id="time">12 d&iacuteas</div>
+							<div style="margin-top: 5%;"class= "span5 offset1">
+								<i class="icon-time"></i>12 d&iacute;as
 							</div>
 						</div>
 						<div class="progress">
@@ -81,8 +81,8 @@
 							<div class= "span5">
 								<h4 class="list-view-title">Casting D</h3>
 							</div>
-							<div class= "span5 offset1">
-								<div id="time">0 d&iacuteas</div>
+							<div style="margin-top: 5%;"class= "span5 offset1">
+								<i class="icon-time"></i>0 d&iacute;as
 							</div>
 						</div>
 						<div class="progress">
@@ -97,8 +97,8 @@
 							<div class= "span5">
 								<h4 class="list-view-title">Casting E</h3>
 							</div>
-							<div class= "span5 offset1">
-								<div id="time">0 d&iacuteas</div>
+							<div style="margin-top: 5%;"class= "span5 offset1">
+								<i class="icon-time"></i>0 d&iacute;as
 							</div>
 						</div>
 						<div class="progress">
@@ -113,8 +113,8 @@
 							<div class= "span5">
 								<h4 class="list-view-title">Casting F</h3>
 							</div>
-							<div class= "span5 offset1">
-								<div id="time">0 d&iacuteas</div>
+							<div style="margin-top: 5%;"class= "span5 offset1">
+								<i class="icon-time"></i>0 d&iacute;as
 							</div>
 						</div>
 						<div class="progress">

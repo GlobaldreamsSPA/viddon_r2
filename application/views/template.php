@@ -53,15 +53,19 @@
 		    <div class="row-fluid" >
 		    	<div class="span5 header-text-left">
 		    		<div style="float: right;"class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
-					<a href="<?php echo HOME?>/home/what_is" style="color:white; font-weight: bold; margin-left: 55px;">Viddon - Tu Talento, Nuestra Pasi&oacute;n</a>
+					<a class="anchor-image-logo" href="<?php echo HOME?>" style="margin-left: 50px;"title="Volver a la P&aacute;ina Principal">
+						<img class="image-logo" src="<?php echo base_url(); ?>img/logo.png"/>
+					</a>
+					<a href="<?php echo HOME?>/home/what_is" style="color:white; font-weight: bold; margin-left: 15px;">
+						Tu Talento, Nuestra Pasi&oacute;n
+					</a>
 					
 				</div>
 				<div class="span2">
 					<a  href="http://www.facebook.com/pages/Viddoncom/499177723428347?ref=hl"> <img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/fb-logo.png"/></a>
 					<a href="https://twitter.com/ViddonCom"><img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/twitter-logo.png"/></a>
 				</div>
-				<div class="span4 offset1">
-					<ul>
+				<div class="span4">
 					<?php
 					
 						/*verificacion usuario postulante*/
@@ -89,15 +93,28 @@
 						if($id)
 							echo "<li class='welcome-login'> Bienvenido ".anchor('user', $user).' '.anchor('user/logout',' (Cerrar sesi&oacuten)');
 						elseif ($id_h) 
-							echo "<li class='welcome-login'> Bienvenido ".anchor('user', $name).' '.anchor('hunter/logout',' (Cerrar sesi&oacuten)');
+							echo "<li class='welcome-login'> Bienvenido ".anchor('hunter', $name).' '.anchor('hunter/logout',' (Cerrar sesi&oacuten)');
 						else
 						{
+							echo "<div class='span5 offset2'>";
 							echo "<i class='icon-star icon-white'></i>";
 							echo "<a href='".base_url()."home/login_hunter'>&iquestBuscas Talento?</a>";
+							echo "</div>";
 							
 						}
-					?>
-					</ul>
+					
+						if(!$id && !$id_h)
+						{
+							echo "<div id='login-button-container' class='span5'>";
+							echo "<form action='".$auth_url."' method='POST'>";
+							echo "<button id='login-button'>";
+							echo "<img id='login-button-image' src='".HOME."/img/login-gmail-es.png' />";
+							echo "</button>";
+							echo "</form>";
+							echo "</div>";
+						}
+					
+					?>				
 				</div>
 				
 		    </div>	
@@ -106,18 +123,9 @@
 		<div id="lowerhalf">
 			<div class="space05"></div>
 			<div class="row offset1">
-		 		<a class="anchor-image-logo span4" href="<?php echo HOME?>" title="Volver a la P&aacute;ina Principal">
-					<img class="image-logo" src="<?php echo base_url(); ?>img/logo.png"/>
-				</a>
+		 		
 				
-				<?php		
-					if(!$id && !$id_h)
-					{
-						echo "<form action='".$auth_url."' method='POST'>";
-						echo "<button id='login-button'/>";
-						echo "</form>";
-					}
-				?>
+				
 				<!--
 				<form class="form-search offset2 span3">
 			  		<input type="text" class="input-medium">

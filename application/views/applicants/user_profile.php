@@ -21,8 +21,9 @@
 					    		</form>
 					    		<?php } ?>
 				    		</div>
+				    		<?php if(!$public) {?>
 				    		<div class="row">
-					    		<div class="span9 offset1">
+					    		<div class="span9 offset1">					    			
 					    			<ul class="nav nav-pills nav-stacked orange">
 										<li class="active"><a> <i class="icon-user"></i> Perfil</a>
 										</li>
@@ -32,7 +33,7 @@
 												<i class="icon-star-empty"></i> Postulaciones
 											</a>
 											<div id="collapseOne" class="collapse">
-												<ul style="padding-left: 5%;" class="nav nav-pills nav-stacked orange">
+												<ul style="padding-left: 30px;" class="nav nav-pills nav-stacked orange">
 													<li><a href="<?php echo HOME."/user/active_casting_list"?>">Activas</a></li>	
 													<li><a href="<?php echo HOME."/user/results_casting"?>">Resultados</a></li>	
 												</ul>
@@ -42,6 +43,7 @@
 									</ul>
 								</div>
 				    		</div>
+				    		<?php } ?>
 				    	</div>
 				    
 					    <div class="span8 offset1 user-profile-right">
@@ -106,7 +108,7 @@
 								<div id="facebook" style="padding-top:40px;">
 									<form name="frm">
 										<br>
-											<textarea style="width:485px;height:100px;" type="text" name="comment" id="comment" Placeholder="Escribe un comentario..."></textarea>
+											<textarea style="width: 97%;" type="text" name="comment" id="comment" Placeholder="Escribe un comentario..."></textarea>
 										<br>
 										<div id="post1">
 											<input type="button" class="btn btn-info"  value="Comentar" onclick="get()"/>										
@@ -114,7 +116,7 @@
 									</form>
 								</div>
 								<div id="facebook1">
-									<div id="post" style="width:400px;">
+									<div id="post" style="width: 97%;">
 								 	</div>
 								 </div>				
 								

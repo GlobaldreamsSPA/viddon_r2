@@ -52,11 +52,11 @@
 		  			<div class="space2"></div>
 					<h3 id="profile" >Galeria Videos</h3>
 					<img style="margin-top: 16px;" src="<?php echo HOME.'/img/dummy_galeria_videos.png';?>">
-		  			<a style="float: right;" ref="#">(Ver mas)</a>
+		  			<a class="MBT-readmore" style="float: right;" ref="#">Ver m&aacute;s >></a>
 		  			<div class="space2"></div>						
 					<h3 id="profile" >Galeria Fotos</h3>
 					<img style="margin-top: 16px;"  src="<?php echo HOME.'/img/dummy_galeria_fotos.png';?>">
-					<a style="float: right;" ref="#">(Ver mas)</a>
+					<a class="MBT-readmore"  style="float: right;" ref="#">Ver m&aacute;s >></a>
 					<div class="space4"></div>
 				</div>
 			</div>

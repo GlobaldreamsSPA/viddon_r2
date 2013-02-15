@@ -76,7 +76,7 @@
 									<div class="space05"></div>
 									<div class="row">
 										<h4 id="profile">Descripci&oacuten:</h4>
-										<div class="">
+										<div>
 											Se buscan Bandas con la pasi&oacuten para triunfar.
 										</div>
 									</div>

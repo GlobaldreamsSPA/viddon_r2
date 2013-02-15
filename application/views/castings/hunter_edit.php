@@ -11,8 +11,9 @@
 				    		<div class="span9 offset1">
 					    		<ul class="nav nav-pills nav-stacked orange">
 								  	<li><a href="<?php echo HOME."/hunter";?>"> <i class="icon-user"></i> Perfil</a> </li>
-								  	<li><a href="<?php echo HOME."/hunter/publish";?>"> <i class="icon-pencil"></i> Nuevo Casting</a></li>
-									<li class="active"><a> <i class="icon-edit"></i> Mis Castings</a></li>
+								  	<li class="active"><a> <i class="icon-pencil"></i> Editar Datos</a></li>
+								  	<li><a href="<?php echo HOME."/hunter/publish";?>"> <i class="icon-edit"></i> Nuevo Casting</a></li>
+									<li><a href="<?php echo HOME."/hunter/casting_list";?>"> <i class="icon-list"></i> Mis Castings</a></li>
 									<li><a href="<?php echo HOME."/hunter/logout";?>"> <i class="icon-off"></i> Cerrar Sesi&oacuten</a></li>					
 								</ul>
 							</div>
