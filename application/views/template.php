@@ -91,9 +91,19 @@
 						}
 						
 						if($id)
+						{
+							echo "<div class='span11 offset1'>";						
 							echo "<li class='welcome-login'> Bienvenido ".anchor('user', $user).' '.anchor('user/logout',' (Cerrar sesi&oacuten)');
+							echo "</div>";
+						}
+						
 						elseif ($id_h) 
+						{
+							echo "<div class='span11 offset1'>";													
 							echo "<li class='welcome-login'> Bienvenido ".anchor('hunter', $name).' '.anchor('hunter/logout',' (Cerrar sesi&oacuten)');
+							echo "</div>";
+						
+						}
 						else
 						{
 							echo "<div class='span5 offset2'>";
