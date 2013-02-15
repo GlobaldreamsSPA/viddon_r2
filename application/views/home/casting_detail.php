@@ -61,12 +61,11 @@
 			<div class="span4">
 			  	<div style="border-radius: 5px; margin-left:8%; text-align:center;" id="grow" class="row-fluid">
 			  		<h2 id="profile"  style="font-weight:bold;">Castings Relacionados</h3>
-		  			<img style="margin-top: 12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
-		  			<img style="margin-top: 12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
-		  			<img style="margin-top: 12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
-		  			<img style="margin-top: 12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
-		  			<img style="margin-top: 12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
-		  			<img style="margin-top: 12%; width: 70%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c2.png';?>">
+		  			<?php foreach($castings as $casting){ ?>
+			  			<a href="<?php echo site_url("home/casting_detail/".$casting['id']); ?>">
+		  					<img style="margin-top: 12%; width: 70%;" src="<?php echo $casting['image']; ?>">
+		  				</a>
+		  			<?php } ?>
 					<div class= "space4"></div>
 					<a style="float: right;" href="<?php echo HOME;?>/home/casting_list">(Ver Todos Los Castings)</a>
 				</div>
