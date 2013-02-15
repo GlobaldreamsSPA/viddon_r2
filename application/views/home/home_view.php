@@ -4,7 +4,7 @@
 			<div class= "span8">
 		  		<div style="border-radius: 5px; margin-left:3%;" id="variable" class="row-fluid">
 		  			
-		  			<div style="margin-left: 12%; margin-top:40px; height: 200px; width: 75%;" id="myCarousel" class="carousel slide">
+		  			<div style="margin-left: 12%; margin-top:10%; height: 200px; width: 75%;" id="myCarousel" class="carousel slide">
 					  <!-- Carousel items -->
 					  <div class="carousel-inner">
 					    <div class="active item">
@@ -30,7 +30,7 @@
 					?>
 					<div id="main_videos" class='span4'>
 						<div class="space1"></div>
-						<iframe width="100%" height="200" src="http://www.youtube.com/embed/<?php echo $video[1].'?rel=0'?>" frameborder="0" allowfullscreen></iframe>	
+						<iframe width="100%" height="200px" src="http://www.youtube.com/embed/<?php echo $video[1].'?rel=0'?>" frameborder="0" allowfullscreen></iframe>	
 						<span class="arrow"></span>
 						<div class="container video_text_main span12">
 							<div class="space1"></div>
@@ -55,13 +55,15 @@
 			</div>
 			<div class="span4">
 			  	<div style="border-radius: 5px; margin-left:8%; text-align:center;" id="grow" class="row-fluid">
+			  		<div class="space1"></div>
 			  		<h2 id="profile"  style="font-weight:bold;">Castings Destacados</h3>
 			  		<?php foreach($castings as $casting){ ?>
 			  			<a href="<?php echo site_url("home/casting_detail/".$casting['id']); ?>">
-		  					<img style="margin-top: 12%; width: 70%;" src="<?php echo $casting['image']; ?>">
+		  					<img style="margin-top: 11%; width: 70%; height: 9%;" src="<?php echo $casting['image']; ?>">
 		  				</a>
 		  			<?php } ?>
-					<div class= "space4"></div>
+					<div class= "space2"></div>
+					<div class="space1"></div>
 					<a class="MBT-readmore" style="float: right;" href="<?php echo HOME;?>/home/casting_list">Todos Los Castings >></a>
 				</div>
 			</div>	

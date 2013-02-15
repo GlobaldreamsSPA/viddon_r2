@@ -30,19 +30,19 @@
 		  			<div class="space05"></div>
 		  			<h2 style="margin-left:5%;" style="font-weight:bold;"><a href="<?php echo site_url("home/casting_list"); ?>">Castings/ </a> <?php echo $casting['title']; ?></h3>
 		  			<div class="space2"></div>
-					<img style="margin-left:75px; margin-top:10px; height: 30%; width: 80%;" src="<?php echo $casting['image'] ?>">
+					<img style="margin-left:18%; margin-top:10px; height: 15%; width: 65%;" src="<?php echo $casting['image'] ?>">
 					<div class="space2"></div>
-					<h2 style="margin-left:75px;" id="profile" style="font-weight:bold;">Caza Talentos</h3>
+					<h2 style="margin-left:10%;" id="profile" style="font-weight:bold;">Caza Talentos</h3>
 					<div class="row">
-						<div style="margin-left: 85px;" class="span1">
+						<div style="margin-left:12%;" class="span1">
 							<img class='user_image_main_page' src="<?php echo $casting['logo'] ?>"/>
 						</div>
 						<div class="span5">
-							<h4  style="margin-left:75px; margin-top: 15px;" style="font-weight:bold;"><?php echo $casting['department'] ?></h4>
+							<h4  style="margin-left:10%; margin-top: 15px;" style="font-weight:bold;"><?php echo $casting['department'] ?></h4>
 						</div>
 					</div>
 					<div class="space2"></div>
-					<h2 style="margin-left:75px;" id="profile" style="font-weight:bold;">Categorias</h3>
+					<h2 style="margin-left:10%;" id="profile" style="font-weight:bold;">Categorias</h3>
 					<div class="space05"></div>
 					<?php
 					    		echo '<ul style="margin-left:75px;" class="skills-list">';
@@ -52,12 +52,12 @@
 								echo '</ul>';
 					?>
 					<div class="space2"></div>
-		  			<h2 style="margin-left:75px;" id="profile" style="font-weight:bold;"> Descripci&oacuten</h3>
+		  			<h2 style="margin-left:10%;" id="profile" style="font-weight:bold;"> Descripci&oacuten</h3>
 		  			<p style="padding-top:35px; padding-right:75px; padding-left:75px; text-align:justify;">
 		  				<?php echo $casting['description'] ?></p>
 
 					<div class="space2"></div>
-					<h2 style="margin-left:75px;" id="profile" style="font-weight:bold;">Detalles generales del Casting</h3>
+					<h2 style="margin-left:10%;" id="profile" style="font-weight:bold;">Detalles generales del Casting</h3>
 					<ul style="padding-top:20px; padding-right:75px; padding-left:75px; text-align:justify;">
 						<li>El Casting empezó el d&iacutea: <?php echo $casting['start_date'] ?>.</li>
 						<li>El Casting termina el d&iacutea: <?php echo $casting['end_date'] ?>.</li>
@@ -66,7 +66,7 @@
 						<li>Las habilidades requeridas para este casting son: <?php echo $casting['skills'] ?>.</li>
 					</ul>
 					<div class="space2"></div>
-					<h2 style="margin-left:75px;" id="profile" style="font-weight:bold;">Detalles generales del Casting</h3>
+					<h2 style="margin-left:10%;" id="profile" style="font-weight:bold;">Detalles generales del Casting</h3>
 					<ul style="padding-top:20px; padding-right:75px; padding-left:75px; text-align:justify;">
 						<li>Color de ojos preferido: <?php echo $casting['eyes-color'] ?>.</li>
 						<li>Color de ojos preferido: <?php echo $casting['eyes-color'] ?>.</li>
@@ -77,7 +77,7 @@
 						<li>G&eacutenero preferido: <?php echo $casting['sex'] ?>.</li>
 					</ul>
 					<div class="space2"></div>
-					<a style="margin-left:75px;" href="<?php echo HOME."/home/apply_casting/".$casting['id'];?>" id="participate_button" class="btn btn-large btn-success" type="submit" name="apply">POSTULAR</a>
+					<a style="margin-left:10%;" href="<?php echo HOME."/home/apply_casting/".$casting['id'];?>" id="participate_button" class="btn btn-large btn-success" type="submit" name="apply">POSTULAR</a>
 					<div class="space4"></div>
 				</div>
 			</div>
