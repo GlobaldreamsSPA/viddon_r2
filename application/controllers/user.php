@@ -355,6 +355,8 @@ class User extends CI_Controller {
 		$inner_args["applicant_content"]="applicants/active_casting_list";
 		$args["inner_args"]=$inner_args;
 		$args['public'] = $public;
+		$args['castings'] = $this->castings_model->get_castings($hunter_id, NULL, NULL, NULL);
+		
 
 		if($this->videos_model->verify_videos($id) != 1)
 		{
