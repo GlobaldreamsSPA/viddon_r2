@@ -135,9 +135,45 @@ class Home extends CI_Controller {
 			$args["casting"]["applies"] = $this->applies_model->get_applies_cant($id);
 		}
 
+		
+		if($this->session->userdata('msj'))
+		{
+			$args["postulation_message"]=$this->session->userdata('msj');		
+			$this->session->unset_userdata('msj');
+
+				
+		}
+
+
+		
 		$args["content"]="home/casting_detail";
 		$args["inner_args"]=NULL;
 		$args["tags"]=array("reality show","danza","actuaci&oacuten","m&uacutesica","canto");
 		$this->load->view('template',$args);
+	}
+
+	public function apply_casting($id_casting)
+	{
+		if($this->session->userdata('id'))
+		{
+			if ($this->session->userdata('type') && $this->videos_model->verify_videos($this->session->userdata('id')) != 0) 
+			{
+							if($this->applies_model->apply($this->session->userdata('id'),$id_casting))
+							{
+								$postulation_message = "Postulaci&oacute;n&n Exitosa.";
+							}
+							$postulation_message = "Ya Postulaste a este Casting.";
+			}
+			else
+				$postulation_message = "No tienees un video para poder postular.";
+		}
+		else 
+			$postulation_message = "Debes iniciar sesi&oacute;n";		
+		
+		
+		$this->session->set_userdata('msj', $postulation_message);
+		
+		redirect(HOME."/home/casting_detail/".$id_casting);
+		
 	}
 }

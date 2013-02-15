@@ -1,6 +1,6 @@
 <div id="error" class="modal hide fade in">
 <div class="modal-header">
-<a class="close" data-dismiss="modal">×</a>  
+<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
 </div>
 <div class="modal-body">
 <h4>Aviso</h4>
@@ -14,7 +14,7 @@
 
 <div id="del-video" class="modal hide fade in" >
 <div class="modal-header">  
-<a class="close" data-dismiss="modal">×</a> 
+<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a> 
 </div>
 <div class="modal-body">
 <h4>Aviso</h4>

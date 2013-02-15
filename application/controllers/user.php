@@ -158,7 +158,8 @@ class User extends CI_Controller {
 					$new_session_data = array(
 						'id' => $result['id'],
 						'email' => $user_email,
-						'name' => $user_name
+						'name' => $user_name,
+						'type' => 1
 						);
 
 					$this->session->set_userdata($new_session_data);
@@ -173,7 +174,8 @@ class User extends CI_Controller {
 					$new_session_data = array(
 						'id' => $id_user,
 						'email' => $user_email,
-						'name' => $user_name
+						'name' => $user_name,
+						'type' => 1
 						);
 
 					$this->session->set_userdata($new_session_data);

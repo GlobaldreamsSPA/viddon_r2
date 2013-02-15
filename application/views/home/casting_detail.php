@@ -1,3 +1,26 @@
+<div id="postulation-result" class="modal hide fade in">
+<div class="modal-header">
+<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
+</div>
+<div class="modal-body">
+<h4>Aviso</h4>
+<p><?php if(isset($postulation_message)) echo $postulation_message; ?></p>              
+</div>
+<div class="modal-footer">
+<?php echo anchor(HOME,'Volver al Home',"class='btn btn-green'"); ?>
+<a href="#" class="btn" data-dismiss="modal">Cerrar</a>
+</div>
+</div>
+
+<?php if(isset($postulation_message)){ ?>
+<script type="text/javascript">
+
+  $('#postulation-result').modal({
+    show: true
+  });
+</script>
+<?php } ?>
+
 <div class="content" id="content">
 	<div class="container-fluid">
 		<div class="row">
@@ -54,7 +77,7 @@
 						<li>G&eacutenero preferido: <?php echo $casting['sex'] ?>.</li>
 					</ul>
 					<div class="space2"></div>
-					<button style="margin-left:75px;" id="participate_button" class="btn btn-large btn-success" type="submit" name="apply">POSTULAR</button>
+					<a style="margin-left:75px;" href="<?php echo HOME."/home/apply_casting/".$casting['id'];?>" id="participate_button" class="btn btn-large btn-success" type="submit" name="apply">POSTULAR</a>
 					<div class="space4"></div>
 				</div>
 			</div>
