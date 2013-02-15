@@ -131,7 +131,7 @@
 										
 										<h5>Sexo</h5>
 										<label class="radio inline">
-											<input type="radio" name="optionsRadios" id="optionsRadios1" value="Femenino" checked>
+											<input type="radio" name="optionsRadios" id="optionsRadios1" value="Femenino">
 											Femenino
 										</label>
 										<label class="radio inline">
@@ -139,7 +139,7 @@
 											Masculino
 										</label>
 										<label class="radio inline">
-											<input type="radio" name="optionsRadios" id="optionsRadios3" value="Ambos">
+											<input type="radio" name="optionsRadios" id="optionsRadios3" value="Ambos" checked>
 											Ambos
 										</label>
 										<div class="space2"></div>
