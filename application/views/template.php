@@ -183,7 +183,12 @@
 
 		$(function(){
 			window.prettyPrint && prettyPrint();
-			$('#dp1').datepicker();
+			$("#dp1").datepicker();
+		});
+
+		$(function(){
+			window.prettyPrint && prettyPrint();
+			$("#dp2").datepicker();
 		});
 
 		/* comentarios perfil usuario*/
