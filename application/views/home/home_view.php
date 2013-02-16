@@ -8,11 +8,17 @@
 					  <!-- Carousel items -->
 					  <div class="carousel-inner">
 					    <div class="active item">
-							<img src="<?php echo HOME.'/img/banner_casting.png';?>">
+					    	<a href="<?php echo site_url("home/casting_detail/".$castings[0]['id']); ?>">
+								<img style="height:100%; width:100%;" src="<?php echo $castings[0]['full_image']; ?>">
+							</a>
 						</div>
-					    <div class="item">
-					    	<img src="<?php echo HOME.'/img/banner_casting.png';?>">
-					    </div>
+						<?php for($i=1; $i<8; $i++){ ?>
+						<div class="item">
+						    <a href="<?php echo site_url("home/casting_detail/".$castings[$i]['id']); ?>">
+								<img style="height:100%; width:100%;" src="<?php echo $castings[$i]['full_image']; ?>">
+							</a>
+						</div>
+					    <?php } ?>
 					  </div>
 					  <!-- Carousel nav -->
 					  <a style="margin-top:20%;" class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
