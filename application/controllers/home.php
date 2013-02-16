@@ -138,9 +138,10 @@ class Home extends CI_Controller {
 			{
 							if($this->applies_model->apply($this->session->userdata('id'),$id_casting))
 							{
-								$postulation_message = "Postulaci&oacute;n&n Exitosa.";
+								$postulation_message = "Postulaci&oacute;n Exitosa.";
 							}
-							$postulation_message = "Ya Postulaste a este Casting.";
+							else
+								$postulation_message = "Ya Postulaste a este Casting.";
 			}
 			else
 				$postulation_message = "No tienees un video para poder postular.";

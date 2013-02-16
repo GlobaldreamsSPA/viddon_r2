@@ -110,18 +110,18 @@ class Castings_model extends CI_Model
     }
 
 
-    function get_castings_especific($ids)
+    function get_castings_especific($ids_query)
     {
     	$this->db->select('id, title, logo, image, end_date, status');
         
-        foreach ($ids as $id_casting) {
-            $this->db->where('id', $id_casting);
-        }
-            
+  
+            $this->db->where('id', $ids_query['0']["casting_id"]);
         
-        $results = $query->result_array();
+            
+        $query= $this->db->get('castings');
+		
 
-        return $results;
+        return $query->result_array();
     }
 
 

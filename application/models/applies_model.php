@@ -16,9 +16,15 @@ class Applies_model extends CI_Model
 	
 	function get_applicant_applies($applicant_id)
     {
+    	$this->db->select('casting_id');
     	$this->db->where('user_id', $applicant_id);
-    	$this->db->from('applies');
-    	return $this->db->count_all_results();
+    	$query= $this->db->get('applies');
+    	
+		if($query->num_rows == 0)
+			return 0;
+		else
+			return $query->result_array();
+		
     }
 
     function verify_apply($user_id, $casting_id)

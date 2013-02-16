@@ -13,6 +13,8 @@ class User extends CI_Controller {
 		$this->load->model('applies_model');
 		$this->load->model('videos_model');
 		$this->load->model('skills_model');
+		$this->load->model('castings_model');
+		
 	}
 
 	public function index($id = NULL)
@@ -355,9 +357,20 @@ class User extends CI_Controller {
 		$inner_args["applicant_content"]="applicants/active_casting_list";
 		$args["inner_args"]=$inner_args;
 		$args['public'] = $public;
-		$args['castings'] = $this->castings_model->get_castings($hunter_id, NULL, NULL, NULL);
 		
+		$castings_id = $this->applies_model->get_applicant_applies($id);
+		
+		var_dump($castings_id);
+		
+		
+		if($castings_id != 0)
+		{
+			$castings = $this->castings_model->get_castings_especific($castings_id);
+			var_dump($castings);
+			
+		}
 
+		
 		if($this->videos_model->verify_videos($id) != 1)
 		{
 			$args["postulation_flag"]=false;
@@ -371,7 +384,7 @@ class User extends CI_Controller {
 		
 		
 
-		$this->load->view('template', $args);
+		//$this->load->view('template', $args);
 		
 	}
 
