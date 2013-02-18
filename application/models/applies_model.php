@@ -16,7 +16,7 @@ class Applies_model extends CI_Model
 	
 	function get_applicant_applies($applicant_id)
     {
-    	$this->db->select('casting_id');
+    	$this->db->select('id,casting_id');
     	$this->db->where('user_id', $applicant_id);
     	$query= $this->db->get('applies');
     	
@@ -38,6 +38,19 @@ class Applies_model extends CI_Model
 			return 0;
 		else
 			return 1;
+	}
+	
+	function get_castings_applies($casting_id)
+	{
+		$this->db->select('user_id');
+    	$this->db->where('casting_id', $casting_id);
+		$query = $this->db->get('applies');
+		
+		if($query->num_rows == 0)
+			return 0;
+		else
+			return $query->result_array();
+		
 	}
 
 	function verify_video_apply($video_id, $user_id)
@@ -103,4 +116,10 @@ class Applies_model extends CI_Model
 		else
 			return FALSE;
 	}
+
+	function delete($apply_id)
+    {
+    	$this->db->delete('videos_applies', array('apply_id' => $apply_id));		
+    	$this->db->delete('applies', array('id' => $apply_id));
+    }
 }

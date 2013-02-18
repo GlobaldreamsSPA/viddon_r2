@@ -65,7 +65,7 @@
 											<?php } ?>
 											</div>
 											<div  class"span5">
-												<a style="margin-left: 10%;" class="btn btn-info" href="<?php echo site_url("hunter/casting_detail/"/*.$casting['id']*/); ?>" type="button"><i class="icon-zoom-in"></i></a>
+												<a style="margin-left: 10%;" class="btn btn-info" href="<?php echo site_url("hunter/casting_detail/".$casting['id']); ?>" type="button"><i class="icon-zoom-in"></i></a>
 											</div>
 										</div>
 									</div>

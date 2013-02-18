@@ -51,6 +51,17 @@ class User_model extends CI_Model
 		return $query;
 	}
 
+	function select_applicant($id)
+	{
+		//Rescatar los datos de la tabla usuario
+		$this->db->select('id, name, email, image_profile, bio');
+		$this->db->from('users');
+		$this->db->where('id', $id);
+		$query = $this->db->get()->first_row('array');
+
+		return $query;
+	}
+
 	function verify_openid($openid)
 	{
 		$this->db->select('google_login_token, id');

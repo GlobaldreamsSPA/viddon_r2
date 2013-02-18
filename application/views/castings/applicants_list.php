@@ -47,140 +47,51 @@
 					    
 					    <div class="span8 offset1 user-profile-right">
 					    		
-							<legend><h3 class="profile-title"><a href="<?php echo HOME.'/hunter/casting_list' ?>">Castings/</a><a href="<?php echo HOME.'/hunter/casting_detail' ?>">Casting A/</a> Lista Postulantes </h3></legend>
-							<div class="row" style="margin-left:1px; width: 100%; height: 180px;"> 
-					    		<div class="span7">
-					    		<iframe width="100%" height="110%" src="http://www.youtube.com/embed/vHmGyrq2YhE" frameborder="0" allowfullscreen></iframe>
-					    		</div>
-					    		<div class="span5">
-						    		<row>
-							    		<div class="span4">
-							    			<img style="max-width: 60%; max-height: 60%;" src="<?php echo HOME."/img/profile/5.jpeg" ?>"/>
-										</div>
-										<div class="span6">
-											<p style="font-size: 12px;">
-												Iv&aacuten Vald&eacutes Riesco
-											</p>
-										</div>
-										<div class="span1">
-											<button>
-												<i class="icon-search"></i>
-											</button>
-										</div>
-									</row>
-									<row>
-										<ul style="font-size: 8px;"class="skills-list">
-											<li>Cantante</li>
-											<li>Actor</li>
-											<li>Bailarin</li>
-										</ul>
-									</row>
-									
-									<row>
-							    		<p style="font-size: 12px; text-align:justify;">
-							    			La inform&aacutetica es mi hobby, mi profesi&oacuten y mi pasi&oacuten. Soy un afortunado usuario y desarrollador de software libre.
-							    		</p>
-									</row>
-									
-									<row style="float: right;">
-										
-										<a data-toggle="modal" href="#modal1" style="text-align: right;" class="btn btn-success">
-											<i class="icon-ok"></i>
-										</a>
-										
-										<a style="text-align: right;" class="btn btn-danger">
-											<i class="icon-remove"></i>
-										</a>
-										
-									</row>
-								</div>
-							</div>
-				
-							<div class="space4"></div>
-							<div class="space2"></div>
+							<legend><h3 class="profile-title"><a href="<?php echo HOME.'/hunter/casting_list' ?>">Castings/</a><a href="<?php echo HOME.'/hunter/casting_detail/'.$id_casting; ?>">Casting A/</a> Lista Postulantes </h3></legend>
 							
-							<div class="row" style="margin-left:1px; width: 100%; height: 180px;"> 
-					    		<div class="span7">
-					    		<iframe width="100%" height="110%" src="http://www.youtube.com/embed/vHmGyrq2YhE" frameborder="0" allowfullscreen></iframe>
-					    		</div>
-					    		<div class="span5">
-						    		<row>
-							    		<div class="span4">
-							    			<img style="max-width: 60%; max-height: 60%;" src="<?php echo HOME."/img/profile/5.jpeg" ?>"/>
-										</div>
-										<div class="span6">
-											<p style="font-size: 12px;">
-												Iv&aacuten Vald&eacutes Riesco
-											</p>
-										</div>
-										<div class="span1">
-											<button>
-												<i class="icon-search"></i>
-											</button>
-										</div>
-									</row>
-									<row>
-										<ul style="font-size: 8px;"class="skills-list">
-											<li>Cantante</li>
-											<li>Actor</li>
-											<li>Bailarin</li>
-										</ul>
-									</row>
-									
-									<row>
-							    		<p style="font-size: 12px; text-align:justify;">
-							    			La inform&aacutetica es mi hobby, mi profesi&oacuten y mi pasi&oacuten. Soy un afortunado usuario y desarrollador de software libre.
-							    		</p>
-									</row>
-									
-									<row style="float: right;">
-										
-										<a data-toggle="modal" href="#modal1" style="text-align: right;" class="btn btn-success">
-											<i class="icon-ok"></i>
-										</a>
-										
-										<a style="text-align: right;" class="btn btn-danger">
-											<i class="icon-remove"></i>
-										</a>
-										
-									</row>
-								</div>
-							</div>
-				
-							<div class="space4"></div>
-							<div class="space2"></div>
+							<?php 
+							if(isset($applicants))
+								foreach ($applicants as $applicant) {
+							?>
 
 							<div class="row" style="margin-left:1px; width: 100%; height: 180px;"> 
 					    		<div class="span7">
-					    		<iframe width="100%" height="110%" src="http://www.youtube.com/embed/vHmGyrq2YhE" frameborder="0" allowfullscreen></iframe>
+					    		<iframe width="100%" height="110%" src="http://www.youtube.com/embed/<?php echo $applicant['video_id']?>" frameborder="0" allowfullscreen></iframe>
 					    		</div>
 					    		<div class="span5">
 						    		<row>
-							    		<div class="span4">
-							    			<img style="max-width: 60%; max-height: 60%;" src="<?php echo HOME."/img/profile/5.jpeg" ?>"/>
+							    		<div class="span3">
+							    			<img style="max-width: 75%; max-height: 75%;" src="<?php echo HOME.'/img/profile/'.$applicant["image_profile"] ?>"/>
 										</div>
 										<div class="span6">
 											<p style="font-size: 12px;">
-												Iv&aacuten Vald&eacutes Riesco
+												<?php echo $applicant['name']; ?>
 											</p>
 										</div>
 										<div class="span1">
-											<button>
+											<a class="btn" href="<?php echo HOME.'/user/index/'.$applicant["id"] ?>">
 												<i class="icon-search"></i>
-											</button>
+											</a>
 										</div>
 									</row>
 									<row>
-										<ul style="font-size: 8px;"class="skills-list">
-											<li>Cantante</li>
-											<li>Actor</li>
-											<li>Bailarin</li>
-										</ul>
+										<?php
+											if(isset($applicant['tags'])&& !empty($applicant['tags']) )
+												{
+											  		echo '<ul style="font-size: 8px;" class="skills-list">';
+											  		foreach ($applicant['tags'] as $tag) {
+													echo '<li> <a href="#">'.$tag.'</a></li>';
+												}
+												echo '</ul>';
+											}
+											else
+												echo '<div class="space2"></div>'
+										?>
 									</row>
 									
 									<row>
 							    		<p style="font-size: 12px; text-align:justify;">
-							    			La inform&aacutetica es mi hobby, mi profesi&oacuten y mi pasi&oacuten. Soy un afortunado usuario y desarrollador de software libre.
+											<?php echo substr(strip_tags($applicant['bio']),0,140)."...";?>
 							    		</p>
 									</row>
 									
@@ -199,56 +110,9 @@
 							</div>
 				
 							<div class="space4"></div>
-							<div class="space2"></div>
 							
-							<div class="row" style="margin-left:1px; width: 100%; height: 180px;"> 
-					    		<div class="span7">
-					    		<iframe width="100%" height="110%" src="http://www.youtube.com/embed/vHmGyrq2YhE" frameborder="0" allowfullscreen></iframe>
-					    		</div>
-					    		<div class="span5">
-						    		<row>
-							    		<div class="span4">
-							    			<img style="max-width: 60%; max-height: 60%;" src="<?php echo HOME."/img/profile/5.jpeg" ?>"/>
-										</div>
-										<div class="span6">
-											<p style="font-size: 12px;">
-												Iv&aacuten Vald&eacutes Riesco
-											</p>
-										</div>
-										<div class="span1">
-											<button>
-												<i class="icon-search"></i>
-											</button>
-										</div>
-									</row>
-									<row>
-										<ul style="font-size: 8px;"class="skills-list">
-											<li>Cantante</li>
-											<li>Actor</li>
-											<li>Bailarin</li>
-										</ul>
-									</row>
-									
-									<row>
-							    		<p style="font-size: 12px; text-align:justify;">
-							    			La inform&aacutetica es mi hobby, mi profesi&oacuten y mi pasi&oacuten. Soy un afortunado usuario y desarrollador de software libre.
-							    		</p>
-									</row>
-									
-									<row style="float: right;">
-										
-										<a data-toggle="modal" href="#modal1" style="text-align: right;" class="btn btn-success">
-											<i class="icon-ok"></i>
-										</a>
-										
-										<a style="text-align: right;" class="btn btn-danger">
-											<i class="icon-remove"></i>
-										</a>
-										
-									</row>
-								</div>
-							</div>
-				
+							<?php } ?>
+						
 								
 						</div>
 					</div>

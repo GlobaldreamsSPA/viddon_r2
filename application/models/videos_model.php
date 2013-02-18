@@ -74,6 +74,15 @@ class Videos_model extends CI_Model
 		return $result;
 	}
 
+	function get_video_applicant($id_user)
+	{
+		$this->db->where('user_id', $id_user);
+		$query = $this->db->get('videos')->first_row('array');
+		$result["video_id"]=$query['link'];
+
+		return $result;
+	}
+
 	function get_video_id($youtube_video_id)
 	{
 		$this->db->select('id');

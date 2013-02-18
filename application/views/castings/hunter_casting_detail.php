@@ -18,29 +18,32 @@
 					  			<div class="space05"></div>
 					  			<row>
 						  			<div class="span5">
-						  				<h3 id="profile" style="font-weight:bold;"> Casting A</h3>
+						  				<h3 id="profile" style="font-weight:bold;"><?php echo $casting['title']; ?></h3>
 						  			</div>					  				
 						  			<div style="margin-top:15px;" class="span7">
-						  				<a class="btn"> Vista Publica</a>
+						  				<a class="btn" href="<?php echo HOME.'/home/casting_detail/'.$casting["id"] ?>"> Vista Publica</a>
 						  				<a class="btn"> Editar</a>
 						  			</div>
 					  			</row>
 					  			<div class="space2"></div>
-								<img style=" margin-top:10px; height: 250px; width: 100%;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
+								<img style=" margin-top:10px; height: 250px; width: 100%;" src="<?php echo $casting['full_image'] ?>">
 								<div class="space2"></div>
 								<h2 id="profile" style="font-weight:bold;"> Categorias</h2>
 								<div class="space05"></div>
 								<?php
-								    		echo '<ul class="skills-list">';
-								    		foreach ($tags as $tag) {
-												echo '<li> <a href="#">'.$tag.'</a></li>';
+											if(isset($tags))											
+									    	{
+									    		echo '<ul class="skills-list">';
+									    		foreach ($tags as $tag) {
+													echo '<li> <a href="#">'.$tag.'</a></li>';
+												}
+												echo '</ul>';
 											}
-											echo '</ul>';
 								?>
 								<div class="space2"></div>
 								<h3 id="profile" style="font-weight:bold;"> Estadisticas</h3>
 								<div class ="row">
-									<div style="margin-left: 30px;"  class="span8">						
+									<div style="margin-left: 15px;"  class="span8">						
 										<div class="space1"></div>
 										<p>
 											Visitas pagina casting: 12000
@@ -48,17 +51,20 @@
 										<div class="space1"></div>
 										
 										<p>
-											Tiempo restante: 0 d&iacuteas
+											El Casting empez&aacute; el d&iacute;a: <?php echo $casting['start_date'] ?>.
+										</p>
+										<p>
+											El Casting termina el d&iacute;a: <?php echo $casting['end_date'] ?>.
 										</p>
 										<div class="space1"></div>
 										
 										<p>
-											Estado: revisando postulaciones
+											Estado: <?php echo $casting['status']; ?>
 										</p>										
 										<div class="space1"></div>
 																						
 										<p>
-											Meta de postulantes: 5000 personas de 1000
+											Meta de postulantes: <?php echo $casting['applies'] ?> personas de <?php echo $casting['max_applies'] ?>
 										</p>
 										<div class="progress">
 											<div class="bar bar-success" style="width: 100%;">100%</div>
@@ -78,7 +84,7 @@
 								</div>
 								<h3 id="profile" style="font-weight:bold;"> Postulantes</h3>
 								<img style=" margin-top:10px; height: 30%; width: 100%;" src="<?php echo HOME.'/img/lista_usuarios_dummy.png';?>">
-								<a class="MBT-readmore" href="<?php echo HOME.'/hunter/applicants_list' ?>" style="float: right;">Todos Los Postulantes >></a>
+								<a class="MBT-readmore" href="<?php echo HOME.'/hunter/applicants_list/'.$casting["id"] ?>" style="float: right;">Todos Los Postulantes >></a>
 								<div class="space2"></div>
 								<h3 id="profile" style="font-weight:bold;"> Seleccionados</h3>
 								<img style=" margin-top:10px; height: 30%; width: 100%;" src="<?php echo HOME.'/img/lista_usuarios_dummy.png';?>">

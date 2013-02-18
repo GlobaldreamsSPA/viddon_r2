@@ -60,15 +60,19 @@
 									<div style="margin-top:2%;" class="span3">
 										<i class="icon-time"></i> <?php echo $casting['days'] ?> d&iacute;as
 									</div>
-									
-									<div class"span2">
-										<a class="btn" href="#">
+									<div class="span1">
+										<a class="btn" href="mailto:contacto@viddon.com">
 											<i class="icon-envelope"></i>                                            
 										</a>
-										<a class="btn" href="#">
-											<i class="icon-remove"></i>                                            
-										</a>
 									</div>
+									
+									<div class="span1">
+										<form action="" method="POST">
+											<button class="btn" type="submit"><i class="icon-remove"></i></button>
+											<input type="hidden" name="del-apply" value="<?php echo $casting["apply_id"] ?>"/>
+										</form>										
+									</div>
+									
 								</div>
 								
 								<div class="row">

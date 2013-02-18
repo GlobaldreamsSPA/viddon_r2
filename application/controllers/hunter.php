@@ -6,7 +6,7 @@ class Hunter extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper(array('url', 'file', 'form'));
-		$this->load->model(array('hunter_model', 'castings_model', 'applies_model','skills_model'));
+		$this->load->model(array('hunter_model', 'castings_model', 'user_model', 'applies_model', 'videos_model','skills_model'));
 		$this->load->library(array('upload', 'image_lib', 'form_validation'));
 	}
 
@@ -183,19 +183,34 @@ class Hunter extends CI_Controller {
 		redirect(HOME);
 	}
 
-	function casting_detail()
+	function casting_detail($id=NULL)
 	{
-		if($this->session->userdata('logged_in'))
+		
+		
+		
+		if($this->session->userdata('logged_in') && isset($id))
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id = $hunter_id['id'];
-	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id);
-	   	 	$args["tags"] = array("reality show","danza","actuaci&oacuten","m&uacutesica","canto");		
-	   	 	$args['user_data'] = $this->session->userdata('logged_in');
+			$args["casting"] = $this->castings_model->get_full_casting($id);
+			$args["casting"]["applies"] = $this->applies_model->get_applies_cant($id);
+			
+			if(isset($args["casting"]["skills"]))
+			{
+				$args["tags"]=	$this->skills_model->get_skills();			
+				$tags_id= explode('-', $args["casting"]["skills"]);
+				unset($tags_id[count($tags_id)-1]);
+				$tags_id_temp=array();
+				foreach ($tags_id as $tag) {
+					array_push($tags_id_temp, $args["tags"][$tag]);
+				}
+				$args["tags"]=$tags_id_temp;
+			}
+			
+			$args['user_data'] = $this->session->userdata('logged_in');
 			$args["content"]="castings/hunter_template";
 			$inner_args["hunter_content"]="castings/hunter_casting_detail";
 			$args["inner_args"]=$inner_args;
-			
 			$this->load->view('template', $args);
 		}
 		else
@@ -203,20 +218,33 @@ class Hunter extends CI_Controller {
 
 	}
 	
-	function applicants_list()
+	function applicants_list($id=NULL)
 	{
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && isset($id))
 		{
-			$hunter_id = $this->session->userdata('logged_in');
-		 	$hunter_id= $hunter_id['id'];
-	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id);
+		
+			$args["id_casting"]=$id;
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
 			$args["content"]="castings/hunter_template";
 			$inner_args["hunter_content"]="castings/applicants_list";
 			$args["inner_args"]=$inner_args;
-			$args["skills"]=	$skills = $this->skills_model->get_skills();
-
+			$args["skills"]= $this->skills_model->get_skills();
 			
+			$id_applicants= $this->applies_model->get_castings_applies($id);
+			
+			if($id_applicants!= 0)
+			{
+				$args["applicants"]=array();
+				
+				foreach($id_applicants as $id)
+				{
+					$applicant_info=$this->user_model->select_applicant($id['user_id']);
+					$video_info= $this->videos_model->get_video_applicant($id['user_id']);
+					$applicant_info['tags'] = $this->skills_model->get_user_skills($id['user_id']);
+					$applicant_info['video_id'] =array_pop($video_info);
+					array_push($args["applicants"],$applicant_info);
+				}				
+			}
 			$this->load->view('template', $args);	
 		}
 		else

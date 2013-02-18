@@ -358,13 +358,25 @@ class User extends CI_Controller {
 		$args["inner_args"]=$inner_args;
 		$args['public'] = $public;
 		
+			
+		if($this->input->post("del-apply"))
+		{
+			$this->applies_model->delete($this->input->post("del-apply"));
+		}
+		
 		$castings_id = $this->applies_model->get_applicant_applies($id);
 		
-				
+		$apply_id_dictionary= array();
+		
+		foreach ($castings_id as $temp) {
+				$apply_id_dictionary[$temp['casting_id']]=$temp["id"];
+		}
+
 		
 		if($castings_id != 0)
 		{
 			$args['castings'] = $this->castings_model->get_castings_especific($castings_id);
+			
 			$args["tags"]=	$this->skills_model->get_skills();
 
 			foreach($args['castings'] as &$casting)
@@ -380,8 +392,11 @@ class User extends CI_Controller {
 					}
 					$casting["tags"]=$tags_id_temp;
 				}
-			}
+				$casting["apply_id"]=$apply_id_dictionary[$casting["id"]];
+			}			
 		}
+		
+
 
 		
 		if($this->videos_model->verify_videos($id) != 1)
