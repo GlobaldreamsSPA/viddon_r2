@@ -75,6 +75,7 @@
 										</div>
 									</row>
 									<row>
+										<div class="space2"></div>
 										<?php
 											if(isset($applicant['tags'])&& !empty($applicant['tags']) )
 												{
@@ -85,7 +86,7 @@
 												echo '</ul>';
 											}
 											else
-												echo '<div class="space2"></div>'
+												echo '<div class="space1"></div>'
 										?>
 									</row>
 									
