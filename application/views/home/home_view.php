@@ -4,7 +4,7 @@
 			<div class= "span8">
 		  		<div style="border-radius: 5px; margin-left:3%;" id="variable" class="row-fluid">
 		  			
-		  			<div style="margin-left: 12%; margin-top:10%; height: 200px; width: 75%;" id="myCarousel" class="carousel slide">
+		  			<div style="margin-left: 15%; margin-top:10%; height:270px; width: 70%;" id="myCarousel" class="carousel slide">
 					  <!-- Carousel items -->
 					  <div class="carousel-inner">
 					    <div class="active item">
@@ -21,11 +21,11 @@
 					    <?php } ?>
 					  </div>
 					  <!-- Carousel nav -->
-					  <a style="margin-top:20%;" class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-					  <a style="margin-top:20%;" class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+					  <a style="margin-top:5%;" class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+					  <a style="margin-top:5%;" class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 					</div>
-					<div class="space4"></div>
-					<div class="space2"></div>
+					
+					<div class="space1"></div>
 		  			<h2 style="margin-left:5%;" id="profile" style="font-weight:bold;"> Videos Mas Visitados</h3>
 
 				<?php
@@ -65,7 +65,7 @@
 			  		<h2 id="profile"  style="font-weight:bold;">Castings Destacados</h3>
 			  		<?php foreach($castings as $casting){ ?>
 			  			<a href="<?php echo site_url("home/casting_detail/".$casting['id']); ?>">
-		  					<img style="margin-top: 11%; width: 70%; height: 9%;" src="<?php echo $casting['image']; ?>">
+		  					<img style="margin-top: 44px; width: 70%; height: 170px;" src="<?php echo $casting['image']; ?>">
 		  				</a>
 		  			<?php } ?>
 					<div class= "space2"></div>

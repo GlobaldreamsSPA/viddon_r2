@@ -8,7 +8,8 @@ class Home extends CI_Controller {
 		$this->load->helper('url');
 
 		//Modelos
-		$this->load->model(array('videos_model', 'user_model', 'hunter_model', 'castings_model','applies_model'));
+		$this->load->model(array('videos_model', 'user_model', 'hunter_model', 'castings_model','applies_model','skills_model'));
+	
 	}
 
 	public function index()
@@ -122,11 +123,27 @@ class Home extends CI_Controller {
 			$args["postulation_message"]=$this->session->userdata('msj');		
 			$this->session->unset_userdata('msj');
 		}
-
+		
+		$gender_interpreter= array("Ambos","Masculino","Femenino");		
 		$args["castings"] = $this->castings_model->get_castings(NULL, 8, 1, NULL);
+		if(isset($args["casting"]['sex']))
+			$args["casting"]['sex'] = $gender_interpreter[$args["casting"]['sex']]; 
+
+		if(isset($args["casting"]["skills"]))
+		{
+			$args["tags"]=	$this->skills_model->get_skills();			
+			$tags_id= explode('-', $args["casting"]["skills"]);
+			unset($tags_id[count($tags_id)-1]);
+			$tags_id_temp=array();
+			foreach ($tags_id as $tag) {
+				array_push($tags_id_temp, $args["tags"][$tag]);
+			}
+			$args["tags"]=$tags_id_temp;
+		}
+		
 		$args["content"]="home/casting_detail";
 		$args["inner_args"]=NULL;
-		$args["tags"]=array("reality show","danza","actuaci&oacuten","m&uacutesica","canto");
+
 		$this->load->view('template',$args);
 	}
 

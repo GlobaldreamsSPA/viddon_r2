@@ -37,15 +37,10 @@
 									<option value="todos">Todos</option>
 								</select>
 								
-								<select data-placeholder="Selecciona los tags..." class="chzn-select" style="width:100%;" multiple>
-								 	<option value=""></option> 
-								 	<option value="sin_revisar">Cantante</option>
-									<option value="aceptados">Actor</option>
-									<option value="rechazados">Bailarin</option>
-									<option value="todos">Escritor</option>
-									<option value="aceptados">Poeta</option>
-									<option value="rechazados">Callejero</option>
-								</select>
+									<?php 
+									
+									echo form_multiselect('skills[]', $skills,NULL,"class='chzn-select' style='width:100%' data-placeholder='Selecciona los tags...'");
+									?>
 								<btn style="float:right;" class="btn btn"> Filtar</btn>
 							</div>
 					    </div>

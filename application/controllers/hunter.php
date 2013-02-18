@@ -6,7 +6,7 @@ class Hunter extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper(array('url', 'file', 'form'));
-		$this->load->model(array('hunter_model', 'castings_model', 'applies_model'));
+		$this->load->model(array('hunter_model', 'castings_model', 'applies_model','skills_model'));
 		$this->load->library(array('upload', 'image_lib', 'form_validation'));
 	}
 
@@ -76,7 +76,8 @@ class Hunter extends CI_Controller {
 		 	$hunter_id= $hunter_id['id'];
 	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id);
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
-
+			$args["skills"]=	$skills = $this->skills_model->get_skills();
+			
 	   	 	//Setear mensajes
 			$this->form_validation->set_message('required', 
 				'Este dato es requerido para publicar el casting.');
@@ -85,7 +86,6 @@ class Hunter extends CI_Controller {
 			$this->form_validation->set_rules('title', 'Title', 'required');
 			$this->form_validation->set_rules('description', 'Description', 'required');
 			$this->form_validation->set_rules('requirements', 'Requirements', 'required');
-			$this->form_validation->set_rules('skills', 'Skills', 'required');
 			$this->form_validation->set_rules('image', 'Image', 'callback_check_upload');
 
 			if ($this->form_validation->run() == FALSE)
@@ -103,7 +103,12 @@ class Hunter extends CI_Controller {
 					$casting['end_date'] = $this->input->post('end-date');
 					$casting['description'] = $this->input->post('description');
 					$casting['requirements'] = $this->input->post('requirements');
-					$casting['skills'] = $this->input->post('skills');
+					
+					$casting['skills'] = "";
+					
+					foreach ($this->input->post('skills') as $skill) {
+						$casting['skills'] = $casting['skills'].$skill."-";
+					}
 					$casting['category'] = $this->input->post('category');
 					$casting['eyes-color'] = $this->input->post('eyes-color');
 					$casting['hair-color'] = $this->input->post('hair-color');
@@ -209,6 +214,8 @@ class Hunter extends CI_Controller {
 			$args["content"]="castings/hunter_template";
 			$inner_args["hunter_content"]="castings/applicants_list";
 			$args["inner_args"]=$inner_args;
+			$args["skills"]=	$skills = $this->skills_model->get_skills();
+
 			
 			$this->load->view('template', $args);	
 		}

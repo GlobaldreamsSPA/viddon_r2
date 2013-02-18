@@ -48,182 +48,69 @@
 					    		
 							<legend> <h2>Postulaciones Activas</h2></legend>
 							
-							<div class="row">
-								<div class="span1">
-									<img src=<? echo HOME."/img/canal-13.jpg"?> />	
-								</div>
-								<div class="span5">
-									<h4>Casting A Canal 13</h4>
-								</div>
-								<div style="margin-top:2%;" class="span3">
-											<i class="icon-time"></i> 132 d&iacuteas
+							<?php foreach($castings as $casting){ ?>
+								
+								<div class="row">
+									<div class="span1">
+										<img src="<?php echo $casting['logo'] ?>"/>
+									</div>
+									<div class="span5">
+										<h4><?php echo $casting['title'] ?></h4>
+									</div>
+									<div style="margin-top:2%;" class="span3">
+										<i class="icon-time"></i> <?php echo $casting['days'] ?> d&iacute;as
+									</div>
+									
+									<div class"span2">
+										<a class="btn" href="#">
+											<i class="icon-envelope"></i>                                            
+										</a>
+										<a class="btn" href="#">
+											<i class="icon-remove"></i>                                            
+										</a>
+									</div>
 								</div>
 								
-								<div class"span2">
-									<a class="btn" href="#">
-										<i class="icon-envelope"></i>                                            
-									</a>
-									<a class="btn" href="#">
-										<i class="icon-remove"></i>                                            
-									</a>
-								</div>
-							</div>
-							<div class="row">
-								<div class="span6">
-									<img id="image_casting" src=<? echo HOME."/img/casting_image/castings_dummy.png"?> />
-								</div>
-								<div style="padding-left: 1%;" class="span6 list-view-applies-desc">
-									<div class="space05"></div>
-									<div class="row">
-										<h4 id="profile">Descripci&oacuten:</h4>
-										<div>
-											Se buscan Bandas con la pasi&oacuten para triunfar.
-										</div>
+								<div class="row">
+									<div class="span6">
+										<div class="space05"></div>
+
+										<a href="<?php echo site_url("home/casting_detail/".$casting['id']); ?>">
+											<img style='height:100%; width: 100%;' src="<?php echo $casting['image'] ?>"/>
+										</a>
 									</div>
-									<div class="space1"></div>
-									<div class="row">
-											<h4 id="profile">Tags:</h4>
-											<ul class="skills-list">
-												<li><a href="#">Canto </a></li>
-												<li><a href="#">Baile </a></li>
-												<li><a href="#">Actuaci&oacute;n </a></li>
-											</ul>
-									</div>									
-								</div>
-							</div>
-							<div class="space4"></div>
-							<div class="row">
-								<div class="span1">
-									<img src=<? echo HOME."/img/canal-13.jpg"?> />	
-								</div>
-								<div class="span5">
-									<h4>Casting A Canal 13</h4>
-								</div>
-								<div style="margin-top:2%;" class="span3">
-											<i class="icon-time"></i> 132 d&iacuteas
+									<div style="padding-left: 1%;" class="span6 list-view-applies-desc">
+										<div class="space05"></div>
+										<div class="row">
+											<h4 id="profile">Descripci&oacuten:</h4>
+											<div>
+												<?php echo  substr(strip_tags($casting['description']),0,140)."..." ?>
+											</div>
+										</div>
+										<div class="space1"></div>
+										<div class="row">
+												<h4 id="profile">Tags:</h4>
+												<?php
+															if(isset($casting['tags']))
+												    		{
+													    		echo '<ul style="margin-left:75px;" class="skills-list">';
+													    		foreach ($casting['tags'] as $tag) {
+																	echo '<li> <a href="#">'.$tag.'</a></li>';
+																}
+																echo '</ul>';
+															}
+												?>
+										</div>									
+									</div>
 								</div>
 								
-								<div class"span2">
-									<a class="btn" href="#">
-										<i class="icon-envelope"></i>                                            
-									</a>
-									<a class="btn" href="#">
-										<i class="icon-remove"></i>                                            
-									</a>
-								</div>
-							</div>
-							<div class="row">
-								<div class="span6">
-									<img id="image_casting" src=<? echo HOME."/img/casting_image/castings_dummy.png"?> />
-								</div>
-								<div style="padding-left: 1%;" class="span6 list-view-applies-desc">
-									<div class="space05"></div>
-									<div class="row">
-										<h4 id="profile">Descripci&oacuten:</h4>
-										<div class="">
-											Se buscan Bandas con la pasi&oacuten para triunfar.
-										</div>
-									</div>
-									<div class="space1"></div>
-									<div class="row">
-											<h4 id="profile">Tags:</h4>
-											<ul class="skills-list">
-												<li><a href="#">Canto </a></li>
-												<li><a href="#">Baile </a></li>
-												<li><a href="#">Actuaci&oacute;n </a></li>
-											</ul>
-									</div>									
-								</div>
-							</div>
-							<div class="space4"></div>
-							<div class="row">
-								<div class="span1">
-									<img src=<? echo HOME."/img/canal-13.jpg"?> />	
-								</div>
-								<div class="span5">
-									<h4>Casting A Canal 13</h4>
-								</div>
-								<div style="margin-top:2%;" class="span3">
-											<i class="icon-time"></i> 132 d&iacuteas
-								</div>
+								<div class="space4"></div>
 								
-								<div class"span2">
-									<a class="btn" href="#">
-										<i class="icon-envelope"></i>                                            
-									</a>
-									<a class="btn" href="#">
-										<i class="icon-remove"></i>                                            
-									</a>
-								</div>
-							</div>
-							<div class="row">
-								<div class="span6">
-									<img id="image_casting" src=<? echo HOME."/img/casting_image/castings_dummy.png"?> />
-								</div>
-								<div style="padding-left: 1%;" class="span6 list-view-applies-desc">
-									<div class="space05"></div>
-									<div class="row">
-										<h4 id="profile">Descripci&oacuten:</h4>
-										<div class="">
-											Se buscan Bandas con la pasi&oacuten para triunfar.
-										</div>
-									</div>
-									<div class="space1"></div>
-									<div class="row">
-											<h4 id="profile">Tags:</h4>
-											<ul class="skills-list">
-												<li><a href="#">Canto </a></li>
-												<li><a href="#">Baile </a></li>
-												<li><a href="#">Actuaci&oacute;n </a></li>
-											</ul>
-									</div>									
-								</div>
-							</div>
-							<div class="space4"></div>
-							<div class="row">
-								<div class="span1">
-									<img src=<? echo HOME."/img/canal-13.jpg"?> />	
-								</div>
-								<div class="span5">
-									<h4>Casting A Canal 13</h4>
-								</div>
-								<div style="margin-top:2%;" class="span3">
-											<i class="icon-time"></i> 132 d&iacuteas
-								</div>
 								
-								<div class"span2">
-									<a class="btn" href="#">
-										<i class="icon-envelope"></i>                                            
-									</a>
-									<a class="btn" href="#">
-										<i class="icon-remove"></i>                                            
-									</a>
-								</div>
-							</div>
-							<div class="row">
-								<div class="span6">
-									<img id="image_casting" src=<? echo HOME."/img/casting_image/castings_dummy.png"?> />
-								</div>
-								<div style="padding-left: 1%;" class="span6 list-view-applies-desc">
-									<div class="space05"></div>
-									<div class="row">
-										<h4 id="profile">Descripci&oacuten:</h4>
-										<div class="">
-											Se buscan Bandas con la pasi&oacuten para triunfar.
-										</div>
-									</div>
-									<div class="space1"></div>
-									<div class="row">
-											<h4 id="profile">Tags:</h4>
-											<ul class="skills-list">
-												<li><a href="#">Canto </a></li>
-												<li><a href="#">Baile </a></li>
-												<li><a href="#">Actuaci&oacute;n </a></li>
-											</ul>
-									</div>									
-								</div>
-							</div>
+							<?php } ?>
+						
 							
+						
 							
 							<div class="space4"></div>	
 							<div class="space4"></div>						

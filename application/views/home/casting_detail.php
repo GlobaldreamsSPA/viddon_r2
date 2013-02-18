@@ -25,12 +25,12 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class= "span8">
-		  		<div style="border-radius: 5px; margin-left:3%;" id="variable" class="row-fluid">
+		  		<div style="border-radius: 5px; margin-left:3%; min-height: 1850px" id="variable" class="row-fluid">
 
 		  			<div class="space05"></div>
-		  			<h2 style="margin-left:5%;" style="font-weight:bold;"><a href="<?php echo site_url("home/casting_list"); ?>">Castings/ </a> <?php echo $casting['title']; ?></h3>
+		  			<h2 style="margin-left:10%;" style="font-weight:bold;"><a href="<?php echo site_url("home/casting_list"); ?>">Castings/ </a> <?php echo $casting['title']; ?></h3>
 		  			<div class="space2"></div>
-					<img style="margin-left:75px; margin-top:10px; height: 30%; width: 80%;" src="<?php echo $casting['full_image'] ?>">
+					<img style="margin-left:12%; margin-top:10px; height: 300px; width: 75%;" src="<?php echo $casting['full_image'] ?>">
 					<div class="space2"></div>
 					<h2 style="margin-left:10%;" id="profile" style="font-weight:bold;">Caza Talentos</h3>
 					<div class="row">
@@ -45,11 +45,14 @@
 					<h2 style="margin-left:10%;" id="profile" style="font-weight:bold;">Categorias</h3>
 					<div class="space05"></div>
 					<?php
-					    		echo '<ul style="margin-left:75px;" class="skills-list">';
-					    		foreach ($tags as $tag) {
-									echo '<li> <a href="#">'.$tag.'</a></li>';
+								if(isset($tags))
+								{
+						    		echo '<ul style="margin-left:75px;" class="skills-list">';
+						    		foreach ($tags as $tag) {
+										echo '<li> <a href="#">'.$tag.'</a></li>';
+									}
+									echo '</ul>';
 								}
-								echo '</ul>';
 					?>
 					<div class="space2"></div>
 		  			<h2 style="margin-left:10%;" id="profile" style="font-weight:bold;"> Descripci&oacuten</h3>
@@ -63,7 +66,6 @@
 						<li>El Casting termina el d&iacutea: <?php echo $casting['end_date'] ?>.</li>
 						<li>El Casting requiere un máximo de: <?php echo $casting['max_applies'] ?> personas.</li>
 						<li><?php echo $casting['applies'] ?> Personas ya han postulado a este casting.</li>
-						<li>Las habilidades requeridas para este casting son: <?php echo $casting['skills'] ?>.</li>
 					</ul>
 					<div class="space2"></div>
 					<h2 style="margin-left:10%;" id="profile" style="font-weight:bold;">Detalles generales del Casting</h3>
@@ -86,11 +88,11 @@
 			  		<h2 id="profile"  style="font-weight:bold;">Castings Relacionados</h3>
 		  			<?php foreach($castings as $casting){ ?>
 			  			<a href="<?php echo site_url("home/casting_detail/".$casting['id']); ?>">
-		  					<img style="margin-top: 12%; width: 70%;" src="<?php echo $casting['image']; ?>">
+		  					<img style="margin-top: 44px; width: 70%; height: 170px;" src="<?php echo $casting['image']; ?>">
 		  				</a>
 		  			<?php } ?>
-					<div class= "space4"></div>
-					<a style="float: right;" href="<?php echo HOME;?>/home/casting_list">(Ver Todos Los Castings)</a>
+					<div class= "space2"></div>
+					<a class="MBT-readmore" style="float: right;" href="<?php echo HOME;?>/home/casting_list">Ver Todos Los Castings >></a>
 				</div>
 			</div>	
 		</div>

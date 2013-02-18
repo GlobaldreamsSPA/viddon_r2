@@ -110,18 +110,46 @@ class Castings_model extends CI_Model
     }
 
 
-    function get_castings_especific($ids_query)
+    function get_castings_especific($ids_query,$state=NULL)
     {
-    	$this->db->select('id, title, logo, image, end_date, status');
+    	$this->db->select();
         
-  
-            $this->db->where('id', $ids_query['0']["casting_id"]);
+		
+		$where= "";
+		$flag = FALSE;
+		foreach ($ids_query as $ids_row) {
+			
+			if($flag)
+				$where=$where." OR ";
+			$where = $where." id=".$ids_row['casting_id'];
+			$flag =TRUE;
+		}  
         
-            
+		if(isset($state))
+		{
+			$where = $where;
+		}
+        
+		$this->db->where($where, NULL, FALSE);
+		
         $query= $this->db->get('castings');
 		
+		$results = $query->result_array();
+		
+		foreach($results as &$casting)
+        {
+            //Almacenar los dias que quedan
+            $casting = $this->_days($casting);
 
-        return $query->result_array();
+            //Entregar las rutas de las imagenes
+            $casting = $this->_routes($casting ,TRUE);
+
+            //Entregar estado del casting
+            $casting['status'] = $this->_get_status($casting);
+        }
+		
+		
+        return $results;
     }
 
 
@@ -147,23 +175,20 @@ class Castings_model extends CI_Model
 
     function _get_status($casting)
     {
-        if($casting['days'] == 0)
-            return 'En Revisión';
-        else
+        
+        switch($casting['status'])
         {
-            switch($casting['status'])
-            {
-                case '0':
-                    $casting['status'] = 'Activo';
-                    break;
-                case '1':
-                    $casting['status'] = 'En Revisión';
-                    break;
-                case '2':
-                    $casting['status'] = 'Finalizado';
-                    break;
-            }
+	        case '0':
+		        $casting['status'] = 'Activo';
+		        break;
+	        case '1':
+		        $casting['status'] = 'En Revisión';
+		        break;
+	        case '2':
+		        $casting['status'] = 'Finalizado';
+		        break;
         }
+        
         return $casting['status'];
     }
 }

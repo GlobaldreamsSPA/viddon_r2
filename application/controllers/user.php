@@ -360,14 +360,27 @@ class User extends CI_Controller {
 		
 		$castings_id = $this->applies_model->get_applicant_applies($id);
 		
-		var_dump($castings_id);
-		
+				
 		
 		if($castings_id != 0)
 		{
-			$castings = $this->castings_model->get_castings_especific($castings_id);
-			var_dump($castings);
+			$args['castings'] = $this->castings_model->get_castings_especific($castings_id);
+			$args["tags"]=	$this->skills_model->get_skills();
+
+			foreach($args['castings'] as &$casting)
+			{
 			
+				if(isset($casting["skills"]))
+				{
+					$tags_id= explode('-', $casting["skills"]);
+					unset($tags_id[count($tags_id)-1]);
+					$tags_id_temp=array();
+					foreach ($tags_id as $tag) {
+						array_push($tags_id_temp, $args["tags"][$tag]);
+					}
+					$casting["tags"]=$tags_id_temp;
+				}
+			}
 		}
 
 		
@@ -384,7 +397,7 @@ class User extends CI_Controller {
 		
 		
 
-		//$this->load->view('template', $args);
+		$this->load->view('template', $args);
 		
 	}
 
