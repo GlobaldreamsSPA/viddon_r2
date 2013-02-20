@@ -8,6 +8,7 @@ class Hunter extends CI_Controller {
 		$this->load->helper(array('url', 'file', 'form'));
 		$this->load->model(array('hunter_model', 'castings_model', 'user_model', 'applies_model', 'videos_model','skills_model'));
 		$this->load->library(array('upload', 'image_lib', 'form_validation'));
+		
 	}
 
 	function index()
@@ -282,6 +283,63 @@ class Hunter extends CI_Controller {
 			$inner_args["hunter_content"]="castings/hunter_edit";
 			$args["inner_args"]=$inner_args;
 			
+			
+			$args["update_values"]=$this->hunter_model->select($hunter_id);
+			
+			
+			
+			//--------------------------------------->
+			//Setear mensajes
+			$this->form_validation->set_message('required', 
+				'Te falta este dato, es importante para tus postulantes');
+
+			//Setear reglas
+			$this->form_validation->set_rules('name', 'Name', 'required');
+			$this->form_validation->set_rules('email', 'Email', 'required');
+			$this->form_validation->set_rules('address', 'Address', 'required');
+			$this->form_validation->set_rules('about_us', 'About_us', 'required');
+			$this->form_validation->set_rules('we_look_for', 'We_look_for', 'required');
+			//$this->form_validation->set_rules('logo', 'Logo', 'callback_check_upload');
+			
+			 
+			 /*
+			if(!(isset($hunter_id) && !(is_numeric($hunter_id))))
+			
+			$this->form_validation->set_rules('logo', 'Logo', 'callback_check_upload');
+			 */
+
+			if ($this->form_validation->run() == FALSE)
+			{
+				//No paso todas las validaciones
+			}
+			
+			else
+			{
+				//Guardar los datos de hunter
+				$profile['id'] = $hunter_id;
+				$profile['name'] = $this->input->post('name');
+				$profile['email'] = $this->input->post('email');
+				$profile['address'] = $this->input->post('address');
+				$profile['about_us'] = $this->input->post('about_us');
+				$profile['we_look_for']  = $this->input->post('we_look_for');
+				//$profile['logo']  = $this->input->post('logo');
+
+				//print_r($profile);
+				//ingresar los datos a la base de datos
+				$this->hunter_model->update($profile);
+
+				//Por ultimo subir la foto
+				if($this->check_upload('') == TRUE)
+					$this->_upload_image_pirata($profile['id'],$profile['logo']);
+
+				if($this->check_upload('') == TRUE && (isset($hunter_id) && is_numeric($hunter_id)))
+					$this->_upload_image_pirata($profile['id'],$profile['logo']);
+
+
+				redirect(HOME.'/hunter/edit');
+			}
+			
+			//------------------------------>
 			$this->load->view('template', $args);	
 		}
 		else
@@ -290,7 +348,7 @@ class Hunter extends CI_Controller {
 
 	function check_upload($image)
 	{
-		if($_FILES['casting_image']['error'] == 4)
+		if($_FILES['logo']['error'] == 4)
 		{
 			$this->form_validation->set_message('check_upload', 'Ups, deber subir un archivo antes de continuar.');
 			return FALSE;
@@ -352,5 +410,52 @@ class Hunter extends CI_Controller {
 		unlink(realpath(APPPATH.UPLOAD_DIR.'/'.$filename));
 
 		return $filename;
+	}
+	
+	private function _upload_image_pirata($id)
+	{
+		$images_path = realpath(APPPATH.UPLOAD_DIR);
+		//$images_path = realpath(APPPATH.HUNTER_PROFILE_IMAGE);
+		
+		//obtener la extension del archivo
+		$type = explode('/', $_FILES['logo']['type']);
+		
+		$filename = "hunter_".$id. '.' .$type[1];
+		
+		$config = array(
+			'allowed_types' => 'jpg|jpeg|gif|png',
+			'upload_path' => $images_path,
+			'file_name' => $filename,
+			'overwrite' => TRUE,
+			'max_size' => 2048,
+			'remove_spaces' =>TRUE
+		);
+		
+		//actualizar la imagen del usuario en la bd
+		$this->db->where('id', $id);
+		$this->db->set('logo',$filename);
+		$this->db->update('entities');
+		
+		$this->upload->initialize($config);
+		
+		if(!$this->upload->do_upload('logo'))
+		{
+			print_r($this->upload->display_errors());
+		}
+		
+		//ahora ajustar la imagen
+		$image = $this->upload->data('logo');
+
+		$config = array(
+			'image_library' => 'gd2',
+			'source_image' => $image['full_path'],
+			'new_image' => realpath(APPPATH.HUNTER_PROFILE_IMAGE),
+			'maintain_ratio' => TRUE,
+			'width' => '230',
+			'height' => '230'
+		);
+		
+		$this->image_lib->initialize($config);
+		$this->image_lib->resize();
 	}
 }
