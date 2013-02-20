@@ -88,7 +88,7 @@
 								<div class="space2"></div>
 								<h3 id="profile" style="font-weight:bold;"> Seleccionados</h3>
 								<img style=" margin-top:10px; height: 30%; width: 100%;" src="<?php echo HOME.'/img/lista_usuarios_dummy.png';?>">
-								<a class="MBT-readmore" href="<?php echo HOME.'/hunter/accepted_list' ?>" style="float: right;">Todos Los Seleccionados >></a>
+								<a class="MBT-readmore" href="<?php echo HOME.'/hunter/accepted_list/'.$casting["id"] ?>" style="float: right;">Todos Los Seleccionados >></a>
 						</div>
 						    
 					    

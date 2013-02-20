@@ -231,7 +231,7 @@ class Hunter extends CI_Controller {
 			$args["skills"]= $this->skills_model->get_skills();
 			
 			$id_applicants= $this->applies_model->get_castings_applies($id);
-			
+						
 			if($id_applicants!= 0)
 			{
 				$args["applicants"]=array();
@@ -240,6 +240,8 @@ class Hunter extends CI_Controller {
 				{
 					$applicant_info=$this->user_model->select_applicant($id['user_id']);
 					$video_info= $this->videos_model->get_video_applicant($id['user_id']);
+					$applicant_info["apply_id"]= $id["id"]; 
+					$applicant_info["apply_state"]= $id["state"];
 					$applicant_info['tags'] = $this->skills_model->get_user_skills($id['user_id']);
 					$applicant_info['video_id'] =array_pop($video_info);
 					array_push($args["applicants"],$applicant_info);
@@ -252,19 +254,65 @@ class Hunter extends CI_Controller {
 
 	}
 	
-	function accepted_list()
+	function accept_apply($apply_id,$casting_id)
 	{
 		if($this->session->userdata('logged_in'))
 		{
-			$hunter_id = $this->session->userdata('logged_in');
-		 	$hunter_id= $hunter_id['id'];
-	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id);
-	   	 	$args['user_data'] = $this->session->userdata('logged_in');
+			$this->applies_model->set_accepted($apply_id,$this->input->post('observation'));
+			redirect(HOME."/hunter/applicants_list/".$casting_id);
+		}
+		else
+			redirect(HOME);	
+	}
+	
+	function reject_apply($apply_id,$casting_id)
+	{
+		if($this->session->userdata('logged_in'))
+		{
+			$this->applies_model->set_rejected($apply_id);
+			redirect(HOME."/hunter/applicants_list/".$casting_id);
+		}
+		else
+			redirect(HOME);	
+	}
+	
+	function accepted_list($id)
+	{
+		if($this->session->userdata('logged_in')&& isset($id))
+		{
+			$args['user_data'] = $this->session->userdata('logged_in');
 			$args["content"]="castings/hunter_template";
 			$inner_args["hunter_content"]="castings/accepted_list";
 			$args["inner_args"]=$inner_args;
 			
+			$id_applicants= $this->applies_model->get_castings_applies_selected($id);
+			$args["id_casting"]= $id;
+			$args["mailto_all"]="";
+			if($id_applicants!= 0)
+			{
+				$args["applicants"]=array();
+				
+				foreach($id_applicants as $id)
+				{
+					$applicant_info=$this->user_model->select_applicant($id['user_id']);
+					$applicant_info["observation"]=$id["observation"];
+					array_push($args["applicants"],$applicant_info);
+					$args["mailto_all"]=$args["mailto_all"].$applicant_info["email"].";";
+				}				
+			}
+		
 			$this->load->view('template', $args);	
+		}
+		else
+			redirect(HOME);
+	}
+
+	function finalize_casting($id_casting)
+	{
+		if($this->session->userdata('logged_in'))
+		{
+			$this->castings_model->finalize_casting($id_casting);	
+			redirect(HOME."/hunter/casting_list");
 		}
 		else
 			redirect(HOME);

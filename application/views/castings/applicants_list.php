@@ -1,19 +1,3 @@
-<?php	for ($i=1; $i <5 ; $i++) {?>
-	<div id="modal<?php echo $i; ?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
-	    <h3 id="myModalLabel">Observaciones</h3>
-	  </div>
-	  <div class="modal-body">
-		<input type="text" value="" placeholder="campo no obligatorio">
-	  </div>
-	  <div class="modal-footer">
-	    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
-	    <button class="btn btn-primary">Guardar</button>
-	  </div>
-	</div>
-<?php }	?>
-
 		  			<div class="row-fluid">		
 				    	<div class="span3 user-profile-left">
 				    		<img class='user_image' src="<?php echo HOME."/img/logo_hunter/".$user_data['logo'] ?>"/>
@@ -47,8 +31,17 @@
 					    
 					    <div class="span8 offset1 user-profile-right">
 					    		
-							<legend><h3 class="profile-title"><a href="<?php echo HOME.'/hunter/casting_list' ?>">Castings/</a><a href="<?php echo HOME.'/hunter/casting_detail/'.$id_casting; ?>">Casting A/</a> Lista Postulantes </h3></legend>
-							
+					    	<div class="row">
+								<div class="span11">
+									<h3 class="profile-title"><a href="<?php echo HOME.'/hunter/casting_list' ?>">Castings/</a><a href="<?php echo HOME.'/hunter/casting_detail/'.$id_casting; ?>">Casting A/</a> Lista Postulantes </h3>
+								</div>
+								<div class="span1">
+									<a href="<?php echo HOME."/hunter/finalize_casting/".$id_casting; ?>" style="height: 34px;" class="btn">
+										<i style="margin-top: 8px;" class="icon-off"></i>
+									</a>
+								</div>
+								<legend></legend>
+							</div>
 							<?php 
 							if(isset($applicants))
 								foreach ($applicants as $applicant) {
@@ -98,15 +91,31 @@
 									
 									<row style="float: right;">
 										
-										<a data-toggle="modal" href="#modal1" style="text-align: right;" class="btn btn-success">
+										<a data-toggle="modal" <?php if($applicant["apply_state"]!=1) echo "href='#modal".$applicant["id"]."'"; ?>" style="text-align: right;" class="btn btn-success">
 											<i class="icon-ok"></i>
 										</a>
 										
-										<a style="text-align: right;" class="btn btn-danger">
+										<a <?php if($applicant["apply_state"]!=2) echo "href='".HOME."/hunter/reject_apply/".$applicant['apply_id']."/".$id_casting."'"; ?>"style="text-align: right;" class="btn btn-danger">
 											<i class="icon-remove"></i>
 										</a>
 										
 									</row>
+									
+									<div id="<?php echo "modal".$applicant["id"]; ?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									  <form action="<?php echo HOME."/hunter/accept_apply/".$applicant['apply_id']."/".$id_casting; ?>" method="post">
+										  <div class="modal-header">
+										    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+										    <h3 id="myModalLabel">Observaciones</h3>
+										  </div>
+										  <div class="modal-body">
+											<input name="observation" type="text" value="" placeholder="campo no obligatorio">
+										  </div>
+										  <div class="modal-footer">
+										    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+										    <button type="input" class="btn btn-primary">Guardar</a>
+										  </div>
+									  </form>
+									</div>
 								</div>
 							</div>
 				

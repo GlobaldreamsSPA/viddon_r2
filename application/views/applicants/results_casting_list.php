@@ -57,150 +57,27 @@
 				                </tr>
 				              </thead>
 				              <tbody>
-				                <tr>
-				                  <td>21/02/2013</td>
-				                  <td>Mark</td>
-				                  <td><span class="label label-warning">Pendiente</span></td>
-				                  <td class="center ">
-									<a class="btn" href="#">
-										<i class="icon-zoom-in"></i>                                            
-									</a>
-									<a class="btn" href="#">
-										<i class="icon-envelope"></i>                                            
-									</a>
-								  </td>
-				                </tr>
-				                <tr>
-				                  <td>25/02/2013</td>
-				                  <td>Jacob</td>
-				                  <td><span class="label label-warning">Pendiente</span></td>
-				                  <td class="center ">
-									<a class="btn" href="#">
-										<i class="icon-zoom-in"></i>                                            
-									</a>
-									<a class="btn" href="#">
-										<i class="icon-envelope"></i>                                            
-									</a>
-								  </td>
-				                </tr>
-				                <tr>
-				                  <td>28/02/2013</td>
-				                  <td>Larry</td>
-				                  <td><span class="label label-warning">Pendiente</span></td>
-				                  <td class="center ">
-									<a class="btn" href="#">
-										<i class="icon-zoom-in"></i>                                            
-									</a>
-									<a class="btn" href="#">
-										<i class="icon-envelope"></i>                                            
-									</a>
-								  </td>
-				                </tr>
-				              	<tr>
-				                  <td>08/04/2013</td>
-				                  <td>Mark</td>
-				                  <td><span class="label label-info">Revisado</span></td>
-				                  <td class="center ">
-									<a class="btn" href="#">
-										<i class="icon-zoom-in"></i>                                            
-									</a>
-									<a class="btn" href="#">
-										<i class="icon-envelope"></i>                                            
-									</a>
-								  </td>
-				                </tr>
-				                <tr>
-				                  <td>14/05/2013</td>
-				                  <td>Jacob</td>
-				                  <td><span class="label label-info">Revisado</span></td>
-				                  <td class="center ">
-									<a class="btn" href="#">
-										<i class="icon-zoom-in"></i>                                            
-									</a>
-									<a class="btn" href="#">
-										<i class="icon-envelope"></i>                                            
-									</a>
-								  </td>
-				                </tr>
-				                <tr>
-				                  <td>04/06/2013</td>
-				                  <td>Larry</td>
-				                  <td><span class="label label-info">Revisado</span></td>
-				                  <td class="center ">
-									<a class="btn" href="#">
-										<i class="icon-zoom-in"></i>                                            
-									</a>
-									<a class="btn" href="#">
-										<i class="icon-envelope"></i>                                            
-									</a>
-								  </td>
-				                </tr>
-				              	<tr>
-				                  <td>02/09/2013</td>
-				                  <td>Mark</td>
-				                  <td><span class="label label-success">Seleccionado</span></td>
-				                  <td class="center ">
-									<a class="btn" href="#">
-										<i class="icon-zoom-in"></i>                                            
-									</a>
-									<a class="btn" href="#">
-										<i class="icon-envelope"></i>                                            
-									</a>
-								  </td>
-				                </tr>
-				                <tr>
-				                  <td>13/09/2013</td>
-				                  <td>Jacob</td>
-				                  <td><span class="label label-success">Seleccionado</span></td>
-				                  <td class="center ">
-									<a class="btn" href="#">
-										<i class="icon-zoom-in"></i>                                            
-									</a>
-									<a class="btn" href="#">
-										<i class="icon-envelope"></i>                                            
-									</a>
-								  </td>
-				                </tr>
-				                <tr>
-				                  <td>03/12/2013</td>
-				                  <td>Larry</td>
-				                  <td><span class="label label-important">Rechazado</span></td>
-				                  <td class="center ">
-									<a class="btn" href="#">
-										<i class="icon-zoom-in"></i>                                            
-									</a>
-									<a class="btn" href="#">
-										<i class="icon-envelope"></i>                                            
-									</a>
-								  </td>
-				                </tr>			
-				                <tr>
-				                  <td>05/12/2013</td>
-				                  <td>Jacob</td>
-				                  <td><span class="label label-important">Rechazado</span></td>
-				                  <td class="center ">
-									<a class="btn" href="#">
-										<i class="icon-zoom-in"></i>                                            
-									</a>
-									<a class="btn" href="#">
-										<i class="icon-envelope"></i>                                            
-									</a>
-								  </td>
-				                </tr>
-				                <tr>
-				                  <td>17/12/2013</td>
-				                  <td>Larry</td>
-				                  <td><span class="label label-important">Rechazado</span></td>
-				                  <td class="center ">
-									<a class="btn" href="#">
-										<i class="icon-zoom-in"></i>                                            
-									</a>
-									<a class="btn" href="#">
-										<i class="icon-envelope"></i>                                            
-									</a>
-								  </td>
-				                </tr>		              
-				              </tbody>
+				                
+				                <?php 
+				                	if(isset($castings))
+				                		foreach ($castings as $casting) {
+											
+										?>
+											<tr>
+							                  <td>21/02/2013</td>
+							                  <td><?php echo $casting["title"] ?></td>
+							                  <td><span class="label label-warning"><?php echo $casting["apply_status"] ?></span></td>
+							                  <td class="center ">
+												<a class="btn" href="#">
+													<i class="icon-zoom-in"></i>                                            
+												</a>
+												<a class="btn" href="#">
+													<i class="icon-envelope"></i>                                            
+												</a>
+											  </td>
+							                </tr>
+				                <?php	} ?>
+				               </tbody>
 				            </table>
 							<div class="space4"></div>	
 							<div class="space4"></div>						

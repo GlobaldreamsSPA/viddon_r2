@@ -16,7 +16,7 @@ class Applies_model extends CI_Model
 	
 	function get_applicant_applies($applicant_id)
     {
-    	$this->db->select('id,casting_id');
+    	$this->db->select('id,casting_id,state');
     	$this->db->where('user_id', $applicant_id);
     	$query= $this->db->get('applies');
     	
@@ -26,6 +26,7 @@ class Applies_model extends CI_Model
 			return $query->result_array();
 		
     }
+
 
     function verify_apply($user_id, $casting_id)
 	{
@@ -42,8 +43,22 @@ class Applies_model extends CI_Model
 	
 	function get_castings_applies($casting_id)
 	{
-		$this->db->select('user_id');
+		$this->db->select('user_id,id,state');
     	$this->db->where('casting_id', $casting_id);
+		$query = $this->db->get('applies');
+		
+		if($query->num_rows == 0)
+			return 0;
+		else
+			return $query->result_array();
+		
+	}
+	
+	function get_castings_applies_selected($casting_id)
+	{
+		$this->db->select('user_id,observation');
+    	$this->db->where('casting_id', $casting_id);
+		$this->db->where('state', 1);	
 		$query = $this->db->get('applies');
 		
 		if($query->num_rows == 0)
@@ -87,7 +102,7 @@ class Applies_model extends CI_Model
 		{
 			//Crear postulacion (apply)
 			$apply = array(
-					'description' => '',
+					'observation' => '',
 					'user_id' => $user_id,
 					'casting_id' => $casting_id
 				);
@@ -122,4 +137,27 @@ class Applies_model extends CI_Model
     	$this->db->delete('videos_applies', array('apply_id' => $apply_id));		
     	$this->db->delete('applies', array('id' => $apply_id));
     }
+	
+	function set_accepted($apply_id,$observation)
+	{
+		$data = array(
+               'state' => 1,
+               'observation' => $observation
+            );
+
+		$this->db->where('id', $apply_id);
+		$this->db->update('applies', $data); 
+	}
+
+	function set_rejected($apply_id)
+	{
+		$data = array(
+               'state' =>2,
+               'observation' => NULL			   
+            );
+
+		$this->db->where('id', $apply_id);
+		$this->db->update('applies', $data); 
+	}
+
 }

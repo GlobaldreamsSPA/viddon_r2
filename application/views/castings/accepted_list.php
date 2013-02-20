@@ -18,10 +18,10 @@
 					    		
 							<row>								
 								<div class="span10"> 
-									<h3 class="profile-title"><a href="<?php echo HOME.'/hunter/casting_list' ?>">Castings/</a><a href="<?php echo HOME.'/hunter/casting_detail' ?>">Casting A/</a> Seleccionados </h3>
+									<h3 class="profile-title"><a href="<?php echo HOME.'/hunter/casting_list' ?>">Castings/</a><a href="<?php echo HOME.'/hunter/casting_detail/'.$id_casting ?>">Casting A/</a> Seleccionados </h3>
 								</div>
 								<div class="span2">
-									<a style="margin-top: 15px;" class="btn" href="#">
+									<a class="btn" href="<?php echo "mailto: ".$mailto_all; ?>">
 										<i class="icon-envelope"></i>
 										Todos                                            
 									</a>
@@ -40,254 +40,30 @@
 				                </tr>
 				              </thead>
 				              <tbody>
-					          	<tr>
-						            <td style="vertical-align:middle;">
-						            	<img style="max-width: 80px; max-height:80px;" src="<?php echo HOME."/img/profile/2.jpeg" ?>"/>
-						    		</td>
-						            <td style="vertical-align:middle;">Jos&eacute Pablo Le&oacuten Velasco</td>
-						            <td style="vertical-align:middle;">Falta mucho a clases, lo que provoca que baje en su rendimiento escolar.</td>
-						            <td  style="vertical-align:middle;" class="row center">
-							            <div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-zoom-in"></i>                                            
-											</a>
-										</div>
-										<div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-envelope"></i>                                            
-											</a>
-										</div>
-									</td>
-					            </tr>    
-				              	<tr>
-						            <td style="vertical-align:middle;">
-						            	<img style="max-width: 80px; max-height:80px;" src="<?php echo HOME."/img/profile/2.jpeg" ?>"/>
-						    		</td>
-						            <td style="vertical-align:middle;">Jos&eacute Pablo Le&oacuten Velasco</td>
-						            <td style="vertical-align:middle;">Falta mucho a clases, lo que provoca que baje en su rendimiento escolar.</td>
-						            <td  style="vertical-align:middle;" class="row center">
-							            <div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-zoom-in"></i>                                            
-											</a>
-										</div>
-										<div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-envelope"></i>                                            
-											</a>
-										</div>
-									</td>
-					            </tr>    
-				              	<tr>
-						            <td style="vertical-align:middle;">
-						            	<img style="max-width: 80px; max-height:80px;" src="<?php echo HOME."/img/profile/2.jpeg" ?>"/>
-						    		</td>
-						            <td style="vertical-align:middle;">Jos&eacute Pablo Le&oacuten Velasco</td>
-						            <td style="vertical-align:middle;">Falta mucho a clases, lo que provoca que baje en su rendimiento escolar.</td>
-						            <td  style="vertical-align:middle;" class="row center">
-							            <div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-zoom-in"></i>                                            
-											</a>
-										</div>
-										<div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-envelope"></i>                                            
-											</a>
-										</div>
-									</td>
-					            </tr>    
-				              	<tr>
-						            <td style="vertical-align:middle;">
-						            	<img style="max-width: 80px; max-height:80px;" src="<?php echo HOME."/img/profile/2.jpeg" ?>"/>
-						    		</td>
-						            <td style="vertical-align:middle;">Jos&eacute Pablo Le&oacuten Velasco</td>
-						            <td style="vertical-align:middle;">Falta mucho a clases, lo que provoca que baje en su rendimiento escolar.</td>
-						            <td  style="vertical-align:middle;" class="row center">
-							            <div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-zoom-in"></i>                                            
-											</a>
-										</div>
-										<div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-envelope"></i>                                            
-											</a>
-										</div>
-									</td>
-					            </tr>    
-				              	<tr>
-						            <td style="vertical-align:middle;">
-						            	<img style="max-width: 80px; max-height:80px;" src="<?php echo HOME."/img/profile/2.jpeg" ?>"/>
-						    		</td>
-						            <td style="vertical-align:middle;">Jos&eacute Pablo Le&oacuten Velasco</td>
-						            <td style="vertical-align:middle;">Falta mucho a clases, lo que provoca que baje en su rendimiento escolar.</td>
-						            <td  style="vertical-align:middle;" class="row center">
-							            <div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-zoom-in"></i>                                            
-											</a>
-										</div>
-										<div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-envelope"></i>                                            
-											</a>
-										</div>
-									</td>
-					            </tr>    
-				              	<tr>
-						            <td style="vertical-align:middle;">
-						            	<img style="max-width: 80px; max-height:80px;" src="<?php echo HOME."/img/profile/2.jpeg" ?>"/>
-						    		</td>
-						            <td style="vertical-align:middle;">Jos&eacute Pablo Le&oacuten Velasco</td>
-						            <td style="vertical-align:middle;">Falta mucho a clases, lo que provoca que baje en su rendimiento escolar.</td>
-						            <td  style="vertical-align:middle;" class="row center">
-							            <div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-zoom-in"></i>                                            
-											</a>
-										</div>
-										<div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-envelope"></i>                                            
-											</a>
-										</div>
-									</td>
-					            </tr>    
-				              	<tr>
-						            <td style="vertical-align:middle;">
-						            	<img style="max-width: 80px; max-height:80px;" src="<?php echo HOME."/img/profile/2.jpeg" ?>"/>
-						    		</td>
-						            <td style="vertical-align:middle;">Jos&eacute Pablo Le&oacuten Velasco</td>
-						            <td style="vertical-align:middle;">Falta mucho a clases, lo que provoca que baje en su rendimiento escolar.</td>
-						            <td  style="vertical-align:middle;" class="row center">
-							            <div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-zoom-in"></i>                                            
-											</a>
-										</div>
-										<div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-envelope"></i>                                            
-											</a>
-										</div>
-									</td>
-					            </tr>    
-				              	<tr>
-						            <td style="vertical-align:middle;">
-						            	<img style="max-width: 80px; max-height:80px;" src="<?php echo HOME."/img/profile/2.jpeg" ?>"/>
-						    		</td>
-						            <td style="vertical-align:middle;">Jos&eacute Pablo Le&oacuten Velasco</td>
-						            <td style="vertical-align:middle;">Falta mucho a clases, lo que provoca que baje en su rendimiento escolar.</td>
-						            <td  style="vertical-align:middle;" class="row center">
-							            <div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-zoom-in"></i>                                            
-											</a>
-										</div>
-										<div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-envelope"></i>                                            
-											</a>
-										</div>
-									</td>
-					            </tr>    
-				              	<tr>
-						            <td style="vertical-align:middle;">
-						            	<img style="max-width: 80px; max-height:80px;" src="<?php echo HOME."/img/profile/2.jpeg" ?>"/>
-						    		</td>
-						            <td style="vertical-align:middle;">Jos&eacute Pablo Le&oacuten Velasco</td>
-						            <td style="vertical-align:middle;">Falta mucho a clases, lo que provoca que baje en su rendimiento escolar.</td>
-						            <td  style="vertical-align:middle;" class="row center">
-							            <div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-zoom-in"></i>                                            
-											</a>
-										</div>
-										<div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-envelope"></i>                                            
-											</a>
-										</div>
-									</td>
-					            </tr>    
-				              	<tr>
-						            <td style="vertical-align:middle;">
-						            	<img style="max-width: 80px; max-height:80px;" src="<?php echo HOME."/img/profile/2.jpeg" ?>"/>
-						    		</td>
-						            <td style="vertical-align:middle;">Jos&eacute Pablo Le&oacuten Velasco</td>
-						            <td style="vertical-align:middle;">Falta mucho a clases, lo que provoca que baje en su rendimiento escolar.</td>
-						            <td  style="vertical-align:middle;" class="row center">
-							            <div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-zoom-in"></i>                                            
-											</a>
-										</div>
-										<div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-envelope"></i>                                            
-											</a>
-										</div>
-									</td>
-					            </tr>    
-				              	<tr>
-						            <td style="vertical-align:middle;">
-						            	<img style="max-width: 80px; max-height:80px;" src="<?php echo HOME."/img/profile/2.jpeg" ?>"/>
-						    		</td>
-						            <td style="vertical-align:middle;">Jos&eacute Pablo Le&oacuten Velasco</td>
-						            <td style="vertical-align:middle;">Falta mucho a clases, lo que provoca que baje en su rendimiento escolar.</td>
-						            <td  style="vertical-align:middle;" class="row center">
-							            <div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-zoom-in"></i>                                            
-											</a>
-										</div>
-										<div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-envelope"></i>                                            
-											</a>
-										</div>
-									</td>
-					            </tr>    
-				              	<tr>
-						            <td style="vertical-align:middle;">
-						            	<img style="max-width: 80px; max-height:80px;" src="<?php echo HOME."/img/profile/2.jpeg" ?>"/>
-						    		</td>
-						            <td style="vertical-align:middle;">Jos&eacute Pablo Le&oacuten Velasco</td>
-						            <td style="vertical-align:middle;">Falta mucho a clases, lo que provoca que baje en su rendimiento escolar.</td>
-						            <td  style="vertical-align:middle;" class="row center">
-							            <div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-zoom-in"></i>                                            
-											</a>
-										</div>
-										<div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-envelope"></i>                                            
-											</a>
-										</div>
-									</td>
-					            </tr>    
-				              	<tr>
-						            <td style="vertical-align:middle;">
-						            	<img style="max-width: 80px; max-height:80px;" src="<?php echo HOME."/img/profile/2.jpeg" ?>"/>
-						    		</td>
-						            <td style="vertical-align:middle;">Jos&eacute Pablo Le&oacuten Velasco</td>
-						            <td style="vertical-align:middle;">Falta mucho a clases, lo que provoca que baje en su rendimiento escolar.</td>
-						            <td  style="vertical-align:middle;" class="row center">
-							            <div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-zoom-in"></i>                                            
-											</a>
-										</div>
-										<div class="span6">
-											<a class="btn" href="#">
-												<i class="icon-envelope"></i>                                            
-											</a>
-										</div>
-									</td>
-					            </tr>    
-				              
+					          	
+					          	<?php
+					          	 if(isset($applicants))
+						          	 foreach ($applicants as $applicant) {?>
+										<tr>
+								            <td style="vertical-align:middle;">
+								            	<img style="max-width: 80px; max-height:80px;" src="<?php echo HOME."/img/profile/".$applicant["image_profile"] ?>"/>
+								    		</td>
+								            <td style="vertical-align:middle;"><?php echo $applicant["name"]?></td>
+								            <td style="vertical-align:middle;"><?php echo $applicant["observation"]?></td>
+								            <td  style="vertical-align:middle;" class="row center">
+									            <div class="span6">
+													<a class="btn" href="<?php echo HOME."/user/index/".$applicant["id"]; ?>">
+														<i class="icon-zoom-in"></i>                                            
+													</a>
+												</div>
+												<div class="span6">
+													<a class="btn" href="<?php echo "mailto:".$applicant["email"] ?>">
+														<i class="icon-envelope"></i>                                            
+													</a>
+												</div>
+											</td>
+							            </tr>    
+					              	<?php }?>
 				              </tbody>
 				            </table>
 							

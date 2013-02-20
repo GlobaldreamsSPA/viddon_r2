@@ -357,7 +357,6 @@ class User extends CI_Controller {
 		$inner_args["applicant_content"]="applicants/active_casting_list";
 		$args["inner_args"]=$inner_args;
 		$args['public'] = $public;
-		
 			
 		if($this->input->post("del-apply"))
 		{
@@ -372,10 +371,9 @@ class User extends CI_Controller {
 				$apply_id_dictionary[$temp['casting_id']]=$temp["id"];
 		}
 
-		
 		if($castings_id != 0)
 		{
-			$args['castings'] = $this->castings_model->get_castings_especific($castings_id);
+			$args['castings'] = $this->castings_model->get_castings_especific($castings_id,array("0"));
 			
 			$args["tags"]=	$this->skills_model->get_skills();
 
@@ -426,7 +424,29 @@ class User extends CI_Controller {
 		$inner_args["applicant_content"]="applicants/results_casting_list";
 		$args["inner_args"]=$inner_args;
 		$args['public'] = $public;
+		
+		$castings_id = $this->applies_model->get_applicant_applies($id);
+		
+		$apply_status_dictionary=array("0"=>"Pendiente","1"=>"Aceptado","2"=>"Rechazado");
+		
+		$apply_id_dictionary= array();
+			
+		foreach ($castings_id as $temp) {
+				$apply_id_dictionary[$temp['casting_id']]=$apply_status_dictionary[$temp["state"]];
+		}
 
+		if($castings_id != 0)
+		{
+			$args['castings'] = $this->castings_model->get_castings_especific($castings_id,array("1","2"));
+						
+			foreach($args['castings'] as &$casting)
+			{						
+				$casting["apply_status"]=$apply_id_dictionary[$casting["id"]];
+			}			
+		}
+		
+		
+		
 		if($this->videos_model->verify_videos($id) != 1)
 		{
 			$args["postulation_flag"]=false;

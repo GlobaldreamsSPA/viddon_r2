@@ -110,14 +110,15 @@ class Castings_model extends CI_Model
     }
 
 
-    function get_castings_especific($ids_query,$state=NULL)
+    function get_castings_especific($ids_query,$status=NULL)
     {
     	$this->db->select();
         
 		
 		$where= "";
 		$flag = FALSE;
-		foreach ($ids_query as $ids_row) {
+		foreach ($ids_query as $ids_row) 
+		{
 			
 			if($flag)
 				$where=$where." OR ";
@@ -125,13 +126,23 @@ class Castings_model extends CI_Model
 			$flag =TRUE;
 		}  
         
-		if(isset($state))
+		$flag =FALSE;
+		
+		if(isset($status))
 		{
-			$where = $where;
+			$where = "(".$where.") AND (";
+			foreach ($status as $iter) 
+			{
+				if($flag)
+					$where=$where." OR ";
+				$where = $where." status =".$iter;
+				$flag =TRUE;
+			}
+			$where = $where.")";
+			
 		}
         
 		$this->db->where($where, NULL, FALSE);
-		
         $query= $this->db->get('castings');
 		
 		$results = $query->result_array();
@@ -151,6 +162,16 @@ class Castings_model extends CI_Model
 		
         return $results;
     }
+
+	function finalize_casting($id_casting) 
+	{
+		$data = array(
+	        'status' => 2
+        );
+
+		$this->db->where('id', $id_casting);
+		$this->db->update('castings', $data); 
+	}
 
 
     function date_diff($start, $end="NOW")
