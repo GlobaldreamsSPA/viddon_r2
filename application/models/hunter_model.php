@@ -27,5 +27,30 @@ Class Hunter_model extends CI_Model
        return false;
      }
    }
+
+	function update($profile)
+	{
+		$data = array(
+				'name' => $profile['name'],
+				'email' => $profile['email'],
+				'address' => $profile['address'],
+				'about_us' => $profile['about_us'],
+				'we_look_for' => $profile['we_look_for']
+			);
+
+		$this->db->where('id', $profile['id']);
+		$this->db->update('entities', $data);
+	}
+
+	function select($id)
+	{
+		//Rescatar los datos de la tabla entities
+		$this->db->select('name, email, address,about_us, we_look_for,logo');
+		$this->db->from('entities');
+		$this->db->where('id', $id);
+		$query = $this->db->get()->first_row('array');
+
+		return $query;
+	}
 }
 ?>
