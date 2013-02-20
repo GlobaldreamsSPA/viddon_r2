@@ -378,10 +378,10 @@ class Hunter extends CI_Controller {
 
 				//Por ultimo subir la foto
 				if($this->check_upload('') == TRUE)
-					$this->_upload_image_pirata($profile['id'],$profile['logo']);
+					$this->_upload_image_hunter($profile['id'],$profile['logo']);
 
 				if($this->check_upload('') == TRUE && (isset($hunter_id) && is_numeric($hunter_id)))
-					$this->_upload_image_pirata($profile['id'],$profile['logo']);
+					$this->_upload_image_hunter($profile['id'],$profile['logo']);
 
 
 				redirect(HOME.'/hunter/edit');
@@ -460,7 +460,7 @@ class Hunter extends CI_Controller {
 		return $filename;
 	}
 	
-	private function _upload_image_pirata($id)
+	private function _upload_image_hunter($id)
 	{
 		$images_path = realpath(APPPATH.UPLOAD_DIR);
 		//$images_path = realpath(APPPATH.HUNTER_PROFILE_IMAGE);
@@ -497,7 +497,7 @@ class Hunter extends CI_Controller {
 		$config = array(
 			'image_library' => 'gd2',
 			'source_image' => $image['full_path'],
-			'new_image' => realpath(APPPATH.HUNTER_PROFILE_IMAGE),
+			'new_image' => realpath(APPPATH.HUNTER_UPLOAD_IMAGE),
 			'maintain_ratio' => TRUE,
 			'width' => '230',
 			'height' => '230'
