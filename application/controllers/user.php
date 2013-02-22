@@ -235,7 +235,10 @@ class User extends CI_Controller {
 				$profile['skills']  = $this->input->post('skills');
 				$profile['sex'] = intval($this->input->post('sex'));
 				$profile['age'] = $this->input->post('age');
-				
+				$profile['height'] = intval($this->input->post('height'));
+				$profile['color_skin'] = $this->input->post('skin-color');
+				$profile['color_eye'] = intval($this->input->post('eyes-color'));
+				$profile['color_hair'] = $this->input->post('hair-color');
 				//ingresar los datos a la base de datos
 				$this->user_model->update($profile);
 				
@@ -264,10 +267,24 @@ class User extends CI_Controller {
 			{
 				$age[$i] = $i;
 			}
+			
+			for($i=250; $i>=50; $i--)
+			{
+				$height[$i] = $i;
+			}
 
+
+			$skin= array(0=>"Blanca",1=>"Morena", 2 =>"Negra");
+			$eyes= array(0=>"Verde",1=>"Azul", 2 =>"Gris",3=>"Casta&ntilde;o",4=>"Ambar",5=>"Pardos");
+			$hair= array(0=>"Casta&ntilde;o",1=>"Negro", 2 =>"Rubio",3=>"Blanco",4=>"Gris",5=>"Colorin",6=>"Otros");
+			
 			$args = array(
 				'skills' => $skills,
-				'age' => $age
+				'age' => $age,
+				'height' => $height,
+				'eyes' => $eyes,
+				'skin' => $skin,
+				'hair' => $hair
 				);
 				
 			$args["content"]="applicants/applicants_template";
@@ -367,12 +384,13 @@ class User extends CI_Controller {
 		
 		$apply_id_dictionary= array();
 		
-		foreach ($castings_id as $temp) {
-				$apply_id_dictionary[$temp['casting_id']]=$temp["id"];
-		}
+		
 
 		if($castings_id != 0)
 		{
+			foreach ($castings_id as $temp) {
+				$apply_id_dictionary[$temp['casting_id']]=$temp["id"];
+			}
 			$args['castings'] = $this->castings_model->get_castings_especific($castings_id,array("0"));
 			
 			$args["tags"]=	$this->skills_model->get_skills();
@@ -431,12 +449,13 @@ class User extends CI_Controller {
 		
 		$apply_id_dictionary= array();
 			
-		foreach ($castings_id as $temp) {
-				$apply_id_dictionary[$temp['casting_id']]=$apply_status_dictionary[$temp["state"]];
-		}
+		
 
 		if($castings_id != 0)
 		{
+			foreach ($castings_id as $temp) {
+				$apply_id_dictionary[$temp['casting_id']]=$apply_status_dictionary[$temp["state"]];
+			}
 			$args['castings'] = $this->castings_model->get_castings_especific($castings_id,array("1","2"));
 						
 			foreach($args['castings'] as &$casting)

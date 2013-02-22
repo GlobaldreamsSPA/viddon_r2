@@ -35,6 +35,19 @@ class Castings_model extends CI_Model
         return $casting;
     }
 
+	function check_status_active($casting_id)
+	{
+		$this->db->select('*');
+        $this->db->where('id', $casting_id);
+		$this->db->where('status', 0);		
+        $result = $this->db->get('castings');
+		
+		if($result->num_rows == 0)
+			return FALSE;
+		else
+			return TRUE;
+	}
+
     function insert_image($casting_id, $filename)
     {
         $data = array('image' => $filename);
@@ -80,18 +93,25 @@ class Castings_model extends CI_Model
         return $casting;
     }
 
-    function get_castings($hunter_id=NULL, $cant=NULL, $page=NULL, $all=NULL)
+    function get_castings($hunter_id=NULL, $cant=NULL, $page=NULL, $all=NULL, $status=NULL)
     {
     	$this->db->select('id, title, image, end_date, status, entity_id');
         
         if(!is_null($hunter_id))
             $this->db->where('entity_id', $hunter_id);
 
+		if(isset($status))
+            $this->db->where('status', $status);
+		
+
         if(!is_null($page) && !is_null($cant))
             $query = $this->db->get('castings', $cant, ($page-1)*$cant);
         else
             $query = $this->db->get('castings');
 
+		
+
+		
         $results = $query->result_array();
 
         foreach($results as &$casting)

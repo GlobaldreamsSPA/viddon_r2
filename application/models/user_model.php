@@ -33,7 +33,11 @@ class User_model extends CI_Model
 				'dreams' => $profile['dreams'],
 				'hobbies' => $profile['hobbies'],
 				'sex' => $profile['sex'],
-				'age' => $profile['age']
+				'age' => $profile['age'],
+				'height' => $profile['height'],
+				'color_skin' => $profile['color_skin'] ,
+				'color_eye' => $profile['color_eye'] ,
+				'color_hair' => $profile['color_hair'] 
 			);
 
 		$this->db->where('id', $profile['id']);
@@ -43,7 +47,7 @@ class User_model extends CI_Model
 	function select($id)
 	{
 		//Rescatar los datos de la tabla usuario
-		$this->db->select('name, email, sex, age, image_profile, bio, hobbies, dreams');
+		$this->db->select('*');
 		$this->db->from('users');
 		$this->db->where('id', $id);
 		$query = $this->db->get()->first_row('array');

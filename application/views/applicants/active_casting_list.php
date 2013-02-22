@@ -48,67 +48,69 @@
 					    		
 							<legend> <h2>Postulaciones Activas</h2></legend>
 							
-							<?php foreach($castings as $casting){ ?>
+							<?php 							
+							if(isset($castings))
+								foreach($castings as $casting){ ?>
 								
-								<div class="row">
-									<div class="span1">
-										<img src="<?php echo $casting['logo'] ?>"/>
-									</div>
-									<div class="span5">
-										<h4><?php echo $casting['title'] ?></h4>
-									</div>
-									<div style="margin-top:2%;" class="span3">
-										<i class="icon-time"></i> <?php echo $casting['days'] ?> d&iacute;as
-									</div>
-									<div class="span1">
-										<a class="btn" href="mailto:contacto@viddon.com">
-											<i class="icon-envelope"></i>                                            
-										</a>
-									</div>
-									
-									<div class="span1">
-										<form action="" method="POST">
-											<button class="btn" type="submit"><i class="icon-remove"></i></button>
-											<input type="hidden" name="del-apply" value="<?php echo $casting["apply_id"] ?>"/>
-										</form>										
-									</div>
-									
-								</div>
-								
-								<div class="row">
-									<div class="span6">
-										<div class="space05"></div>
-
-										<a href="<?php echo site_url("home/casting_detail/".$casting['id']); ?>">
-											<img style='height:100%; width: 100%;' src="<?php echo $casting['image'] ?>"/>
-										</a>
-									</div>
-									<div style="padding-left: 1%;" class="span6 list-view-applies-desc">
-										<div class="space05"></div>
-										<div class="row">
-											<h4 id="profile">Descripci&oacuten:</h4>
-											<div>
-												<?php echo  substr(strip_tags($casting['description']),0,140)."..." ?>
-											</div>
+									<div class="row">
+										<div class="span1">
+											<img src="<?php echo $casting['logo'] ?>"/>
 										</div>
-										<div class="space1"></div>
-										<div class="row">
-												<h4 id="profile">Tags:</h4>
-												<?php
-															if(isset($casting['tags']))
-												    		{
-													    		echo '<ul style="margin-left:75px;" class="skills-list">';
-													    		foreach ($casting['tags'] as $tag) {
-																	echo '<li> <a href="#">'.$tag.'</a></li>';
-																}
-																echo '</ul>';
-															}
-												?>
-										</div>									
+										<div class="span5">
+											<h4><?php echo $casting['title'] ?></h4>
+										</div>
+										<div style="margin-top:2%;" class="span3">
+											<i class="icon-time"></i> <?php echo $casting['days'] ?> d&iacute;as
+										</div>
+										<div class="span1">
+											<a class="btn" href="mailto:contacto@viddon.com">
+												<i class="icon-envelope"></i>                                            
+											</a>
+										</div>
+										
+										<div class="span1">
+											<form action="" method="POST">
+												<button class="btn" type="submit"><i class="icon-remove"></i></button>
+												<input type="hidden" name="del-apply" value="<?php echo $casting["apply_id"] ?>"/>
+											</form>										
+										</div>
+										
 									</div>
-								</div>
-								
-								<div class="space4"></div>
+									
+									<div class="row">
+										<div class="span6">
+											<div class="space05"></div>
+	
+											<a href="<?php echo site_url("home/casting_detail/".$casting['id']); ?>">
+												<img style='height:100%; width: 100%;' src="<?php echo $casting['image'] ?>"/>
+											</a>
+										</div>
+										<div style="padding-left: 1%;" class="span6 list-view-applies-desc">
+											<div class="space05"></div>
+											<div class="row">
+												<h4 id="profile">Descripci&oacuten:</h4>
+												<div>
+													<?php echo  substr(strip_tags($casting['description']),0,140)."..." ?>
+												</div>
+											</div>
+											<div class="space1"></div>
+											<div class="row">
+													<h4 id="profile">Tags:</h4>
+													<?php
+																if(isset($casting['tags']))
+													    		{
+														    		echo '<ul style="margin-left:75px;" class="skills-list">';
+														    		foreach ($casting['tags'] as $tag) {
+																		echo '<li> <a href="#">'.$tag.'</a></li>';
+																	}
+																	echo '</ul>';
+																}
+													?>
+											</div>									
+										</div>
+									</div>
+									
+									<div class="space4"></div>
 								
 								
 							<?php } ?>

@@ -226,10 +226,14 @@ class Hunter extends CI_Controller {
 		
 			$args["id_casting"]=$id;
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
+
 			$args["content"]="castings/hunter_template";
 			$inner_args["hunter_content"]="castings/applicants_list";
 			$args["inner_args"]=$inner_args;
 			$args["skills"]= $this->skills_model->get_skills();
+
+			$temp = $this->castings_model->get_full_casting($id);
+			$args["name_casting"]= $temp["title"];
 			
 			$id_applicants= $this->applies_model->get_castings_applies($id);
 						
@@ -285,7 +289,8 @@ class Hunter extends CI_Controller {
 			$args["content"]="castings/hunter_template";
 			$inner_args["hunter_content"]="castings/accepted_list";
 			$args["inner_args"]=$inner_args;
-			
+			$temp = $this->castings_model->get_full_casting($id);
+			$args["name_casting"]= $temp["title"];
 			$id_applicants= $this->applies_model->get_castings_applies_selected($id);
 			$args["id_casting"]= $id;
 			$args["mailto_all"]="";

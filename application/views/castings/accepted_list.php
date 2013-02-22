@@ -18,7 +18,7 @@
 					    		
 							<row>								
 								<div class="span10"> 
-									<h3 class="profile-title"><a href="<?php echo HOME.'/hunter/casting_list' ?>">Castings/</a><a href="<?php echo HOME.'/hunter/casting_detail/'.$id_casting ?>">Casting A/</a> Seleccionados </h3>
+									<h3 class="profile-title"><a href="<?php echo HOME.'/hunter/casting_list' ?>">Castings/</a><a href="<?php echo HOME.'/hunter/casting_detail/'.$id_casting ?>"><?php echo $name_casting."/"; ?></a> Seleccionados </h3>
 								</div>
 								<div class="span2">
 									<a class="btn" href="<?php echo "mailto: ".$mailto_all; ?>">

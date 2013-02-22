@@ -58,34 +58,77 @@
 						<div class="span8 offset1">
 							<legend><h3>Cu&eacutentanos Sobre T&iacute</h3></legend>
 							<div style="margin-left:15px;">
-								<h5>¿C&uacuteal es tu nombre?</h5>
-								<input type="text" style="width: 235px;" placeholder="Escribe tu Nombre Aqui" value="<?php if(isset($update_values)) echo $update_values["name"]; else echo set_value('name');?>" name="name">
-								
-								<?php echo form_error('name'); ?>
-								<h5>¿C&uacuteal es tu sexo?</h5>
-								<select style='width: 245px;' class="span4" name="sex">
-									<option value="0" <?php if(isset($update_values) && $update_values["sex"]==0) echo "selected='selected'";?>>Femenino</option>
-									<option value="1"  <?php if(isset($update_values) && $update_values["sex"]==1) echo "selected='selected'";?>>Masculino</option>
-								</select>
-								<h5>¿Y tu edad?</h5>
-									<?php
-									if(isset($update_values)) $age_set=$update_values["age"]; else $age_set=18; 
-									echo form_dropdown('age', $age, $age_set, "style='width: 245px;'") ?> <br/>
-								
-								<div style="margin-left: -15px; margin-top: -20px;" id="image_upload">
-									<h5>Sube una imagen de t&iacute</h5>
-									<?php echo form_upload(array('name' => 'image_profile','id'=> 'file')); ?>
-									<?php 
-										  echo form_hidden('image','');
-										  echo form_error('image'); 
-									?>
+								<div class="row">
+									<div class="span6">								
+										<h5>Nombre</h5>
+										<input type="text" style="width:100%;" placeholder="Escribe tu Nombre Aqui" value="<?php if(isset($update_values)) echo $update_values["name"]; else echo set_value('name');?>" name="name">
+									</div>
 								</div>
-								
-								<div class="space2"></div>
+								<div class="row">
+									<?php echo form_error('name'); ?>
+									
+									<div style="margin-left: -10px; margin-top: -20px;" id="image_upload">
+										<h5>Sube una imagen de t&iacute</h5>
+										<?php echo form_upload(array('name' => 'image_profile','id'=> 'file')); ?>
+										<?php 
+											  echo form_hidden('image','');
+											  echo form_error('image'); 
+										?>
+									</div>
+								</div>
+								<div class="space2"></div>														
+								<div class="row">									
+										<div class="span4">
+											<h5>Sexo</h5>
+											<select style='width: 100%;' class="span4" name="sex">
+												<option value="0" <?php if(isset($update_values) && $update_values["sex"]==0) echo "selected='selected'";?>>Femenino</option>
+												<option value="1"  <?php if(isset($update_values) && $update_values["sex"]==1) echo "selected='selected'";?>>Masculino</option>
+											</select>
+										</div>
+										
+										<div class="span4">
+											<h5>Edad</h5>
+											<?php
+												if(isset($update_values)) $age_set=$update_values["age"]; else $age_set=18; 
+												echo form_dropdown('age', $age, $age_set, "style='width: 100%;'") 
+											?>
+										</div>
+										
+										<div class="span4">
+											<h5>Estatura</h5>
+											<?php
+												if(isset($update_values)) $height_set=$update_values["height"]; else $height_set=165; 
+												echo form_dropdown('height', $height, $height_set, "style='width: 100%;'") 
+											?>
+										</div>
+									</div>
+								<div class="row">
+										<div class="span4">
+											<h5>Color de piel</h5>
+											<?php
+												if(isset($update_values)) $skin_set=$update_values["color_skin"]; else $skin_set=0; 
+												echo form_dropdown('height', $skin, $skin_set, "style='width: 100%;'") 
+											?>
+										</div>
+										<div class="span4">
+										<h5>Color de ojos</h5>
+											<?php
+												if(isset($update_values)) $eye_set=$update_values["color_eye"]; else $eye_set=0; 
+												echo form_dropdown('height', $eyes, $eye_set, "style='width: 100%;'") 
+											?>
+										</div>
+										<div class="span4">
+										<h5>Color de cabello</h5>
+										<?php
+												if(isset($update_values)) $hair_set=$update_values["color_hair"]; else $hair_set=0; 
+												echo form_dropdown('height', $hair, $hair_set, "style='width: 100%;'") 
+											?>
+										</div>										
+									</div>
 							</div>
-							<legend>Informaci&oacuten P&uacuteblica</legend>
+							<legend>Informaci&oacute;n P&uacute;blica</legend>
 							
-							<div style="margin-left:15px;">
+							<div style="margin-left:5px;">
 								<h5>Selecciona tus habilidades</h5>
 									<?php 
 									$skill_selected= array();

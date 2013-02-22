@@ -79,7 +79,7 @@ class Home extends CI_Controller {
 	{
 		$args = array();
 		$args["chunks"]=ceil($this->castings_model->count_all(NULL)/9);
-		$args["casting_list"]= $this->castings_model->get_castings(NULL, 9, $page, TRUE);
+		$args["casting_list"]= $this->castings_model->get_castings(NULL, 9, $page, TRUE,0);
 		$args["page"]=$page;
 		$args['content']='home/castings_list';
 		$args["inner_args"]=NULL;
@@ -151,17 +151,28 @@ class Home extends CI_Controller {
 	{
 		if($this->session->userdata('id'))
 		{
-			if ($this->session->userdata('type') && $this->videos_model->verify_videos($this->session->userdata('id')) != 0) 
+			if($this->session->userdata('type'))
 			{
-							if($this->applies_model->apply($this->session->userdata('id'),$id_casting))
-							{
-								$postulation_message = "Postulaci&oacute;n Exitosa.";
-							}
-							else
-								$postulation_message = "Ya Postulaste a este Casting.";
+				if($this->castings_model->check_status_active($id_casting))			
+				{	
+					if ($this->videos_model->verify_videos($this->session->userdata('id')) != 0) 
+					{
+									if($this->applies_model->apply($this->session->userdata('id'),$id_casting))
+									{
+										$postulation_message = "Postulaci&oacute;n Exitosa.";
+									}
+									else
+										$postulation_message = "Ya Postulaste a este Casting.";
+					}
+					else
+						$postulation_message = "No tienes un video para poder postular.";
+				}
+				else
+					$postulation_message = "Casting no activo";
 			}
 			else
-				$postulation_message = "No tienees un video para poder postular.";
+				$postulation_message = "No eres un postulante.";
+				
 		}
 		else 
 			$postulation_message = "Debes iniciar sesi&oacute;n";		

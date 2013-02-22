@@ -33,7 +33,7 @@
 					    		
 					    	<div class="row">
 								<div class="span11">
-									<h3 class="profile-title"><a href="<?php echo HOME.'/hunter/casting_list' ?>">Castings/</a><a href="<?php echo HOME.'/hunter/casting_detail/'.$id_casting; ?>">Casting A/</a> Lista Postulantes </h3>
+									<h3 class="profile-title"><a href="<?php echo HOME.'/hunter/casting_list' ?>">Castings/</a><a href="<?php echo HOME.'/hunter/casting_detail/'.$id_casting; ?>"><?php echo $name_casting."/"; ?></a> Lista Postulantes </h3>
 								</div>
 								<div class="span1">
 									<a href="<?php echo HOME."/hunter/finalize_casting/".$id_casting; ?>" style="height: 34px;" class="btn">

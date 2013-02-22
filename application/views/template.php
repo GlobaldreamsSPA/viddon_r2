@@ -150,8 +150,8 @@
 	<script type="text/javascript">
 	      $(document).ready(function() {
 	        $("textarea.rich_textarea").cleditor({
-	          width:        450, // width not including margins, borders or padding
-	          height:       200, // height not including margins, borders or padding
+	          width:        $('.span12').width(), // width not including margins, borders or padding
+	          height:       230, // height not including margins, borders or padding
 	          controls:     // controls to add to the toolbar
 	                        "bold italic underline strikethrough subscript superscript | font size " +
 	                        "style | color highlight removeformat | bullets numbering | outdent " +
