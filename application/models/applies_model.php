@@ -53,6 +53,34 @@ class Applies_model extends CI_Model
 			return $query->result_array();
 		
 	}
+	/**
+	 * @desc Verifica el estado de cada "apply" de un respectivo casting y retorna "true" si cada "apply" tiene estado distinto de 0.
+	 * Retorna -1 si no recibe parametros
+	 * */
+	function verify_castings_applies_status($parametro)//se verifica si le paso el ID o un array de applies
+	{
+		if(is_array($parametro))
+		{
+			//es array, lo analizadirectamente
+			$todos = $parametro;		
+		}
+		else
+		{
+			//Saca los applies del id_casting(parametro) recibido
+			$todos = $this->get_castings_applies($parametro);	
+		}
+		
+		//los revisa y si algun(status) es 0 retorna FALSO
+		foreach ($todos as $apply) 
+		{
+			if($apply['state'] == 0)
+			{
+				return FALSE;
+			}
+		}
+		//si no se salio => todos los "state" son distintos de 0
+		return true;		
+	}
 	
 	function get_castings_applies_selected($casting_id)
 	{

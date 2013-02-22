@@ -36,9 +36,38 @@
 									<h3 class="profile-title"><a href="<?php echo HOME.'/hunter/casting_list' ?>">Castings/</a><a href="<?php echo HOME.'/hunter/casting_detail/'.$id_casting; ?>"><?php echo $name_casting."/"; ?></a> Lista Postulantes </h3>
 								</div>
 								<div class="span1">
-									<a href="<?php echo HOME."/hunter/finalize_casting/".$id_casting; ?>" style="height: 34px;" class="btn">
+									
+									<?php							
+									//var_dump($allowed_to_finalize);
+									if($allowed_to_finalize){
+									?>
+										<a href="<?php echo HOME."/hunter/finalize_casting/".$id_casting; ?>" style="height: 34px;" class="btn" title="Cerrar Casting">
 										<i style="margin-top: 8px;" class="icon-off"></i>
+										</a>
+									<?php
+									}
+									else{
+									?>
+									<a data-toggle="modal" href="#modal_finalize" style="text-align: right;" class="btn" title="Cerrar Casting">
+									<i style="margin-top: 8px;" class="icon-off"></i>
 									</a>
+									
+									<!-- Definicion del modal-->
+									<div id="modal_finalize" class="modal hide fade in">
+									<div class="modal-header">
+									<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
+									</div>
+									<div class="modal-body">
+									<h4>Aviso</h4>
+									<p>Debe Aprobar o Rechazar a cada uno de los postulantes para cerrar el casting.</p>              
+									</div>
+									<div class="modal-footer">
+									<a href="#" class="btn" data-dismiss="modal">Volver</a>
+									</div>
+									</div>
+									<?php
+									}
+									?>							
 								</div>
 								<legend></legend>
 							</div>
@@ -91,11 +120,11 @@
 									
 									<row style="float: right;">
 										
-										<a data-toggle="modal" <?php if($applicant["apply_state"]!=1) echo "href='#modal".$applicant["id"]."'"; ?>" style="text-align: right;" class="btn btn-success">
+										<a data-toggle="modal" <?php if($applicant["apply_state"]!=1) echo "href='#modal".$applicant["id"]."'"; ?>" style="text-align: right;" class="btn btn-success" title="Aprobar">
 											<i class="icon-ok"></i>
 										</a>
 										
-										<a <?php if($applicant["apply_state"]!=2) echo "href='".HOME."/hunter/reject_apply/".$applicant['apply_id']."/".$id_casting."'"; ?>"style="text-align: right;" class="btn btn-danger">
+										<a <?php if($applicant["apply_state"]!=2) echo "href='".HOME."/hunter/reject_apply/".$applicant['apply_id']."/".$id_casting."'"; ?>"style="text-align: right;" class="btn btn-danger" title="Rechazar">
 											<i class="icon-remove"></i>
 										</a>
 										
