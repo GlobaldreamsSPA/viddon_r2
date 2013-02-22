@@ -236,6 +236,9 @@ class Hunter extends CI_Controller {
 			$args["name_casting"]= $temp["title"];
 			
 			$id_applicants= $this->applies_model->get_castings_applies($id);
+			
+			//define si se puede finalizar el casting o no(toma el array anterior como parametro)
+			$args["allowed_to_finalize"] = $this->applies_model->verify_castings_applies_status($id_applicants);
 						
 			if($id_applicants!= 0)
 			{
@@ -317,8 +320,8 @@ class Hunter extends CI_Controller {
 	{
 		if($this->session->userdata('logged_in'))
 		{
-			$this->castings_model->finalize_casting($id_casting);	
-			redirect(HOME."/hunter/casting_list");
+				$this->castings_model->finalize_casting($id_casting);	
+				redirect(HOME."/hunter/casting_list");
 		}
 		else
 			redirect(HOME);
