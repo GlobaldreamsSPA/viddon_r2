@@ -6,18 +6,14 @@
 				<div class="span2 offset1">
 					<h2 class="control-label" id="profile" name="category">Categor&iacutea</h2>
 				</div>
-				<div style="margin-top:15px;" class="span2 controls">
-					<select>
-						<option value="danza">Danza</option>
-						<option value="actuacion">Actuaci&oacuten</option>
-						<option selected="selected" value="todos">Todos</option>
-						<option value="musica">M&uacutesica</option>
-			  			<option value="canto">Canto</option>
-			  			<option value="otros">Otros</option>
-					</select>
+				<div style="margin-top:15px;" class="span2">
+					<?php
+					echo form_multiselect('tags[]', $tags,NULL,"class='chzn-select'  id='filter' style='width:100%' data-placeholder='Selecciona los tags...'");
+					?>
+
 				</div>
 				<div style="margin-top:15px;" class="span2">
-					<button class="btn btn-info">Actualizar</button>
+					<a href="<?php echo HOME."/video_list/1/"?>" id="filter_button" class="btn btn-info">Actualizar</a>
 					
 				</div>
 			</div>
@@ -62,11 +58,11 @@
 					<div class="pagination">  
 					  <ul id="pagination_bt">
 					  	  
-					    <li <?php if($page==1) echo "class='disabled'";?> ><a href=<?php echo base_url()."home/video_list/".($page-1);?>>Prev</a></li>  
+					    <li <?php if($page==1) echo "class='disabled'";?> ><a <?if($page!=1) echo "href= '".base_url()."home/video_list/".($page-1)."/'";?>>Prev</a></li>  
 						<?php for($i = 1; $i <= $chunks; $i++) { ?>
-							<li <?php if($page==$i) echo "class='disabled'";?> ><a href=<?php echo base_url()."home/video_list/".$i;?> > <?php echo $i; ?></a></li>  
+							<li <?php if($page==$i) echo "class='disabled'";?> ><a <?if($page!=$i) echo "href= '".base_url()."home/video_list/".$i."/'";?> > <?php echo $i; ?></a></li>  
 						<?php } ?>
-					    <li <?php if($page==$chunks) echo "class='disabled'";?> ><a href=<?php echo base_url()."home/video_list/".($page+1);?>>Next</a></li>
+					    <li <?php if($page==$chunks) echo "class='disabled'";?> ><a <?if($page!=$chunks) echo "href= '".base_url()."home/video_list/".($page+1)."/'";?>>Next</a></li>
 					     
 					  </ul>  
 					</div>  

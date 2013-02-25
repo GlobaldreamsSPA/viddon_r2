@@ -241,7 +241,50 @@
 			});
 		});
 		
-    	
+    	$("#filter").change(function () {
+			
+			var str="";
+			 $("#filter option:selected").each(function () {
+				if($(this).text() == "Todos")
+				{
+					$("#filter *").each(function () {
+						if($(this).text() == "Limpiar")
+							$(this).prop('selected', false);
+						else
+							$(this).prop('selected', true);
+					});
+					$(this).prop('selected', false);
+					$('#filter').trigger('liszt:updated');
+					return false;
+				}
+				
+				if($(this).text() == "Limpiar")
+				{
+					$("#filter *").each(function () {
+						$(this).prop('selected', false);
+					});
+					$(this).prop('selected', false);
+					$('#filter').trigger('liszt:updated');
+					return false;
+				}
+				
+		      });
+		      
+		       
+		      var uri="";
+		      $("#filter option:selected").each(function () {
+		      		uri= uri + $(this).val() +"_";
+		      });
+		      
+
+		      $("#filter_button").attr("href",$("#filter_button").attr("href").substr(0,($("#filter_button").attr("href").lastIndexOf('/') + 1))+uri);
+		});
+		
+		$("iframe").each(function(){
+		  var ifr_source = $(this).attr('src');
+		  var wmode = "&wmode=transparent";
+		  $(this).attr('src',ifr_source+wmode);
+		});
 			    	    
     </script>
 </body>

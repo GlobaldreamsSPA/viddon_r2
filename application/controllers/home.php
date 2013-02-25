@@ -5,7 +5,7 @@ class Home extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('url');
+		$this->load->helper(array('url', 'form'));
 
 		//Modelos
 		$this->load->model(array('videos_model', 'user_model', 'hunter_model', 'castings_model','applies_model','skills_model'));
@@ -32,7 +32,7 @@ class Home extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
-	public function video_list($page = 1)
+	public function video_list($page = 1,$category=NULL)
 	{
 		$args = array();
 
@@ -66,6 +66,10 @@ class Home extends CI_Controller {
 		}
     
 		
+		$args["tags"]=	$this->skills_model->get_skills();		
+		
+		array_unshift($args["tags"] , "Limpiar");
+		array_unshift($args["tags"] , "Todos");
 		
 		$args["chunks"]=ceil($this->videos_model->count() / 9);
 		$args["page"]=$page;

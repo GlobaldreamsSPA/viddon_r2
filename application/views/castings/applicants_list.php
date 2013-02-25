@@ -39,7 +39,7 @@
 									
 									<?php							
 									//var_dump($allowed_to_finalize);
-									if($allowed_to_finalize){
+									if(isset($allowed_to_finalize) AND $allowed_to_finalize){
 									?>
 										<a href="<?php echo HOME."/hunter/finalize_casting/".$id_casting; ?>" style="height: 34px;" class="btn" title="Cerrar Casting">
 										<i style="margin-top: 8px;" class="icon-off"></i>
@@ -48,7 +48,7 @@
 									}
 									else{
 									?>
-									<a data-toggle="modal" href="#modal_finalize" style="text-align: right;" class="btn" title="Cerrar Casting">
+									<a data-toggle="modal" href="#modal_finalize" style="height: 34px; text-align: right;" class="btn" title="Cerrar Casting">
 									<i style="margin-top: 8px;" class="icon-off"></i>
 									</a>
 									
