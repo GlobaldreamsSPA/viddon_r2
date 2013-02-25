@@ -219,7 +219,7 @@ class Hunter extends CI_Controller {
 
 	}
 	
-	function applicants_list($id=NULL)
+	function applicants_list($id=NULL,$page=1,$applies_state=0)
 	{
 		if($this->session->userdata('logged_in') && isset($id))
 		{
@@ -231,11 +231,19 @@ class Hunter extends CI_Controller {
 			$inner_args["hunter_content"]="castings/applicants_list";
 			$args["inner_args"]=$inner_args;
 			$args["skills"]= $this->skills_model->get_skills();
-
+			$temp[0]= "Limpiar";
+			$temp[-1]= "Todos";
+			
+			$args["skills"] = $temp + $args["skills"];
+			
 			$temp = $this->castings_model->get_full_casting($id);
 			$args["name_casting"]= $temp["title"];
 			
-			$id_applicants= $this->applies_model->get_castings_applies($id);
+			$id_applicants= $this->applies_model->get_castings_applies($id,$page,$applies_state);
+			$args["chunks"]=ceil($this->applies_model->count_casting_applies($id,$applies_state)/5);
+			$args["page"]=$page;
+			$args["applies_state"]=$page;
+			
 			
 						
 			if($id_applicants!= 0)

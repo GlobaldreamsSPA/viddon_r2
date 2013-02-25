@@ -280,6 +280,7 @@
 
 		      $("#filter_button").attr("href",$("#filter_button").attr("href").substr(0,($("#filter_button").attr("href").lastIndexOf('/') + 1))+uri);
 		});
+
 		
 		$("iframe").each(function(){
 		  var ifr_source = $(this).attr('src');

@@ -41,16 +41,39 @@ class Applies_model extends CI_Model
 			return 1;
 	}
 	
-	function get_castings_applies($casting_id)
+	function get_castings_applies($casting_id,$page,$state,$cant=5)
 	{
 		$this->db->select('user_id,id,state');
     	$this->db->where('casting_id', $casting_id);
-		$query = $this->db->get('applies');
+		
+		
+		if($state!=3)
+			$this->db->where('state', $state);
+			
+		
+		
+		$query = $this->db->get('applies', $cant, ($page-1)*$cant);
 		
 		if($query->num_rows == 0)
 			return 0;
 		else
 			return $query->result_array();
+		
+	}
+	
+	function count_casting_applies($casting_id,$state)
+	{
+		$this->db->select('id');
+    	$this->db->where('casting_id', $casting_id);
+		
+		if($state != 3)
+			$this->db->where('state', $state);
+		
+		$query = $this->db->get('applies');
+		
+		
+		
+		return $query->num_rows;
 		
 	}
 	/**

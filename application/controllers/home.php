@@ -69,8 +69,10 @@ class Home extends CI_Controller {
 		
 		$args["tags"]=	$this->skills_model->get_skills();		
 		
-		array_unshift($args["tags"] , "Limpiar");
-		array_unshift($args["tags"] , "Todos");
+		$temp[0]= "Limpiar";
+		$temp[-1]= "Todos";
+		
+		$args["tags"] = $temp + $args["tags"];
 		
 		$args["chunks"]=ceil($this->videos_model->count() / 9);
 		$args["page"]=$page;

@@ -84,7 +84,7 @@
 								</div>
 								<h3 id="profile" style="font-weight:bold;"> Postulantes</h3>
 								<img style=" margin-top:10px; height: 30%; width: 100%;" src="<?php echo HOME.'/img/lista_usuarios_dummy.png';?>">
-								<a class="MBT-readmore" href="<?php echo HOME.'/hunter/applicants_list/'.$casting["id"] ?>" style="float: right;">Todos Los Postulantes >></a>
+								<a class="MBT-readmore" href="<?php echo HOME.'/hunter/applicants_list/'.$casting["id"].'/1/' ?>" style="float: right;">Todos Los Postulantes >></a>
 								<div class="space2"></div>
 								<h3 id="profile" style="font-weight:bold;"> Seleccionados</h3>
 								<img style=" margin-top:10px; height: 30%; width: 100%;" src="<?php echo HOME.'/img/lista_usuarios_dummy.png';?>">
