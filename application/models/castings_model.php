@@ -93,15 +93,34 @@ class Castings_model extends CI_Model
         return $casting;
     }
 
-    function get_castings($hunter_id=NULL, $cant=NULL, $page=NULL, $all=NULL, $status=NULL)
+    function get_castings($hunter_id=NULL, $cant=NULL, $page=NULL, $all=NULL, $status=NULL, $categories=NULL)
     {
-    	$this->db->select('id, title, image, end_date, status, entity_id');
+    	$this->db->select('id, title, image, end_date, status, entity_id, category');
         
         if(!is_null($hunter_id))
             $this->db->where('entity_id', $hunter_id);
 
 		if(isset($status))
             $this->db->where('status', $status);
+		
+				
+		if(!is_null($categories))
+		{
+			$flag = FALSE;
+			$where = "";
+			foreach ($categories as $iter) 
+			{
+				if($flag)
+					$where=$where." OR ";
+				$where = $where." category =".$iter;
+				$flag =TRUE;
+			}
+			$where = $where."";
+			$this->db->where($where, NULL, FALSE);
+			$this->db->order_by("category", "asc");
+		}
+		
+		
 		
 
         if(!is_null($page) && !is_null($cant))
