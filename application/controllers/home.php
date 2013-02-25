@@ -7,8 +7,9 @@ class Home extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('url', 'form'));
 
+
 		//Modelos
-		$this->load->model(array('videos_model', 'user_model', 'hunter_model', 'castings_model','applies_model','skills_model'));
+		$this->load->model(array('videos_model', 'user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model'));
 	
 	}
 
@@ -79,12 +80,31 @@ class Home extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
-	public function casting_list($page = 1)
+	public function casting_list($page = 1,$actual_categories = null)//el actual es un string de categorias
 	{
 		$args = array();
 		$args["chunks"]=ceil($this->castings_model->count_all(NULL)/9);
-		$args["casting_list"]= $this->castings_model->get_castings(NULL, 9, $page, TRUE,0);
+		
+		if(!is_null($actual_categories))
+		{
+			$args["actual_categories"] = explode("_",$actual_categories);//PARAMETROS FILTRO URL
+			$args["casting_list"]= $this->castings_model->get_castings(NULL, 9, $page, TRUE, 0, $args["actual_categories"]);
+		}else
+		{
+			$args["casting_list"]= $this->castings_model->get_castings(NULL, 9, $page, TRUE, 0, NULL);		
+		}		
+		
+		$args["categories_cant"] = $this->casting_categories_model->get_casting_categories_cant();//cuantas categorias
+		$args["categories"] = $this->casting_categories_model->get_casting_categories();//carga la lista de categorias
+		var_dump($args["categories"]);
+		array_unshift($args["categories"] , "Limpiar");
+				var_dump($args["categories"]);
+		
+		array_unshift($args["categories"] , "Todos");
+				var_dump($args["categories"]);
+		
 		$args["page"]=$page;
+
 		$args['content']='home/castings_list';
 		$args["inner_args"]=NULL;
 		

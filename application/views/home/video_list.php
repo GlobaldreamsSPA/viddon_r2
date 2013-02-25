@@ -13,7 +13,7 @@
 
 				</div>
 				<div style="margin-top:15px;" class="span2">
-					<a href="<?php echo HOME."/video_list/1/"?>" id="filter_button" class="btn btn-info">Actualizar</a>
+					<a href="<?php echo HOME."/home/video_list/1/"?>" id="filter_button" class="btn btn-info">Actualizar</a>
 					
 				</div>
 			</div>

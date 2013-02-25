@@ -276,6 +276,7 @@
 		      		uri= uri + $(this).val() +"_";
 		      });
 		      
+		      uri= uri.substr(0,uri.length - 1);
 
 		      $("#filter_button").attr("href",$("#filter_button").attr("href").substr(0,($("#filter_button").attr("href").lastIndexOf('/') + 1))+uri);
 		});

@@ -21,16 +21,15 @@
 						{
 							if(isset($actual_categories[$i]))
 								$categories_selected[$i]=$actual_categories[$i];
-							else 
-								$categories_selected[$i]=0;
+							
 								
 						}
-						echo form_multiselect('categories[]', $categories, $categories_selected,"class='chzn-select' style='width:245px' data-placeholder='Filtra por categoria'");
+						echo form_multiselect('categories[]', $categories, $categories_selected,"class='chzn-select' id='filter' style='width:100%' data-placeholder='Filtra por categoria'");
 					?>
 				</div>
 				
 				<div style="margin-top:15px;" class="span2">
-					<button class="btn btn-info">Actualizar</button>
+					<a href="<?php echo HOME."/home/casting_list/1/"?>" id="filter_button" class="btn btn-info">Actualizar</a>
 					
 				</div>
 			</div>
@@ -66,11 +65,11 @@
 					<div class="pagination">  
 					  <ul id="pagination_bt">
 					  	  
-					    <li <?php if($page==1) echo "class='disabled'";?> ><a href=<?php echo base_url()."home/casting_list/".($page-1);?>>Prev</a></li>  
+					  	<li <?php if($page==1) echo "class='disabled'";?> ><a <?if($page!=1) echo "href= '".base_url()."home/video_list/".($page-1)."/'";?>>Prev</a></li>  
 						<?php for($i = 1; $i <= $chunks; $i++) { ?>
-							<li <?php if($page==$i) echo "class='disabled'";?> ><a href=<?php echo base_url()."home/casting_list/".$i;?> > <?php echo $i; ?></a></li>  
+							<li <?php if($page==$i) echo "class='disabled'";?> ><a <?if($page!=$i) echo "href= '".base_url()."home/video_list/".$i."/'";?> > <?php echo $i; ?></a></li>  
 						<?php } ?>
-					    <li <?php if($page==$chunks) echo "class='disabled'";?> ><a href=<?php echo base_url()."home/casting_list/".($page+1);?>>Next</a></li>
+					    <li <?php if($page==$chunks) echo "class='disabled'";?> ><a <?if($page!=$chunks) echo "href= '".base_url()."home/video_list/".($page+1)."/'";?>>Next</a></li>
 					     
 					  </ul>  
 					</div>  

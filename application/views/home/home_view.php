@@ -70,7 +70,7 @@
 		  			<?php } ?>
 					<div class= "space2"></div>
 					<div class="space1"></div>
-					<a class="MBT-readmore" style="float: right;" href="<?php echo HOME;?>/home/casting_list">Todos Los Castings >></a>
+					<a class="MBT-readmore" style="float: right;" href="<?php echo HOME;?>/home/casting_list/1/">Todos Los Castings >></a>
 				</div>
 			</div>	
 		</div>

@@ -107,15 +107,15 @@ class Castings_model extends CI_Model
 		if(!is_null($categories))
 		{
 			$flag = FALSE;
-			$where = "";
+			$where = "(";
 			foreach ($categories as $iter) 
 			{
 				if($flag)
 					$where=$where." OR ";
-				$where = $where." category =".$iter;
+				$where = $where." category= ".$iter;
 				$flag =TRUE;
 			}
-			$where = $where."";
+			$where = $where.")";
 			$this->db->where($where, NULL, FALSE);
 			$this->db->order_by("category", "asc");
 		}
