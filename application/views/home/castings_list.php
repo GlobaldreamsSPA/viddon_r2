@@ -5,18 +5,30 @@
 			<div class="row control-group">
 				<div class="span2 offset1">
 					<h2 class="control-label" id="profile" name="category">Categor&iacutea</h2>
+				
+				
+				<?php
+					//if(isset($actual_categories)) var_dump($actual_categories);
+					//if(isset($categories)) var_dump($categories);
+					//if(isset($categories_cant)) echo $categories_cant." categorias.<br />";
+				?>
 				</div>
+						
 				<div style="margin-top:15px;" class="span2 controls">
-					<select>
-						<option value="reality">Reality</option>
-						<option value="teleserie">Teleserie</option>
-						<option selected="selected" value="todos">Todos</option>			  			
-						<option value="show_talentos">Show de Talentos</option>
-			  			<option value="documental">Documental</option>
-			  			<option value="festival">Festival</option>
-			  			<option value="otros">Otros</option>
-					</select>
+					<?php 
+						$categories_selected= array();
+						for ($i=0; $i<$categories_cant; $i++)
+						{
+							if(isset($actual_categories[$i]))
+								$categories_selected[$i]=$actual_categories[$i];
+							else 
+								$categories_selected[$i]=0;
+								
+						}
+						echo form_multiselect('categories[]', $categories, $categories_selected,"class='chzn-select' style='width:245px' data-placeholder='Filtra por categoria'");
+					?>
 				</div>
+				
 				<div style="margin-top:15px;" class="span2">
 					<button class="btn btn-info">Actualizar</button>
 					
