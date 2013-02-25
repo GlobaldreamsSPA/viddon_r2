@@ -78,7 +78,7 @@
 
 							<div class="row" style="margin-left:1px; width: 100%; height: 180px;"> 
 					    		<div class="span7">
-					    		<iframe width="100%" height="110%" src="http://www.youtube.com/embed/<?php echo $applicant['video_id']?>" frameborder="0" allowfullscreen></iframe>
+					    		<iframe width="100%" height="110%" src="http://www.youtube.com/embed/<?php echo $applicant['video_id']."?rel=0"?>" frameborder="0" allowfullscreen></iframe>
 					    		</div>
 					    		<div class="span5">
 						    		<row>

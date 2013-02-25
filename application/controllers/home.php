@@ -96,8 +96,12 @@ class Home extends CI_Controller {
 		
 		$args["categories_cant"] = $this->casting_categories_model->get_casting_categories_cant();//cuantas categorias
 		$args["categories"] = $this->casting_categories_model->get_casting_categories();//carga la lista de categorias
-		array_unshift($args["categories"] , "Limpiar");
-		array_unshift($args["categories"] , "Todos");
+		
+	
+		$temp[0]= "Limpiar";
+		$temp[-1]= "Todos";
+		
+		$args["categories"] = $temp + $args["categories"];
 		
 		$args["page"]=$page;
 

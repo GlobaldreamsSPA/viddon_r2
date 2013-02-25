@@ -283,7 +283,7 @@
 		
 		$("iframe").each(function(){
 		  var ifr_source = $(this).attr('src');
-		  var wmode = "&wmode=transparent";
+		  var wmode = "&wmode=opaque";
 		  $(this).attr('src',ifr_source+wmode);
 		});
 			    	    
