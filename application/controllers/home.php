@@ -33,18 +33,11 @@ class Home extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
-	public function video_list($page = 1,$actual_skills=NULL)
+	public function video_list($page = 1,$category=NULL)
 	{
 		$args = array();
-		
-		if(!is_null($actual_skills))
-		{
-			$args["actual_skills"] = explode("_",$actual_skills);//PARAMETROS FILTRO URL
-			$video_list = $this->videos_model->get_videos_by_skills($page, 9,$args["actual_skills"]);
-		}else
-		{
-			$video_list = $this->videos_model->get_videos($page, 9);		
-		}		
+
+		$video_list = $this->videos_model->get_videos($page, 9);
 		
 		$args["video_list"]=array();
 		
@@ -76,9 +69,8 @@ class Home extends CI_Controller {
 		
 		$args["tags"]=	$this->skills_model->get_skills();		
 		
-		$temp[0]= "Limpiar";
-		$temp[-1]= "Todos";
-		$args["tags"] = $temp + $args["tags"];
+		array_unshift($args["tags"] , "Limpiar");
+		array_unshift($args["tags"] , "Todos");
 		
 		$args["chunks"]=ceil($this->videos_model->count() / 9);
 		$args["page"]=$page;
