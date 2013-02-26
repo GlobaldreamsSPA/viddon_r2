@@ -281,6 +281,17 @@
 		      $("#filter_button").attr("href",$("#filter_button").attr("href").substr(0,($("#filter_button").attr("href").lastIndexOf('/') + 1))+uri);
 		});
 		
+		$("#apply_status").change(function () {
+			
+		    var regExp1 = new RegExp("/[0-9]+/[0-9]+/[0-3]+/"); 
+            var result = regExp1.exec($("#filter_button").attr("href"));
+            var temp = (""+result).substr(0,(""+result).length - 2);
+            
+            result = temp + $('#apply_status').val() + "/"
+		    
+		    $("#filter_button").attr("href",$("#filter_button").attr("href").replace(regExp1,result));
+		});
+		
 		$("iframe").each(function(){
 		  var ifr_source = $(this).attr('src');
 		  var wmode = "&wmode=opaque";
