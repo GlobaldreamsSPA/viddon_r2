@@ -17,7 +17,7 @@
 
 								
 									<?php 
-									echo form_dropdown('status', $status,NULL,"id='apply_status' style='width:100%'");
+									echo form_dropdown('status', $status,$applies_state,"id='apply_status' style='width:100%'");
 									echo form_multiselect('skills[]', $skills,NULL,"class='chzn-select' id='filter' style='width:100%' data-placeholder='Selecciona los tags...'");
 									?>
 								  <a href="<?php echo HOME."/hunter/applicants_list/".$id_casting."/1/0/"?>" id="filter_button" class="btn btn-info">Actualizar</a>
