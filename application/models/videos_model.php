@@ -96,16 +96,57 @@ class Videos_model extends CI_Model
 	{
 		$this->db->select('*');
 		$query = $this->db->get('videos', $cant, ($page-1)*$cant);
-
+		$result = array();
+		foreach ($query->result_array() as $value) 
+		{
+			$result[] = array($value['title'], $value['link'], $value['user_id']);
+		}
+		//var_dump($result);
+		return $result;
+	}
+	
+	/*
+	 * Se le pasa un array de skills
+	 */
+	function get_videos_by_skills($page, $cant,$skills_actual=NULL)
+	{
+		//la consulta
+		// select V.id as id_video,V.user_id,title,link,type,description,Us.skill_id from videos as V inner join users_skills as Us on V.user_id = Us.user_id where skill_id =2 OR skill_id=1 OR skill_id=5 OR skill_id=4 group by id_video;
+		$this->db->select('V.id as id_video,V.user_id,V.title,V.link,V.type,V.description,Us.skill_id');
+		$this->db->from('videos AS V');
+		$this->db->join('users_skills AS Us', 'V.user_id = Us.user_id', 'INNER');
+		
+		if(!is_null($skills_actual)){
+			$flag = FALSE;
+			//var_dump($skills_actual);
+			$where = "";
+			foreach ($skills_actual as $iter) 
+			{
+				if($flag)
+					$where=$where." OR ";
+				$where = $where." skill_id= ".$iter;
+				$flag =TRUE;
+				//var_dump($where);
+			}
+			
+			//var_dump($where);
+			$this->db->where($where, NULL, FALSE);
+			$this->db->order_by("title", "asc");	
+		}
+		
+		$this->db->group_by('id_video');
+		$query = $this->db->get('videos', $cant, ($page-1)*$cant);
 		$result = array();
 
 		foreach ($query->result_array() as $value) 
 		{
 			$result[] = array($value['title'], $value['link'], $value['user_id']);
 		}
-
+		
+		//var_dump($result);
 		return $result;
 	}
+	
 
 	function count()
 	{

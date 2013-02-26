@@ -8,7 +8,17 @@
 				</div>
 				<div style="margin-top:15px;" class="span2">
 					<?php
-					echo form_multiselect('tags[]', $tags,NULL,"class='chzn-select'  id='filter' style='width:100%' data-placeholder='Selecciona los tags...'");
+					
+					$skills_selected= array();
+					for ($i=0; $i<sizeof($tags); $i++)
+					{
+						if(isset($actual_skills[$i]))
+							$skills_selected[$i]=$actual_skills[$i];
+							
+					}
+					//var_dump($skills_selected);
+					//var_dump($tags);
+					echo form_multiselect('tags[]', $tags,$skills_selected,"class='chzn-select'  id='filter' style='width:100%' data-placeholder='Selecciona los tags...'");
 					?>
 
 				</div>
