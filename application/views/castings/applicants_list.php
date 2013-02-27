@@ -18,7 +18,9 @@
 								
 									<?php 
 									echo form_dropdown('status', $status,$applies_state,"id='apply_status' style='width:100%'");
-									echo form_multiselect('skills[]', $skills,NULL,"class='chzn-select' id='filter' style='width:100%' data-placeholder='Selecciona los tags...'");
+									
+										
+									echo form_multiselect('skills[]', $skills, $filter_categories,"class='chzn-select' id='filter' style='width:100%' data-placeholder='Selecciona los tags...'");
 									?>
 								  <a href="<?php echo HOME."/hunter/applicants_list/".$id_casting."/1/0/"?>" id="filter_button" class="btn btn-info">Actualizar</a>
                				</div>
@@ -151,11 +153,11 @@
 			                <div class="space1"></div>
 			                <div class="pagination">  
 				                <ul id="pagination_bt">
-					                <li <?php if($page==1) echo "class='disabled'";?> ><a <?if($page!=1) echo "href= '".base_url()."hunter/applicants_list/".($id_casting)."/".($page-1)."/".$applies_state."/'";?>>Prev</a></li>  
+					                <li <?php if($page==1) echo "class='disabled'";?> ><a <?if($page!=1) echo "href= '".base_url()."hunter/applicants_list/".($id_casting)."/".($page-1)."/".$applies_state."/".$filter_categories_url."'";?>>Prev</a></li>  
 					                <?php for($i = 1; $i <= $chunks; $i++) { ?>
-					                	<li <?php if($page==$i) echo "class='disabled'";?> ><a <?if($page!=$i) echo "href= '".base_url()."hunter/applicants_list/".($id_casting)."/".$i."/".$applies_state."/'";?> > <?php echo $i; ?></a></li>  
+					                	<li <?php if($page==$i) echo "class='disabled'";?> ><a <?if($page!=$i) echo "href= '".base_url()."hunter/applicants_list/".($id_casting)."/".$i."/".$applies_state."/".$filter_categories_url."'";?> > <?php echo $i; ?></a></li>  
 					                <?php } ?>
-					                <li <?php if($page==$chunks) echo "class='disabled'";?> ><a <?if($page!=$chunks) echo "href= '".base_url()."hunter/applicants_list/".($id_casting)."/".($page+1)."/".$applies_state."/'";?>>Next</a></li>
+					                <li <?php if($page==$chunks) echo "class='disabled'";?> ><a <?if($page!=$chunks) echo "href= '".base_url()."hunter/applicants_list/".($id_casting)."/".($page+1)."/".$applies_state."/".$filter_categories_url."'";?>>Next</a></li>
 				                </ul>  
 			                </div>  
 			                <div class="space1"></div>  

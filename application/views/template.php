@@ -241,7 +241,9 @@
 			});
 		});
 		
-    	$("#filter").change(function () {
+		
+		var update_skills_filter = function () 
+		{
 			
 			var str="";
 			 $("#filter option:selected").each(function () {
@@ -279,19 +281,26 @@
 		      uri= uri.substr(0,uri.length - 1);
 
 		      $("#filter_button").attr("href",$("#filter_button").attr("href").substr(0,($("#filter_button").attr("href").lastIndexOf('/') + 1))+uri);
-		});
+		}
 		
-		$("#apply_status").change(function () {
+    	$("#filter").change(update_skills_filter);
+    	$("#filter").ready(update_skills_filter);
+
+		
+		var update_state_filter = function () {
 			
 		    var regExp1 = new RegExp("/[0-9]+/[0-9]+/[0-3]+/"); 
             var result = regExp1.exec($("#filter_button").attr("href"));
             var temp = (""+result).substr(0,(""+result).length - 2);
             
-            result = temp + $('#apply_status').val() + "/"
+            result = temp + $('#apply_status').val() + "/";
 		    
 		    $("#filter_button").attr("href",$("#filter_button").attr("href").replace(regExp1,result));
-		});
+		}
 		
+		$("#apply_status").change(update_state_filter);
+		$("#apply_status").ready(update_state_filter);
+
 		$("iframe").each(function(){
 		  var ifr_source = $(this).attr('src');
 		  var wmode = "&wmode=opaque";

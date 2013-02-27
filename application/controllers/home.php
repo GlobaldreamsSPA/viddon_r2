@@ -19,7 +19,7 @@ class Home extends CI_Controller {
 		$args = array();
 		$video_list = $this->videos_model->get_videos(1, 8);
 		$args["video_list"] = array();
-		$args["castings"] = $this->castings_model->get_castings(NULL, 8, 1, NULL);
+		$args["castings"] = $this->castings_model->get_castings(NULL, 8, 1);
 		
 		foreach ($video_list as $video_data)
 		{
@@ -99,10 +99,10 @@ class Home extends CI_Controller {
 		if(!is_null($actual_categories))
 		{
 			$args["actual_categories"] = explode("_",$actual_categories);//PARAMETROS FILTRO URL
-			$args["casting_list"]= $this->castings_model->get_castings(NULL, 9, $page, TRUE, 0, $args["actual_categories"]);
+			$args["casting_list"]= $this->castings_model->get_castings(NULL, 9, $page, 0, $args["actual_categories"]);
 		}else
 		{
-			$args["casting_list"]= $this->castings_model->get_castings(NULL, 9, $page, TRUE, 0, NULL);		
+			$args["casting_list"]= $this->castings_model->get_castings(NULL, 9, $page, 0, NULL);		
 		}		
 		
 		$args["categories_cant"] = $this->casting_categories_model->get_casting_categories_cant();//cuantas categorias
@@ -160,7 +160,7 @@ class Home extends CI_Controller {
 		}
 		
 		$gender_interpreter= array("Ambos","Masculino","Femenino");		
-		$args["castings"] = $this->castings_model->get_castings(NULL, 8, 1, NULL);
+		$args["castings"] = $this->castings_model->get_castings(NULL, 8, 1);
 		if(isset($args["casting"]['sex']))
 			$args["casting"]['sex'] = $gender_interpreter[$args["casting"]['sex']]; 
 

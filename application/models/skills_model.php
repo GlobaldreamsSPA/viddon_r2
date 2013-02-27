@@ -88,4 +88,98 @@ class Skills_model extends CI_Model
 
 		
 	}
+
+	function filter_user_categories($users,$skills, $page, $cant=5)
+	{
+    	$this->db->select('user_id, count(user_id)');
+		$flag = FALSE;
+		$where = "(";
+		$this->db->group_by("user_id"); 
+		
+		foreach ($users as $user) 
+		{
+			if($flag)
+				$where=$where." OR ";
+			$where = $where." user_id= ".$user["user_id"];
+			$flag =TRUE;
+		}
+		$where = $where.")";
+		$this->db->where($where, NULL, FALSE);	
+		
+		$flag = FALSE;		
+		$where = "(";
+		foreach ($skills as $skill) 
+		{
+			if($flag)
+				$where=$where." OR ";
+			$where = $where." skill_id= ".$skill;
+			$flag =TRUE;
+		}
+		$where = $where.")";
+		
+		$this->db->where($where, NULL, FALSE);
+		
+		$this->db->order_by("count(user_id)", "desc"); 
+		
+        $query = $this->db->get('users_skills', $cant, ($page-1)*$cant);
+		
+		$result= $query->result_array();
+		$temp_skills_dictionary_state= array();
+		$temp_skills_dictionary_id= array();
+		
+		foreach ($users as $user) {
+				$temp_skills_dictionary_state[$user["user_id"]]=$user["state"];
+				$temp_skills_dictionary_id[$user["user_id"]]=$user["id"];			
+		}	
+				
+		foreach ($result as &$temp) {
+		
+			$temp["id"]=	$temp_skills_dictionary_id[$temp["user_id"]];
+			$temp["state"]=	$temp_skills_dictionary_state[$temp["user_id"]];
+			
+		}
+		
+		return $result;
+			
+	}
+
+	function count_filter_user_categories($users,$skills)
+	{
+    	$this->db->select('user_id');
+		$flag = FALSE;
+		$where = "(";
+		$this->db->distinct(); 
+		
+		foreach ($users as $user) 
+		{
+			if($flag)
+				$where=$where." OR ";
+			$where = $where." user_id= ".$user["user_id"];
+			$flag =TRUE;
+		}
+		$where = $where.")";
+		$this->db->where($where, NULL, FALSE);	
+		
+		$flag = FALSE;		
+		$where = "(";
+		foreach ($skills as $skill) 
+		{
+			if($flag)
+				$where=$where." OR ";
+			$where = $where." skill_id= ".$skill;
+			$flag =TRUE;
+		}
+		$where = $where.")";
+		
+		$this->db->where($where, NULL, FALSE);
+		
+		
+        $query = $this->db->get('users_skills');
+		
+		$result= $query->result_array();
+		return count($result);
+			
+	}
+	
+	
 }

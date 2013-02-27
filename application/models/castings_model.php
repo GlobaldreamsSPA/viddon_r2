@@ -93,7 +93,7 @@ class Castings_model extends CI_Model
         return $casting;
     }
 
-    function get_castings($hunter_id=NULL, $cant=NULL, $page=NULL, $all=NULL, $status=NULL, $categories=NULL)
+    function get_castings($hunter_id=NULL, $cant=NULL, $page=NULL, $status=NULL, $categories=NULL)
     {
     	$this->db->select('id, title, image, end_date, status, entity_id, category');
         

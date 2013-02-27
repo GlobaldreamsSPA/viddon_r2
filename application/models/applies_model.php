@@ -48,8 +48,10 @@ class Applies_model extends CI_Model
 		
 	    if($state!=3)
     		$this->db->where('state', $state);
-    	
-    	$query = $this->db->get('applies', $cant, ($page-1)*$cant);
+    	if(!is_null($page))
+    		$query = $this->db->get('applies', $cant, ($page-1)*$cant);
+		else
+		   	$query = $this->db->get('applies');
 		
 		if($query->num_rows == 0)
 			return 0;

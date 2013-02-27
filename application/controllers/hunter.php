@@ -10,11 +10,12 @@ class Hunter extends CI_Controller {
 		$this->load->library(array('upload', 'image_lib', 'form_validation'));
 		
 	}
-
+	
 	function index()
 	{
 		if($this->session->userdata('logged_in'))
 		{
+			
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id= $hunter_id['id'];
 	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id);
@@ -219,7 +220,7 @@ class Hunter extends CI_Controller {
 
 	}
 	
-	function applicants_list($id=NULL,$page=1,$applies_state=0)
+	function applicants_list($id=NULL,$page=1,$applies_state=0,$filter_categories=NULL)
 	{
 		if($this->session->userdata('logged_in') && isset($id))
 		{
@@ -239,12 +240,35 @@ class Hunter extends CI_Controller {
 			$temp = $this->castings_model->get_full_casting($id);
 			$args["name_casting"]= $temp["title"];
 			
-			$id_applicants= $this->applies_model->get_castings_applies($id,$page,$applies_state);
-			$args["chunks"]=ceil($this->applies_model->count_casting_applies($id,$applies_state)/5);
-			$args["page"]=$page;
-			$args["applies_state"]=$applies_state;
+			
 			
 			$args["status"]=array(0=>"Sin Revisar",1=>"Aceptados",2=>"Rechazados",3=>"Todos");
+			
+			if(!is_null($filter_categories))
+			{
+				$args["filter_categories_url"] = $filter_categories;			
+				$args["filter_categories"] = explode("_",$filter_categories);//PARAMETROS FILTRO URL
+				$id_applicants= $this->applies_model->get_castings_applies($id,null,$applies_state);
+				
+				if($id_applicants !=0)				
+				{
+					$args["chunks"]=ceil($this->skills_model->count_filter_user_categories($id_applicants,$args["filter_categories"])/5);	
+					$id_applicants=$this->skills_model->filter_user_categories($id_applicants,$args["filter_categories"],$page);
+				}
+				else
+					$args["chunks"]=0;
+					
+			}
+			else
+			{
+				$args["filter_categories_url"] = NULL;
+				$args["filter_categories"] = NULL;
+				$id_applicants= $this->applies_model->get_castings_applies($id,$page,$applies_state);
+				$args["chunks"]=ceil($this->applies_model->count_casting_applies($id,$applies_state)/5);					
+			}
+
+			$args["page"]=$page;
+			$args["applies_state"]=$applies_state;
 			
 			if($id_applicants!= 0)
 			{
