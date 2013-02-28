@@ -35,18 +35,19 @@
 									
 									<h5>Categor&iacutea</h5>
 									<select class="span5" name="category">
-										<option value="Reality">Reality</option>
-										<option value="Teleserie">Teleserie</option>
-										<option selected="selected" value="Show de Talentos">Show de Talentos</option>
-										<option value="Documental">Documental</option>
-										<option value="Festival">Festival</option>
-										<option value="Otros">Otros</option>
+										<?php
+										//var_dump($categories);
+											foreach($categories as $cat)
+											{
+												echo "<option value=".$cat.">".$cat."</option>";
+											}
+										?>
 									</select>
 									
 									
 									
 									<h5>Imagen para mostrar</h5>
-									<?php echo form_upload(array('name' => 'casting_image','id'=> 'file')); ?>
+									<?php echo form_upload(array('name' => 'logo','id'=> 'file')); ?>
 									<?php
 										echo form_hidden('image','');
 										echo form_error('image');

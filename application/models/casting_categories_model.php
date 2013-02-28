@@ -7,6 +7,25 @@ class Casting_categories_model extends CI_Model
         parent::__construct();
     }
 
+	function get_id_by_name($name)
+	{
+		$this->db->select('id');
+		$this->db->from('castings_categories');
+		$this->db->where('name',$name);
+		$query = $this->db->get()->first_row('array');
+		return $query['id'];
+    	
+	}
+	
+	function get_name($id)
+	{
+		$this->db->select('name');
+		$this->db->from('castings_categories');
+		$this->db->where('id',$id);
+		$query = $this->db->get()->first_row('array');
+		return $query['name'];
+    	
+	}
 	
     function get_casting_categories_cant()
     {
@@ -15,7 +34,7 @@ class Casting_categories_model extends CI_Model
     }
 	
 	/**
-	 * Saca todo de las categorias
+	 * Si $id_casting es NULL =>Saca todo de todas las categorias
 	 */
 	function get_casting_categories()
     {
@@ -23,6 +42,7 @@ class Casting_categories_model extends CI_Model
     	$query= $this->db->get('castings_categories');
     	
 		$result = array();
+		
 
 		foreach ($query->result_array() as $item)
 		{

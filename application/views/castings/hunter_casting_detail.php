@@ -22,7 +22,7 @@
 						  			</div>					  				
 						  			<div style="margin-top:15px;" class="span7">
 						  				<a class="btn" href="<?php echo HOME.'/home/casting_detail/'.$casting["id"] ?>"> Vista Publica</a>
-						  				<a class="btn"> Editar</a>
+						  				<a class="btn" href="<?php echo HOME.'/hunter/edit_casting/'.$casting["id"] ?>">Editar</a>
 						  			</div>
 					  			</row>
 					  			<div class="space2"></div>

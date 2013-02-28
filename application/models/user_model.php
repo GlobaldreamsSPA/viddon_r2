@@ -37,7 +37,8 @@ class User_model extends CI_Model
 				'height' => $profile['height'],
 				'color_skin' => $profile['color_skin'] ,
 				'color_eye' => $profile['color_eye'] ,
-				'color_hair' => $profile['color_hair'] 
+				'color_hair' => $profile['color_hair'],
+				'build'=> $profile['build'] 
 			);
 
 		$this->db->where('id', $profile['id']);

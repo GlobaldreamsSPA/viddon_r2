@@ -239,6 +239,8 @@ class User extends CI_Controller {
 				$profile['color_skin'] = $this->input->post('skin-color');
 				$profile['color_eye'] = intval($this->input->post('eyes-color'));
 				$profile['color_hair'] = $this->input->post('hair-color');
+				$profile['build'] = $this->input->post('build');
+				
 				//ingresar los datos a la base de datos
 				$this->user_model->update($profile);
 				
@@ -253,7 +255,7 @@ class User extends CI_Controller {
 					$this->_upload_image($profile['id']);
 
 
-				redirect(HOME.'/user');
+				//redirect(HOME.'/user');
 			}
 
 			//Talentos del usuario

@@ -118,13 +118,28 @@
 											?>
 										</div>
 										<div class="span4">
-										<h5>Color de cabello</h5>
-										<?php
-												if(isset($update_values)) $hair_set=$update_values["color_hair"]; else $hair_set=0; 
-												echo form_dropdown('height', $hair, $hair_set, "style='width: 100%;'") 
+											<h5>Color de cabello</h5>
+											<?php
+													if(isset($update_values)) $hair_set=$update_values["color_hair"]; else $hair_set=0; 
+													echo form_dropdown('height', $hair, $hair_set, "style='width: 100%;'") 
 											?>
 										</div>										
+								</div>
+								
+								<div class="row">
+									<div class="span4">	
+										<!-- FALTA QUE CARGUE LO ACTUAL -->
+									<h5>Contextura</h5>
+										<select style="width: 100%;" name="build">
+											<option value="0">Delgado</option>
+											<option selected="selected" value="1">Normal</option>
+											<option value="2">Grueso</option>
+											<option value="3">Atletico</option>
+											<option value="4">Obeso</option>
+										</select>
 									</div>
+								</div>
+								
 							</div>
 							<legend>Informaci&oacute;n P&uacute;blica</legend>
 							

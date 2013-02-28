@@ -6,7 +6,7 @@ class Hunter extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper(array('url', 'file', 'form'));
-		$this->load->model(array('hunter_model', 'castings_model', 'user_model', 'applies_model', 'videos_model','skills_model'));
+		$this->load->model(array('hunter_model', 'castings_model', 'casting_categories_model', 'user_model', 'applies_model', 'videos_model','skills_model'));
 		$this->load->library(array('upload', 'image_lib', 'form_validation'));
 		
 	}
@@ -107,11 +107,22 @@ class Hunter extends CI_Controller {
 					$casting['requirements'] = $this->input->post('requirements');
 					
 					$casting['skills'] = "";
-					
+					$flag = FALSE;
 					foreach ($this->input->post('skills') as $skill) {
-						$casting['skills'] = $casting['skills'].$skill."-";
+						if($flag)
+							$casting['skills']=$casting['skills']."-";//le pego el guion
+						$casting['skills'] = $casting['skills'].$skill;
+						$flag =TRUE;
 					}
+					//var_dump($casting['skills']);
+					
+					
 					$casting['category'] = $this->input->post('category');
+					//convierto la "categoria a su id correspondiente"
+					$casting['category'] = $this->casting_categories_model->get_id_by_name($casting['category']);
+					//var_dump($casting['category']);
+					
+					
 					$casting['eyes-color'] = $this->input->post('eyes-color');
 					$casting['hair-color'] = $this->input->post('hair-color');
 					$casting['skin-color'] = $this->input->post('skin-color');
@@ -123,7 +134,7 @@ class Hunter extends CI_Controller {
 					$casting_id = $this->castings_model->insert($casting);
 
 					//Por ultimo subir la foto
-					$form_file_name = 'casting_image';
+					$form_file_name = 'logo';
 					$images = array(
 						array(
 							'path' => realpath(APPPATH.'..'.CASTINGS_PATH),
@@ -220,6 +231,119 @@ class Hunter extends CI_Controller {
 
 	}
 	
+	function edit_casting($id=NULL)
+	{
+		if($this->session->userdata('logged_in'))
+		{
+			$hunter_id = $this->session->userdata('logged_in');
+		 	$hunter_id= $hunter_id['id'];
+	   	 	$args['user_data'] = $this->session->userdata('logged_in');
+			$args["skills"]= $this->skills_model->get_skills();		
+			
+			$args['categories'] = $this->casting_categories_model->get_casting_categories();
+			$args["content"]="castings/hunter_template";
+			$inner_args["hunter_content"]= "castings/edit_hunter_casting";
+			$args["inner_args"]= $inner_args;
+			
+			//$args["update_values"]=$this->castings_model->select($id);
+			$args['update_values'] = $this->castings_model->get_full_casting($id);
+			$args['actual_category'] = $this->casting_categories_model->get_name($args['update_values']['category']);
+			$args['actual_skills'] = explode("-",$args['update_values']['skills']);
+						
+			
+			//--------------------------------------->
+			//Setear mensajes
+			$this->form_validation->set_message('required', 
+				'Te falta este dato, es importante para tus postulantes');
+
+			//Setear reglas
+			$this->form_validation->set_rules('title', 'Title', 'required');
+			$this->form_validation->set_rules('description', 'Description', 'required');
+			$this->form_validation->set_rules('requirements', 'Requirements', 'required');
+			$this->form_validation->set_rules('image', 'Image', 'callback_check_upload');
+
+			//$this->form_validation->set_rules('logo', 'Logo', 'callback_check_upload');
+			
+			 
+			 /*
+			if(!(isset($hunter_id) && !(is_numeric($hunter_id))))
+			
+			$this->form_validation->set_rules('logo', 'Logo', 'callback_check_upload');
+			 */
+
+			//_____________________________________________________________________________________________ 
+			if ($this->form_validation->run())
+			{
+			
+				if($this->input->post())
+				{
+					var_dump($_POST);
+					//Guardar los datos a la BD
+					$casting['id'] = $id;
+					$casting['title'] = $this->input->post('title');
+					$casting['start_date'] = $this->input->post('start-date');
+					$casting['end_date'] = $this->input->post('end-date');
+					$casting['description'] = $this->input->post('description');
+					$casting['requirements'] = $this->input->post('requirements');
+					
+					$casting['skills'] = "";
+					$flag = FALSE;
+					foreach ($this->input->post('skills') as $skill) {
+						if($flag)
+							$casting['skills']=$casting['skills']."-";//le pego el guion
+						$casting['skills'] = $casting['skills'].$skill;
+						$flag =TRUE;
+					}
+					
+					
+					$casting['category'] = $this->input->post('category');
+					//convierto la "categoria a su id correspondiente"
+					$casting['category'] = $this->casting_categories_model->get_id_by_name($casting['category']);
+					$casting['eyes-color'] = $this->input->post('eyes-color');
+					$casting['hair-color'] = $this->input->post('hair-color');
+					$casting['skin-color'] = $this->input->post('skin-color');
+					$casting['height'] = $this->input->post('height');
+					$casting['age'] = $this->input->post('age');
+					$casting['sex'] = $this->input->post('optionsRadios');
+					$casting['entity_id'] = $hunter_id;
+
+
+					//var_dump($casting);
+					//UPDATE
+					$this->castings_model->update($casting);
+
+					//Por ultimo subir la foto
+					$form_file_name = 'casting_image';
+					$images = array(
+						array(
+							'path' => realpath(APPPATH.'..'.CASTINGS_PATH),
+							'width'=> 230,
+							'height' => 230
+						),
+						array(
+							'path' => realpath(APPPATH.'..'.CASTINGS_FULL_PATH),
+							'width'=> 600,
+							'height' => 300
+						)
+					);
+					
+					$filename = $this->_upload_image($id, $images, $form_file_name);
+
+					$this->castings_model->insert_image($id, $filename);
+					//redirect(HOME.'/hunter/edit_casting/'.$id);
+					redirect(HOME.'/hunter/casting_detail/'.$id);
+				}			 
+			 
+			
+			}
+			
+			//------------------------------>
+			$this->load->view('template', $args);	
+		}
+		else
+			redirect(HOME);
+	}
+
 	function applicants_list($id=NULL,$page=1,$applies_state=0,$filter_categories=NULL)
 	{
 		if($this->session->userdata('logged_in') && isset($id))
