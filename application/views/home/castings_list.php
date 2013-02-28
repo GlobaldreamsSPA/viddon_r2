@@ -21,8 +21,6 @@
 						{
 							if(isset($actual_categories[$i]))
 								$categories_selected[$i]=$actual_categories[$i];
-							
-								
 						}
 						echo form_multiselect('categories[]', $categories, $categories_selected,"class='chzn-select' id='filter' style='width:100%' data-placeholder='Filtra por categoria'");
 					?>

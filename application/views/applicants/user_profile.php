@@ -82,9 +82,12 @@
 									</div>
 									<?php if(!$public) {?>
 										<form action="" method="POST">
-											<button style="margin-top:20px; margin-left:19%;" type="submit"><i class="icon-remove"></i></button>
+											<button style="margin-top:20px; margin-left:19%;" type="submit"><i class="icon-del"></i></button>
 											<input type="hidden" name="del-video" value="<?php echo $video_ID ?>"/>
 										</form>
+										<div>
+											<a href="<?php echo HOME.'/user/video_gallery/'?>" class="btn btn-success" type="submit" name="apply">Ver galeria</a>
+										</div>
 									<?php } ?>
 				
 								</div>
@@ -124,8 +127,35 @@
 							} 
 							else
 							{?>
+								<!-- CARGO EL MODAL-->
+								<div id="add_video" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="AgregaVideo" aria-hidden="true">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+										<h3 id="myModalLabel">Agrega video</h3>
+									</div>
+									<div class="modal-body">
+										<form id="video_upload_form" action="" method="post">
+											<div>	
+												<input name="url_ytb" class="input-xlarge" type="text" placeholder="Dirección Video" value="">
+												<input name="name_ytb" class="input-xlarge" type="text" placeholder="Nombre Video">
+												<div class="space1"></div>	
+												<textarea class="rich_textarea" name="description_ytb" rows="8" placeholder="Descripción Video"></textarea>
+												<div class="space1"></div>	
+												<button type="submit" class="btn btn-primary">Guardar</button>
+											</div>
+										</form>
+									</div>
+									<div class="modal-footer">
+										<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+									</div>
+								</div>
 														
+								<div>
+									<button data-toggle="modal"  href="#add_video" class="btn btn-success">Agregar Video</button>
+								</div>
 							
+							<?php
+							/*
 							<form id="video_upload_form" action="" method="post">
 								 
 						
@@ -140,7 +170,7 @@
 								
 								</div>
 							</form>
-							<?php
+							*/
 							}
 							?>																
 						</div>		

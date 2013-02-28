@@ -25,6 +25,15 @@ class User_model extends CI_Model
 		return $query['id'];
 	}
 
+	function set_main_video($id_user,$id_video_nuevo)
+	{
+			$data = array(
+				'id_main_video' => $id_video_nuevo
+			);
+
+		$this->db->where('id', $id_user);
+		$this->db->update('users', $data);
+	}
 	function update($profile)
 	{
 		$data = array(
