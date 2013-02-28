@@ -84,17 +84,34 @@ class Castings_model extends CI_Model
         $this->db->update('castings', $data);
     }
 
-    function count_all($hunter_id=NULL)
+    function count_castings($hunter_id=NULL,$status=NULL,$categories=NULL)
     {
-        if(is_null($hunter_id))
-            return intval($this->db->count_all('castings'));
-        else
-        {
-            $this->db->select('id');
-            $this->db->where('id', $hunter_id);
-            $this->db->from('castings');
-            return intval($this->db->count_all_results());
-        }
+    	$this->db->select('id');
+        if(!is_null($hunter_id))
+            $this->db->where('entity_id', $hunter_id);
+		if(isset($status))
+            $this->db->where('status', $status);
+			
+		if(!is_null($categories))
+		{
+			$flag = FALSE;
+			$where = "(";
+			foreach ($categories as $iter) 
+			{
+				if($flag)
+					$where=$where." OR ";
+				$where = $where." category= ".$iter;
+				$flag =TRUE;
+			}
+			$where = $where.")";
+			$this->db->where($where, NULL, FALSE);
+			$this->db->order_by("category", "asc");
+		}
+		
+		$query = $this->db->get('castings');
+		
+		return $query->num_rows;
+		
     }
 
     function get_full_casting($id)

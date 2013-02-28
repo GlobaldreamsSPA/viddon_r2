@@ -38,13 +38,18 @@ class Home extends CI_Controller {
 		
 		if(!is_null($actual_skills))
 		{
+			$args["actual_skills_url"] = $actual_skills;			
+			
 			$args["actual_skills"] = explode("_",$actual_skills);//PARAMETROS FILTRO URL
-			//echo "HOLAAAA";
-			//var_dump($args["actual_skills"]);
+			$args["chunks"]=ceil($this->videos_model->count_videos_by_skills($args["actual_skills"]) / 9);
+
 			$video_list = $this->videos_model->get_videos_by_skills($page, 9,$args["actual_skills"]);
 		}else
 		{
+			$args["actual_skills_url"] = NULL;			
 			$video_list = $this->videos_model->get_videos($page, 9);		
+			$args["chunks"]=ceil($this->videos_model->count() / 9);
+			
 		}		
 		
 		//var_dump($video_list);
@@ -82,7 +87,6 @@ class Home extends CI_Controller {
 		$temp[-1]= "Todos";
 		$args["tags"] = $temp + $args["tags"];
 		
-		$args["chunks"]=ceil($this->videos_model->count() / 9);
 		$args["page"]=$page;
 		$args['content']='home/video_list';		
 		$args["inner_args"]=NULL;
@@ -93,14 +97,17 @@ class Home extends CI_Controller {
 	public function casting_list($page = 1,$actual_categories = null)//el actual es un string de categorias
 	{
 		$args = array();
-		$args["chunks"]=ceil($this->castings_model->count_all(NULL)/9);
 		
 		if(!is_null($actual_categories))
 		{
+			$args["actual_categories_url"] = $actual_categories;
 			$args["actual_categories"] = explode("_",$actual_categories);//PARAMETROS FILTRO URL
+			$args["chunks"]=ceil($this->castings_model->count_castings(NULL,0,$args["actual_categories"])/9);						
 			$args["casting_list"]= $this->castings_model->get_castings(NULL, 9, $page, 0, $args["actual_categories"]);
 		}else
 		{
+			$args["chunks"]=ceil($this->castings_model->count_castings(NULL,0)/9);			
+			$args["actual_categories_url"] = NULL;			
 			$args["casting_list"]= $this->castings_model->get_castings(NULL, 9, $page, 0, NULL);		
 		}		
 		
