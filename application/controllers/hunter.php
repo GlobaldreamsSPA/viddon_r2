@@ -221,6 +221,34 @@ class Hunter extends CI_Controller {
 			$args["content"]="castings/hunter_template";
 			$inner_args["hunter_content"]="castings/hunter_casting_detail";
 			$args["inner_args"]=$inner_args;
+			
+			//Obtengo los ID de los usuarios(5) todos y los seleccionados
+			$args["postulantes"] = $this->applies_model->get_short_user_applies($id);
+			$args["seleccionados"] = $this->applies_model->get_short_user_applies($id,1);
+			
+			//se transforman en arreglo de usuarios
+			$postulantes_textual = array();
+			foreach($args["postulantes"] as $postulante_numerico)
+			{
+				$postulantes_textual[] = $this->user_model->select_applicant($postulante_numerico['user_id']);
+			}
+			$args["postulantes"] = $postulantes_textual;
+			
+			$seleccionados_textual = array();
+			foreach($args["seleccionados"] as $postulante_numerico)
+			{
+				$seleccionados_textual[] = $this->user_model->select_applicant($postulante_numerico['user_id']);
+			}
+			$args["seleccionados"] = $seleccionados_textual;
+			
+			
+			
+			
+			/*
+			var_dump($args["postulantes"]);
+			var_dump($args["seleccionados"]);
+			 */
+			
 			$this->load->view('template', $args);
 		}
 		else
