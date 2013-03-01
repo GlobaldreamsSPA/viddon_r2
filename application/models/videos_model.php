@@ -92,12 +92,13 @@ class Videos_model extends CI_Model
 		return $query['id'];
 	}
 	
-	function get_main_video_id($id_user)
+	function get_main_video($id_video)
 	{
-		$this->db->select('id_main_video');
-		$this->db->where('id', $id_user);
-		$query = $this->db->get('users')->first_row('array');
-		return $query['id_main_video'];
+		$this->db->select('link, title, description');
+		$this->db->where('id', $id_video);
+		$query = $this->db->get('videos');
+		$results = $query->result_array();
+		return $results[0];
 	}
 	
 
@@ -110,7 +111,6 @@ class Videos_model extends CI_Model
 		{
 			$result[] = array($value['title'], $value['link'], $value['user_id']);
 		}
-		//var_dump($result);
 		return $result;
 	}
 	
