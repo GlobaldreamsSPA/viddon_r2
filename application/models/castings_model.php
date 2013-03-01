@@ -76,7 +76,7 @@ class Castings_model extends CI_Model
 		else
 			return TRUE;
 	}
-
+	
     function insert_image($casting_id, $filename)
     {
         $data = array('image' => $filename);
@@ -89,7 +89,7 @@ class Castings_model extends CI_Model
     	$this->db->select('id');
         if(!is_null($hunter_id))
             $this->db->where('entity_id', $hunter_id);
-		if(isset($status))
+		if(isset($status) && $status!= 3)
             $this->db->where('status', $status);
 			
 		if(!is_null($categories))
@@ -141,12 +141,12 @@ class Castings_model extends CI_Model
 
     function get_castings($hunter_id=NULL, $cant=NULL, $page=NULL, $status=NULL, $categories=NULL)
     {
-    	$this->db->select('id, title, image, end_date, status, entity_id, category');
+    	$this->db->select('id, title, image, end_date, status, entity_id, category, max_applies');
         
         if(!is_null($hunter_id))
             $this->db->where('entity_id', $hunter_id);
 
-		if(isset($status))
+		if(isset($status) && $status!= 3)
             $this->db->where('status', $status);
 		
 				

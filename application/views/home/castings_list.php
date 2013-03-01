@@ -15,14 +15,8 @@
 				</div>
 						
 				<div style="margin-top:15px;" class="span2 controls">
-					<?php 
-						$categories_selected= array();
-						for ($i=0; $i<$categories_cant; $i++)
-						{
-							if(isset($actual_categories[$i]))
-								$categories_selected[$i]=$actual_categories[$i];
-						}
-						echo form_multiselect('categories[]', $categories, $categories_selected,"class='chzn-select' id='filter' style='width:100%' data-placeholder='Filtra por categoria'");
+					<?php 						
+						echo form_multiselect('categories[]', $categories, $actual_categories,"class='chzn-select' id='filter' style='width:100%' data-placeholder='Filtra por categoria'");
 					?>
 				</div>
 				

@@ -12,6 +12,17 @@
 									<li><a href="<?php echo HOME."/hunter/logout";?>"> <i class="icon-off"></i> Cerrar Sesi&oacuten</a></li>					
 								</ul>
 							</div>
+							
+							<div class="span9 offset1">
+
+								
+									<?php 
+									echo form_dropdown('status', $status,$casting_state,"id='casting_status' style='width:100%'");
+																		
+									?>
+								  <a href="<?php echo HOME."/hunter/casting_list/1/0/"?>" id="filter_button" class="btn btn-info">Actualizar</a>
+               				</div>
+							
 				    	</div>
 					    
 					    <div class="span8 offset1 user-profile-right">
@@ -72,6 +83,22 @@
 								</div>
 							</div>
 							<?php } ?>
+							
+							<div class="row-fluid">
+								<div class="space1"></div>
+								<div class="pagination">  
+								  <ul id="pagination_bt">
+								  	  
+								  	<li <?php if($page==1) echo "class='disabled'";?> ><a <?if($page!=1) echo "href= '".base_url()."hunter/casting_list/".($page-1)."/".$casting_state."/'";?>>Prev</a></li>  
+									<?php for($i = 1; $i <= $chunks; $i++) { ?>
+										<li <?php if($page==$i) echo "class='disabled'";?> ><a <?if($page!=$i) echo "href= '".base_url()."hunter/casting_list/".$i."/".$casting_state."/'";?> > <?php echo $i; ?></a></li>  
+									<?php } ?>
+								    <li <?php if($page==$chunks) echo "class='disabled'";?> ><a <?if($page!=$chunks) echo "href= '".base_url()."hunter/casting_list/".($page+1)."/".$casting_state."/'";?>>Next</a></li>
+								     
+								  </ul>  
+								</div>  
+								<div class="space1"></div>	
+							</div>	
 						</div>
 					</div>
 					<div class="row-fluid">	

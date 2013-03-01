@@ -316,7 +316,22 @@
 			$("#apply_status").ready(update_state_filter);
 		}
 
-		
+		if($("#casting_status").length > 0)
+		{
+			var update_state_filter = function () {
+				
+			    var regExp1 = new RegExp("/[0-9]+/[0-3]+/"); 
+	            var result = regExp1.exec($("#filter_button").attr("href"));
+	            var temp = (""+result).substr(0,(""+result).length - 2);
+	            
+	            result = temp + $('#casting_status').val() + "/";
+			    
+			    $("#filter_button").attr("href",$("#filter_button").attr("href").replace(regExp1,result));
+			}
+			
+			$("#casting_status").change(update_state_filter);
+			$("#casting_status").ready(update_state_filter);
+		}
 		if($("iframe").attr('src').indexOf("youtube") >= 0){
 			$("iframe").each(function(){
 			  var ifr_source = $(this).attr('src');

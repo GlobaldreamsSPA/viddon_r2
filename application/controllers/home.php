@@ -107,7 +107,9 @@ class Home extends CI_Controller {
 		}else
 		{
 			$args["chunks"]=ceil($this->castings_model->count_castings(NULL,0)/9);			
-			$args["actual_categories_url"] = NULL;			
+			$args["actual_categories_url"] = NULL;		
+			$args["actual_categories"] = NULL;			
+				
 			$args["casting_list"]= $this->castings_model->get_castings(NULL, 9, $page, 0, NULL);		
 		}		
 		

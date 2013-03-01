@@ -18,7 +18,9 @@ class Hunter extends CI_Controller {
 			
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id= $hunter_id['id'];
-	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id);
+			
+			$args["castings_dash"]= $this->_dashboard($hunter_id);
+	
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
 			$args["content"]="castings/hunter_template";
 			$inner_args["hunter_content"]="castings/hunter_profile";
@@ -166,14 +168,22 @@ class Hunter extends CI_Controller {
 			redirect(HOME);
 	}
 	
-	function casting_list()
+	function casting_list($page=1,$casting_state=0)
 	{
 		if($this->session->userdata('logged_in'))
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id = $hunter_id['id'];
-	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id, NULL, NULL, NULL);
-	   	 	
+			
+			
+			$args["casting_state"] = $casting_state;
+			$args["chunks"]=ceil($this->castings_model->count_castings($hunter_id,$casting_state)/5);						
+			$args["castings"]= $this->castings_model->get_castings($hunter_id, 5, $page, $casting_state);
+			
+			$args["status"]=array(0=>"Activo",1=>"Revisi&oacute;n",2=>"Finalizado",3=>"Todos");
+			$args["page"]=$page;
+			
+			$args["casting_state"]=$casting_state;
 	   	 	//Rescatar las personas que postularon a cada uno de los castings
 	   	 	foreach ($args['castings'] as &$casting) {
 	   	 		$casting['applies'] = $this->applies_model->get_applies_cant($casting['id']);
@@ -672,4 +682,70 @@ class Hunter extends CI_Controller {
 		$this->image_lib->initialize($config);
 		$this->image_lib->resize();
 	}
+
+	private function _dashboard($hunter_id)
+	{
+	   	
+		 	$castings = $this->castings_model->get_castings($hunter_id,4,1,0);	   	 			
+			$numberc_review = 8 - count($castings);
+						
+			if($numberc_review == 4 && count($this->castings_model->get_castings($hunter_id,$numberc_review,1,1)) < 4)
+			{
+				$numberc_active = 8 - count($this->castings_model->get_castings($hunter_id,$numberc_review,1,1));
+				$castings = $this->castings_model->get_castings($hunter_id,$numberc_active,1,0);	   	 
+			}
+			
+		
+			
+			$castings = array_merge($castings,$this->castings_model->get_castings($hunter_id,$numberc_review,1,1));
+			
+			
+			
+	   	 	foreach ($castings as &$casting) {
+	   	 		$casting['applies'] = $this->applies_model->get_applies_cant($casting['id']);
+				
+				if($casting["applies"] <= $casting["max_applies"])
+					$casting['target_applies'] = round($casting["applies"]/$casting["max_applies"],2) * 100;
+				else 
+					$casting['target_applies'] = 100;
+								
+				if($casting['applies'] != 0)
+					$casting['reviewed'] = round(($casting['applies'] - $this->applies_model->count_casting_applies($casting['id'],0))/$casting['applies'],2)*100;
+				else 
+					$casting['reviewed']= 0;				
+				
+				$casting['target_applies_color'] = $this->_color_bar($casting['target_applies']);
+				$casting['reviewed_color'] = $this->_color_bar($casting['reviewed']);
+				
+				
+	   	 	}	   
+ 		return $castings;
+	}	
+
+	private function _color_bar($percent)
+	{
+		
+		$return = "";
+		switch (TRUE) {
+			case (in_array($percent, range(0,20))):
+				
+				$return= "bar-danger";
+				break;
+			
+			case (in_array($percent, range(21,80))):
+				
+				$return= "bar-warning";
+				break;
+				
+			case (in_array($percent, range(81,100))):
+				
+				$return= "bar-success";
+				break;
+			default:
+				
+				break;
+		}
+		return $return;
+	}
+
 }

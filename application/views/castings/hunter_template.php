@@ -13,118 +13,26 @@
 				<div style="border-radius: 5px; margin-left:8%; text-align:center;" id="grow" class="row-fluid">	
 					<div style="margin:7%;">
 						<h3 id="profile"> Estado Castings </h3>
-						<div class="row">
-							<div class= "span5">
-								<h4 class="list-view-title">Casting A1</h3>
+						<?php foreach ($castings_dash as $casting) {?>
+							
+						
+						<div style="height: 10"class="row">
+							<div class= "span9">
+								<h5 class="list-view-title"><?php echo $casting["title"]?></h5>
 							</div>
-							<div style="margin-top: 5%;"class= "span5 offset1">
-								<i class="icon-time"></i> 102 d&iacute;as
+							<div style="margin-top: 5%;"class= "span3">
+								<i class="icon-time"></i> <?php echo $casting["days"]?> d&iacute;as
 							</div>
 						</div>
-						<div class="progress">
-						    <div class="bar bar-danger" style="width: 20%;">20%</div>
+						<div class="progress" style="height: 17px;">
+						    <div class="bar <?php echo $casting["target_applies_color"]?>" style="width: <?php echo $casting["target_applies"]?>%; color:black !important;"><?php echo $casting["target_applies"]?>%</div>
 						</div>
-						<div class="space3"></div>
-						<div class="progress">
-						  	<div class="bar bar-danger" style="width: 0%;">0%</div>
+						<div class="progress" style="height: 17px;">
+						  	<div class="bar <?php echo $casting["reviewed_color"]?>" style="width: <?php echo $casting["reviewed"]?>%; color:black !important;" ><?php echo $casting["reviewed"]?>%</div>
 						</div>
 						
-						<div class="row">
-							<div class= "span5">
-								<h4 class="list-view-title">Casting A2</h3>
-							</div>
-							<div style="margin-top: 5%;"class= "span5 offset1">
-								<i class="icon-time"></i>132 d&iacute;as
-							</div>
-						</div>
-						<div class="progress">
-						    <div class="bar bar-danger" style="width: 30%;">30%</div>
-						</div>
-						<div class="space3"></div>
-						<div class="progress">
-						  	<div class="bar bar-danger" style="width: 0%;">0%</div>
-						</div>
-						
-						<div class="row">
-							<div class= "span5">
-								<h4 class="list-view-title">Casting B</h3>
-							</div>
-							<div style="margin-top: 5%;"class= "span5 offset1">
-								<i class="icon-time"></i>72 d&iacute;as
-							</div>
-						</div>
-						<div class="progress">
-						    <div class="bar bar-warning" style="width: 45%;">45%</div>
-						</div>
-						<div class="space3"></div>
-						<div class="progress">
-						  	<div class="bar bar-danger" style="width: 0%;">0%</div>
-						</div>
-						
-						<div class="row">
-							<div class= "span5">
-								<h4 class="list-view-title">Casting C</h3>
-							</div>
-							<div style="margin-top: 5%;"class= "span5 offset1">
-								<i class="icon-time"></i>12 d&iacute;as
-							</div>
-						</div>
-						<div class="progress">
-						    <div class="bar bar-success" style="width: 85%;">85%</div>
-						</div>
-						<div class="space3"></div>
-						<div class="progress">
-						  	<div class="bar bar-danger" style="width: 0%;">0%</div>
-						</div>
-						
-						<div class="row">
-							<div class= "span5">
-								<h4 class="list-view-title">Casting D</h3>
-							</div>
-							<div style="margin-top: 5%;"class= "span5 offset1">
-								<i class="icon-time"></i>0 d&iacute;as
-							</div>
-						</div>
-						<div class="progress">
-						    <div class="bar bar-success" style="width: 100%;">100%</div>
-						</div>
-						<div class="space3"></div>
-						<div class="progress">
-						  	<div class="bar bar-danger" style="width: 10%;">10%</div>
-						</div>
+						<?php }?>				
 
-						<div class="row">
-							<div class= "span5">
-								<h4 class="list-view-title">Casting E</h3>
-							</div>
-							<div style="margin-top: 5%;"class= "span5 offset1">
-								<i class="icon-time"></i>0 d&iacute;as
-							</div>
-						</div>
-						<div class="progress">
-						    <div class="bar bar-success" style="width: 100%;">100%</div>
-						</div>
-						<div class="space3"></div>
-						<div class="progress">
-						  	<div class="bar bar-warning" style="width: 50%;">50%</div>
-						</div>
-						
-						<div class="row">
-							<div class= "span5">
-								<h4 class="list-view-title">Casting F</h3>
-							</div>
-							<div style="margin-top: 5%;"class= "span5 offset1">
-								<i class="icon-time"></i>0 d&iacute;as
-							</div>
-						</div>
-						<div class="progress">
-						    <div class="bar bar-success" style="width: 100%;">100%</div>
-						</div>
-						<div class="space3"></div>
-						<div class="progress">
-						  	<div class="bar bar-success" style="width: 90%;">90%</div>
-						</div>
-						
 						<div class="space2"></div>
 						<div class="space05"></div>
 						
