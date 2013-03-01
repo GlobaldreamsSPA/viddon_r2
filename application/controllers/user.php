@@ -57,14 +57,23 @@ class User extends CI_Controller {
 		//Si el usuario tiene un video, setear los elementos siguientes, si no, no.
 		if($this->videos_model->verify_videos($id) != 0)
 		{
-			$video = $this->videos_model->get_video($id);
-
-			$args['video_ID']=$video["video_id"];
-			$args["video_title"] = $video["video_title"];
-			$args["video_description"] = $video["video_description"];
+			$id_main_vid = $this->user_model->get_main_video_id($id);
+			if(!is_null($id_main_vid))
+			{
+				$video = $this->videos_model->get_main_video($id_main_vid); //saca el video principal
+				$args['video_ID']=$video["link"];
+				$args["video_title"] = $video["title"];
+				$args["video_description"] = $video["description"];
+			}else
+			{
+				$video = $this->videos_model->get_video($id); //saca el primer video registrado
+				$args['video_ID']=$video["video_id"];
+				$args["video_title"] = $video["video_title"];
+				$args["video_description"] = $video["video_description"];
+			}
 			
 			
-			$JSON = file_get_contents("https://gdata.youtube.com/feeds/api/videos/{$video["video_id"]}?v=2&alt=json");
+			$JSON = file_get_contents("https://gdata.youtube.com/feeds/api/videos/{$args['video_ID']}?v=2&alt=json");
 			$JSON_Data = json_decode($JSON);
 			$JSON_Data_entry = $JSON_Data->{'entry'};
 			
@@ -158,7 +167,7 @@ class User extends CI_Controller {
 		
 		//AHORA OBTENGO LOS ELEMENTOS NECESARIOS PARA LA GALERIA
 		$args['videos'] = $this->videos_model->get_videos_by_user($this->session->userdata('id'));
-		$args['id_main_video'] =$this->videos_model->get_main_video_id($this->session->userdata('id'));
+		$args['id_main_video'] =$this->user_model->get_main_video_id($this->session->userdata('id'));
 		
 		$args["content"]="applicants/applicants_template";
 		$inner_args["applicant_content"]="applicants/video_gallery";

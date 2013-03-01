@@ -157,6 +157,7 @@ class Hunter extends CI_Controller {
 				}
 			}
 
+			$args['categories'] = $this->casting_categories_model->get_casting_categories();
 			$args["content"]="castings/hunter_template";
 			$inner_args["hunter_content"]="castings/publish_view";
 			$args["inner_args"]=$inner_args;
@@ -208,32 +209,56 @@ class Hunter extends CI_Controller {
 
 	function casting_detail($id=NULL)
 	{
-		
-		
-		
 		if($this->session->userdata('logged_in') && isset($id))
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id = $hunter_id['id'];
 			$args["casting"] = $this->castings_model->get_full_casting($id);
 			$args["casting"]["applies"] = $this->applies_model->get_applies_cant($id);
-			
-			if(isset($args["casting"]["skills"]))
+			if(isset($args["casting"]["skills"]))//skills guardadas del casting
 			{
-				$args["tags"]=	$this->skills_model->get_skills();			
-				$tags_id= explode('-', $args["casting"]["skills"]);
-				unset($tags_id[count($tags_id)-1]);
-				$tags_id_temp=array();
-				foreach ($tags_id as $tag) {
-					array_push($tags_id_temp, $args["tags"][$tag]);
+				$args['tags'] = explode("-",$args['casting']['skills']);//convierto a arreglo el string de números ej: 1-3-2
+				
+				$textual_tags = array(); //array paralelo textual
+				foreach($args['tags'] as $num_tag)
+				{
+					$textual_tags[] = $this->skills_model->get_name($num_tag); //saca el nombre(texto) de cada numero y lo agrega al nuevo arreglo
 				}
-				$args["tags"]=$tags_id_temp;
+				$args['tags'] = $textual_tags;//intercambia los arreglos para enviarlos textualmente
 			}
 			
 			$args['user_data'] = $this->session->userdata('logged_in');
 			$args["content"]="castings/hunter_template";
 			$inner_args["hunter_content"]="castings/hunter_casting_detail";
 			$args["inner_args"]=$inner_args;
+			
+			//Obtengo los ID de los usuarios(5) todos y los seleccionados
+			$args["postulantes"] = $this->applies_model->get_short_user_applies($id);
+			$args["seleccionados"] = $this->applies_model->get_short_user_applies($id,1);
+			
+			//se transforman en arreglo de usuarios
+			$postulantes_textual = array();
+			foreach($args["postulantes"] as $postulante_numerico)
+			{
+				$postulantes_textual[] = $this->user_model->select_applicant($postulante_numerico['user_id']);
+			}
+			$args["postulantes"] = $postulantes_textual;
+			
+			$seleccionados_textual = array();
+			foreach($args["seleccionados"] as $postulante_numerico)
+			{
+				$seleccionados_textual[] = $this->user_model->select_applicant($postulante_numerico['user_id']);
+			}
+			$args["seleccionados"] = $seleccionados_textual;
+			
+			
+			
+			
+			/*
+			var_dump($args["postulantes"]);
+			var_dump($args["seleccionados"]);
+			 */
+			
 			$this->load->view('template', $args);
 		}
 		else

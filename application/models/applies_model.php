@@ -60,6 +60,28 @@ class Applies_model extends CI_Model
 		
 	}
 	
+	function get_short_user_applies($casting_id,$state=NULL) //para sacar la información utilizada en casting_details
+	{
+		$this->db->select('user_id');
+    	$this->db->where('casting_id', $casting_id);
+		
+    	if(is_null($state))
+    	{
+    		$query = $this->db->get('applies',5);		
+    	}
+   		else
+   		{
+   			$this->db->where('state',$state);
+   			$query = $this->db->get('applies',5);
+   		}
+		   	
+		if($query->num_rows == 0)
+			return 0;
+		else
+			return $query->result_array();
+		
+	}
+	
 	
 	function count_casting_applies($casting_id,$state)
  	{

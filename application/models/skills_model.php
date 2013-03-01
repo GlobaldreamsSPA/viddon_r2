@@ -59,8 +59,17 @@ class Skills_model extends CI_Model
 
 		return $result;
 	}
-
-
+	
+		function get_name($id)
+		{
+			$this->db->select('name');
+			$this->db->from('skills');
+			$this->db->where('id',$id);
+			$query = $this->db->get()->first_row('array');
+			return $query['name'];
+	    	
+		}
+	
 	function link_skills($profile)
 	{
 		//Primero borrar todas las habilidades linkeadas del usuario anteriormente existentes

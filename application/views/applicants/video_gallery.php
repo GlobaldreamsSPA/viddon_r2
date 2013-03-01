@@ -25,7 +25,7 @@
 				    		<div class="row">
 					    		<div class="span9 offset1">					    			
 					    			<ul class="nav nav-pills nav-stacked orange">
-										<li class="active"><a> <i class="icon-user"></i> Perfil</a>
+										<li class="active"><a href="<?php echo HOME."/user/";?>"> <i class="icon-user"></i> Perfil</a>
 										</li>
 										<li><a href="<?php echo HOME."/user/edit/".$user_id;?>"> <i class="icon-pencil"></i> Editar Datos</a></li>
 										<li>
