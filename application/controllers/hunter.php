@@ -78,6 +78,9 @@ class Hunter extends CI_Controller {
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id= $hunter_id['id'];
+			$args["castings_dash"]= $this->_dashboard($hunter_id);
+			
+			
 	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id);
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
 			$args["skills"]=	$skills = $this->skills_model->get_skills();
@@ -175,6 +178,7 @@ class Hunter extends CI_Controller {
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id = $hunter_id['id'];
+			$args["castings_dash"]= $this->_dashboard($hunter_id);
 			
 			
 			$args["casting_state"] = $casting_state;
@@ -213,6 +217,9 @@ class Hunter extends CI_Controller {
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id = $hunter_id['id'];
+			
+			$args["castings_dash"]= $this->_dashboard($hunter_id);
+			
 			$args["casting"] = $this->castings_model->get_full_casting($id);
 			$args["casting"]["applies"] = $this->applies_model->get_applies_cant($id);
 			if(isset($args["casting"]["skills"]))//skills guardadas del casting
@@ -272,6 +279,9 @@ class Hunter extends CI_Controller {
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id= $hunter_id['id'];
+	   	 	$args["castings_dash"]= $this->_dashboard($hunter_id);
+			
+	   	 	
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
 			$args["skills"]= $this->skills_model->get_skills();		
 			
@@ -386,6 +396,11 @@ class Hunter extends CI_Controller {
 		
 			$args["id_casting"]=$id;
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
+			
+		 	$hunter_id= $args['user_data']['id'];
+	   	 	
+			$args["castings_dash"]= $this->_dashboard($hunter_id);
+			
 
 			$args["content"]="castings/hunter_template";
 			$inner_args["hunter_content"]="castings/applicants_list";
@@ -482,6 +497,10 @@ class Hunter extends CI_Controller {
 		if($this->session->userdata('logged_in')&& isset($id))
 		{
 			$args['user_data'] = $this->session->userdata('logged_in');
+			
+			$hunter_id= $args['user_data']['id'];	   	 	
+			$args["castings_dash"]= $this->_dashboard($hunter_id);
+			
 			$args["content"]="castings/hunter_template";
 			$inner_args["hunter_content"]="castings/accepted_list";
 			$args["inner_args"]=$inner_args;
@@ -526,6 +545,8 @@ class Hunter extends CI_Controller {
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id= $hunter_id['id'];
+			
+			$args["castings_dash"]= $this->_dashboard($hunter_id);
 	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id);
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
 			$args["content"]="castings/hunter_template";
