@@ -31,6 +31,7 @@ class Videos_model extends CI_Model
     function delete($video_id)
     {
     	$this->db->delete('videos', array('id' => $video_id));
+		
     }
 
     //Verifica que el usuario tenga al menos un video
@@ -97,8 +98,11 @@ class Videos_model extends CI_Model
 		$this->db->select('link, title, description');
 		$this->db->where('id', $id_video);
 		$query = $this->db->get('videos');
-		$results = $query->result_array();
-		return $results[0];
+		if($query->num_rows() > 0)
+		{
+			$results = $query->result_array();
+			return $results[0];
+		}else return false;
 	}
 	
 

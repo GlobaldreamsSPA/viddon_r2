@@ -58,9 +58,9 @@ class User extends CI_Controller {
 		if($this->videos_model->verify_videos($id) != 0)
 		{
 			$id_main_vid = $this->user_model->get_main_video_id($id);
-			if(!is_null($id_main_vid))
+			if(!is_null($id_main_vid) && ($video = $this->videos_model->get_main_video($id_main_vid)))
 			{
-				$video = $this->videos_model->get_main_video($id_main_vid); //saca el video principal
+				//$video = $this->videos_model->get_main_video($id_main_vid); //saca el video principal
 				$args['video_ID']=$video["link"];
 				$args["video_title"] = $video["title"];
 				$args["video_description"] = $video["description"];
@@ -188,6 +188,8 @@ class User extends CI_Controller {
 				case 2://ELIMINAR
 					if(!is_null($id_video_objetivo) && !is_null($args["user_id"]) && is_numeric($id_video_objetivo))
 					{
+						if($args['id_main_video'] == $id_video_objetivo)
+							$this->user_model->set_main_video($args["user_id"]);
 						$this->videos_model->delete($id_video_objetivo);	
 						redirect(HOME."/user/video_gallery");		
 					}
