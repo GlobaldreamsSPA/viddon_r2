@@ -27,7 +27,6 @@ class User_model extends CI_Model
 
 		function get_main_video_id($id_user)
 		{
-			echo "el id de usuario es:".$id_user;
 			$this->db->select('id_main_video');
 			$this->db->where('id', $id_user);
 			$query = $this->db->get('users')->first_row('array');
