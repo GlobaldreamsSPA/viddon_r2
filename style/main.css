@@ -35,7 +35,7 @@ color:#fff;
 }
 
 .profile-content{
-	min-height: 80px;
+	min-height: 180px;
 }
 
 /* Fondo Contenido */
@@ -133,7 +133,8 @@ h1.profile-title{
 img.user_image
 {
 	margin-top: 32px;
-	max-height: 100%;
+	min-height: 30%;
+	min-width: 60%;
 	max-width: 100%;
 }
 		

@@ -750,7 +750,7 @@ class Hunter extends CI_Controller {
 	   	 	foreach ($castings as &$casting) {
 	   	 		$casting['applies'] = $this->applies_model->get_applies_cant($casting['id']);
 				
-				if($casting["applies"] <= $casting["max_applies"])
+				if($casting["applies"] < $casting["max_applies"])
 					$casting['target_applies'] = round($casting["applies"]/$casting["max_applies"],2) * 100;
 				else 
 					$casting['target_applies'] = 100;
@@ -760,11 +760,13 @@ class Hunter extends CI_Controller {
 				else 
 					$casting['reviewed']= 0;				
 				
-				$casting['target_applies_color'] = $this->_color_bar($casting['target_applies']);
-				$casting['reviewed_color'] = $this->_color_bar($casting['reviewed']);
+				
+				   
+				$casting['target_applies_color'] = $this->_color_bar((int) $casting['target_applies']);
+				$casting['reviewed_color'] = $this->_color_bar((int) $casting['reviewed']);
 				
 				
-	   	 	}	   
+	   	 	}	
  		return $castings;
 	}	
 
@@ -791,6 +793,7 @@ class Hunter extends CI_Controller {
 				
 				break;
 		}
+		
 		return $return;
 	}
 
