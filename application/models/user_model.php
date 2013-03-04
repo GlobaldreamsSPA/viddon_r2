@@ -34,7 +34,7 @@ class User_model extends CI_Model
 			return $query['id_main_video'];
 		}
 	
-	function set_main_video($id_user,$id_video_nuevo)
+	function set_main_video($id_user,$id_video_nuevo=NULL)
 	{
 			$data = array(
 				'id_main_video' => $id_video_nuevo

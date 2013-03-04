@@ -47,34 +47,44 @@
 				    	</div>
 				    
 					    <div class="span8 offset1 user-profile-right"> <!-- CARGAREMOS LOS DATOS DE LA GALERIA -->
-					    	<h2 class="legend">Galeria de videos</h2>
+							<div class="row">
+								<div class="span8">
+						    	<h2>Galeria de videos</h2>
+								</div>
+								<div style="margin-top:15px;" class="span4">
+										<button data-toggle="modal"  href="#add_video" class="btn btn-primary">Agregar Video</button>
+								</div>
+								<legend></legend>
+							</div>
+
 					    	<!-- CARGO EL MODAL-->
-								<div id="add_video" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="AgregaVideo" aria-hidden="true">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-										<h3 id="myModalLabel">Agregar video</h3>
-									</div>
-									<div class="modal-body">
-										<form id="video_upload_form" action="<?php echo HOME.'/user/'?>" method="post">
-											<div>	
-												<input name="url_ytb" class="input-xlarge" type="text" placeholder="Dirección Video" value="">
-												<input name="name_ytb" class="input-xlarge" type="text" placeholder="Nombre Video">
-												<div class="space1"></div>	
-												<textarea class="rich_textarea" name="description_ytb" rows="8" placeholder="Descripción Video"></textarea>
-												<div class="space1"></div>	
-												<input type="hidden" name="from_gallery" value="yes" />
-												<button type="submit" class="btn btn-primary">Guardar</button>
-											</div>
-										</form>
-									</div>
-									<div class="modal-footer">
-										<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-									</div>
+								<div id="add_video" class="modal hide fade" style="width: 430px !important;" tabindex="-1" role="dialog" aria-labelledby="AgregaVideo" aria-hidden="true">
+									<form id="video_upload_form" action="<?php echo HOME.'/user/'?>" method="post">
+										
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+											<h3 id="myModalLabel">Agregar video</h3>
+										</div>
+										<div class="modal-body">
+												<div>	
+													<input name="url_ytb" style="width:96%" type="text" placeholder="Dirección - URL Video" value="">
+													<input name="name_ytb" style="width:96%" type="text" placeholder="Nombre">
+													<div class="space1"></div>	
+													<textarea class="rich_textarea" name="description_ytb" rows="6" placeholder="Descripción"></textarea>
+													<input type="hidden" name="from_gallery" value="yes" />
+													<div class="space1"></div>	
+												</div>
+										</div>
+										<div class="modal-footer" style="height: 30px;">
+											<button type="submit" class="btn btn-primary">Guardar</button>
+											<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+										</div>
+									</form>
+
 								</div>
 														
-								<div>
-									<button data-toggle="modal"  href="#add_video" class="btn btn-success">Agregar Video</button>
-								</div>
+														
+								
 					    	
 					    	
 					    	
@@ -87,17 +97,44 @@
 					    	//video[1]=> link
 					    	//video[2]=> descripcion
 					    	//video[3] => id del video
+					    	$i=0;
 					    	foreach($videos as $video){
-					    		if($video[3] == $id_main_video) echo "es el video principal";
+					    		$i++;
+								if($i%2 == 0 )								
+					    			echo '<div class="span6">';	
+								else
+									{
+									echo '<div class="space1"></div>';
+									echo '<div class="row">';
+									echo '<div class="span6">';
+									}		
+									
 					    	?>
-					    		<iframe width="33%" height="100px" src="http://www.youtube.com/embed/<?php echo $video[1].'?rel=0'?>" frameborder="0" allowfullscreen></iframe>	
-								<p>
-								<?php echo $video[0]; ?><a class="btn-del" title="Eliminar video" href="<?php echo HOME."/user/video_gallery/2/".$video[3];?>">x</a>
-								<?php echo $video[2]; ?><a class="btn-del" title="Establecer como principal" href="<?php echo HOME."/user/video_gallery/1/".$video[3];?>">B</a>
-								</p>
+					    			
+					    			<div>
+											<div style="height: 15px !important;" class="span10">
+												<h3 id="profile" ><?php echo $video[0]; ?></h5>
+											</div>
+											<?php if(!$public) {?>
+												<div style="margin-top: 20px;" class="span1">
+													<a class="btn-del" title="Establecer como principal" href="<?php echo HOME."/user/video_gallery/1/".$video[3];?>" class="btn btn-primary"><i class="icon-star-empty"></i></a>
+												</div>
+												<div style="margin-top: 20px; margin-left: 1px;" class="span1">
+													<a class="btn-del" title="Eliminar video" href="<?php echo HOME."/user/video_gallery/2/".$video[3];?>" class="btn btn-primary"><i class="icon-remove"></i></a>
+												</div>
+												
+											<?php } ?>
+									</div>
+						    		<iframe width="96%" height="180px" src="http://www.youtube.com/embed/<?php echo $video[1].'?rel=0'?>" frameborder="0" allowfullscreen></iframe>	
+									
+								</div>
+						    <?php 
+							if($i%2 == 0 )								
+					    			echo '</div>';	
+							if($i%2 != 0 && $i == count($videos))
+									echo '</div>';	
 								
-						    <?php }?>	
+							}?>	
 						</div>
-					    		
-					    </div>		
-					</div>
+						</div>
+					

@@ -81,12 +81,8 @@
 										<h3 id="profile" ><?php echo $video_title;?></h5>
 									</div>
 									<?php if(!$public) {?>
-										<form action="" method="POST">
-											<button style="margin-top:20px; margin-left:19%;" type="submit"><i class="icon-del"></i></button>
-											<input type="hidden" name="del-video" value="<?php echo $video_ID ?>"/>
-										</form>
-										<div>
-											<a href="<?php echo HOME.'/user/video_gallery/'?>" class="btn btn-success" type="submit" name="apply">Ver galeria</a>
+										<div style="margin-top: 20px;" class="span3">
+											<a href="<?php echo HOME.'/user/video_gallery/'?>" style="width:70% !important;"class="btn btn-primary" type="submit" name="apply"><i class="icon-film"></i> Galeria</a>
 										</div>
 									<?php } ?>
 				
@@ -114,7 +110,7 @@
 											<textarea style="width: 97%;" type="text" name="comment" id="comment" Placeholder="Escribe un comentario..."></textarea>
 										<br>
 										<div id="post1">
-											<input type="button" class="btn btn-info"  value="Comentar" onclick="get()"/>										
+											<input type="button" class="btn"  value="Comentar" onclick="get()"/>										
 										</div>
 									</form>
 								</div>
@@ -128,30 +124,32 @@
 							else
 							{?>
 								<!-- CARGO EL MODAL-->
-								<div id="add_video" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="AgregaVideo" aria-hidden="true">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-										<h3 id="myModalLabel">Agrega video</h3>
-									</div>
-									<div class="modal-body">
-										<form id="video_upload_form" action="" method="post">
-											<div>	
-												<input name="url_ytb" class="input-xlarge" type="text" placeholder="Dirección Video" value="">
-												<input name="name_ytb" class="input-xlarge" type="text" placeholder="Nombre Video">
-												<div class="space1"></div>	
-												<textarea class="rich_textarea" name="description_ytb" rows="8" placeholder="Descripción Video"></textarea>
-												<div class="space1"></div>	
-												<button type="submit" class="btn btn-primary">Guardar</button>
-											</div>
-										</form>
-									</div>
-									<div class="modal-footer">
-										<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-									</div>
+								<div id="add_video" class="modal hide fade" style="width: 430px !important;" tabindex="-1" role="dialog" aria-labelledby="AgregaVideo" aria-hidden="true">
+									<form id="video_upload_form" action="" method="post">
+										
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+											<h3 id="myModalLabel">Agregar video</h3>
+										</div>
+										<div class="modal-body">
+												<div>	
+													<input name="url_ytb" style="width:96%" type="text" placeholder="Dirección - URL Video" value="">
+													<input name="name_ytb" style="width:96%" type="text" placeholder="Nombre">
+													<div class="space1"></div>	
+													<textarea class="rich_textarea" name="description_ytb" rows="6" placeholder="Descripción"></textarea>
+													<div class="space1"></div>	
+												</div>
+										</div>
+										<div class="modal-footer" style="height: 30px;">
+											<button type="submit" class="btn btn-primary">Guardar</button>
+											<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+										</div>
+									</form>
+
 								</div>
 														
-								<div>
-									<button data-toggle="modal"  href="#add_video" class="btn btn-success">Agregar Video</button>
+								<div style="padding-left: 38%; background-color: black; padding-top: 30%; padding-bottom: 30%;  border: 1px solid #d0d0d0;">
+									<button data-toggle="modal"  href="#add_video" class="btn btn-primary">Agregar Video</button>
 								</div>
 							
 							<?php
