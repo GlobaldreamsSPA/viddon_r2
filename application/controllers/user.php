@@ -58,21 +58,18 @@ class User extends CI_Controller {
 		if($this->videos_model->verify_videos($id) != 0)
 		{
 			$id_main_vid = $this->user_model->get_main_video_id($id);
-			
 			if(!is_null($id_main_vid))
 			{
 				$video = $this->videos_model->get_main_video($id_main_vid); //saca el video principal
 				$args['video_ID']=$video["link"];
 				$args["video_title"] = $video["title"];
 				$args["video_description"] = $video["description"];
-				
 			}else
 			{
 				$video = $this->videos_model->get_video($id); //saca el primer video registrado
 				$args['video_ID']=$video["video_id"];
 				$args["video_title"] = $video["video_title"];
 				$args["video_description"] = $video["video_description"];
-				
 			}
 			
 			
@@ -102,6 +99,39 @@ class User extends CI_Controller {
 			$args["postulation_flag"]=true;
 		}
 
+		//El usuario hace click en borrar video
+
+		if($this->input->post("del-video"))
+		{
+			//Primero rescatar el id del usuario de la sesion
+			$user_id = $this->session->userdata('id');
+			$youtube_video_id = $this->input->post("del-video");
+			$video_id = $this->videos_model->get_video_id($youtube_video_id);
+
+			$del_video = TRUE;
+			
+			//Ahora verificar que el video pertenezca al usuario
+			if(!$this->videos_model->verify_user_video($youtube_video_id, $user_id))
+			{
+				$args["delete_video_message"] = "El Video que intentas borrar no te pertenece. Intenta nuevamente desde tu Perfil";
+				$del_video = FALSE;
+			}
+
+			//Ahora verificar que el usuario no haya postulado al concurso con ese video
+			if($this->applies_model->verify_video_apply($video_id, $user_id) === FALSE)
+			{
+				$args["delete_video_message"] = "Ya haz postulado a un casting activo con este video. No puedes borrarlo";
+				$del_video = FALSE;
+			}
+
+			//Si success flag sigue verdadero, se procede a borrar el video
+			if($del_video === TRUE)
+			{
+				$this->videos_model->delete($video_id);
+				$args["delete_video_message"] = "Tu video ha sido borrado exitosamente";
+			}
+
+		}
 
 		$args["user_id"] = $this->session->userdata('id');
 		$this->load->view('template',$args);
