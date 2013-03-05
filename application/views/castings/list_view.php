@@ -89,11 +89,11 @@
 								<div class="pagination">  
 								  <ul id="pagination_bt">
 								  	  
-								  	<li <?php if($page==1) echo "class='disabled'";?> ><a <?if($page!=1) echo "href= '".base_url()."hunter/casting_list/".($page-1)."/".$casting_state."/'";?>>Prev</a></li>  
+								  	<li <?php if($page==1) echo "class='disabled'";?> ><a <?php if($page!=1) echo "href= '".base_url()."hunter/casting_list/".($page-1)."/".$casting_state."/'";?>>Prev</a></li>  
 									<?php for($i = 1; $i <= $chunks; $i++) { ?>
-										<li <?php if($page==$i) echo "class='disabled'";?> ><a <?if($page!=$i) echo "href= '".base_url()."hunter/casting_list/".$i."/".$casting_state."/'";?> > <?php echo $i; ?></a></li>  
+										<li <?php if($page==$i) echo "class='disabled'";?> ><a <?php if($page!=$i) echo "href= '".base_url()."hunter/casting_list/".$i."/".$casting_state."/'";?> > <?php echo $i; ?></a></li>  
 									<?php } ?>
-								    <li <?php if($page==$chunks) echo "class='disabled'";?> ><a <?if($page!=$chunks) echo "href= '".base_url()."hunter/casting_list/".($page+1)."/".$casting_state."/'";?>>Next</a></li>
+								    <li <?php if($page==$chunks) echo "class='disabled'";?> ><a <?php if($page!=$chunks) echo "href= '".base_url()."hunter/casting_list/".($page+1)."/".$casting_state."/'";?>>Next</a></li>
 								     
 								  </ul>  
 								</div>  
