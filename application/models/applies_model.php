@@ -67,6 +67,7 @@ class Applies_model extends CI_Model
 		
     	if(is_null($state))
     	{
+    		$this->db->where('state',0); //evita aceptados y rechazados
     		$query = $this->db->get('applies',5);		
     	}
    		else
