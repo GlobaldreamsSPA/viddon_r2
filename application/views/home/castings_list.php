@@ -58,7 +58,19 @@
 					  <ul id="pagination_bt">
 					  	  
 					  	<li <?php if($page==1) echo "class='disabled'";?> ><a <?php if($page!=1) echo "href= '".base_url()."home/casting_list/".($page-1)."/".$actual_categories_url."'";?>>Prev</a></li>  
-						<?php for($i = 1; $i <= $chunks; $i++) { ?>
+						<?php 
+						
+						$pag_size = 16; //se puede fijar una constante que lo maneje
+						$margen = $pag_size/2;
+						
+						$begin_pag = $page - $margen;
+						if($begin_pag < 0) $begin_pag = 1;
+						
+						$end_pag = $page + $margen;
+						if($end_pag > $chunks) $end_pag = $chunks;
+						
+						
+						for($i = $begin_pag; $i <= $end_pag; $i++) { ?>
 							<li <?php if($page==$i) echo "class='disabled'";?> ><a <?php if($page!=$i) echo "href= '".base_url()."home/casting_list/".$i."/".$actual_categories_url."'";?> > <?php echo $i; ?></a></li>  
 						<?php } ?>
 					    <li <?php if($page==$chunks) echo "class='disabled'";?> ><a <?php if($page!=$chunks) echo "href= '".base_url()."home/casting_list/".($page+1)."/".$actual_categories_url."'";?>>Next</a></li>
