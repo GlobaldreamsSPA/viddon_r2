@@ -66,17 +66,18 @@
 										<p>
 											Meta de postulantes: <?php echo $casting['applies'] ?> personas de <?php echo $casting['max_applies'] ?>
 										</p>
-										<div class="progress">
-											<div class="bar bar-success" style="width: 100%;">100%</div>
+										<div class="progress" style="height: 17px;">
+						   					<div class="bar <?php echo $casting["target_applies_color"];?>" style="width: <?php echo $casting["target_applies"];?>%; color:black !important;"><?php echo $casting["target_applies"];?>%</div>
 										</div>
+						
 										
 										<div class="space1"></div>
 										
 										<p>
-											Postulantes revisados: 2500 personas de 5000
+											Postulantes revisados:
 										</p>
-										<div class="progress">
-										    <div class="bar bar-warning" style="width: 50%;">50%</div>
+										<div class="progress" style="height: 17px;">
+						  					<div class="bar <?php echo $casting["reviewed_color"];?>" style="width: <?php echo $casting["reviewed"];?>%; color:black !important;" ><?php echo $casting["reviewed"];?>%</div>
 										</div>
 									
 										<div class="space1"></div>

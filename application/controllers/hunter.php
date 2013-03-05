@@ -219,9 +219,23 @@ class Hunter extends CI_Controller {
 		 	$hunter_id = $hunter_id['id'];
 			
 			$args["castings_dash"]= $this->_dashboard($hunter_id);
+			//var_dump($args["castings_dash"]);
 			
 			$args["casting"] = $this->castings_model->get_full_casting($id);
 			$args["casting"]["applies"] = $this->applies_model->get_applies_cant($id);
+			if($args["casting"]["applies"] < $args["casting"]["max_applies"])
+					$args["casting"]['target_applies'] = round($args["casting"]["applies"]/$args["casting"]["max_applies"],2) * 100;
+			else 
+				$casting['target_applies'] = 100;
+								
+			if($args["casting"]['applies'] != 0)
+				$args["casting"]['reviewed'] = round(($args["casting"]['applies'] - $this->applies_model->count_casting_applies($args["casting"]['id'],0))/$args["casting"]['applies'],2)*100;
+			else 
+				$args["casting"]['reviewed']= 0;					   
+			$args["casting"]['target_applies_color'] = $this->_color_bar((int) $args["casting"]['target_applies']);
+			$args["casting"]['reviewed_color'] = $this->_color_bar((int) $args["casting"]['reviewed']);
+			
+			
 			if(isset($args["casting"]["skills"]))//skills guardadas del casting
 			{
 				$args['tags'] = explode("-",$args['casting']['skills']);//convierto a arreglo el string de números ej: 1-3-2

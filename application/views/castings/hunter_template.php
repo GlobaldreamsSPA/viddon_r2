@@ -18,7 +18,9 @@
 						
 						<div style="height: 10"class="row">
 							<div class= "span9">
+								<a href="<?php echo HOME."/hunter/casting_detail/".$casting["id"];?>">
 								<h5 class="list-view-title"><?php echo $casting["title"]?></h5>
+								</a>
 							</div>
 							<div style="margin-top: 5%;"class= "span3">
 								<i class="icon-time"></i> <?php echo $casting["days"]?> d&iacute;as
