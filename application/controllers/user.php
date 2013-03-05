@@ -303,7 +303,7 @@ class User extends CI_Controller {
 					$this->_upload_image($profile['id']);
 
 
-				//redirect(HOME.'/user');
+				redirect(HOME.'/user');
 			}
 
 			//Talentos del usuario
