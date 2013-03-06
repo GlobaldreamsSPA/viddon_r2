@@ -80,9 +80,24 @@ class Videos_model extends CI_Model
 		$this->db->where('user_id', $id_user);
 		$query = $this->db->get('videos')->first_row('array');
 		$result["video_id"]=$query['link'];
-
 		return $result;
 	}
+	
+	/*
+	 * Saca el "link" del video utilizado en la postulación(apply)
+	 */
+	function get_applied_video_applicant($id_user,$id_casting)
+	{
+		$this->db->from('applies');
+		$this->db->join('videos_applies', 'applies.id = videos_applies.apply_id');
+		$this->db->join('videos', 'videos_applies.video_id = videos.id');
+		$this->db->where('videos.user_id', $id_user);
+		$this->db->where('applies.casting_id', $id_casting);
+		$query = $this->db->get()->first_row('array');
+		$result["video_id"]=$query['link'];
+		return $result;
+	}
+	
 
 	function get_video_id($youtube_video_id)
 	{

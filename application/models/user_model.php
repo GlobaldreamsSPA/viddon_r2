@@ -32,6 +32,15 @@ class User_model extends CI_Model
 			$query = $this->db->get('users')->first_row('array');
 			return $query['id_main_video'];
 		}
+		
+		
+		function has_main_video($id_user)
+		{
+			if($this->get_main_video_id($id_user) == NULL)
+			{
+				return false;
+			}else return true;
+		}
 	
 	function set_main_video($id_user,$id_video_nuevo=NULL)
 	{
