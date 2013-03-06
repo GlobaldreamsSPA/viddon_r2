@@ -107,7 +107,7 @@ class User extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
-	public function video_gallery($ope=NULL,$id_video_objetivo=NULL)
+	public function video_gallery($page=1,$ope=NULL,$id_video_objetivo=NULL)
 	{
 		$args = array();
 		$public = FALSE;
@@ -125,7 +125,7 @@ class User extends CI_Controller {
 		$args['public'] = $public;
 		$args["tags"] = $this->skills_model->get_user_skills($id);
 		$args["user"] = $this->user_model->welcome_name($id);
-		
+
 		if($this->videos_model->verify_videos($id) != 1)
 		{
 			$args["postulation_flag"]=false;
@@ -136,8 +136,11 @@ class User extends CI_Controller {
 		}
 		
 		//AHORA OBTENGO LOS ELEMENTOS NECESARIOS PARA LA GALERIA
-		$args['videos'] = $this->videos_model->get_videos_by_user($this->session->userdata('id'));
+		$args['videos'] = $this->videos_model->get_videos_by_user($this->session->userdata('id'),$page);
 		$args['id_main_video'] =$this->user_model->get_main_video_id($this->session->userdata('id'));
+		$args['page']=$page;
+		$args["chunks"]=ceil($this->videos_model->count_videos_by_user($this->session->userdata('id'))/8);	
+		
 		
 		$args["content"]="applicants/applicants_template";
 		$inner_args["applicant_content"]="applicants/video_gallery";

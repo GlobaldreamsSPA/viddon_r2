@@ -207,12 +207,12 @@ class Videos_model extends CI_Model
 		return $query->num_rows;
 	}
 	
-	function get_videos_by_user($id_user)
+	function get_videos_by_user($id_user,$page,$cant=8)
 	{
 		//var_dump($id_user);
 		$this->db->select('*');
 		$this->db->where('user_id',$id_user);
-		$query = $this->db->get('videos');
+		$query = $this->db->get('videos', $cant, ($page-1)*$cant);
 		$result = array();
 		foreach ($query->result_array() as $value) 
 		{
@@ -220,6 +220,17 @@ class Videos_model extends CI_Model
 		}
 		//var_dump($result);
 		return $result;
+	}
+
+	function count_videos_by_user($id_user)
+	{
+		//var_dump($id_user);
+		$this->db->select('*');
+		$this->db->where('user_id',$id_user);
+		$query = $this->db->get('videos');
+	
+		//var_dump($result);
+		return $query->num_rows;
 	}
 
 	function count()

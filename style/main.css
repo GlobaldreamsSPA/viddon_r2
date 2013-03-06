@@ -35,6 +35,7 @@ color:#fff;
 }
 
 .profile-content{
+	overflow-y: scroll;
 	min-height: 180px;
 }
 
