@@ -102,9 +102,9 @@
 									</label>
 								</div>
 								-->
-								<div class="justify"><?php echo $video_description;?></div>
+								<div class="justify profile-content"><?php echo $video_description;?></div>
 								
-								<div id="facebook" style="padding-top:40px;">
+								<div id="facebook" style="padding-top:10px;">
 									<form name="frm">
 										<br>
 											<textarea style="width: 97%;" type="text" name="comment" id="comment" Placeholder="Escribe un comentario..."></textarea>
