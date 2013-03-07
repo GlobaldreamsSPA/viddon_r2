@@ -52,11 +52,25 @@
 		  			<div class="space2"></div>
 					<h3 id="profile" >Galeria Videos</h3>
 					<img style="margin-top: 16px;" src="<?php echo HOME.'/img/dummy_galeria_videos.png';?>">
-		  			<a class="MBT-readmore" style="float: right;" ref="#">Ver m&aacute;s >></a>
+					<?php //Si está en su perfil, muestra enlace a la galeria de videos
+					if(!$public)
+					{ 
+					?>
+		  				<a class="MBT-readmore" style="float: right;" ref="<?php echo HOME.'/user/video_gallery/';?>">Ver m&aacute;s >></a>
+		  			<?php
+					} 
+		  			?>
 		  			<div class="space2"></div>						
 					<h3 id="profile" >Galeria Fotos</h3>
 					<img style="margin-top: 16px;"  src="<?php echo HOME.'/img/dummy_galeria_fotos.png';?>">
-					<a class="MBT-readmore"  style="float: right;" ref="#">Ver m&aacute;s >></a>
+					<?php //Si está en su perfil, muestra enlace a la galeria de fotos
+					if(!$public)
+					{ 
+					?>
+		  				<a class="MBT-readmore" style="float: right;" ref="<?php echo HOME.'/user/photo_gallery/';?>">Ver m&aacute;s >></a>
+		  			<?php
+					} 
+		  			?>
 					<div class="space4"></div>
 				</div>
 			</div>
