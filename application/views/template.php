@@ -25,8 +25,8 @@
 	<script src="<?php echo base_url()?>js/jquery.cleditor.js"></script>
 	<script src="<?php echo base_url()?>js/jquery.uniform.js"></script>
 	<script src="<?php echo base_url()?>js/jquery.dataTables.js"></script>
-	<script src="<?php echo base_url()?>js/bootstrap-datepicker.js"></script>
-	<script src="<?php echo base_url()?>js/jquery.ba-resize.js"></script>
+	<script src="<?php echo base_url()?>js/bootstrap-datepicker.js"></script>	
+	<script src="<?php echo base_url()?>js/chosen.jquery.js"></script>
 
 
 </head>
@@ -246,10 +246,15 @@
 		function get()
 		{
 			 var input = $('#comment').val();
-			 if ( $('#comment').val() == '' ){
-			 alert('Empty!!!');}
-			 else{
-			 $('#post').prepend('<img src="../img/profile/user.jpg" width="40px" height="40px"style="display:inline;float:left;">&nbsp;'+'<span style="color:gray;font-family:times new roman;"> Usuario </span> &nbsp;'+input + '<br/><br/> <hr>');}
+			 
+			 if ( $('#comment').val() == '' )
+			 {
+			 	alert('Debes escribir un comentario antes de Enviarlo. Intenta nuevamente');
+			 }
+			 else
+			 {
+			 	$('#post1').prepend('<img src="../img/profile/user.jpg" width="40px" height="40px"style="display:inline;float:left;">&nbsp;'+'<span style="color:gray;font-family:times new roman;"> Usuario </span> &nbsp;'+input + '<br/><br/> <hr>');
+			 }
 			 $('#comment').val('');
 		};
 		 

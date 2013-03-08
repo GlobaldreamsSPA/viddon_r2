@@ -22,12 +22,15 @@ define('DIR_WRITE_MODE', 0777);
 define('UPLOAD_DIR', '../img/uploads');
 define('IMAGES_DIR', '../img/profile');
 define('USER_PROFILE_IMAGE', '../img/profile');
+define('LOCAL_USER_PROFILE_IMAGE', 'img/profile/');
 define('HUNTER_PROFILE_IMAGE', '/img/logo_hunter/');
 define('HUNTER_UPLOAD_IMAGE', '../img/logo_hunter');
 define('CASTINGS_PATH', '/img/casting_image/');
 define('CASTINGS_FULL_PATH', '/img/casting_image_full/');
 define('OPENID' , realpath(APPPATH.'../utils/openid.php'));
-define('HOME', 'http://localhost/release1.0/viddon_r2');
+define('HOME', 'http://localhost/viddon_r2');
+define('GALLERY', HOME.'/img/gallery/');
+define('LOCAL_GALLERY', 'img/gallery/');
 
 /*
 |--------------------------------------------------------------------------

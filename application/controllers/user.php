@@ -14,6 +14,7 @@ class User extends CI_Controller {
 		$this->load->model('videos_model');
 		$this->load->model('skills_model');
 		$this->load->model('castings_model');
+		$this->load->model('photos_model');
 		
 	}
 
@@ -34,7 +35,9 @@ class User extends CI_Controller {
 		$args['public'] = $public;
 		$args["tags"] = $this->skills_model->get_user_skills($id);
 		$args["user"] = $this->user_model->welcome_name($id);
+		$args["photos"] = $this->photos_model->get_photos($id);
 		
+		//PROCESA SUBIDA DE VIDEO A GALERIA
 		if(isset($_POST["url_ytb"]))
 		{
 			$query_string = array();
@@ -53,6 +56,43 @@ class User extends CI_Controller {
 			$this->videos_model->insert($video_to_save);
 			if(isset($_POST["from_gallery"]) && ($_POST['from_gallery'] == 'yes')) redirect(HOME.'/user/video_gallery/');
 		}
+		
+		
+		
+		//PROCESA SUBIDA DE FOTO A GALERIA
+		if(isset($_POST["url_photo"]))
+		{
+			$ultimo_indicador = $this->photos_model->get_last_indicator($id);
+			var_dump($_FILES);
+			var_dump($_POST);
+			
+			$parts = array();
+			
+			$temporal = parse_url($_POST["url_photo"]);
+			var_dump($temporal);
+			
+			$url = $_POST["url_photo"];
+			$img_name = $id."_".($ultimo_indicador+1).".jpeg";
+			$img = LOCAL_GALLERY.$img_name;
+			var_dump($img);
+			$parts = explode("/", $temporal['path']);
+			var_dump($parts);
+			
+			
+			file_put_contents($img,file_get_contents($url));//GUARDA LA IMAGEN
+		
+			$photo_to_save = array(
+				'name' => $img_name,
+				'description' => $_POST["description"],
+				'user_id' => $id
+				);
+			
+			$this->photos_model->insert($photo_to_save);//INSERTA REGISTRO EN BASE DE DATOS , TABLA "photos"
+			if(isset($_POST["from_gallery"]) && ($_POST['from_gallery'] == 'yes')) redirect(HOME.'/user/photo_gallery/');
+		}
+
+
+
 		
 		//Si el usuario tiene un video, setear los elementos siguientes, si no, no.
 		if($this->videos_model->verify_videos($id) != 0)
@@ -107,6 +147,92 @@ class User extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
+	public function photo_gallery($page=1,$ope=NULL,$id_photo_objetivo=NULL) //TODO: TERMINAR
+	{
+		$args = array();
+		$public = FALSE;
+		$id_user = NULL;
+		
+		if($this->session->userdata('id') === FALSE || ($id_user != NULL && $id_user != $this->session->userdata('id')))
+			$public = TRUE;
+		else
+		{
+			$id = $this->session->userdata('id');
+			$public = FALSE;
+		}
+
+		$args = $this->user_model->select($id);
+		$args['public'] = $public;
+		$args["tags"] = $this->skills_model->get_user_skills($id);
+		$args["user"] = $this->user_model->welcome_name($id);
+
+		if($this->videos_model->verify_videos($id) != 1)
+		{
+			$args["postulation_flag"]=false;
+			$args["postulation_message"]="Necesitas Tener Videos para poder postular";
+		}
+		else {
+			$args["postulation_flag"]=true;
+		}
+		
+		//AHORA OBTENGO LOS ELEMENTOS NECESARIOS PARA LA GALERIA
+		$args['videos'] = $this->videos_model->get_videos_by_user($this->session->userdata('id'),$page);
+		$args['image_profile'] =$this->user_model->get_image_profile($this->session->userdata('id'));
+		var_dump($args['image_profile']);
+		$args['page']=$page;
+		$args["chunks"]=ceil($this->videos_model->count_videos_by_user($this->session->userdata('id'))/8);	
+		
+		
+		$args["content"]="applicants/applicants_template";
+		$inner_args["applicant_content"]="applicants/photo_gallery";
+		$args["inner_args"]=$inner_args;
+		$args["auxiliar"] = TRUE;
+		$args["user_id"] = $this->session->userdata('id');
+		
+		
+		//SACA LAS FOTOS DE LA GALERIA DE ESTE USUARIO
+		$args["photos"] = $this->photos_model->get_photos($args["user_id"]);
+		//var_dump($args["photos"]);
+		
+		
+		if(!is_null($ope))
+		{
+			
+			switch($ope){
+				case 1://HACER FOTO DE PERFIL
+					if(!is_null($id_photo_objetivo) && !is_null($args["user_id"]) && is_numeric($id_photo_objetivo))
+					{
+						$nombre = $this->photos_model->get_name($id_photo_objetivo);
+						$this->user_model->set_profile_pic($args["user_id"],$nombre);
+						redirect(HOME."/user/photo_gallery");			
+					}
+					break;
+				case 2://ELIMINAR
+					$nombre = $this->photos_model->get_name($id_photo_objetivo);
+					if(!is_null($id_photo_objetivo) && !is_null($args["user_id"]) && is_numeric($id_photo_objetivo))
+					{
+						if($args['image_profile'] == $nombre)//si borro la foto del perfil
+						{
+							$this->photos_model->purgar(1,$nombre);//se purga(unlink) la foto de la carpeta profile
+							$this->photos_model->purgar(0,$id_photo_objetivo);//se purga(unlink) la foto de la carpeta profile
+							$this->user_model->set_profile_pic($args["user_id"]);//se setea NULL image_profile en users
+						}else
+						{
+							$this->photos_model->purgar(0,$id_photo_objetivo);//se purga(unlink) la foto de la carpeta gallery
+						}
+						
+						$this->photos_model->delete($id_photo_objetivo);	
+						redirect(HOME."/user/photo_gallery");		
+					}
+					break;
+			} 
+		}
+		
+		
+		$this->load->view('template',$args);
+	}
+
+
 	public function video_gallery($page=1,$ope=NULL,$id_video_objetivo=NULL)
 	{
 		$args = array();
@@ -145,7 +271,7 @@ class User extends CI_Controller {
 		$args["content"]="applicants/applicants_template";
 		$inner_args["applicant_content"]="applicants/video_gallery";
 		$args["inner_args"]=$inner_args;
-		
+		$args["auxiliar"] = TRUE;
 		$args["user_id"] = $this->session->userdata('id');
 		
 		if(!is_null($ope))

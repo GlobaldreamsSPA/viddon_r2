@@ -111,7 +111,7 @@
 					<textarea style="width: 97%;" type="text" name="comment" id="comment" Placeholder="Escribe un comentario..."></textarea>
 				<br>
 				<div id="post1">
-					<input type="button" class="btn"  value="Comentar" onclick="get()"/>										
+					<input type="button" class="btn"  value="Comentar" onclick="get()"/>								
 				</div>
 			</form>
 		</div>

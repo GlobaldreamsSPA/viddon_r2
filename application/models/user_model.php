@@ -32,6 +32,15 @@ class User_model extends CI_Model
 			$query = $this->db->get('users')->first_row('array');
 			return $query['id_main_video'];
 		}
+		
+		
+		function has_main_video($id_user)
+		{
+			if($this->get_main_video_id($id_user) == NULL)
+			{
+				return false;
+			}else return true;
+		}
 	
 	function set_main_video($id_user,$id_video_nuevo=NULL)
 	{
@@ -42,6 +51,42 @@ class User_model extends CI_Model
 		$this->db->where('id', $id_user);
 		$this->db->update('users', $data);
 	}
+	
+	function set_profile_pic($id_user,$name_photo_nueva=NULL)//$name_photo_nueva sale de la galeria de fotos
+	{
+		var_dump($name_photo_nueva);
+		//se carga la imagen desde la carpeta "gallery"
+		$img_galeria = LOCAL_GALLERY.$name_photo_nueva;
+		var_dump($img_galeria);
+		file_put_contents(LOCAL_USER_PROFILE_IMAGE.$name_photo_nueva, file_get_contents($img_galeria));//MUEVE LA IMAGEN A PROFILE
+		
+		$data = array
+				(
+				'image_profile' => $name_photo_nueva
+				);
+	
+		$this->db->where('id', $id_user);
+		$this->db->update('users', $data);
+		
+/*
+	$data = array(
+		'image_profile' => $id_video_nuevo
+	);
+
+$this->db->where('id', $id_user);
+$this->db->update('users', $data);
+	 
+*/
+	}
+	
+	function get_image_profile($user_id)
+	{
+		$this->db->select('image_profile');
+		$this->db->where('id', $user_id);
+		$query = $this->db->get('users')->first_row('array');
+		return $query['image_profile'];
+	}
+	
 	function update($profile)
 	{
 		$data = array(

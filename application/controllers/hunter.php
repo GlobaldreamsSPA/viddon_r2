@@ -491,8 +491,18 @@ class Hunter extends CI_Controller {
 				
 				foreach($id_applicants as $id)
 				{
-					$applicant_info=$this->user_model->select_applicant($id['user_id']);
-					$video_info= $this->videos_model->get_video_applicant($id['user_id']);
+					$applicant_info = $this->user_model->select_applicant($id['user_id']);
+					
+					if($this->user_model->has_main_video($id['user_id']))//Si tiene seteado el video principal
+					{
+						$video_info = $this->videos_model->get_applied_video_applicant($id['user_id'],$args["id_casting"]);//obtiene el video con el que se postuló
+					}
+					else //sino carga el primer video de los agregados
+					{
+						$video_info = $this->videos_model->get_video_applicant($id['user_id']);//saca primer video que tenga registrado
+					}
+					//var_dump($video_info);
+					
 					$applicant_info["apply_id"]= $id["id"]; 
 					$applicant_info["apply_state"]= $id["state"];
 					$applicant_info['tags'] = $this->skills_model->get_user_skills($id['user_id']);

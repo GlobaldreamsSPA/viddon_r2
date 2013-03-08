@@ -109,7 +109,7 @@
 											</p>
 										</div>
 										<div class="span1">
-											<a class="btn" href="<?php echo HOME.'/user/index/'.$applicant["id"] ?>">
+											<a class="btn" target="_blank" href="<?php echo HOME.'/user/index/'.$applicant["id"] ?>">
 												<i class="icon-search"></i>
 											</a>
 										</div>

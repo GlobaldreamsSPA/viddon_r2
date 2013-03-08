@@ -52,7 +52,7 @@
 								            <td style="vertical-align:middle;"><?php echo $applicant["observation"]?></td>
 								            <td  style="vertical-align:middle;" class="row center">
 									            <div class="span6">
-													<a class="btn" href="<?php echo HOME."/user/index/".$applicant["id"]; ?>">
+													<a class="btn" target="_blank" href="<?php echo HOME."/user/index/".$applicant["id"]; ?>">
 														<i class="icon-zoom-in"></i>                                            
 													</a>
 												</div>
