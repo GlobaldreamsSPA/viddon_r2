@@ -403,7 +403,7 @@ class Hunter extends CI_Controller {
 			redirect(HOME);
 	}
 
-	function applicants_list($id=NULL,$page=1,$applies_state=0,$filter_categories=NULL)
+	function applicants_list($id=NULL,$page=1,$applies_state=0,$sex='t',$eyes_color='t',$hair_color='t',$build='t',$age_range='t',$height_range='t',$skin_color='t',$filter_categories=NULL)
 	{
 		if($this->session->userdata('logged_in') && isset($id))
 		{
@@ -421,17 +421,32 @@ class Hunter extends CI_Controller {
 			$args["inner_args"]=$inner_args;
 			$args["skills"]= $this->skills_model->get_skills();
 
-			$temp[0]= "Limpiar";
+			$temp[-2]= "Limpiar";
  	 		$temp[-1]= "Todos";
  	 		$args["skills"] = $temp + $args["skills"];
 
+
+			$args["status"]= $temp + array(0=>"Sin Revisar",1=>"Aceptados",2=>"Rechazados",3=>"Todos");
+			
+			$args["build_list"]= $temp + array(0=>"Delgado",1=>"Normal",2=>"Grueso",3=>"Atletico");
+			
+			$args["sex_list"]= $temp + array(1=>"Femenino",2=>"Masculino");
+
+			$args["skin_list"]= $temp + array(0=>"Blanca",1=>"Morena", 2 =>"Negra");
+
+			$args["eyes_list"]= $temp + array(0=>"Verde",1=>"Azul", 2 =>"Gris",3=>"Casta&ntilde;o",4=>"Ambar",5=>"Pardos");
+
+			$args["hair_list"]= $temp + array(0=>"Casta&ntilde;o",1=>"Negro", 2 =>"Rubio",3=>"Blanco",4=>"Gris",5=>"Colorin",6=>"Otros");
+									
+			$args["height_list"] = $temp + array(0=>"150 cm o menos",1=>"150 cm",2=>"160 cm",3=>"170 cm",4=>"180 cm",5=>"190 cm",6=>"200 cm",7=>"200 cm o o m&aacutes");
+
+			$args["age_list"] = $temp + array(0=>"10 a&ntildeos_o_menos",1=>"10-15 a&ntildeos",2=>"15-20 a&ntildeos",3=>"20-25 a&ntildeos",4=>"20-30 a&ntildeos",5=>"30-35 a&ntildeos",6=>"35-40 a&ntildeos",7=>"40-45 anos o m&aacutes");	
+
+
 			$temp = $this->castings_model->get_full_casting($id);
 			$args["name_casting"]= $temp["title"];
-			
-			
-			
-			$args["status"]=array(0=>"Sin Revisar",1=>"Aceptados",2=>"Rechazados",3=>"Todos");
-			
+
+
 			if(!is_null($filter_categories))
 			{
 				$args["filter_categories_url"] = $filter_categories;			
@@ -457,6 +472,14 @@ class Hunter extends CI_Controller {
 
 			$args["page"]=$page;
 			$args["applies_state"]=$applies_state;
+			$args["sex"]=$sex;
+			$args["eyes_color"]=$eyes_color;
+			$args["hair_color"]=$hair_color;
+			$args["build"]=$build;
+			$args["height_range"]=$height_range;
+			$args["age_range"]=$age_range;
+			$args["skin_color"]=$skin_color;
+
 			
 			if($id_applicants!= 0)
 			{

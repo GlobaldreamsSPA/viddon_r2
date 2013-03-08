@@ -99,7 +99,7 @@
 								?>
 								</ul>
 								
-								<a class="MBT-readmore" href="<?php echo HOME.'/hunter/applicants_list/'.$casting["id"].'/1/0/' ?>" style="float: right;">Todos Los Postulantes >></a>
+								<a class="MBT-readmore" href="<?php echo HOME.'/hunter/applicants_list/'.$casting["id"].'/1/0/t/t/t/t/t/t/t/' ?>" style="float: right;">Todos Los Postulantes >></a>
 								<div class="space2"></div>
 								
 								<h3 id="profile" style="font-weight:bold;"> Seleccionados</h3>

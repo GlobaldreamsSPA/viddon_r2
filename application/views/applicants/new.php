@@ -135,7 +135,6 @@
 											<option selected="selected" value="1">Normal</option>
 											<option value="2">Grueso</option>
 											<option value="3">Atletico</option>
-											<option value="4">Obeso</option>
 										</select>
 									</div>
 								</div>

@@ -1,7 +1,7 @@
 <div class="content" id="content">
 	<div class="container-fluid">
 	  	<div class="row">
-	  		<div class="span8">
+	  		<div class="span9">
 	  			<div  style="border-radius: 5px; margin-left:3%;" id="variable" class="row-fluid">
 		  			<div style="padding: 2%;">
 		  				<?php $this->load->view($hunter_content);  ?>
@@ -9,7 +9,7 @@
 		  		</div>
 			 </div>
 		
-			<div class="span4">
+			<div class="span3">
 				<div style="border-radius: 5px; margin-left:8%; text-align:center;" id="grow" class="row-fluid">	
 					<div style="margin:7%;">
 						<h3 id="profile"> Estado Castings </h3>

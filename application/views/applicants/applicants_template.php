@@ -37,7 +37,7 @@
 <div class="content" id="content">
 	<div class="container-fluid">
 	  	<div class="row">
-	  		<div class="span8">
+	  		<div class="span9">
 	  			<div  style="border-radius: 5px; margin-left:3%;" id="variable" class="row-fluid">
 		  			<div style="padding: 2%;">
 		  				<?php $this->load->view($applicant_content);  ?>
@@ -45,7 +45,7 @@
 		  		</div>
 			</div>	
 		
-			<div class="span4">
+			<div class="span3">
 				<div  style="border-radius: 5px; margin-left:8%; text-align:center;" id="grow" class="row-fluid">
 					<h3 id="profile" >Casting recomendado</h3>
 					<img style="margin-top: 16px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
