@@ -14,6 +14,7 @@ class User extends CI_Controller {
 		$this->load->model('videos_model');
 		$this->load->model('skills_model');
 		$this->load->model('castings_model');
+		$this->load->model('photos_model');
 		
 	}
 
@@ -34,6 +35,7 @@ class User extends CI_Controller {
 		$args['public'] = $public;
 		$args["tags"] = $this->skills_model->get_user_skills($id);
 		$args["user"] = $this->user_model->welcome_name($id);
+		$args["photos"] = $this->photos_model->get_photos($id);
 		
 		if(isset($_POST["url_ytb"]))
 		{
@@ -107,7 +109,7 @@ class User extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
-	public function photo_gallery($page=1,$ope=NULL,$id_video_objetivo=NULL)
+	public function photo_gallery($page=1,$ope=NULL,$id_photo_objetivo=NULL) //TODO: TERMINAR
 	{
 		$args = array();
 		$public = FALSE;
@@ -148,22 +150,29 @@ class User extends CI_Controller {
 		$args["auxiliar"] = TRUE;
 		$args["user_id"] = $this->session->userdata('id');
 		
+		
+		//SACA LAS FOTOS DE ESTE USUARIO
+		$args["photos"] = $this->photos_model->get_photos($args["user_id"]);
+		//var_dump($args["photos"]);
+		
+		
 		if(!is_null($ope))
 		{
 			switch($ope){
 				case 1://HACER MAIN
-					if(!is_null($id_video_objetivo) && !is_null($args["user_id"]) && is_numeric($id_video_objetivo))
+					if(!is_null($id_photo_objetivo) && !is_null($args["user_id"]) && is_numeric($id_photo_objetivo))
 					{
-						$this->user_model->set_main_video($args["user_id"],$id_video_objetivo);
-						redirect(HOME."/user/video_gallery");			
+						$nombre = $this->photos_model->get_name($id_photo_objetivo);
+						$this->user_model->set_profile_pic($args["user_id"],$nombre);
+						redirect(HOME."/user/photo_gallery");			
 					}
 					break;
 				case 2://ELIMINAR
-					if(!is_null($id_video_objetivo) && !is_null($args["user_id"]) && is_numeric($id_video_objetivo))
+					if(!is_null($id_photo_objetivo) && !is_null($args["user_id"]) && is_numeric($id_photo_objetivo))
 					{
-						if($args['id_main_video'] == $id_video_objetivo)
-							$this->user_model->set_main_video($args["user_id"]);
-						$this->videos_model->delete($id_video_objetivo);	
+						if($args['id_main_video'] == $id_photo_objetivo)
+							$this->user_model->set_profile_pic($args["user_id"]);
+						$this->photos_model->delete($id_photo_objetivo);	
 						redirect(HOME."/user/video_gallery");		
 					}
 					break;

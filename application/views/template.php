@@ -25,8 +25,8 @@
 	<script src="<?php echo base_url()?>js/jquery.cleditor.js"></script>
 	<script src="<?php echo base_url()?>js/jquery.uniform.js"></script>
 	<script src="<?php echo base_url()?>js/jquery.dataTables.js"></script>
-	<script src="<?php echo base_url()?>js/bootstrap-datepicker.js"></script>
-	<script src="<?php echo base_url()?>js/jquery.ba-resize.js"></script>
+	<script src="<?php echo base_url()?>js/bootstrap-datepicker.js"></script>	
+	<script src="<?php echo base_url()?>js/chosen.jquery.js"></script>
 
 
 </head>

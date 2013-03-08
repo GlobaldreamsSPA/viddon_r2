@@ -64,18 +64,55 @@
 					if(!$public)
 					{ 
 					?>
-		  				<a class="MBT-readmore" style="float: right;" ref="<?php echo HOME.'/user/video_gallery/';?>">Ver m&aacute;s >></a>
+		  				<a class="MBT-readmore" style="float: right;" href="<?php echo HOME.'/user/video_gallery/';?>">Ver m&aacute;s >></a>
 		  			<?php
 					} 
 		  			?>
 		  			<div class="space2"></div>						
 					<h3 id="profile" >Galeria Fotos</h3>
-					<img style="margin-top: 16px;"  src="<?php echo HOME.'/img/dummy_galeria_fotos.png';?>">
+					<?php //explicativo en caso de estar en video_gallery
+					if(isset($auxiliar))
+					{ 
+					?>
+					<span class="label label-important">Así se verá tu galeria pública</span>
+		  			<?php
+					}
+					?> 
+						
+					<?php
+					//var_dump($photos);
+						if(isset($photos))
+						{?>
+							<div id="galeria_publica">
+								<ul style="list-style: none;">
+									<?php
+									$i = 0;
+									foreach($photos as $photo)
+									{
+										$i++;
+										?>
+										<li><img src="<?php echo GALLERY.$photo['name'];?>" alt="<?php echo $photo['description'];?>" title="<?php echo $photo['description'];?>" /></li>
+							  <?php	if($i>=2)break; //SACA SÓLO 2 FOTOS
+									}?>
+								</ul>
+							</div>
+							
+				  <?php	} 
+						else
+						{
+						?>
+						<img style="margin-top: 16px;"  src="<?php echo HOME.'/img/dummy_galeria_fotos.png';?>">
+						
+						<?php
+						}?>
+					
+					
+					
 					<?php //Si está en su perfil, muestra enlace a la galeria de fotos
 					if(!$public)
 					{ 
 					?>
-		  				<a class="MBT-readmore" style="float: right;" ref="<?php echo HOME.'/user/photo_gallery/';?>">Ver m&aacute;s >></a>
+		  				<a class="MBT-readmore" style="float: right;" href="<?php echo HOME.'/user/photo_gallery/';?>">Ver m&aacute;s >></a>
 		  			<?php
 					} 
 		  			?>
