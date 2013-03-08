@@ -17,6 +17,23 @@ class Photos_model extends CI_Model
     	$this->db->delete('photos', array('id' => $photo_id));
 		
     }
+	
+	function purgar($from, $id_photo)
+	{
+		$file = "";
+		if($from == 1)//desde carpeta profile
+		{
+			//$id_photo pasa a ser el nombre directamente
+			$file = LOCAL_USER_PROFILE_IMAGE.$id_photo;
+		}
+		else//desde carpeta gallery
+		{
+			$name = $this->get_name($id_photo);
+			$file = LOCAL_GALLERY.$name;
+			
+		}
+		unlink($file);
+	}
 
 	
 	function update($photo)
@@ -51,5 +68,20 @@ class Photos_model extends CI_Model
 		return $query['name'];
     	
 	}
+	
+	function get_last_indicator($id_user) //obtiene el valor "indicador" del name "userid_indicador.formato" de la última foto subida por el usuario
+	{
+		$this->db->select('name');
+		$this->db->from('photos');
+		$this->db->where('user_id',$id_user);
+		$this->db->order_by('id',"desc");
+		$query = $this->db->get()->first_row('array');
+		$resultado = explode(".",$query['name']);
+		var_dump($resultado);
+		$resultado_dos = explode("_",$resultado[0]);
+		return $resultado_dos[1];//retorna el valor indicador del "name" de la foto guardado en la base de datos
+    	
+	}
+	
     
 }

@@ -54,22 +54,19 @@ class User_model extends CI_Model
 	
 	function set_profile_pic($id_user,$name_photo_nueva=NULL)//$name_photo_nueva sale de la galeria de fotos
 	{
+		var_dump($name_photo_nueva);
 		//se carga la imagen desde la carpeta "gallery"
+		$img_galeria = LOCAL_GALLERY.$name_photo_nueva;
+		var_dump($img_galeria);
+		file_put_contents(LOCAL_USER_PROFILE_IMAGE.$name_photo_nueva, file_get_contents($img_galeria));//MUEVE LA IMAGEN A PROFILE
 		
-		//se obtiene el "image_profile" previo
-		
-		//se reemplaza con el nombre existente(previo) en la carpeta "profile"  //así no es necesario actualizar el registro
-		if(is_null($name_photo_nueva))
-		{
-			$data = array
-					(
-					'image_profile' => $id_video_nuevo
-					);
-
-			$this->db->where('id', $id_user);
-			$this->db->update('users', $data);
-		}
-		return true;
+		$data = array
+				(
+				'image_profile' => $name_photo_nueva
+				);
+	
+		$this->db->where('id', $id_user);
+		$this->db->update('users', $data);
 		
 /*
 	$data = array(
@@ -80,6 +77,14 @@ $this->db->where('id', $id_user);
 $this->db->update('users', $data);
 	 
 */
+	}
+	
+	function get_image_profile($user_id)
+	{
+		$this->db->select('image_profile');
+		$this->db->where('id', $user_id);
+		$query = $this->db->get('users')->first_row('array');
+		return $query['image_profile'];
 	}
 	
 	function update($profile)

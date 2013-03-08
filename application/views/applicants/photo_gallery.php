@@ -66,7 +66,7 @@
 									</div>
 									<div class="modal-body">
 											<div>	
-												<input name="url_ytb" style="width:96%" type="text" placeholder="Dirección - URL foto" value="">
+												<input name="url_photo" style="width:96%" type="text" placeholder="Dirección - URL foto" value="">
 												ó											
 												<div style="margin-left: -10px; margin-top: -20px;" id="image_upload">
 												<h5>Sube una imagen de t&iacute</h5>
