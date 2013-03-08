@@ -1,3 +1,15 @@
+<style>
+.glow {
+background-color:none;
+-webkit-border-radius: 15px;
+-moz-border-radius: 15px;
+border-radius: 15px;
+-webkit-box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, .75);
+-moz-box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, .75);
+box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, .75)
+}
+</style>
+
 <div class="row-fluid">		
 	<div class="span3 user-profile-left">
 		<div class="row">
@@ -80,17 +92,7 @@
 						<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
 					</div>
 				</form>
-
-			</div>
-									
-									
-			
-    	
-    	
-    	
-    	
-    	
-    	
+			</div>    	<!-- MODAL-->
     	
     	<?php //var_dump($videos);
     	//video[0] => titulo
@@ -101,12 +103,14 @@
     	foreach($videos as $video){
     		$i++;
 			if($i%2 == 0 )								
-    			echo '<div class="span6">';	
+    			if($video[3] == $id_main_video) echo '<div class="span6 glow">'; //carga el efecto de "brillo"
+				else echo '<div class="span6">';	
 			else
 				{
 				echo '<div class="space1"></div>';
 				echo '<div class="row">';
-				echo '<div class="span6">';
+				if($video[3] == $id_main_video) echo '<div class="span6 glow">';//carga el efecto de "brillo"
+				else echo '<div class="span6">';
 				}		
 				
     	?>

@@ -107,6 +107,74 @@ class User extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
+	public function photo_gallery($page=1,$ope=NULL,$id_video_objetivo=NULL)
+	{
+		$args = array();
+		$public = FALSE;
+		$id_user = NULL;
+		
+		if($this->session->userdata('id') === FALSE || ($id_user != NULL && $id_user != $this->session->userdata('id')))
+			$public = TRUE;
+		else
+		{
+			$id = $this->session->userdata('id');
+			$public = FALSE;
+		}
+
+		$args = $this->user_model->select($id);
+		$args['public'] = $public;
+		$args["tags"] = $this->skills_model->get_user_skills($id);
+		$args["user"] = $this->user_model->welcome_name($id);
+
+		if($this->videos_model->verify_videos($id) != 1)
+		{
+			$args["postulation_flag"]=false;
+			$args["postulation_message"]="Necesitas Tener Videos para poder postular";
+		}
+		else {
+			$args["postulation_flag"]=true;
+		}
+		
+		//AHORA OBTENGO LOS ELEMENTOS NECESARIOS PARA LA GALERIA
+		$args['videos'] = $this->videos_model->get_videos_by_user($this->session->userdata('id'),$page);
+		$args['id_main_video'] =$this->user_model->get_main_video_id($this->session->userdata('id'));
+		$args['page']=$page;
+		$args["chunks"]=ceil($this->videos_model->count_videos_by_user($this->session->userdata('id'))/8);	
+		
+		
+		$args["content"]="applicants/applicants_template";
+		$inner_args["applicant_content"]="applicants/photo_gallery";
+		$args["inner_args"]=$inner_args;
+		$args["auxiliar"] = TRUE;
+		$args["user_id"] = $this->session->userdata('id');
+		
+		if(!is_null($ope))
+		{
+			switch($ope){
+				case 1://HACER MAIN
+					if(!is_null($id_video_objetivo) && !is_null($args["user_id"]) && is_numeric($id_video_objetivo))
+					{
+						$this->user_model->set_main_video($args["user_id"],$id_video_objetivo);
+						redirect(HOME."/user/video_gallery");			
+					}
+					break;
+				case 2://ELIMINAR
+					if(!is_null($id_video_objetivo) && !is_null($args["user_id"]) && is_numeric($id_video_objetivo))
+					{
+						if($args['id_main_video'] == $id_video_objetivo)
+							$this->user_model->set_main_video($args["user_id"]);
+						$this->videos_model->delete($id_video_objetivo);	
+						redirect(HOME."/user/video_gallery");		
+					}
+					break;
+			} 
+		}
+		
+		
+		$this->load->view('template',$args);
+	}
+
+
 	public function video_gallery($page=1,$ope=NULL,$id_video_objetivo=NULL)
 	{
 		$args = array();
@@ -145,7 +213,7 @@ class User extends CI_Controller {
 		$args["content"]="applicants/applicants_template";
 		$inner_args["applicant_content"]="applicants/video_gallery";
 		$args["inner_args"]=$inner_args;
-		
+		$args["auxiliar"] = TRUE;
 		$args["user_id"] = $this->session->userdata('id');
 		
 		if(!is_null($ope))

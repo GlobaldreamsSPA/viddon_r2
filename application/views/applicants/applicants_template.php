@@ -51,6 +51,14 @@
 					<img style="margin-top: 16px;" src="<?php echo HOME.'/img/casting_image/mini_banner_c1.png';?>">
 		  			<div class="space2"></div>
 					<h3 id="profile" >Galeria Videos</h3>
+					<?php //explicativo en caso de estar en video_gallery
+					if(isset($auxiliar))
+					{ 
+					?>
+					<span class="label label-important">Así se verá tu galeria pública</span>
+		  			<?php
+					}
+					?> 
 					<img style="margin-top: 16px;" src="<?php echo HOME.'/img/dummy_galeria_videos.png';?>">
 					<?php //Si está en su perfil, muestra enlace a la galeria de videos
 					if(!$public)
