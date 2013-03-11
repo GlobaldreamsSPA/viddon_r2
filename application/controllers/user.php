@@ -410,14 +410,15 @@ class User extends CI_Controller {
 				$profile['hobbies'] = $this->input->post('hobbies');
 				$profile['dreams'] = $this->input->post('dreams');
 				$profile['skills']  = $this->input->post('skills');
-				$profile['sex'] = intval($this->input->post('sex'));
+				$profile['sex'] = $this->input->post('sex');
 				$profile['age'] = $this->input->post('age');
-				$profile['height'] = intval($this->input->post('height'));
-				$profile['color_skin'] = $this->input->post('skin-color');
-				$profile['color_eye'] = intval($this->input->post('eyes-color'));
-				$profile['color_hair'] = $this->input->post('hair-color');
+				$profile['height'] = $this->input->post('height');
+				$profile['color_skin'] = $this->input->post('color_skin');
+				$profile['color_eye'] = $this->input->post('color_eyes');
+				$profile['color_hair'] = $this->input->post('color_hair');
 				$profile['build'] = $this->input->post('build');
-				
+
+
 				//ingresar los datos a la base de datos
 				$this->user_model->update($profile);
 				
@@ -452,7 +453,7 @@ class User extends CI_Controller {
 				$height[$i] = $i;
 			}
 
-
+			$sex= array(0=>"Femenino", 1 =>"Masculino");
 			$skin= array(0=>"Blanca",1=>"Morena", 2 =>"Negra");
 			$eyes= array(0=>"Verde",1=>"Azul", 2 =>"Gris",3=>"Casta&ntilde;o",4=>"Ambar",5=>"Pardos");
 			$hair= array(0=>"Casta&ntilde;o",1=>"Negro", 2 =>"Rubio",3=>"Blanco",4=>"Gris",5=>"Colorin",6=>"Otros");
@@ -463,7 +464,8 @@ class User extends CI_Controller {
 				'height' => $height,
 				'eyes' => $eyes,
 				'skin' => $skin,
-				'hair' => $hair
+				'hair' => $hair,
+				'sex'  => $sex
 				);
 				
 			$args["content"]="applicants/applicants_template";

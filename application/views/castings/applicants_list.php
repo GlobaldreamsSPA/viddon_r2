@@ -15,11 +15,13 @@
 								
 									<?php
 
-
-
+									$name= "";
 									echo "<label style='font-size:15px;'> Estado Postulaci&oacute;n </label>"; 
 									echo form_dropdown('status', $status,$applies_state,"id='apply_status' style='width:100%'");
 									
+									echo "<label style='font-size:15px;'> Nombre Postulante </label>"; 
+									echo form_input('name',$name,"class='chzn-search' style='width:92%; border: 1px solid #aaa;'");
+
 									echo "<label style='font-size:15px;'> Habilidades </label>";
 									echo form_multiselect('skills[]', $skills, $filter_categories,"class='chzn-select chosen_filter' id='filter_a1' style='width:100%;' data-placeholder='Elige los tags...'");
 									

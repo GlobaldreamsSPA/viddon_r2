@@ -80,10 +80,10 @@
 								<div class="row">									
 										<div class="span4">
 											<h5>Sexo</h5>
-											<select style='width: 100%;' class="span4" name="sex">
-												<option value="0" <?php if(isset($update_values) && $update_values["sex"]==0) echo "selected='selected'";?>>Femenino</option>
-												<option value="1"  <?php if(isset($update_values) && $update_values["sex"]==1) echo "selected='selected'";?>>Masculino</option>
-											</select>
+											<?php
+												if(isset($update_values)) $sex_set=$update_values["sex"]; else $sex_set=2; 
+												echo form_dropdown('sex', $sex, $sex_set, "style='width: 100%;'") 
+											?>
 										</div>
 										
 										<div class="span4">
@@ -107,21 +107,21 @@
 											<h5>Color de piel</h5>
 											<?php
 												if(isset($update_values)) $skin_set=$update_values["color_skin"]; else $skin_set=0; 
-												echo form_dropdown('height', $skin, $skin_set, "style='width: 100%;'") 
+												echo form_dropdown('color_skin', $skin, $skin_set, "style='width: 100%;'") 
 											?>
 										</div>
 										<div class="span4">
 										<h5>Color de ojos</h5>
 											<?php
 												if(isset($update_values)) $eye_set=$update_values["color_eye"]; else $eye_set=0; 
-												echo form_dropdown('height', $eyes, $eye_set, "style='width: 100%;'") 
+												echo form_dropdown('color_eyes', $eyes, $eye_set, "style='width: 100%;'") 
 											?>
 										</div>
 										<div class="span4">
 											<h5>Color de cabello</h5>
 											<?php
 													if(isset($update_values)) $hair_set=$update_values["color_hair"]; else $hair_set=0; 
-													echo form_dropdown('height', $hair, $hair_set, "style='width: 100%;'") 
+													echo form_dropdown('color_hair', $hair, $hair_set, "style='width: 100%;'") 
 											?>
 										</div>										
 								</div>
