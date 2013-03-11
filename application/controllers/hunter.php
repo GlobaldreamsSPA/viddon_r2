@@ -415,7 +415,7 @@ class Hunter extends CI_Controller {
 			redirect(HOME);
 	}
 
-	function applicants_list($id=NULL,$page=1,$applies_state=0,$sex=-2,$build=-2,$skin_color=-2,$eyes_color=-2,$hair_color=-2,$height_range=-2,$age_range=-2,$filter_categories=-2)
+	function applicants_list($id=NULL,$page=1,$applies_state=0,$sex=-2,$build=-2,$skin_color=-2,$eyes_color=-2,$hair_color=-2,$height_range=-2,$age_range=-2,$filter_categories=-2,$name_p='_n')
 	{
 		if($this->session->userdata('logged_in') && isset($id))
 		{
@@ -495,8 +495,11 @@ class Hunter extends CI_Controller {
 			
 			$args["height_range_url"]=$height_range;
 			$args["age_range_url"]=$age_range;
-			
-			
+
+			$args["skin_color_url"]=$skin_color;
+			$args["name_p"]=$name_p;
+
+
 			if($sex != -2)
 				$args["sex"]=explode("_",$sex);
 			else

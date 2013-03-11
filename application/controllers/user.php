@@ -18,6 +18,11 @@ class User extends CI_Controller {
 		
 	}
 
+	public function comments()
+	{
+		echo "OK";
+	}
+
 	public function index($id = NULL)
 	{
 		$args = array();
@@ -63,20 +68,15 @@ class User extends CI_Controller {
 		if(isset($_POST["url_photo"]))
 		{
 			$ultimo_indicador = $this->photos_model->get_last_indicator($id);
-			var_dump($_FILES);
-			var_dump($_POST);
 			
 			$parts = array();
 			
 			$temporal = parse_url($_POST["url_photo"]);
-			var_dump($temporal);
 			
 			$url = $_POST["url_photo"];
 			$img_name = $id."_".($ultimo_indicador+1).".jpeg";
 			$img = LOCAL_GALLERY.$img_name;
-			var_dump($img);
 			$parts = explode("/", $temporal['path']);
-			var_dump($parts);
 			
 			
 			file_put_contents($img,file_get_contents($url));//GUARDA LA IMAGEN
@@ -178,7 +178,6 @@ class User extends CI_Controller {
 		//AHORA OBTENGO LOS ELEMENTOS NECESARIOS PARA LA GALERIA
 		$args['videos'] = $this->videos_model->get_videos_by_user($this->session->userdata('id'),$page);
 		$args['image_profile'] =$this->user_model->get_image_profile($this->session->userdata('id'));
-		var_dump($args['image_profile']);
 		$args['page']=$page;
 		$args["chunks"]=ceil($this->videos_model->count_videos_by_user($this->session->userdata('id'))/8);	
 		
@@ -192,7 +191,6 @@ class User extends CI_Controller {
 		
 		//SACA LAS FOTOS DE LA GALERIA DE ESTE USUARIO
 		$args["photos"] = $this->photos_model->get_photos($args["user_id"]);
-		//var_dump($args["photos"]);
 		
 		
 		if(!is_null($ope))
@@ -457,6 +455,7 @@ class User extends CI_Controller {
 			$skin= array(0=>"Blanca",1=>"Morena", 2 =>"Negra");
 			$eyes= array(0=>"Verde",1=>"Azul", 2 =>"Gris",3=>"Casta&ntilde;o",4=>"Ambar",5=>"Pardos");
 			$hair= array(0=>"Casta&ntilde;o",1=>"Negro", 2 =>"Rubio",3=>"Blanco",4=>"Gris",5=>"Colorin",6=>"Otros");
+			$build= array(0=>"Delgado",1=>"Normal",2=>"Grueso",3=>"Atletico");
 			
 			$args = array(
 				'skills' => $skills,
@@ -465,7 +464,8 @@ class User extends CI_Controller {
 				'eyes' => $eyes,
 				'skin' => $skin,
 				'hair' => $hair,
-				'sex'  => $sex
+				'sex'  => $sex,
+				'build' => $build
 				);
 				
 			$args["content"]="applicants/applicants_template";

@@ -1,0 +1,23 @@
+#s3slider {
+    width: 750px; /* important to be same as image width */
+    height: 416px; /* important to be same as image height */
+    position: relative; /* important */
+    overflow: hidden; /* important */
+}
+
+#s3sliderContent {
+    width: 750px; /* important to be same as image width or wider */
+    position: absolute; /* important */
+    top: 0; /* important */
+    margin-left: 0; /* important */
+}
+
+.s3sliderImage {
+    float: left; /* important */
+    position: relative; /* important */
+    display: none; /* important */
+}
+ 
+.clear {
+    clear: both;
+}

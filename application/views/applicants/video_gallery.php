@@ -1,12 +1,7 @@
 <style>
 .glow {
-background-color:none;
--webkit-border-radius: 15px;
--moz-border-radius: 15px;
-border-radius: 15px;
--webkit-box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, .75);
--moz-box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, .75);
-box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, .75)
+border: 1px solid #4C3C1B;
+ background-color: #EFEECB;
 }
 </style>
 
@@ -103,33 +98,33 @@ box-shadow: 0px 0px 15px 5px rgba(255, 255, 190, .75)
     	foreach($videos as $video){
     		$i++;
 			if($i%2 == 0 )								
-    			if($video[3] == $id_main_video) echo '<div class="span6 glow">'; //carga el efecto de "brillo"
-				else echo '<div class="span6">';	
+    			if($video[3] == $id_main_video) echo '<div style="padding:8px;" title="Video Principal" class="span6 glow">'; //carga el efecto de "brillo"
+				else echo '<div style="padding:8px;" class="span6">';	
 			else
 				{
 				echo '<div class="space1"></div>';
 				echo '<div class="row">';
-				if($video[3] == $id_main_video) echo '<div class="span6 glow">';//carga el efecto de "brillo"
-				else echo '<div class="span6">';
+				if($video[3] == $id_main_video) echo '<div style="padding:8px;" title="Video Principal" class="span6 glow">';//carga el efecto de "brillo"
+				else echo '<div style="padding:8px;" class="span6">';
 				}		
 				
     	?>
     			
     			<div>
 						<div style="height: 15px !important;" class="span10">
-							<h3 id="profile" ><?php echo $video[0]; ?></h5>
+							<label style="font-size: 150%;" id="profile" ><?php echo $video[0]; ?></label>
 						</div>
 						<?php if(!$public) {?>
-							<div style="margin-top: 20px;" class="span1">
+							<div class="span1">
 								<a class="btn-del" title="Establecer como principal" href="<?php echo HOME."/user/video_gallery/".$page."/1/".$video[3];?>" class="btn btn-primary"><i class="icon-star-empty"></i></a>
 							</div>
-							<div style="margin-top: 20px; margin-left: 1px;" class="span1">
+							<div style="margin-left: 5px;" class="span1">
 								<a class="btn-del" title="Eliminar video" href="<?php echo HOME."/user/video_gallery/".$page."/2/".$video[3];?>" class="btn btn-primary"><i class="icon-remove"></i></a>
 							</div>
 							
 						<?php } ?>
 				</div>
-	    		<iframe width="96%" height="180px" src="http://www.youtube.com/embed/<?php echo $video[1].'?rel=0'?>" frameborder="0" allowfullscreen></iframe>	
+	    		<iframe width="100%" height="180px" src="http://www.youtube.com/embed/<?php echo $video[1].'?rel=0'?>" frameborder="0" allowfullscreen></iframe>	
 				
 			</div>
 	    <?php 

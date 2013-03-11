@@ -103,7 +103,7 @@
 			</label>
 		</div>
 		-->
-		<div class="justify profile-content"><?php echo $video_description;?></div>
+		<div style= "overflow-y: scroll; min-height: 110px;"class="justify"><?php echo $video_description;?></div>
 		
 		<div id="facebook" style="padding-top:40px;">
 			<form name="frm">
@@ -146,8 +146,6 @@
 					<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
 				</div>
 			</form>
->>>>>>> f9646c98d3015d85794cd6cd770893ae3ed9429d
-
 		</div>
 								
 		<div style="padding-left: 38%; background-color: black; padding-top: 30%; padding-bottom: 30%;  border: 1px solid #d0d0d0;">

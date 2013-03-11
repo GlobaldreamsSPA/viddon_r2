@@ -247,18 +247,43 @@
 		/* comentarios perfil usuario*/
 		function get()
 		{
-			 var input = $('#comment').val();
+			var input = $('#comment').val();
 			 
-			 if ( $('#comment').val() == '' )
-			 {
-			 	alert('Debes escribir un comentario antes de Enviarlo. Intenta nuevamente');
-			 }
-			 else
-			 {
-			 	$('#post1').prepend('<img src="../img/profile/user.jpg" width="40px" height="40px"style="display:inline;float:left;">&nbsp;'+'<span style="color:gray;font-family:times new roman;"> Usuario </span> &nbsp;'+input + '<br/><br/> <hr>');
-			 }
-			 $('#comment').val('');
-		};
+			if ( $('#comment').val() == '' )
+			{
+				alert('Debes escribir un comentario antes de Enviarlo. Intenta nuevamente');
+			}
+			else
+			{
+				document.getElementById('comment').setAttribute('disabled','');
+				document.getElementById('post1').getElementsByTagName('input')[0].setAttribute('disabled', '');
+				
+				var xmlhttp;
+
+				if (window.XMLHttpRequest)
+				{
+				  	xmlhttp = new XMLHttpRequest();
+				}
+				else
+				{
+				  	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.onreadystatechange=function()
+				{
+					if (xmlhttp.readyState==4 && xmlhttp.status==200)
+					{
+				    	$('#post1').prepend('<img src="../img/profile/user.jpg" width="40px" height="40px"style="display:inline;float:left;">&nbsp;'+'<span style="color:gray;font-family:times new roman;"> Usuario </span> &nbsp;'+input + '<br/><br/> <hr>');
+					}
+				}
+				
+				xmlhttp.open("POST", "<?php echo HOME ?>/user/comments", false);
+				xmlhttp.send();
+			}
+
+			document.getElementById('comment').removeAttribute('disabled');
+			document.getElementById('post1').getElementsByTagName('input')[0].removeAttribute('disabled');
+			$('#comment').val('');
+		}
 		 
 		if($(".chzn-select").length > 0)
 			$(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({allow_single_deselect:true});
@@ -412,7 +437,40 @@
 			$('#filter_a2').trigger('change');
 		}
 
+		var update_input_filter = function (event) 
+		{
+			
+			var regExp1 = new RegExp(event.data.regexp); 
+	        var result = regExp1.exec($(event.data.target).attr("href"));
+	        var temp = (""+result).substr(0,(""+result).length - 1);
+	        
+	        temp = temp.substr(0,temp.lastIndexOf('/')+1)
+	        
 
+
+	        var temp2 = this.value.split(" ");
+	        var uri="";
+
+	        $.each(temp2, function(index, value) {
+			   	uri= uri + value+"_";
+			});
+
+			uri= uri.substr(0,uri.length - 1);
+			if(uri=="")
+				uri="_n";
+
+			
+			result = temp + uri + "/";
+			    
+			$(event.data.target).attr("href",$(event.data.target).attr("href").replace(regExp1,result));
+
+		};
+
+		if($(".filter_input_a1").length > 0)
+		{
+			$(".filter_input_a1").change({regexp: '/[0-9_-]+/[A-Za-z_ñ]+/',target: '#filter_button'},update_input_filter);
+			$('.filter_input_a1').trigger('change');
+		}
 		
 
 		var update_state_filter = function (event) 
