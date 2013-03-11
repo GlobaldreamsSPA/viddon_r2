@@ -247,43 +247,18 @@
 		/* comentarios perfil usuario*/
 		function get()
 		{
-			var input = $('#comment').val();
+			 var input = $('#comment').val();
 			 
-			if ( $('#comment').val() == '' )
-			{
-				alert('Debes escribir un comentario antes de Enviarlo. Intenta nuevamente');
-			}
-			else
-			{
-				document.getElementById('comment').setAttribute('disabled','');
-				document.getElementById('post1').getElementsByTagName('input')[0].setAttribute('disabled', '');
-				
-				var xmlhttp;
-
-				if (window.XMLHttpRequest)
-				{
-				  	xmlhttp = new XMLHttpRequest();
-				}
-				else
-				{
-				  	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-				}
-				xmlhttp.onreadystatechange=function()
-				{
-					if (xmlhttp.readyState==4 && xmlhttp.status==200)
-					{
-				    	$('#post1').prepend('<img src="../img/profile/user.jpg" width="40px" height="40px"style="display:inline;float:left;">&nbsp;'+'<span style="color:gray;font-family:times new roman;"> Usuario </span> &nbsp;'+input + '<br/><br/> <hr>');
-					}
-				}
-				
-				xmlhttp.open("POST", "<?php echo HOME ?>/user/comments", false);
-				xmlhttp.send();
-			}
-
-			document.getElementById('comment').removeAttribute('disabled');
-			document.getElementById('post1').getElementsByTagName('input')[0].removeAttribute('disabled');
-			$('#comment').val('');
-		}
+			 if ( $('#comment').val() == '' )
+			 {
+			 	alert('Debes escribir un comentario antes de Enviarlo. Intenta nuevamente');
+			 }
+			 else
+			 {
+			 	$('#post1').prepend('<img src="../img/profile/user.jpg" width="40px" height="40px"style="display:inline;float:left;">&nbsp;'+'<span style="color:gray;font-family:times new roman;"> Usuario </span> &nbsp;'+input + '<br/><br/> <hr>');
+			 }
+			 $('#comment').val('');
+		};
 		 
 		if($(".chzn-select").length > 0)
 			$(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({allow_single_deselect:true});
