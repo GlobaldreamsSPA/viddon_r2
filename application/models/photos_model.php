@@ -38,7 +38,6 @@ class Photos_model extends CI_Model
 	
 	function update($photo)
     {
-    	//var_dump("$casting");
     	$data = array(
 				'name' => $photo['name'],
 				'description' => $photo['description']
@@ -77,7 +76,6 @@ class Photos_model extends CI_Model
 		$this->db->order_by('id',"desc");
 		$query = $this->db->get()->first_row('array');
 		$resultado = explode(".",$query['name']);
-		var_dump($resultado);
 		$resultado_dos = explode("_",$resultado[0]);
 		return $resultado_dos[1];//retorna el valor indicador del "name" de la foto guardado en la base de datos
     	

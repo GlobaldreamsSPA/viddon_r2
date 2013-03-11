@@ -92,21 +92,22 @@
 							
 						
 					    	<ul class="thumbnails" style="width:100%;"> <!-- ABRE LOS THUMBNAILS -->
-					    	<?php //var_dump($videos);
-					    	//video[0] => titulo
-					    	//video[1]=> link
-					    	//video[2]=> descripcion
-					    	//video[3] => id del video
+					    	<?php 
 					    	$i=0;
-					    	foreach($photos as $photo)
-					    	{
-					    		/*	
+					    	foreach($photos as $photo){
 					    		$i++;
 								if($i%2 == 0 )								
-					    			echo '<li class="span4">';	
-								 */								
+					    			if($photo["id"] == $id_main_video) echo '<div style="padding:8px;" title="Video Principal" class="span6 glow">'; //carga el efecto de "brillo"
+									else echo '<div style="padding:8px;" class="span6">';	
+								else
+									{
+									echo '<div class="space1"></div>';
+									echo '<div class="row">';
+									if($photo["id"] == $id_main_video) echo '<div style="padding:8px;" title="Video Principal" class="span6 glow">';//carga el efecto de "brillo"
+									else echo '<div style="padding:8px;" class="span6">';
+									}								
 					    	?>
-					    		<div>
+					    		<div class="row">
 									<?php if(!$public) {?>
 										<div style="margin-top: 20px;" class="span1">
 											<a class="btn-del" title="Establecer como foto de perfil" href="<?php echo HOME."/user/photo_gallery/".$page."/1/".$photo['id'];?>" class="btn btn-primary"><i class="icon-star-empty"></i></a>
@@ -117,13 +118,19 @@
 										
 									<?php } ?>
 								</div>
-						    		<li class="span4">
-							            <a href="#" class="thumbnail"><!-- ABRA VISOR DE GALERIA -->
+						    	<li class="span12">
+							        <a href="#" class="thumbnail"><!-- ABRA VISOR DE GALERIA -->
 										<img data-src="<?php echo GALLERY.$photo['name'];?>" alt="<?php echo $photo['description'];?>" title="<?php echo $photo['description'];?>" style="width: 100%; height: 150px;" src="<?php echo GALLERY.$photo['name'];?>">              
-										</a>
-						            </li>
+									</a>
+						        </li>
+						    </div>
+
 						            
 							<?php 
+							if($i%2 == 0 )								
+								echo '</div>';	
+							if($i%2 != 0 && $i == count($videos))
+								echo '</div>';	
 							}?>
 							</ul>
 						   
