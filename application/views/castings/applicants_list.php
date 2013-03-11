@@ -14,36 +14,40 @@
 							
 								
 									<?php
+
+
+
 									echo "<label style='font-size:15px;'> Estado Postulaci&oacute;n </label>"; 
 									echo form_dropdown('status', $status,$applies_state,"id='apply_status' style='width:100%'");
 									
 									echo "<label style='font-size:15px;'> Habilidades </label>";
-									echo form_multiselect('skills[]', $skills, $filter_categories,"class='chzn-select' id='filter' style='width:100%' data-placeholder='Elige los tags...'");
+									echo form_multiselect('skills[]', $skills, $filter_categories,"class='chzn-select chosen_filter' id='filter_a1' style='width:100%;' data-placeholder='Elige los tags...'");
 									
 									echo "<label style='font-size:15px;'> Sexo </label>";
-									echo form_multiselect('sex[]', $sex_list, $filter_categories,"class='chzn-select' style='width:100%' data-placeholder='Elige sexo ...'");
+									echo form_multiselect('sex[]', $sex_list, $sex,"class='chzn-select chosen_filter' id='filter_a2' style='width:100%' data-placeholder='Elige sexo ...'");
 								
 									echo "<label style='font-size:15px;'> Contextura </label>";
-									echo form_multiselect('build[]', $build_list, $filter_categories,"class='chzn-select' style='width:100%' data-placeholder='Elige contextura ...'");
+									echo form_multiselect('build[]', $build_list, $build,"class='chzn-select chosen_filter' id='filter_a3' style='width:100%' data-placeholder='Elige contextura ...'");
 									
 									echo "<label style='font-size:15px;'> Color de piel </label>";
-									echo form_multiselect('skin[]', $skin_list, $filter_categories,"class='chzn-select' style='width:100%' data-placeholder='Elige color de piel ...'");
+									echo form_multiselect('skin[]', $skin_list, $skin_color,"class='chzn-select chosen_filter' id='filter_a4' style='width:100%' data-placeholder='Elige color de piel ...'");
 									
 									echo "<label style='font-size:15px;'> Color de ojos </label>";
-									echo form_multiselect('eyes[]', $eyes_list, $filter_categories,"class='chzn-select' style='width:100%' data-placeholder='Elige color de ojos ...'");
+									echo form_multiselect('eyes[]', $eyes_list, $eyes_color,"class='chzn-select chosen_filter' id='filter_a5' style='width:100%' data-placeholder='Elige color de ojos ...'");
 									
 									echo "<label style='font-size:15px;'> Color de pelo </label>";
-									echo form_multiselect('hair[]', $hair_list, $filter_categories,"class='chzn-select' style='width:100%' data-placeholder='Elige color de pelo ...'");
+									echo form_multiselect('hair[]', $hair_list, $hair_color,"class='chzn-select chosen_filter' id='filter_a6' style='width:100%' data-placeholder='Elige color de pelo ...'");
 									
 									echo "<label style='font-size:15px;'> Estatura </label>";
-									echo form_multiselect('height[]', $height_list, $filter_categories,"class='chzn-select' style='width:100%' data-placeholder='Elige rango altura ...'");
+									echo form_multiselect('height[]', $height_list, $height_range,"class='chzn-select chosen_filter' id='filter_a7' style='width:100%' data-placeholder='Elige rango altura ...'");
 									
 									echo "<label style='font-size:15px;'> Edad </label>";
-									echo form_multiselect('age[]', $age_list, $filter_categories,"class='chzn-select' style='width:100%' data-placeholder='Elige rango edad ...'");
+									echo form_multiselect('age[]', $age_list, $age_range,"class='chzn-select chosen_filter' id='filter_a8' style='width:100%' data-placeholder='Elige rango edad ...'");
 									
 
 									?>
-								  <a href="<?php echo HOME."/hunter/applicants_list/".$id_casting."/1/0/t/t/t/t/t/t/t/"?>" id="filter_button" class="btn btn-info">Actualizar</a>
+								<div class="space1"> </div>
+								<a href="<?php echo HOME."/hunter/applicants_list/".$id_casting."/1/0/-2/-2/-2/-2/-2/-2/-2/-2/"?>" id="filter_button" class="btn btn-info">Actualizar</a>
                				</div>
 					    </div>
 					    
@@ -138,11 +142,11 @@
 									
 									<row style="float: right;">
 										
-										<a data-toggle="modal" <?php if($applicant["apply_state"]!=1) echo "href='#modal".$applicant["id"]."'"; ?>" style="text-align: right;" class="btn btn-success" title="Aprobar">
+										<a data-toggle="modal" <?php if($applicant["apply_state"]!=1){ echo "href='#modal".$applicant["id"]."'"; echo 'class="btn btn-success"';} else echo 'class="btn btn-success disabled"'; ?> style="text-align: right;"  title="Aprobar">
 											<i class="icon-ok"></i>
 										</a>
 										
-										<a <?php if($applicant["apply_state"]!=2) echo "href='".HOME."/hunter/reject_apply/".$applicant['apply_id']."/".$id_casting."'"; ?>"style="text-align: right;" class="btn btn-danger" title="Rechazar">
+										<a <?php if($applicant["apply_state"]!=2){ echo "href='".HOME."/hunter/reject_apply/".$applicant['apply_id']."/".$id_casting."'"; echo 'class="btn btn-danger"';} else echo 'class="btn btn-danger disabled"'; ?> style="text-align: right;" title="Rechazar">
 											<i class="icon-remove"></i>
 										</a>
 										
@@ -174,7 +178,7 @@
 			                <div class="space1"></div>
 			                <div class="pagination">  
 				                <ul id="pagination_bt">
-					                <li <?php if($page==1) echo "class='disabled'";?> ><a <?php if($page!=1) echo "href= '".base_url()."hunter/applicants_list/".($id_casting)."/".($page-1)."/".$applies_state."/".$sex."/".$eyes_color."/".$hair_color."/".$build."/".$age_range."/".$height_range."/".$skin_color."/".$filter_categories_url."'";?>>Prev</a></li>  
+					                <li <?php if($page==1) echo "class='disabled'";?> ><a <?php if($page!=1) echo "href= '".base_url()."hunter/applicants_list/".($id_casting)."/".($page-1)."/".$applies_state."/".$sex_url."/".$build_url."/".$skin_color_url."/".$eyes_color_url."/".$hair_color_url."/".$height_range_url."/".$age_range_url."/".$filter_categories_url."/'";?>>Prev</a></li>  
 					                <?php 
 					                
 					                $pag_size = 6; //se puede fijar una constante que lo maneje
@@ -189,9 +193,9 @@
 								 
 					                for($i = $begin_pag; $i <= $end_pag; $i++) 
 					                { ?>
-					                	<li <?php if($page==$i) echo "class='disabled'";?> ><a <?php if($page!=$i) echo "href= '".base_url()."hunter/applicants_list/".($id_casting)."/".$i."/".$applies_state."/".$sex."/".$eyes_color."/".$hair_color."/".$build."/".$age_range."/".$height_range."/".$skin_color."/".$filter_categories_url."'";?> > <?php echo $i; ?></a></li>  
+					                	<li <?php if($page==$i) echo "class='disabled'";?> ><a <?php if($page!=$i) echo "href= '".base_url()."hunter/applicants_list/".($id_casting)."/".$i."/".$applies_state."/".$sex_url."/".$build_url."/".$skin_color_url."/".$eyes_color_url."/".$hair_color_url."/".$height_range_url."/".$age_range_url."/".$filter_categories_url."/'";?> > <?php echo $i; ?></a></li>  
 					                <?php } ?>
-					                <li <?php if($page==$chunks) echo "class='disabled'";?> ><a <?php if($page!=$chunks) echo "href= '".base_url()."hunter/applicants_list/".($id_casting)."/".($page+1)."/".$applies_state."/".$sex."/".$eyes_color."/".$hair_color."/".$build."/".$age_range."/".$height_range."/".$skin_color."/".$filter_categories_url."'";?>>Next</a></li>
+					                <li <?php if($page==$chunks) echo "class='disabled'";?> ><a <?php if($page!=$chunks) echo "href= '".base_url()."hunter/applicants_list/".($id_casting)."/".($page+1)."/".$applies_state."/".$sex_url."/".$build_url."/".$skin_color_url."/".$eyes_color_url."/".$hair_color_url."/".$height_range_url."/".$age_range_url."/".$filter_categories_url."/'";?>>Next</a></li>
 				                </ul>  
 			                </div>  
 			                <div class="space1"></div>  

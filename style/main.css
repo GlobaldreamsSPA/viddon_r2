@@ -34,6 +34,11 @@ font:bold 11px sans-serif;
 color:#fff; 
 }
 
+.chzn-container .chzn-results {
+max-height: 200px !important;
+overflow-y: auto;
+}
+
 .profile-content{
 	overflow-y: scroll;
 	min-height: 180px;

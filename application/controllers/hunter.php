@@ -403,7 +403,7 @@ class Hunter extends CI_Controller {
 			redirect(HOME);
 	}
 
-	function applicants_list($id=NULL,$page=1,$applies_state=0,$sex='t',$eyes_color='t',$hair_color='t',$build='t',$age_range='t',$height_range='t',$skin_color='t',$filter_categories=NULL)
+	function applicants_list($id=NULL,$page=1,$applies_state=0,$sex=-2,$build=-2,$skin_color=-2,$eyes_color=-2,$hair_color=-2,$height_range=-2,$age_range=-2,$filter_categories=-2)
 	{
 		if($this->session->userdata('logged_in') && isset($id))
 		{
@@ -420,13 +420,13 @@ class Hunter extends CI_Controller {
 			$inner_args["hunter_content"]="castings/applicants_list";
 			$args["inner_args"]=$inner_args;
 			$args["skills"]= $this->skills_model->get_skills();
-
-			$temp[-2]= "Limpiar";
- 	 		$temp[-1]= "Todos";
+ 	 	
+ 	 		$temp[-1]= "--  Seleccionar Todos  --";
+			$temp[-2]= "--     Vaciar Campo    --";
  	 		$args["skills"] = $temp + $args["skills"];
 
 
-			$args["status"]= $temp + array(0=>"Sin Revisar",1=>"Aceptados",2=>"Rechazados",3=>"Todos");
+			$args["status"]= array(0=>"Sin Revisar",1=>"Aceptados",2=>"Rechazados",3=>"Todos");
 			
 			$args["build_list"]= $temp + array(0=>"Delgado",1=>"Normal",2=>"Grueso",3=>"Atletico");
 			
@@ -440,16 +440,17 @@ class Hunter extends CI_Controller {
 									
 			$args["height_list"] = $temp + array(0=>"150 cm o menos",1=>"150 cm",2=>"160 cm",3=>"170 cm",4=>"180 cm",5=>"190 cm",6=>"200 cm",7=>"200 cm o o m&aacutes");
 
-			$args["age_list"] = $temp + array(0=>"10 a&ntildeos_o_menos",1=>"10-15 a&ntildeos",2=>"15-20 a&ntildeos",3=>"20-25 a&ntildeos",4=>"20-30 a&ntildeos",5=>"30-35 a&ntildeos",6=>"35-40 a&ntildeos",7=>"40-45 anos o m&aacutes");	
+			$args["age_list"] = $temp + array(0=>"10 a&ntildeos o menos",1=>"10-15 a&ntildeos",2=>"15-20 a&ntildeos",3=>"20-25 a&ntildeos",4=>"20-30 a&ntildeos",5=>"30-35 a&ntildeos",6=>"35-40 a&ntildeos",7=>"40-45 a&ntildeos o m&aacutes");	
 
 
 			$temp = $this->castings_model->get_full_casting($id);
 			$args["name_casting"]= $temp["title"];
 
 
-			if(!is_null($filter_categories))
+			$args["filter_categories_url"] = $filter_categories;
+
+			if($filter_categories!= -2)
 			{
-				$args["filter_categories_url"] = $filter_categories;			
 				$args["filter_categories"] = explode("_",$filter_categories);//PARAMETROS FILTRO URL
 				$id_applicants= $this->applies_model->get_castings_applies($id,null,$applies_state);
 				
@@ -464,22 +465,58 @@ class Hunter extends CI_Controller {
 			}
 			else
 			{
-				$args["filter_categories_url"] = NULL;
-				$args["filter_categories"] = NULL;
+				$args["filter_categories"] = $filter_categories;
 				$id_applicants= $this->applies_model->get_castings_applies($id,$page,$applies_state);
 				$args["chunks"]=ceil($this->applies_model->count_casting_applies($id,$applies_state)/5);					
 			}
 
-			$args["page"]=$page;
+			$args["page"] = $page;
 			$args["applies_state"]=$applies_state;
-			$args["sex"]=$sex;
-			$args["eyes_color"]=$eyes_color;
-			$args["hair_color"]=$hair_color;
-			$args["build"]=$build;
-			$args["height_range"]=$height_range;
-			$args["age_range"]=$age_range;
-			$args["skin_color"]=$skin_color;
 
+			$args["sex_url"]=$sex;
+			$args["eyes_color_url"]=$eyes_color;
+			$args["hair_color_url"]=$hair_color;
+			$args["build_url"]=$build;
+			$args["height_range_url"]=$height_range;
+			$args["age_range_url"]=$age_range;
+			$args["skin_color_url"]=$skin_color;
+
+
+
+			if($sex != -2)
+				$args["sex"]=explode("_",$sex);
+			else
+				$args["sex"] = $sex;
+
+			if($eyes_color != -2)	
+				$args["eyes_color"]=explode("_",$eyes_color);
+			else
+				$args["eyes_color"] = $eyes_color;
+
+			if($hair_color != -2)	
+				$args["hair_color"]=explode("_",$hair_color);
+			else
+				$args["hair_color"] = $hair_color;
+
+			if($build != -2)	
+				$args["build"]=explode("_",$build);
+			else
+				$args["build"] = $build;
+
+			if($height_range != -2)	
+				$args["height_range"]=explode("_",$height_range);
+			else
+				$args["height_range"] = $height_range;
+
+			if($age_range != -2)	
+				$args["age_range"]=explode("_",$age_range);
+			else
+				$args["age_range"] = $age_range;
+
+			if($skin_color != -2)	
+				$args["skin_color"]=explode("_",$skin_color);
+			else
+				$args["skin_color"]=$skin_color;
 			
 			if($id_applicants!= 0)
 			{

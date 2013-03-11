@@ -16,12 +16,12 @@
 						
 				<div style="margin-top:15px;" class="span2 controls">
 					<?php 						
-						echo form_multiselect('categories[]', $categories, $actual_categories,"class='chzn-select' id='filter' style='width:100%' data-placeholder='Filtra por categoria'");
+						echo form_multiselect('categories[]', $categories, $actual_categories,"class='chzn-select chosen_filter' id='filter' style='width:100%' data-placeholder='Filtra por categoria'");
 					?>
 				</div>
 				
 				<div style="margin-top:15px;" class="span2">
-					<a href="<?php echo HOME."/home/casting_list/1/"?>" id="filter_button" class="btn btn-info">Actualizar</a>
+					<a href="<?php echo HOME."/home/casting_list/1/-2/"?>" id="filter_button" class="btn btn-info">Actualizar</a>
 					
 				</div>
 			</div>
@@ -57,7 +57,7 @@
 					<div class="pagination">  
 					  <ul id="pagination_bt">
 					  	  
-					  	<li <?php if($page==1) echo "class='disabled'";?> ><a <?php if($page!=1) echo "href= '".base_url()."home/casting_list/".($page-1)."/".$actual_categories_url."'";?>>Prev</a></li>  
+					  	<li <?php if($page==1) echo "class='disabled'";?> ><a <?php if($page!=1) echo "href= '".base_url()."home/casting_list/".($page-1)."/".$actual_categories_url."/'";?>>Prev</a></li>  
 						<?php 
 						
 						$pag_size = 16; //se puede fijar una constante que lo maneje
@@ -71,9 +71,9 @@
 						
 						
 						for($i = $begin_pag; $i <= $end_pag; $i++) { ?>
-							<li <?php if($page==$i) echo "class='disabled'";?> ><a <?php if($page!=$i) echo "href= '".base_url()."home/casting_list/".$i."/".$actual_categories_url."'";?> > <?php echo $i; ?></a></li>  
+							<li <?php if($page==$i) echo "class='disabled'";?> ><a <?php if($page!=$i) echo "href= '".base_url()."home/casting_list/".$i."/".$actual_categories_url."/'";?> > <?php echo $i; ?></a></li>  
 						<?php } ?>
-					    <li <?php if($page==$chunks) echo "class='disabled'";?> ><a <?php if($page!=$chunks) echo "href= '".base_url()."home/casting_list/".($page+1)."/".$actual_categories_url."'";?>>Next</a></li>
+					    <li <?php if($page==$chunks) echo "class='disabled'";?> ><a <?php if($page!=$chunks) echo "href= '".base_url()."home/casting_list/".($page+1)."/".$actual_categories_url."/'";?>>Next</a></li>
 					     
 					  </ul>  
 					</div>  

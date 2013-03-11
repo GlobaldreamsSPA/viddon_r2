@@ -32,21 +32,22 @@ class Home extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
-	public function video_list($page = 1,$actual_skills=null)
+	public function video_list($page = 1,$actual_skills=-2)
 	{
 		$args = array();
 		
-		if(!is_null($actual_skills))
-		{
-			$args["actual_skills_url"] = $actual_skills;			
-			
+		$args["actual_skills_url"] = $actual_skills;			
+
+
+		if($actual_skills != -2)
+		{			
 			$args["actual_skills"] = explode("_",$actual_skills);//PARAMETROS FILTRO URL
 			$args["chunks"]=ceil($this->videos_model->count_videos_by_skills($args["actual_skills"]) / 9);
 
 			$video_list = $this->videos_model->get_videos_by_skills($page, 9,$args["actual_skills"]);
 		}else
 		{
-			$args["actual_skills_url"] = NULL;			
+			$args["actual_skills"] = $actual_skills;
 			$video_list = $this->videos_model->get_videos($page, 9);		
 			$args["chunks"]=ceil($this->videos_model->count() / 9);
 			
@@ -83,8 +84,8 @@ class Home extends CI_Controller {
 		
 		$args["tags"]=	$this->skills_model->get_skills();
 		
-		$temp[0]= "Limpiar";
-		$temp[-1]= "Todos";
+		$temp[-1]= "--  Seleccionar Todos  --";
+		$temp[-2]= "--     Vaciar Campo    --";
 		$args["tags"] = $temp + $args["tags"];
 		
 		$args["page"]=$page;
@@ -94,21 +95,21 @@ class Home extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
-	public function casting_list($page = 1,$actual_categories = null)//el actual es un string de categorias
+	public function casting_list($page = 1,$actual_categories = -2)//el actual es un string de categorias
 	{
 		$args = array();
 		
-		if(!is_null($actual_categories))
-		{
-			$args["actual_categories_url"] = $actual_categories;
+		$args["actual_categories_url"] = $actual_categories;
+
+		if($actual_categories!=-2)
+		{			
 			$args["actual_categories"] = explode("_",$actual_categories);//PARAMETROS FILTRO URL
 			$args["chunks"]=ceil($this->castings_model->count_castings(NULL,0,$args["actual_categories"])/9);						
 			$args["casting_list"]= $this->castings_model->get_castings(NULL, 9, $page, 0, $args["actual_categories"]);
 		}else
 		{
 			$args["chunks"]=ceil($this->castings_model->count_castings(NULL,0)/9);			
-			$args["actual_categories_url"] = NULL;		
-			$args["actual_categories"] = NULL;			
+			$args["actual_categories"] = $actual_categories;			
 				
 			$args["casting_list"]= $this->castings_model->get_castings(NULL, 9, $page, 0, NULL);		
 		}		
@@ -117,8 +118,8 @@ class Home extends CI_Controller {
 		$args["categories"] = $this->casting_categories_model->get_casting_categories();//carga la lista de categorias
 		
 	
-		$temp[0]= "Limpiar";
-		$temp[-1]= "Todos";
+		$temp[-1]= "--  Seleccionar Todos  --";
+		$temp[-2]= "--     Vaciar Campo    --";
 		
 		$args["categories"] = $temp + $args["categories"];
 		

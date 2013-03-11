@@ -148,7 +148,9 @@
 	
 	<script type="text/javascript">
 	      
-	      
+	    if($(".chzn-select").length > 0)
+			$(".chzn-select").chosen({no_results_text: "No se encontraron resultados"});
+
 		if($(".rich_textarea").length > 0)	      
 	        $("document").ready(function() {
 			    $("textarea.rich_textarea").cleditor({
@@ -293,86 +295,154 @@
 			});
 			
 		}
-		if($("#filter").length > 0)
+		
+		if($(".chosen_filter").length > 0)
 		{
-			var update_skills_filter = function () 
+			var function_clean_select_all = function () 
 			{
 				
-				var str="";
-				 $("#filter option:selected").each(function () {
-					if($(this).text() == "Todos")
+				 $("option",this).each(function () {
+					if(this.selected && this.value == -1)
 					{
-						$("#filter *").each(function () {
-							if($(this).text() == "Limpiar")
+						$(this).parent().children("option").each(function () {
+							if($(this).val() == -2)
 								$(this).prop('selected', false);
 							else
 								$(this).prop('selected', true);
 						});
 						$(this).prop('selected', false);
-						$('#filter').trigger('liszt:updated');
+						$(this).parent().trigger('liszt:updated');
 						return false;
 					}
 					
-					if($(this).text() == "Limpiar")
+					if(this.selected && this.value == -2)
 					{
-						$("#filter *").each(function () {
+						$(this).parent().children("option").each(function () {
 							$(this).prop('selected', false);
 						});
 						$(this).prop('selected', false);
-						$('#filter').trigger('liszt:updated');
+						$(this).parent().trigger('liszt:updated');
 						return false;
 					}
 					
 			      });
-			      
-			       
-			      var uri="";
-			      $("#filter option:selected").each(function () {
-			      		uri= uri + $(this).val() +"_";
-			      });
-			      
-			      uri= uri.substr(0,uri.length - 1);
-		
-			      $("#filter_button").attr("href",$("#filter_button").attr("href").substr(0,($("#filter_button").attr("href").lastIndexOf('/') + 1))+uri);
-			}
-			
-			$("#filter").change(update_skills_filter);
-			$("#filter").ready(update_skills_filter);
+			};
+
+			$(".chosen_filter").change(function_clean_select_all);
+			$('.chosen_filter').trigger('change');
+
 		}
+
+
+
+		var update_chosen_filter = function (event) 
+		{
+			
+			var regExp1 = new RegExp(event.data.regexp); 
+	        var result = regExp1.exec($(event.data.target).attr("href"));
+	        var temp = (""+result).substr(0,(""+result).length - 1);
+	        temp = temp.substr(0,temp.lastIndexOf('/')+1)
+	        var uri="";
+			
+			$("option",this).each(function () {
+				if(this.selected)
+			    	uri= uri + this.value +"_";
+			});
+			     
+			uri= uri.substr(0,uri.length - 1);
+			if(uri=="")
+				uri=-2;
+	        result = temp + uri + "/";
+			    
+			$(event.data.target).attr("href",$(event.data.target).attr("href").replace(regExp1,result));
+
+		};	
+
+		if($("#filter").length > 0)
+		{
+			$("#filter").change({regexp: '/[0-9]+/[0-9_-]+/',target: '#filter_button'},update_chosen_filter);
+			$('#filter').trigger('change');
+		}
+
+		if($("#filter_a1").length > 0)
+		{
+			$("#filter_a1").change({regexp: '/applicants_list/[0-9]+/[0-9]+/[0-3]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/',target: '#filter_button'},update_chosen_filter);
+			$('#filter_a1').trigger('change');
+		}
+
+		if($("#filter_a8").length > 0)
+		{
+			$("#filter_a8").change({regexp: '/applicants_list/[0-9]+/[0-9]+/[0-3]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/',target: '#filter_button'},update_chosen_filter);
+			$('#filter_a8').trigger('change');
+		}
+
+		if($("#filter_a7").length > 0)
+		{
+			$("#filter_a7").change({regexp: '/applicants_list/[0-9]+/[0-9]+/[0-3]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/',target: '#filter_button'},update_chosen_filter);
+			$('#filter_a7').trigger('change');
+		}
+
+		if($("#filter_a6").length > 0)
+		{
+			$("#filter_a6").change({regexp: '/applicants_list/[0-9]+/[0-9]+/[0-3]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/',target: '#filter_button'},update_chosen_filter);
+			$('#filter_a6').trigger('change');
+		}
+
+		if($("#filter_a5").length > 0)
+		{
+			$("#filter_a5").change({regexp: '/applicants_list/[0-9]+/[0-9]+/[0-3]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/',target: '#filter_button'},update_chosen_filter);
+			$('#filter_a5').trigger('change');
+		}
+
+		if($("#filter_a4").length > 0)
+		{
+			$("#filter_a4").change({regexp: '/applicants_list/[0-9]+/[0-9]+/[0-3]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/',target: '#filter_button'},update_chosen_filter);
+			$('#filter_a4').trigger('change');
+		}
+
+		if($("#filter_a3").length > 0)
+		{
+			$("#filter_a3").change({regexp: '/applicants_list/[0-9]+/[0-9]+/[0-3]+/[0-9_-]+/[0-9_-]+/',target: '#filter_button'},update_chosen_filter);
+			$('#filter_a3').trigger('change');
+		}
+
+		if($("#filter_a2").length > 0)
+		{
+			$("#filter_a2").change({regexp: '/applicants_list/[0-9]+/[0-9]+/[0-3]+/[0-9_-]+/',target: '#filter_button'},update_chosen_filter);
+			$('#filter_a2').trigger('change');
+		}
+
+
+		
+
+		var update_state_filter = function (event) 
+		{
+			
+			var regExp1 = new RegExp(event.data.regexp); 
+	        var result = regExp1.exec($(event.data.target).attr("href"));
+	        var temp = (""+result).substr(0,(""+result).length - 2);
+	            
+	        result = temp + $(event.data.src).val() + "/";
+			    
+			$(event.data.target).attr("href",$(event.data.target).attr("href").replace(regExp1,result));
+
+		};	
 		
 		if($("#apply_status").length > 0)
 		{
-			var update_state_filter = function () {
-				
-			    var regExp1 = new RegExp("/[0-9]+/[0-9]+/[0-3]+/"); 
-	            var result = regExp1.exec($("#filter_button").attr("href"));
-	            var temp = (""+result).substr(0,(""+result).length - 2);
-	            
-	            result = temp + $('#apply_status').val() + "/";
-			    
-			    $("#filter_button").attr("href",$("#filter_button").attr("href").replace(regExp1,result));
-			}
 			
-			$("#apply_status").change(update_state_filter);
-			$("#apply_status").ready(update_state_filter);
+			$("#apply_status").change({regexp: '/applicants_list/[0-9]+/[0-9]+/[0-3]/',target: '#filter_button',src: '#apply_status'},update_state_filter);
+			$('#apply_status').trigger('change');
 		}
 
 		if($("#casting_status").length > 0)
-		{
-			var update_state_filter = function () {
-				
-			    var regExp1 = new RegExp("/[0-9]+/[0-3]+/"); 
-	            var result = regExp1.exec($("#filter_button").attr("href"));
-	            var temp = (""+result).substr(0,(""+result).length - 2);
-	            
-	            result = temp + $('#casting_status').val() + "/";
-			    
-			    $("#filter_button").attr("href",$("#filter_button").attr("href").replace(regExp1,result));
-			}
-			
-			$("#casting_status").change(update_state_filter);
-			$("#casting_status").ready(update_state_filter);
+		{				
+			$("#casting_status").change({regexp: '/[0-9]+/[0-3]/',target: '#filter_button',src: '#casting_status'},update_state_filter);
+			$('#casting_status').trigger('change');
 		}
+
+
+
 		if($("iframe").attr('src').indexOf("youtube") >= 0){
 			$("iframe").each(function(){
 			  var ifr_source = $(this).attr('src');

@@ -9,21 +9,27 @@
 				<div style="margin-top:15px;" class="span2">
 					<?php
 					
-					$skills_selected= array();
-					for ($i=0; $i<sizeof($tags); $i++)
+					if($actual_skills != -2)
 					{
-						if(isset($actual_skills[$i]))
-							$skills_selected[$i]=$actual_skills[$i];
-							
+						$skills_selected= array();
+						for ($i=0; $i<sizeof($tags); $i++)
+						{
+							if(isset($actual_skills[$i]))
+								$skills_selected[$i]=$actual_skills[$i];
+								
+						}
 					}
+					else
+						$skills_selected=-2;
+
 					//var_dump($skills_selected);
 					//var_dump($tags);
-					echo form_multiselect('tags[]', $tags,$skills_selected,"class='chzn-select'  id='filter' style='width:100%' data-placeholder='Selecciona los tags...'");
+					echo form_multiselect('tags[]', $tags,$skills_selected,"class='chzn-select chosen_filter'  id='filter' style='width:100%' data-placeholder='Selecciona los tags...'");
 					?>
 
 				</div>
 				<div style="margin-top:15px;" class="span2">
-					<a href="<?php echo HOME."/home/video_list/1/"?>" id="filter_button" class="btn btn-info">Actualizar</a>
+					<a href="<?php echo HOME."/home/video_list/1/-2/"?>" id="filter_button" class="btn btn-info">Actualizar</a>
 					
 				</div>
 			</div>
@@ -68,7 +74,7 @@
 					<div class="pagination">  
 					  <ul id="pagination_bt">
 					  	 <?php //var_dump($chunks);?> 
-					    <li <?php if($page==1) echo "class=disabled";?>><a <?php if($page!=1) echo "href='".base_url()."home/video_list/".($page-1)."/".$actual_skills_url."'";?>>Prev</a></li>  
+					    <li <?php if($page==1) echo "class=disabled";?>><a <?php if($page!=1) echo "href='".base_url()."home/video_list/".($page-1)."/".$actual_skills_url."/'";?>>Prev</a></li>  
 						<?php
 						$pag_size = 16; 
 						$margen = $pag_size/2;
@@ -81,11 +87,11 @@
 						
 						for($i = $begin_pag; $i <= $end_pag; $i++){ 
 							?>
-							<li <?php if($page==$i) echo "class=disabled";?>><a <?php if($page!=$i) echo "href='".base_url()."home/video_list/".$i."/".$actual_skills_url."'";?> > <?php echo $i; ?></a></li>  
+							<li <?php if($page==$i) echo "class=disabled";?>><a <?php if($page!=$i) echo "href='".base_url()."home/video_list/".$i."/".$actual_skills_url."/'";?> > <?php echo $i; ?></a></li>  
 						<?php 
 						} 
 						?>
-					    <li <?php if($page==$chunks) echo "class=disabled";?>><a <?php if($page!=$chunks) echo "href='".base_url()."home/video_list/".($page+1)."/".$actual_skills_url."'";?>>Next</a></li>
+					    <li <?php if($page==$chunks) echo "class=disabled";?>><a <?php if($page!=$chunks) echo "href='".base_url()."home/video_list/".($page+1)."/".$actual_skills_url."/'";?>>Next</a></li>
 					     
 					  </ul>  
 					</div>  
