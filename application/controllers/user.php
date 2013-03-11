@@ -18,6 +18,11 @@ class User extends CI_Controller {
 		
 	}
 
+	public function comments()
+	{
+		echo "OK";
+	}
+
 	public function index($id = NULL)
 	{
 		$args = array();
