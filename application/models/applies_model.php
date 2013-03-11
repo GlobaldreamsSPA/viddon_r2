@@ -60,6 +60,56 @@ class Applies_model extends CI_Model
 		
 	}
 	
+	function get_filtered_user_applies_by($filtered_ids,$casting_id,$sex=NULL, $eyes_color=NULL, $hair_color=NULL, $build=NULL, $skin_color=NULL, $height_range=NULL, $age_range=NULL){
+		$this->db->select('A.user_id,A.id,A.state');
+		$this->db->from('applies AS A');
+		$this->db->join('users AS U', 'A.user_id = U.id', 'INNER');
+    	$this->db->where('A.casting_id', $casting_id);
+		
+		/*
+		 * WHERE casting_id=2 
+		 * AND (sex=0 OR sex=1)  
+		 * AND color_eye=1 
+		 * AND color_hair=1 
+		 * AND build=0
+		 * AND skin_color=2
+		 * AND height_range=
+		 * AND age_range=;
+		 * AND (A.user_id=278 OR A.user_id=245)
+		*/
+		if(!is_null($sex)){
+			$this->db->where('sex',$sex);
+		}
+		if(!is_null($eyes_color)){
+			
+		}
+		if(!is_null($hair_color)){
+			
+		}
+		if(!is_null($build)){
+			
+		}
+		if(!is_null($skin_color)){
+			
+		}
+		if(!is_null($height_range)){
+			
+		}
+		if(!is_null($age_range)){
+			
+		}
+		
+		
+		
+	    $query = $this->db->get('applies');
+		if($query->num_rows == 0)
+			return 0;
+		else
+			return $query->result_array();
+	}
+	
+	
+	
 	function get_short_user_applies($casting_id,$state=NULL) //para sacar la información utilizada en casting_details
 	{
 		$this->db->select('user_id');

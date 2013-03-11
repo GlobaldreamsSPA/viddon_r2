@@ -210,6 +210,18 @@ class Hunter extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect(HOME);
 	}
+	
+	private function _physical_filter($casting_id, $id_applicants, $sex=NULL, $eyes_color=NULL, $hair_color=NULL, $build=NULL, $skin_color=NULL, $height_range=NULL, $age_range=NULL)
+	{
+		$filtered_user_ids = array();
+		foreach($id_applicants as $aplicante)
+		{
+			$filtered_user_ids[] = $aplicante['user_id'];//guardo sólo los id de cada usuario
+		}
+		
+		return $this->applies_model->get_filtered_user_applies_by($filtered_ids, $casting_id, $sex=NULL, $eyes_color=NULL, $hair_color=NULL, $build=NULL, $skin_color=NULL, $height_range=NULL, $age_range=NULL);
+		
+	}
 
 	function casting_detail($id=NULL)
 	{
@@ -430,7 +442,7 @@ class Hunter extends CI_Controller {
 			
 			$args["build_list"]= $temp + array(0=>"Delgado",1=>"Normal",2=>"Grueso",3=>"Atletico");
 			
-			$args["sex_list"]= $temp + array(1=>"Femenino",2=>"Masculino");
+			$args["sex_list"]= $temp + array(0=>"Femenino",1=>"Masculino");
 
 			$args["skin_list"]= $temp + array(0=>"Blanca",1=>"Morena", 2 =>"Negra");
 
@@ -453,7 +465,8 @@ class Hunter extends CI_Controller {
 			{
 				$args["filter_categories"] = explode("_",$filter_categories);//PARAMETROS FILTRO URL
 				$id_applicants= $this->applies_model->get_castings_applies($id,null,$applies_state);
-				
+				$unfiltered_applicants = $id_applicants; //COPIA DE LOS APLICANTES SIN FILTRAR, PARA USAR EN LA COMPROBACION PARA FINALIZAR EL CASTING
+			
 				if($id_applicants !=0)				
 				{
 					$args["chunks"]=ceil($this->skills_model->count_filter_user_categories($id_applicants,$args["filter_categories"])/5);	
@@ -467,22 +480,23 @@ class Hunter extends CI_Controller {
 			{
 				$args["filter_categories"] = $filter_categories;
 				$id_applicants= $this->applies_model->get_castings_applies($id,$page,$applies_state);
+				$unfiltered_applicants = $id_applicants; //COPIA DE LOS APLICANTES SIN FILTRAR, PARA USAR EN LA COMPROBACION PARA FINALIZAR EL CASTING
 				$args["chunks"]=ceil($this->applies_model->count_casting_applies($id,$applies_state)/5);					
 			}
-
 			$args["page"] = $page;
 			$args["applies_state"]=$applies_state;
+
 
 			$args["sex_url"]=$sex;
 			$args["eyes_color_url"]=$eyes_color;
 			$args["hair_color_url"]=$hair_color;
 			$args["build_url"]=$build;
+			$args["skin_color_url"]=$skin_color;
+			
 			$args["height_range_url"]=$height_range;
 			$args["age_range_url"]=$age_range;
-			$args["skin_color_url"]=$skin_color;
-
-
-
+			
+			
 			if($sex != -2)
 				$args["sex"]=explode("_",$sex);
 			else
@@ -518,11 +532,15 @@ class Hunter extends CI_Controller {
 			else
 				$args["skin_color"]=$skin_color;
 			
+			
+			//SE APLICAN LOS FILTROS SOBRE LOS APLICANTS YA RESCATADOS
+			//$id_applicants = $this->_physical_filter($id, $id_applicants,$args["sex"],$args["eyes_color"],$args["hair_color"],$args["build"],$args["skin_color"],$args["height_range"],$args["age_range"]);
+			var_dump($unfiltered_applicants);
+
 			if($id_applicants!= 0)
 			{
-				//define si se puede finalizar el casting o no(toma el array anterior como parametro)
-				
-				$args["allowed_to_finalize"] = $this->applies_model->verify_castings_applies_status($id_applicants);
+				//define si se puede finalizar el casting o no(toma el array anterior(sin filtrar) como parametro)
+				$args["allowed_to_finalize"] = $this->applies_model->verify_castings_applies_status($unfiltered_applicants);
 				
 				$args["applicants"]=array();
 				
