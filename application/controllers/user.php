@@ -457,6 +457,7 @@ class User extends CI_Controller {
 			$skin= array(0=>"Blanca",1=>"Morena", 2 =>"Negra");
 			$eyes= array(0=>"Verde",1=>"Azul", 2 =>"Gris",3=>"Casta&ntilde;o",4=>"Ambar",5=>"Pardos");
 			$hair= array(0=>"Casta&ntilde;o",1=>"Negro", 2 =>"Rubio",3=>"Blanco",4=>"Gris",5=>"Colorin",6=>"Otros");
+			$build= array(0=>"Delgado",1=>"Normal",2=>"Grueso",3=>"Atletico");
 			
 			$args = array(
 				'skills' => $skills,
@@ -465,7 +466,8 @@ class User extends CI_Controller {
 				'eyes' => $eyes,
 				'skin' => $skin,
 				'hair' => $hair,
-				'sex'  => $sex
+				'sex'  => $sex,
+				'build' => $build
 				);
 				
 			$args["content"]="applicants/applicants_template";

@@ -15,12 +15,11 @@
 								
 									<?php
 
-									$name= "";
 									echo "<label style='font-size:15px;'> Estado Postulaci&oacute;n </label>"; 
 									echo form_dropdown('status', $status,$applies_state,"id='apply_status' style='width:100%'");
 									
 									echo "<label style='font-size:15px;'> Nombre Postulante </label>"; 
-									echo form_input('name',$name,"class='chzn-search' style='width:92%; border: 1px solid #aaa;'");
+									echo form_input('name',str_replace('_', ' ', $name_p),"class='filter_input_a1' style='width:92%; border: 1px solid #aaa;'");
 
 									echo "<label style='font-size:15px;'> Habilidades </label>";
 									echo form_multiselect('skills[]', $skills, $filter_categories,"class='chzn-select chosen_filter' id='filter_a1' style='width:100%;' data-placeholder='Elige los tags...'");
@@ -49,7 +48,7 @@
 
 									?>
 								<div class="space1"> </div>
-								<a href="<?php echo HOME."/hunter/applicants_list/".$id_casting."/1/0/-2/-2/-2/-2/-2/-2/-2/-2/"?>" id="filter_button" class="btn btn-info">Actualizar</a>
+								<a href="<?php echo HOME."/hunter/applicants_list/".$id_casting."/1/0/-2/-2/-2/-2/-2/-2/-2/-2/_n/"?>" id="filter_button" class="btn btn-info">Actualizar</a>
                				</div>
 					    </div>
 					    
@@ -180,7 +179,7 @@
 			                <div class="space1"></div>
 			                <div class="pagination">  
 				                <ul id="pagination_bt">
-					                <li <?php if($page==1) echo "class='disabled'";?> ><a <?php if($page!=1) echo "href= '".base_url()."hunter/applicants_list/".($id_casting)."/".($page-1)."/".$applies_state."/".$sex_url."/".$build_url."/".$skin_color_url."/".$eyes_color_url."/".$hair_color_url."/".$height_range_url."/".$age_range_url."/".$filter_categories_url."/'";?>>Prev</a></li>  
+					                <li <?php if($page==1) echo "class='disabled'";?> ><a <?php if($page!=1) echo "href= '".base_url()."hunter/applicants_list/".($id_casting)."/".($page-1)."/".$applies_state."/".$sex_url."/".$build_url."/".$skin_color_url."/".$eyes_color_url."/".$hair_color_url."/".$height_range_url."/".$age_range_url."/".$filter_categories_url."/".$name_p."/'";?>>Prev</a></li>  
 					                <?php 
 					                
 					                $pag_size = 6; //se puede fijar una constante que lo maneje
@@ -195,9 +194,9 @@
 								 
 					                for($i = $begin_pag; $i <= $end_pag; $i++) 
 					                { ?>
-					                	<li <?php if($page==$i) echo "class='disabled'";?> ><a <?php if($page!=$i) echo "href= '".base_url()."hunter/applicants_list/".($id_casting)."/".$i."/".$applies_state."/".$sex_url."/".$build_url."/".$skin_color_url."/".$eyes_color_url."/".$hair_color_url."/".$height_range_url."/".$age_range_url."/".$filter_categories_url."/'";?> > <?php echo $i; ?></a></li>  
+					                	<li <?php if($page==$i) echo "class='disabled'";?> ><a <?php if($page!=$i) echo "href= '".base_url()."hunter/applicants_list/".($id_casting)."/".$i."/".$applies_state."/".$sex_url."/".$build_url."/".$skin_color_url."/".$eyes_color_url."/".$hair_color_url."/".$height_range_url."/".$age_range_url."/".$filter_categories_url."/".$name_p."/'";?> > <?php echo $i; ?></a></li>  
 					                <?php } ?>
-					                <li <?php if($page==$chunks) echo "class='disabled'";?> ><a <?php if($page!=$chunks) echo "href= '".base_url()."hunter/applicants_list/".($id_casting)."/".($page+1)."/".$applies_state."/".$sex_url."/".$build_url."/".$skin_color_url."/".$eyes_color_url."/".$hair_color_url."/".$height_range_url."/".$age_range_url."/".$filter_categories_url."/'";?>>Next</a></li>
+					                <li <?php if($page==$chunks) echo "class='disabled'";?> ><a <?php if($page!=$chunks) echo "href= '".base_url()."hunter/applicants_list/".($id_casting)."/".($page+1)."/".$applies_state."/".$sex_url."/".$build_url."/".$skin_color_url."/".$eyes_color_url."/".$hair_color_url."/".$height_range_url."/".$age_range_url."/".$filter_categories_url."/".$name_p."/'";?>>Next</a></li>
 				                </ul>  
 			                </div>  
 			                <div class="space1"></div>  

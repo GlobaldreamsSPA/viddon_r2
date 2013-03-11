@@ -127,16 +127,13 @@
 								</div>
 								
 								<div class="row">
-									<div class="span4">	
-										<!-- FALTA QUE CARGUE LO ACTUAL -->
-									<h5>Contextura</h5>
-										<select style="width: 100%;" name="build">
-											<option value="0">Delgado</option>
-											<option selected="selected" value="1">Normal</option>
-											<option value="2">Grueso</option>
-											<option value="3">Atletico</option>
-										</select>
-									</div>
+									<div class="span4">
+											<h5>Contextura</h5>
+											<?php
+													if(isset($update_values)) $build_set=$update_values["build"]; else $build_set=0; 
+													echo form_dropdown('build', $build, $build_set, "style='width: 100%;'") 
+											?>
+										</div>
 								</div>
 								
 							</div>
