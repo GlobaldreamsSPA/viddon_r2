@@ -119,13 +119,11 @@ class Hunter extends CI_Controller {
 						$casting['skills'] = $casting['skills'].$skill;
 						$flag =TRUE;
 					}
-					//var_dump($casting['skills']);
 					
 					
 					$casting['category'] = $this->input->post('category');
 					//convierto la "categoria a su id correspondiente"
 					$casting['category'] = $this->casting_categories_model->get_id_by_name($casting['category']);
-					//var_dump($casting['category']);
 					
 					
 					$casting['eyes-color'] = $this->input->post('eyes-color');
@@ -218,8 +216,7 @@ class Hunter extends CI_Controller {
 		{
 			$filtered_user_ids[] = $aplicante['user_id'];//guardo sólo los id de cada usuario
 		}
-		
-		return $this->applies_model->get_filtered_user_applies_by($filtered_ids, $casting_id, $sex=NULL, $eyes_color=NULL, $hair_color=NULL, $build=NULL, $skin_color=NULL, $height_range=NULL, $age_range=NULL);
+		return $this->applies_model->get_filtered_user_applies_by($filtered_user_ids, $casting_id, $sex, $eyes_color, $hair_color, $build, $skin_color, $height_range, $age_range);
 		
 	}
 
@@ -231,7 +228,6 @@ class Hunter extends CI_Controller {
 		 	$hunter_id = $hunter_id['id'];
 			
 			$args["castings_dash"]= $this->_dashboard($hunter_id);
-			//var_dump($args["castings_dash"]);
 			
 			$args["casting"] = $this->castings_model->get_full_casting($id);
 			$args["casting"]["applies"] = $this->applies_model->get_applies_cant($id);
@@ -284,14 +280,7 @@ class Hunter extends CI_Controller {
 			}
 			$args["seleccionados"] = $seleccionados_textual;
 			
-			
-			
-			
-			/*
-			var_dump($args["postulantes"]);
-			var_dump($args["seleccionados"]);
-			 */
-			
+					
 			$this->load->view('template', $args);
 		}
 		else
@@ -348,7 +337,6 @@ class Hunter extends CI_Controller {
 			
 				if($this->input->post())
 				{
-					var_dump($_POST);
 					//Guardar los datos a la BD
 					$casting['id'] = $id;
 					$casting['title'] = $this->input->post('title');
@@ -379,7 +367,6 @@ class Hunter extends CI_Controller {
 					$casting['entity_id'] = $hunter_id;
 
 
-					//var_dump($casting);
 					//UPDATE
 					$this->castings_model->update($casting);
 
@@ -535,10 +522,8 @@ class Hunter extends CI_Controller {
 			else
 				$args["skin_color"]=$skin_color;
 			
-			
 			//SE APLICAN LOS FILTROS SOBRE LOS APLICANTS YA RESCATADOS
-			//$id_applicants = $this->_physical_filter($id, $id_applicants,$args["sex"],$args["eyes_color"],$args["hair_color"],$args["build"],$args["skin_color"],$args["height_range"],$args["age_range"]);
-			var_dump($unfiltered_applicants);
+			$id_applicants = $this->_physical_filter($id, $id_applicants,$args["sex"],$args["eyes_color"],$args["hair_color"],$args["build"],$args["skin_color"],$args["height_range"],$args["age_range"]);
 
 			if($id_applicants!= 0)
 			{
@@ -559,8 +544,6 @@ class Hunter extends CI_Controller {
 					{
 						$video_info = $this->videos_model->get_video_applicant($id['user_id']);//saca primer video que tenga registrado
 					}
-					//var_dump($video_info);
-					
 					$applicant_info["apply_id"]= $id["id"]; 
 					$applicant_info["apply_state"]= $id["state"];
 					$applicant_info['tags'] = $this->skills_model->get_user_skills($id['user_id']);

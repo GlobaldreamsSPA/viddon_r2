@@ -65,43 +65,153 @@ class Applies_model extends CI_Model
 		$this->db->from('applies AS A');
 		$this->db->join('users AS U', 'A.user_id = U.id', 'INNER');
     	$this->db->where('A.casting_id', $casting_id);
-		
 		/*
 		 * WHERE casting_id=2 
 		 * AND (sex=0 OR sex=1)  
-		 * AND color_eye=1 
-		 * AND color_hair=1 
-		 * AND build=0
-		 * AND skin_color=2
-		 * AND height_range=
-		 * AND age_range=;
+		 * AND (color_eye=1 OR color_eye=2 ...) 
+		 * AND (color_hair=1 OR color_hair=2 ...) 
+		 * AND (build=0
+		 * AND (skin_color=2
+		 * AND (height_range>
+		 * AND (age_range=;
 		 * AND (A.user_id=278 OR A.user_id=245)
 		*/
-		if(!is_null($sex)){
-			$this->db->where('sex',$sex);
-		}
-		if(!is_null($eyes_color)){
+		$physical_where = "";
+		$first = TRUE;
+		
+		//SERSO
+		if(!is_null($sex) && $sex!=-2) //genera la condicion where ( sex = N or sex = P) y la adjunta a string
+		{
+			$flag = FALSE;
+			if(!$first) $physical_where = $physical_where." AND ("; //espacio y AND
+			else 
+			{
+				$physical_where = $physical_where."("; //espacio y AND
+				$first = FALSE;
+			}
 			
-		}
-		if(!is_null($hair_color)){
-			
-		}
-		if(!is_null($build)){
-			
-		}
-		if(!is_null($skin_color)){
-			
-		}
-		if(!is_null($height_range)){
-			
-		}
-		if(!is_null($age_range)){
-			
+			foreach ($sex as $sexi) 
+			{
+				if($flag)
+					$physical_where=$physical_where." OR ";
+				$physical_where = $physical_where." sex=".$sexi;
+				$flag =TRUE;
+			}
+			$physical_where=$physical_where.")";//cierra paréntesis de sexo
 		}
 		
+		//COLOR DE OJOS
+		if(!is_null($eyes_color) && $eyes_color!=-2){
+			
+			$flag = FALSE;
+			if(!$first) $physical_where = $physical_where." AND ("; //espacio y AND
+			else 
+			{
+				$physical_where = $physical_where."("; //espacio y AND
+				$first = FALSE;
+			}
+			
+			
+			foreach ($eyes_color as $ojo) 
+			{
+				if($flag)
+					$physical_where=$physical_where." OR ";
+				$physical_where = $physical_where." color_eye=".$ojo;
+				$flag =TRUE;
+			}
+			$physical_where=$physical_where.")";//cierra paréntesis de sexo
+		}
+		
+		//COLOR DE PELO
+		if(!is_null($hair_color)&& $hair_color!=-2){
+			$flag = FALSE;
+			
+			if(!$first) $physical_where = $physical_where." AND ("; //espacio y AND
+			else 
+			{
+				$physical_where = $physical_where."("; //espacio y AND
+				$first = FALSE;
+			}
+			
+			foreach ($hair_color as $pelo) 
+			{
+				if($flag)
+					$physical_where=$physical_where." OR ";
+				$physical_where = $physical_where." color_hair=".$pelo;
+				$flag =TRUE;
+			}
+			$physical_where=$physical_where.")";//cierra paréntesis de sexo
+		}
+		
+		//CONTEXTURA
+		if(!is_null($build)&& $build!=-2){
+			$flag = FALSE;
+			
+			if(!$first) $physical_where = $physical_where." AND ("; //espacio y AND
+			else 
+			{
+				$physical_where = $physical_where."("; //espacio y AND
+				$first = FALSE;
+			}
+			
+			foreach ($build as $cuerpo) 
+			{
+				if($flag)
+					$physical_where=$physical_where." OR ";
+				$physical_where = $physical_where." build=".$cuerpo;
+				$flag =TRUE;
+			}
+			$physical_where=$physical_where.")";//cierra paréntesis de sexo
+		}
+		
+		//COLOR DE PIEL
+		if(!is_null($skin_color)&& $skin_color!=-2){
+			$flag = FALSE;
+			
+			if(!$first) $physical_where = $physical_where." AND ("; //espacio y AND
+			else 
+			{
+				$physical_where = $physical_where."("; //espacio y AND
+				$first = FALSE;
+			}
+			
+			foreach ($skin_color as $piel) 
+			{
+				if($flag)
+					$physical_where=$physical_where." OR ";
+				$physical_where = $physical_where." color_skin=".$piel;
+				$flag =TRUE;
+			}
+			$physical_where=$physical_where.")";//cierra paréntesis de sexo
+		}
+		
+		//ALTURA
+		if(!is_null($height_range)&& $height_range!=-2){		
+		}
+		
+		//EDAD
+		if(!is_null($age_range)&& $age_range!=-2){
+		}
+		
+		//agrego el where para cada id de usuario
+		$flag = FALSE;
+		$users_where = "(";
+		foreach ($filtered_ids as $user_id) 
+		{
+			if($flag)
+				$users_where=$users_where." OR ";
+			$users_where = $users_where." A.user_id	= ".$user_id;
+			$flag =TRUE;
+		}
+		$users_where=$users_where.")";
+		
+		if($first) $final_where = $users_where;
+		else $final_where = $physical_where." AND ".$users_where;
+		
+		$this->db->where($final_where,NULL,FALSE);//se agrega a la consulta
 		
 		
-	    $query = $this->db->get('applies');
+	    $query = $this->db->get();
 		if($query->num_rows == 0)
 			return 0;
 		else
@@ -239,11 +349,9 @@ class Applies_model extends CI_Model
 			$this->db->select('id_main_video');
 			$this->db->where('id', $user_id);
 			$main_id_result = $this->db->get('users')->first_row('array'); //obtiene id_main_video
-			var_dump($main_id_result['id_main_video']);
 			if(!is_null($main_id_result['id_main_video']))//si no es null
 			{
 				$videos_result = array("id" => $main_id_result['id_main_video']);
-				var_dump($videos_result['id']);
 			}
 			else
 			{
