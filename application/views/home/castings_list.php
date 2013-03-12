@@ -7,11 +7,6 @@
 					<h2 class="control-label" id="profile" name="category">Categor&iacutea</h2>
 				
 				
-				<?php
-					//if(isset($actual_categories)) var_dump($actual_categories);
-					//if(isset($categories)) var_dump($categories);
-					//if(isset($categories_cant)) echo $categories_cant." categorias.<br />";
-				?>
 				</div>
 						
 				<div style="margin-top:15px;" class="span2 controls">
@@ -68,6 +63,8 @@
 						
 						$end_pag = $page + $margen;
 						if($end_pag > $chunks) $end_pag = $chunks;
+						if($page < $margen) $end_pag = $end_pag + ($margen-$page);
+						
 						
 						
 						for($i = $begin_pag; $i <= $end_pag; $i++) { ?>

@@ -20,11 +20,7 @@
 				    	</div>
 					    
 					    <center>
-					    <?php
-					    //TERRIBLE DEBUG
-					    	//var_dump( $_FILES );
-							//var_dump( $_POST );
-					    ?></center>
+					    </center>
 					    
 					    <div class="space2"></div>
 						<?php 

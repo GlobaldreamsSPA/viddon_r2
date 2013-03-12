@@ -36,7 +36,6 @@
 									<h5>Categor&iacutea</h5>
 									<select class="span5" name="category">
 										<?php
-										var_dump($categories);
 											foreach($categories as $cat)
 											{
 												echo "<option value=".$cat.">".$cat."</option>";

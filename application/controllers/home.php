@@ -52,8 +52,6 @@ class Home extends CI_Controller {
 			$args["chunks"]=ceil($this->videos_model->count() / 9);
 			
 		}		
-		
-		//var_dump($video_list);
 		$args["video_list"]=array();
 		
 		foreach ($video_list as $video_data)
