@@ -197,7 +197,6 @@ class Applies_model extends CI_Model
 		
 		//EDAD
 		if(!is_null($age_range)&& $age_range!=-2){
-			var_dump($age_range);
 			$rango_variable = array();
 			$flag = FALSE;
 			

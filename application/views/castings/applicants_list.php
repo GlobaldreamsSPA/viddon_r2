@@ -26,7 +26,7 @@
 									
 									echo "<label style='font-size:15px;'> Sexo </label>";
 									echo form_multiselect('sex[]', $sex_list, $sex,"class='chzn-select chosen_filter' id='filter_a2' style='width:100%' data-placeholder='Elige sexo ...'");
-								
+									/*
 									echo "<label style='font-size:15px;'> Contextura </label>";
 									echo form_multiselect('build[]', $build_list, $build,"class='chzn-select chosen_filter' id='filter_a3' style='width:100%' data-placeholder='Elige contextura ...'");
 									
@@ -41,7 +41,7 @@
 									
 									echo "<label style='font-size:15px;'> Estatura </label>";
 									echo form_multiselect('height[]', $height_list, $height_range,"class='chzn-select chosen_filter' id='filter_a7' style='width:100%' data-placeholder='Elige rango altura ...'");
-									
+									*/
 									echo "<label style='font-size:15px;'> Edad </label>";
 									echo form_multiselect('age[]', $age_list, $age_range,"class='chzn-select chosen_filter' id='filter_a8' style='width:100%' data-placeholder='Elige rango edad ...'");
 									
