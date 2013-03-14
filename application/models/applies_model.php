@@ -287,6 +287,66 @@ class Applies_model extends CI_Model
 			return $query->result_array();
 	}
 	
+	function get_filtered_user_applies_by_word($filtered_ids,$casting_id,$words=NULL,$page=NULL,$cant=5){
+		$this->db->select('A.user_id,A.id,A.state');
+		$this->db->from('applies AS A');
+		$this->db->join('users AS U', 'A.user_id = U.id', 'INNER');
+    	$this->db->where('A.casting_id', $casting_id);
+		/*
+		 * WHERE casting_id=2 
+		 *(name LIKE '%carlos%') OR (name LIKE '%patricio%');
+		 */
+		$where = "";
+		$first = TRUE;
+		//WHERE DE NOMBRES O PALABRAS
+		if(!is_null($words) && $words!="_n")
+		{
+			$flag = FALSE;
+			if(!$first) $where = $where." AND ("; //espacio y AND
+			else 
+			{
+				$where = $where."("; // abre parentesis
+				$first = FALSE;
+			}
+			
+			foreach ($words as $palabra) 
+			{
+				if($flag)
+					$where=$where." OR ";
+				$where = $where." name LIKE '%".$palabra."%'";
+				$flag =TRUE;
+			}
+			$where=$where.")";//cierra paréntesis de palabra
+		}
+		//agrego el where para cada id de usuario
+		$flag = FALSE;
+		$users_where = "(";
+		foreach ($filtered_ids as $user_id) 
+		{
+			if($flag)
+				$users_where=$users_where." OR ";
+			$users_where = $users_where." A.user_id	= ".$user_id;
+			$flag =TRUE;
+		}
+		$users_where=$users_where.")";
+		
+		if($first) $final_where = $users_where;
+		else $final_where = $where." AND ".$users_where;
+		
+		$this->db->where($final_where,NULL,FALSE);//se agrega a la consulta
+		
+		
+
+		if(!is_null($page)){
+			$this->db->limit($cant,($page-1)*$cant);
+		}
+		
+		$query = $this->db->get();
+		if($query->num_rows == 0)
+			return 0;
+		else
+			return $query->result_array();
+	}
 	
 	
 	function get_short_user_applies($casting_id,$state=NULL) //para sacar la información utilizada en casting_details

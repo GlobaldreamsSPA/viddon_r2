@@ -220,6 +220,17 @@ class Hunter extends CI_Controller {
 		
 	}
 
+	private function _word_filter($casting_id, $id_applicants,$words=NULL,$page=NULL)
+	{
+		$filtered_user_ids = array();
+		foreach($id_applicants as $aplicante)
+		{
+			$filtered_user_ids[] = $aplicante['user_id'];//guardo sólo los id de cada usuario
+		}
+		return $this->applies_model->get_filtered_user_applies_by_word($filtered_user_ids, $casting_id, $words, $page);
+		
+	}
+
 	function casting_detail($id=NULL)
 	{
 		if($this->session->userdata('logged_in') && isset($id))
@@ -415,6 +426,14 @@ class Hunter extends CI_Controller {
 		}
 		return FALSE;
 	}
+	
+	//revisa si algún(por lo menos 1) filtro físico está presente
+	private function _has_word_filter($words)
+	{
+		if($words != "_n") return true;
+		else return false;
+	}
+	
 
 	function applicants_list($id=NULL,$page=1,$applies_state=0,$sex=-2,$build=-2,$skin_color=-2,$eyes_color=-2,$hair_color=-2,$height_range=-2,$age_range=-2,$filter_categories=-2,$name_p='_n')
 	{
@@ -500,6 +519,19 @@ class Hunter extends CI_Controller {
 			
 			//guarda si tiene o no filtros físicos
 			$has_physical_filter = $this->_has_physical_filter($sex, $build, $skin_color, $eyes_color, $hair_color, $height_range, $age_range);
+			$has_word_filter = $this->_has_word_filter($name_p);
+			
+			$words = array();
+			
+			if($has_word_filter)//transforma la palabras o nombres en un arrreglo
+			{
+				$tempo = explode("_",$name_p);
+				foreach ($tempo as $parte) 
+				{
+					$words[] = $parte;
+				}
+			}
+			
 			if($filter_categories!= -2)
 			{
 				$args["filter_categories"] = explode("_",$filter_categories);//PARAMETROS FILTRO URL
@@ -509,6 +541,11 @@ class Hunter extends CI_Controller {
 				{
 					//SE APLICAN LOS FILTROS FISICOS SOBRE LOS APLICANTS YA RESCATADOS
 					$id_applicants = $this->_physical_filter($id, $id_applicants,$args["sex"],$args["eyes_color"],$args["hair_color"],$args["build"],$args["skin_color"],$args["height_range"],$args["age_range"]);	
+				}
+				if($has_word_filter) //si tiene filtros por palabras
+				{
+					//SE APLICAN LOS FILTROS FISICOS SOBRE LOS APLICANTS YA RESCATADOS
+					$id_applicants = $this->_word_filter($id, $id_applicants,$words);	
 				}
 				
 				if($id_applicants!=0)				
@@ -528,10 +565,21 @@ class Hunter extends CI_Controller {
 				{
 					//SE APLICAN LOS FILTROS FISICOS SOBRE LOS APLICANTS YA RESCATADOS
 					$id_applicants_temp= $this->applies_model->get_castings_applies($id,NULL,$applies_state);
-
 					$id_applicants = $this->_physical_filter($id, $id_applicants_temp,$args["sex"],$args["eyes_color"],$args["hair_color"],$args["build"],$args["skin_color"],$args["height_range"],$args["age_range"],$page);	
 					$args["chunks"]=ceil(sizeof($this->_physical_filter($id, $id_applicants_temp,$args["sex"],$args["eyes_color"],$args["hair_color"],$args["build"],$args["skin_color"],$args["height_range"],$args["age_range"]))/5);			
 
+				}				
+				elseif($has_word_filter) //si tiene filtros por palabras
+				{
+					//SE APLICAN LOS FILTROS POR PALABRA SOBRE LOS APLICANTS YA RESCATADOS
+					if($has_physical_filter)
+						$id_applicants_temp = $id_applicants;
+					else
+						$id_applicants_temp= $this->applies_model->get_castings_applies($id,NULL,$applies_state);
+					
+					$id_applicants = $this->_word_filter($id, $id_applicants_temp,$words,$page);
+					$args["chunks"]=ceil(sizeof($this->_word_filter($id, $id_applicants_temp,$words))/5);			
+						
 				}
 				else
 				{
@@ -539,7 +587,7 @@ class Hunter extends CI_Controller {
 					$id_applicants= $this->applies_model->get_castings_applies($id,$page,$applies_state);
 
 				}
-				$unfiltered_applicants = $id_applicants; //COPIA DE LOS APLICANTES SIN FILTRAR, PARA USAR EN LA COMPROBACION PARA FINALIZAR EL CASTING
+				$unfiltered_applicants = $this->applies_model->get_castings_applies($id,NULL,$applies_state); //COPIA DE LOS APLICANTES SIN FILTRAR, PARA USAR EN LA COMPROBACION PARA FINALIZAR EL CASTING
 			}
 			$args["page"] = $page;
 			$args["applies_state"]=$applies_state;
