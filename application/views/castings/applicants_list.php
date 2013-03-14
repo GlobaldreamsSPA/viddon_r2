@@ -189,8 +189,6 @@
 									
 									$end_pag = $page + $margen;
 									if($end_pag > $chunks) $end_pag = $chunks;
-									
-									if($page < $margen) $end_pag = $end_pag + ($margen-$page);
 								 
 					                for($i = $begin_pag; $i <= $end_pag; $i++) 
 					                { ?>

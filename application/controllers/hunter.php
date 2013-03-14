@@ -209,14 +209,14 @@ class Hunter extends CI_Controller {
 		redirect(HOME);
 	}
 	
-	private function _physical_filter($casting_id, $id_applicants, $sex=NULL, $eyes_color=NULL, $hair_color=NULL, $build=NULL, $skin_color=NULL, $height_range=NULL, $age_range=NULL)
+	private function _physical_filter($casting_id, $id_applicants, $sex=NULL, $eyes_color=NULL, $hair_color=NULL, $build=NULL, $skin_color=NULL, $height_range=NULL, $age_range=NULL, $page=NULL)
 	{
 		$filtered_user_ids = array();
 		foreach($id_applicants as $aplicante)
 		{
 			$filtered_user_ids[] = $aplicante['user_id'];//guardo sólo los id de cada usuario
 		}
-		return $this->applies_model->get_filtered_user_applies_by($filtered_user_ids, $casting_id, $sex, $eyes_color, $hair_color, $build, $skin_color, $height_range, $age_range);
+		return $this->applies_model->get_filtered_user_applies_by($filtered_user_ids, $casting_id, $sex, $eyes_color, $hair_color, $build, $skin_color, $height_range, $age_range, $page);
 		
 	}
 
@@ -451,8 +451,8 @@ class Hunter extends CI_Controller {
 
 			$args["hair_list"]= $temp + array(0=>"Casta&ntilde;o",1=>"Negro", 2 =>"Rubio",3=>"Blanco",4=>"Gris",5=>"Colorin",6=>"Otros");
 									
-			$args["height_list"] = $temp + array(0=>"150 cm o menos",1=>"150 cm",2=>"160 cm",3=>"170 cm",4=>"180 cm",5=>"190 cm",6=>"200 cm",7=>"200 cm o o m&aacutes");
-
+			$args["height_list"] = $temp + array(0=>"150cm o menos",1=>"150-160cm",2=>"170-180cm",3=>"180-190cm",4=>"190-200cm",5=>"200 cm o m&aacutes");
+			
 			$args["age_list"] = $temp + array(0=>"10 a&ntildeos o menos",1=>"10-15 a&ntildeos",2=>"15-20 a&ntildeos",3=>"20-25 a&ntildeos",4=>"20-30 a&ntildeos",5=>"30-35 a&ntildeos",6=>"35-40 a&ntildeos",7=>"40-45 a&ntildeos o m&aacutes");	
 
 			$temp = $this->castings_model->get_full_casting($id);
@@ -523,15 +523,14 @@ class Hunter extends CI_Controller {
 			{
 				//TODO:  FILTRA LOS ELEMENTOS POR PAGINA, DEBE FILTRAR ANTES O DURANTE LA PAGINACION
 				$args["filter_categories"] = $filter_categories;
-				$id_applicants= $this->applies_model->get_castings_applies($id,$page,$applies_state);
+				$id_applicants= $this->applies_model->get_castings_applies($id,NULL,$applies_state);
 				if($has_physical_filter) //si tiene filtros fisicos
 				{
 					//SE APLICAN LOS FILTROS FISICOS SOBRE LOS APLICANTS YA RESCATADOS
-					$id_applicants = $this->_physical_filter($id, $id_applicants,$args["sex"],$args["eyes_color"],$args["hair_color"],$args["build"],$args["skin_color"],$args["height_range"],$args["age_range"]);	
+					$id_applicants = $this->_physical_filter($id, $id_applicants,$args["sex"],$args["eyes_color"],$args["hair_color"],$args["build"],$args["skin_color"],$args["height_range"],$args["age_range"],$page);	
 				}	
 				$unfiltered_applicants = $id_applicants; //COPIA DE LOS APLICANTES SIN FILTRAR, PARA USAR EN LA COMPROBACION PARA FINALIZAR EL CASTING
-				$args["chunks"]=ceil($this->applies_model->count_casting_applies($id,$applies_state)/5);
-				
+				$args["chunks"]=ceil(sizeof($this->_physical_filter($id, $id_applicants,$args["sex"],$args["eyes_color"],$args["hair_color"],$args["build"],$args["skin_color"],$args["height_range"],$args["age_range"]))/5);			
 			}
 			$args["page"] = $page;
 			$args["applies_state"]=$applies_state;
