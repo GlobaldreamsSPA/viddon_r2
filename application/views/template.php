@@ -315,7 +315,7 @@
 		    jQuery('#variable').bind( 'resize', function(e) {
 					  
 				$('#grow').css({
-					    'height': $('#variable').height()
+					    'height': $(this).height()
 				});
 			});
 			

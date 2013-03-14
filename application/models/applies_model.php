@@ -189,11 +189,9 @@ class Applies_model extends CI_Model
 			$this->db->select('id_main_video');
 			$this->db->where('id', $user_id);
 			$main_id_result = $this->db->get('users')->first_row('array'); //obtiene id_main_video
-			var_dump($main_id_result['id_main_video']);
 			if(!is_null($main_id_result['id_main_video']))//si no es null
 			{
 				$videos_result = array("id" => $main_id_result['id_main_video']);
-				var_dump($videos_result['id']);
 			}
 			else
 			{

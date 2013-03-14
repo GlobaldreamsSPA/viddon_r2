@@ -54,10 +54,7 @@ class User_model extends CI_Model
 	
 	function set_profile_pic($id_user,$name_photo_nueva=NULL)//$name_photo_nueva sale de la galeria de fotos
 	{
-		var_dump($name_photo_nueva);
-		//se carga la imagen desde la carpeta "gallery"
 		$img_galeria = LOCAL_GALLERY.$name_photo_nueva;
-		var_dump($img_galeria);
 		file_put_contents(LOCAL_USER_PROFILE_IMAGE.$name_photo_nueva, file_get_contents($img_galeria));//MUEVE LA IMAGEN A PROFILE
 		
 		$data = array
