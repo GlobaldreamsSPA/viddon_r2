@@ -60,7 +60,7 @@ class Applies_model extends CI_Model
 		
 	}
 	
-	function get_filtered_user_applies_by($filtered_ids,$casting_id,$sex=NULL, $eyes_color=NULL, $hair_color=NULL, $build=NULL, $skin_color=NULL, $height_range=NULL, $age_range=NULL){
+	function get_filtered_user_applies_by($filtered_ids,$casting_id,$sex=NULL, $eyes_color=NULL, $hair_color=NULL, $build=NULL, $skin_color=NULL, $height_range=NULL, $age_range=NULL,$page=NULL,$cant=5){
 		$this->db->select('A.user_id,A.id,A.state');
 		$this->db->from('applies AS A');
 		$this->db->join('users AS U', 'A.user_id = U.id', 'INNER');
@@ -186,13 +186,42 @@ class Applies_model extends CI_Model
 		}
 		 
 		 $height_list = array(0=>"150",1=>"150-160",2=>"170-180",3=>"180-190",4=>"190-200",5=>"200");
-		 $age_list= array(0=>"10",1=>"10-15",2=>"15-20",3=>"20-25",4=>"20-30",5=>"30-35",6=>"35-40",7=>"40");	
+		 $age_list= array(0=>"10",1=>"10-15",2=>"15-20",3=>"20-25",4=>"25-30",5=>"30-35",6=>"35-40",7=>"40");	
 
 		
 		
 		//ALTURA
 		if(!is_null($height_range)&& $height_range!=-2){
+			$rango_variable = array();
+			$flag = FALSE;
 			
+			if(!$first) $physical_where = $physical_where." AND ("; //espacio y AND
+			else 
+			{
+				$physical_where = $physical_where."("; //espacio y AND
+				$first = FALSE;
+			}
+			
+			foreach ($height_range as $altura) 
+			{
+				if($flag)
+					$physical_where=$physical_where." OR ";
+				switch($altura)//dependiendo de la clave seleccionada
+				{
+					case 0://si es la primera
+						$rango_variable=array(0=>0,1=>$height_list[$altura]);//hace que sea desde 0 a el valor inicial
+						break;
+					case (sizeof($height_list)-1)://si es la ultima
+						$rango_variable=array(0=>$height_list[$altura],1=>300);//hace que sea desde el valor maximo a 200
+						break;
+					default://si es de los internos lo separa tal cual
+						$rango_variable=explode("-", $height_list[$altura]);
+						break;
+				}
+				$physical_where = $physical_where." height BETWEEN ".$rango_variable[0]." AND ".$rango_variable[1];
+				$flag =TRUE;
+			}
+			$physical_where=$physical_where.")";//cierra paréntesis de sexo	
 		}
 		
 		//EDAD
@@ -247,7 +276,12 @@ class Applies_model extends CI_Model
 		$this->db->where($final_where,NULL,FALSE);//se agrega a la consulta
 		
 		
-	    $query = $this->db->get();
+
+		if(!is_null($page)){
+			$this->db->limit($cant,($page-1)*$cant);
+		}
+		
+		$query = $this->db->get();
 		if($query->num_rows == 0)
 			return 0;
 		else
