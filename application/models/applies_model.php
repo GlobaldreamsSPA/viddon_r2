@@ -184,15 +184,52 @@ class Applies_model extends CI_Model
 			}
 			$physical_where=$physical_where.")";//cierra paréntesis de sexo
 		}
+		 
+		 $height_list = array(0=>"150",1=>"150-160",2=>"170-180",3=>"180-190",4=>"190-200",5=>"200");
+		 $age_list= array(0=>"10",1=>"10-15",2=>"15-20",3=>"20-25",4=>"20-30",5=>"30-35",6=>"35-40",7=>"40");	
+
+		
 		
 		//ALTURA
-		if(!is_null($height_range)&& $height_range!=-2){		
+		if(!is_null($height_range)&& $height_range!=-2){
+			
 		}
 		
 		//EDAD
 		if(!is_null($age_range)&& $age_range!=-2){
+			var_dump($age_range);
+			$rango_variable = array();
+			$flag = FALSE;
+			
+			if(!$first) $physical_where = $physical_where." AND ("; //espacio y AND
+			else 
+			{
+				$physical_where = $physical_where."("; //espacio y AND
+				$first = FALSE;
+			}
+			
+			foreach ($age_range as $edad) 
+			{
+				if($flag)
+					$physical_where=$physical_where." OR ";
+				switch($edad)//dependiendo de la clave seleccionada
+				{
+					case 0://si es la primera
+						$rango_variable=array(0=>0,1=>$age_list[$edad]);//hace que sea desde 0 a el valor inicial
+						break;
+					case (sizeof($age_list)-1)://si es la ultima
+						$rango_variable=array(0=>$age_list[$edad],1=>200);//hace que sea desde el valor maximo a 200
+						break;
+					default://si es de los internos lo separa tal cual
+						$rango_variable=explode("-", $age_list[$edad]);
+						break;
+				}
+				$physical_where = $physical_where." age BETWEEN ".$rango_variable[0]." AND ".$rango_variable[1];
+				$flag =TRUE;
+			}
+			$physical_where=$physical_where.")";//cierra paréntesis de sexo
 		}
-		
+
 		//agrego el where para cada id de usuario
 		$flag = FALSE;
 		$users_where = "(";

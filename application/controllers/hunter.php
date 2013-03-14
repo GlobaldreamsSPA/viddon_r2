@@ -401,6 +401,20 @@ class Hunter extends CI_Controller {
 		else
 			redirect(HOME);
 	}
+	
+	//revisa si algún(por lo menos 1) filtro físico está presente
+	private function _has_physical_filter($sex,$build,$skin_color,$eyes_color,$hair_color,$height_range,$age_range)
+	{
+		$parametros = array($sex,$build,$skin_color,$eyes_color,$hair_color,$height_range,$age_range);
+		foreach($parametros as $variable)
+		{
+			if($variable != -2)
+			{
+				return TRUE;
+			}
+		}
+		return FALSE;
+	}
 
 	function applicants_list($id=NULL,$page=1,$applies_state=0,$sex=-2,$build=-2,$skin_color=-2,$eyes_color=-2,$hair_color=-2,$height_range=-2,$age_range=-2,$filter_categories=-2,$name_p='_n')
 	{
@@ -441,52 +455,11 @@ class Hunter extends CI_Controller {
 
 			$args["age_list"] = $temp + array(0=>"10 a&ntildeos o menos",1=>"10-15 a&ntildeos",2=>"15-20 a&ntildeos",3=>"20-25 a&ntildeos",4=>"20-30 a&ntildeos",5=>"30-35 a&ntildeos",6=>"35-40 a&ntildeos",7=>"40-45 a&ntildeos o m&aacutes");	
 
-
 			$temp = $this->castings_model->get_full_casting($id);
 			$args["name_casting"]= $temp["title"];
-
-
 			$args["filter_categories_url"] = $filter_categories;
-
-			if($filter_categories!= -2)
-			{
-				$args["filter_categories"] = explode("_",$filter_categories);//PARAMETROS FILTRO URL
-				$id_applicants= $this->applies_model->get_castings_applies($id,null,$applies_state);
-				$unfiltered_applicants = $id_applicants; //COPIA DE LOS APLICANTES SIN FILTRAR, PARA USAR EN LA COMPROBACION PARA FINALIZAR EL CASTING
 			
-				if($id_applicants !=0)				
-				{
-					$args["chunks"]=ceil($this->skills_model->count_filter_user_categories($id_applicants,$args["filter_categories"])/5);	
-					$id_applicants=$this->skills_model->filter_user_categories($id_applicants,$args["filter_categories"],$page);
-				}
-				else
-					$args["chunks"]=0;
-					
-			}
-			else
-			{
-				$args["filter_categories"] = $filter_categories;
-				$id_applicants= $this->applies_model->get_castings_applies($id,$page,$applies_state);
-				$unfiltered_applicants = $id_applicants; //COPIA DE LOS APLICANTES SIN FILTRAR, PARA USAR EN LA COMPROBACION PARA FINALIZAR EL CASTING
-				$args["chunks"]=ceil($this->applies_model->count_casting_applies($id,$applies_state)/5);					
-			}
-			$args["page"] = $page;
-			$args["applies_state"]=$applies_state;
-
-
-			$args["sex_url"]=$sex;
-			$args["eyes_color_url"]=$eyes_color;
-			$args["hair_color_url"]=$hair_color;
-			$args["build_url"]=$build;
-			$args["skin_color_url"]=$skin_color;
 			
-			$args["height_range_url"]=$height_range;
-			$args["age_range_url"]=$age_range;
-
-			$args["skin_color_url"]=$skin_color;
-			$args["name_p"]=$name_p;
-
-
 			if($sex != -2)
 				$args["sex"]=explode("_",$sex);
 			else
@@ -522,8 +495,59 @@ class Hunter extends CI_Controller {
 			else
 				$args["skin_color"]=$skin_color;
 			
-			//SE APLICAN LOS FILTROS SOBRE LOS APLICANTS YA RESCATADOS
-			$id_applicants = $this->_physical_filter($id, $id_applicants,$args["sex"],$args["eyes_color"],$args["hair_color"],$args["build"],$args["skin_color"],$args["height_range"],$args["age_range"]);
+			
+			
+			
+			//guarda si tiene o no filtros físicos
+			$has_physical_filter = $this->_has_physical_filter($sex, $build, $skin_color, $eyes_color, $hair_color, $height_range, $age_range);
+			if($filter_categories!= -2)
+			{
+				$args["filter_categories"] = explode("_",$filter_categories);//PARAMETROS FILTRO URL
+				$id_applicants= $this->applies_model->get_castings_applies($id,null,$applies_state);
+				$unfiltered_applicants = $id_applicants; //COPIA DE LOS APLICANTES SIN FILTRAR, PARA USAR EN LA COMPROBACION PARA FINALIZAR EL CASTING
+				if($has_physical_filter) //si tiene filtros fisicos
+				{
+					//SE APLICAN LOS FILTROS FISICOS SOBRE LOS APLICANTS YA RESCATADOS
+					$id_applicants = $this->_physical_filter($id, $id_applicants,$args["sex"],$args["eyes_color"],$args["hair_color"],$args["build"],$args["skin_color"],$args["height_range"],$args["age_range"]);	
+				}
+				
+				if($id_applicants!=0)				
+				{
+					$args["chunks"]=ceil($this->skills_model->count_filter_user_categories($id_applicants,$args["filter_categories"])/5);	
+					$id_applicants=$this->skills_model->filter_user_categories($id_applicants,$args["filter_categories"],$page);
+				}
+				else
+					$args["chunks"]=0;
+			}
+			else
+			{
+				//TODO:  FILTRA LOS ELEMENTOS POR PAGINA, DEBE FILTRAR ANTES O DURANTE LA PAGINACION
+				$args["filter_categories"] = $filter_categories;
+				$id_applicants= $this->applies_model->get_castings_applies($id,$page,$applies_state);
+				if($has_physical_filter) //si tiene filtros fisicos
+				{
+					//SE APLICAN LOS FILTROS FISICOS SOBRE LOS APLICANTS YA RESCATADOS
+					$id_applicants = $this->_physical_filter($id, $id_applicants,$args["sex"],$args["eyes_color"],$args["hair_color"],$args["build"],$args["skin_color"],$args["height_range"],$args["age_range"]);	
+				}	
+				$unfiltered_applicants = $id_applicants; //COPIA DE LOS APLICANTES SIN FILTRAR, PARA USAR EN LA COMPROBACION PARA FINALIZAR EL CASTING
+				$args["chunks"]=ceil($this->applies_model->count_casting_applies($id,$applies_state)/5);
+				
+			}
+			$args["page"] = $page;
+			$args["applies_state"]=$applies_state;
+
+
+			$args["sex_url"]=$sex;
+			$args["eyes_color_url"]=$eyes_color;
+			$args["hair_color_url"]=$hair_color;
+			$args["build_url"]=$build;
+			$args["skin_color_url"]=$skin_color;
+			
+			$args["height_range_url"]=$height_range;
+			$args["age_range_url"]=$age_range;
+
+			$args["skin_color_url"]=$skin_color;
+			$args["name_p"]=$name_p;
 
 			if($id_applicants!= 0)
 			{
