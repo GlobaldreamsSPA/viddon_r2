@@ -273,9 +273,8 @@ class Applies_model extends CI_Model
 		if($first) $final_where = $users_where;
 		else $final_where = $physical_where." AND ".$users_where;
 		
-		$this->db->where($final_where,NULL,FALSE);//se agrega a la consulta
-		
-		
+
+		$this->db->where($final_where,NULL,FALSE);//se agrega a la consulta		
 
 		if(!is_null($page)){
 			$this->db->limit($cant,($page-1)*$cant);

@@ -523,14 +523,23 @@ class Hunter extends CI_Controller {
 			{
 				//TODO:  FILTRA LOS ELEMENTOS POR PAGINA, DEBE FILTRAR ANTES O DURANTE LA PAGINACION
 				$args["filter_categories"] = $filter_categories;
-				$id_applicants= $this->applies_model->get_castings_applies($id,NULL,$applies_state);
+
 				if($has_physical_filter) //si tiene filtros fisicos
 				{
 					//SE APLICAN LOS FILTROS FISICOS SOBRE LOS APLICANTS YA RESCATADOS
-					$id_applicants = $this->_physical_filter($id, $id_applicants,$args["sex"],$args["eyes_color"],$args["hair_color"],$args["build"],$args["skin_color"],$args["height_range"],$args["age_range"],$page);	
-				}	
+					$id_applicants_temp= $this->applies_model->get_castings_applies($id,NULL,$applies_state);
+
+					$id_applicants = $this->_physical_filter($id, $id_applicants_temp,$args["sex"],$args["eyes_color"],$args["hair_color"],$args["build"],$args["skin_color"],$args["height_range"],$args["age_range"],$page);	
+					$args["chunks"]=ceil(sizeof($this->_physical_filter($id, $id_applicants_temp,$args["sex"],$args["eyes_color"],$args["hair_color"],$args["build"],$args["skin_color"],$args["height_range"],$args["age_range"]))/5);			
+
+				}
+				else
+				{
+					$args["chunks"]=ceil($this->applies_model->count_casting_applies($id,$applies_state)/5);			
+					$id_applicants= $this->applies_model->get_castings_applies($id,$page,$applies_state);
+
+				}
 				$unfiltered_applicants = $id_applicants; //COPIA DE LOS APLICANTES SIN FILTRAR, PARA USAR EN LA COMPROBACION PARA FINALIZAR EL CASTING
-				$args["chunks"]=ceil(sizeof($this->_physical_filter($id, $id_applicants,$args["sex"],$args["eyes_color"],$args["hair_color"],$args["build"],$args["skin_color"],$args["height_range"],$args["age_range"]))/5);			
 			}
 			$args["page"] = $page;
 			$args["applies_state"]=$applies_state;
