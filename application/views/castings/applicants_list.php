@@ -61,7 +61,6 @@
 								<div class="span1">
 									
 									<?php							
-									//var_dump($allowed_to_finalize);
 									if(isset($allowed_to_finalize) AND $allowed_to_finalize){
 									?>
 										<a href="<?php echo HOME."/hunter/finalize_casting/".$id_casting; ?>" style="height: 34px;" class="btn" title="Cerrar Casting">
@@ -186,11 +185,12 @@
 									$margen = $pag_size/2;
 									
 									$begin_pag = $page - $margen;
-									if($begin_pag < 0) $begin_pag = 1;
+									if($begin_pag <= 0) $begin_pag = 1;
 									
 									$end_pag = $page + $margen;
 									if($end_pag > $chunks) $end_pag = $chunks;
 									
+									if($page < $margen) $end_pag = $end_pag + ($margen-$page);
 								 
 					                for($i = $begin_pag; $i <= $end_pag; $i++) 
 					                { ?>

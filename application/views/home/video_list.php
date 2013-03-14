@@ -22,8 +22,6 @@
 					else
 						$skills_selected=-2;
 
-					//var_dump($skills_selected);
-					//var_dump($tags);
 					echo form_multiselect('tags[]', $tags,$skills_selected,"class='chzn-select chosen_filter'  id='filter' style='width:100%' data-placeholder='Selecciona los tags...'");
 					?>
 
@@ -73,7 +71,6 @@
 					<div class="space1"></div>
 					<div class="pagination">  
 					  <ul id="pagination_bt">
-					  	 <?php //var_dump($chunks);?> 
 					    <li <?php if($page==1) echo "class=disabled";?>><a <?php if($page!=1) echo "href='".base_url()."home/video_list/".($page-1)."/".$actual_skills_url."/'";?>>Prev</a></li>  
 						<?php
 						$pag_size = 16; 
@@ -84,6 +81,7 @@
 						
 						$end_pag = $page + $margen;
 						if($end_pag > $chunks) $end_pag = $chunks;
+						if($page < $margen) $end_pag = $end_pag + ($margen-$page);
 						
 						for($i = $begin_pag; $i <= $end_pag; $i++){ 
 							?>

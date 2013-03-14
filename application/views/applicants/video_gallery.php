@@ -89,7 +89,7 @@ border: 1px solid #4C3C1B;
 				</form>
 			</div>    	<!-- MODAL-->
     	
-    	<?php //var_dump($videos);
+    	<?php
     	//video[0] => titulo
     	//video[1]=> link
     	//video[2]=> descripcion

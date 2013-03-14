@@ -80,7 +80,6 @@
 					?> 
 						
 					<?php
-					//var_dump($photos);
 						if(isset($photos))
 						{?>
 							<div id="galeria_publica">

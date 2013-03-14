@@ -16,7 +16,6 @@ class Castings_model extends CI_Model
 	
 	function update($casting)
     {
-    	//var_dump("$casting");
     	$data = array(
 				'title' => $casting['title'],
 				'start_date' => $casting['start_date'],

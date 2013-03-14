@@ -146,7 +146,6 @@ class Videos_model extends CI_Model
 		
 		if(!is_null($skills_actual)){
 			$flag = FALSE;
-			//var_dump($skills_actual);
 			$where = "";
 			foreach ($skills_actual as $iter) 
 			{
@@ -154,10 +153,8 @@ class Videos_model extends CI_Model
 					$where=$where." OR ";
 				$where = $where." skill_id= ".$iter;
 				$flag =TRUE;
-				//var_dump($where);
 			}
 			
-			//var_dump($where);
 			$this->db->where($where, NULL, FALSE);
 		}
 		
@@ -171,7 +168,6 @@ class Videos_model extends CI_Model
 			$result[] = array($value['title'], $value['link'], $value['user_id']);
 		}
 		
-		//var_dump($result);
 		return $result;
 	}
 	
@@ -185,7 +181,6 @@ class Videos_model extends CI_Model
 		
 		if(!is_null($skills_actual)){
 			$flag = FALSE;
-			//var_dump($skills_actual);
 			$where = "";
 			foreach ($skills_actual as $iter) 
 			{
@@ -193,10 +188,8 @@ class Videos_model extends CI_Model
 					$where=$where." OR ";
 				$where = $where." skill_id= ".$iter;
 				$flag =TRUE;
-				//var_dump($where);
 			}
 			
-			//var_dump($where);
 			$this->db->where($where, NULL, FALSE);
 		}
 		
@@ -209,7 +202,6 @@ class Videos_model extends CI_Model
 	
 	function get_videos_by_user($id_user,$page,$cant=8)
 	{
-		//var_dump($id_user);
 		$this->db->select('*');
 		$this->db->where('user_id',$id_user);
 		$query = $this->db->get('videos', $cant, ($page-1)*$cant);
@@ -218,18 +210,15 @@ class Videos_model extends CI_Model
 		{
 			$result[] = array($value['title'], $value['link'], $value['description'],$value['id']);
 		}
-		//var_dump($result);
 		return $result;
 	}
 
 	function count_videos_by_user($id_user)
 	{
-		//var_dump($id_user);
 		$this->db->select('*');
 		$this->db->where('user_id',$id_user);
 		$query = $this->db->get('videos');
 	
-		//var_dump($result);
 		return $query->num_rows;
 	}
 
