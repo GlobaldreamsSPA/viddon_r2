@@ -69,7 +69,7 @@
 									
 									<div style="margin-left: -10px; margin-top: -20px;" id="image_upload">
 										<h5>Sube una imagen de t&iacute</h5>
-										<?php echo form_upload(array('name' => 'image_profile','id'=> 'file')); ?>
+										<?php echo form_upload(array('name' => 'image_profile','class'=> 'file')); ?>
 										<?php 
 											  echo form_hidden('image','');
 											  echo form_error('image'); 

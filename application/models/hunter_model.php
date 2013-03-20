@@ -28,6 +28,34 @@ Class Hunter_model extends CI_Model
      }
    }
 
+  function insert_sub_hunter($data)
+  {
+    $this->db->insert('entities',$data);
+    return $this->db->insert_id();
+
+  }
+
+  function update_sub_hunter($data,$id,$super_hunter_id)
+  {
+    $this->db->where(array('id' => $id,'super_hunter_id' => $super_hunter_id));
+    $this->db->update('entities', $data);
+  }
+
+  function delete_sub_hunter($id,$super_hunter_id)
+  {
+    $this->db->delete('entities', array('id' => $id,'super_hunter_id' => $super_hunter_id));
+  }
+
+  function retrieve_sub_hunters($super_hunter_id)
+  {
+    $this->db->select('*');
+    $this->db->from('entities');
+    $this->db->where('super_hunter_id', $super_hunter_id);
+    $query = $this->db->get();
+
+    return $query->result_array();
+  }
+
 	function update($profile)
 	{
 		$data = array(
@@ -52,5 +80,40 @@ Class Hunter_model extends CI_Model
 
 		return $query;
 	}
+
+  function validate_mail($mail)
+  {
+    $this->db->select('*');
+    $this->db->from('entities');
+    $this->db->where('email', $mail);
+    $query = $this->db->get();
+
+
+    if($query->num_rows() > 0)
+     {
+       return true;
+     }
+     else
+     {
+       return false;
+     }
+  }
+
+  function validate_mail_update($mail,$id)
+  {
+    $this->db->select('*');
+    $this->db->from('entities');
+    $this->db->where(array('email' => $mail, 'id !=' => $id));
+    $query = $this->db->get();
+
+    if($query->num_rows() > 0)
+     {
+       return true;
+     }
+     else
+     {
+       return false;
+     }
+  }
 }
 ?>

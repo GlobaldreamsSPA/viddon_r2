@@ -70,7 +70,7 @@
 												ó											
 												<div style="margin-left: -10px; margin-top: -20px;" id="image_upload">
 												<h5>Sube una imagen de t&iacute</h5>
-												<?php echo form_upload(array('name' => 'image_profile','id'=> 'file')); ?>
+												<?php echo form_upload(array('name' => 'image_profile','class'=> 'file')); ?>
 												<?php 
 													  echo form_hidden('image','');
 													  echo form_error('image'); 
@@ -97,13 +97,13 @@
 					    	foreach($photos as $photo){
 					    		$i++;
 								if($i%2 == 0 )								
-					    			if($photo["id"] == $id_main_video) echo '<div style="padding:8px;" title="Video Principal" class="span6 glow">'; //carga el efecto de "brillo"
+					    			if($photo["id"] == $id_main_video) echo '<div style="padding:8px;" title="Imagen Perfil" class="span6 glow">'; //carga el efecto de "brillo"
 									else echo '<div style="padding:8px;" class="span6">';	
 								else
 									{
 									echo '<div class="space1"></div>';
 									echo '<div class="row">';
-									if($photo["id"] == $id_main_video) echo '<div style="padding:8px;" title="Video Principal" class="span6 glow">';//carga el efecto de "brillo"
+									if($photo["id"] == $id_main_video) echo '<div style="padding:8px;" title="Imagen Perfil" class="span6 glow">';//carga el efecto de "brillo"
 									else echo '<div style="padding:8px;" class="span6">';
 									}								
 					    	?>

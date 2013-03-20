@@ -5,7 +5,7 @@ class Hunter extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->helper(array('url', 'file', 'form'));
+		$this->load->helper(array('url', 'file', 'form','security'));
 		$this->load->model(array('hunter_model', 'castings_model', 'casting_categories_model', 'user_model', 'applies_model', 'videos_model','skills_model'));
 		$this->load->library(array('upload', 'image_lib', 'form_validation'));
 		
@@ -13,7 +13,7 @@ class Hunter extends CI_Controller {
 	
 	function index()
 	{
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter")
 		{
 			
 			$hunter_id = $this->session->userdata('logged_in');
@@ -74,7 +74,7 @@ class Hunter extends CI_Controller {
 
 	function publish()
 	{
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter")
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id= $hunter_id['id'];
@@ -83,7 +83,14 @@ class Hunter extends CI_Controller {
 			
 	   	 	$args['castings'] = $this->castings_model->get_castings($hunter_id);
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
-			$args["skills"]=	$skills = $this->skills_model->get_skills();
+			
+	   	 	$temp[-1]= "--  Seleccionar Todos  --";
+			$temp[-2]= "--     Vaciar Campo    --";
+
+			$args["skills"]=	$temp + $skills = $this->skills_model->get_skills();
+			$args["hunters"]= $temp + array("hunter1","hunter2","hunter3","hunter4");
+			$args["age_list"] = $temp + array(0=>"10 a&ntildeos o menos",1=>"10-15 a&ntildeos",2=>"15-20 a&ntildeos",3=>"20-25 a&ntildeos",4=>"20-30 a&ntildeos",5=>"30-35 a&ntildeos",6=>"35-40 a&ntildeos",7=>"40-45 a&ntildeos o m&aacutes");	
+
 			
 	   	 	//Setear mensajes
 			$this->form_validation->set_message('required', 
@@ -93,7 +100,7 @@ class Hunter extends CI_Controller {
 			$this->form_validation->set_rules('title', 'Title', 'required');
 			$this->form_validation->set_rules('description', 'Description', 'required');
 			$this->form_validation->set_rules('requirements', 'Requirements', 'required');
-			$this->form_validation->set_rules('image', 'Image', 'callback_check_upload');
+			$this->form_validation->set_rules('image', 'Image', 'callback_check_upload[logo]');
 
 			if ($this->form_validation->run() == FALSE)
 			{
@@ -172,7 +179,7 @@ class Hunter extends CI_Controller {
 	
 	function casting_list($page=1,$casting_state=0)
 	{
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter")
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id = $hunter_id['id'];
@@ -233,7 +240,7 @@ class Hunter extends CI_Controller {
 
 	function casting_detail($id=NULL)
 	{
-		if($this->session->userdata('logged_in') && isset($id))
+		if($this->session->userdata('logged_in') && isset($id) && $this->session->userdata('logged_in')['type'] == "hunter")
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id = $hunter_id['id'];
@@ -301,16 +308,21 @@ class Hunter extends CI_Controller {
 	
 	function edit_casting($id=NULL)
 	{
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter")
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id= $hunter_id['id'];
 	   	 	$args["castings_dash"]= $this->_dashboard($hunter_id);
-			
-	   	 	
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
-			$args["skills"]= $this->skills_model->get_skills();		
 			
+			$temp[-1]= "--  Seleccionar Todos  --";
+			$temp[-2]= "--     Vaciar Campo    --";
+			
+			$args["hunters"]= $temp + array("hunter1","hunter2","hunter3","hunter4");
+			$args["skills"]= $temp + $this->skills_model->get_skills();		
+			$args["age_list"] = $temp + array(0=>"10 a&ntildeos o menos",1=>"10-15 a&ntildeos",2=>"15-20 a&ntildeos",3=>"20-25 a&ntildeos",4=>"20-30 a&ntildeos",5=>"30-35 a&ntildeos",6=>"35-40 a&ntildeos",7=>"40-45 a&ntildeos o m&aacutes");	
+
+
 			$args['categories'] = $this->casting_categories_model->get_casting_categories();
 			$args["content"]="castings/hunter_template";
 			$inner_args["hunter_content"]= "castings/edit_hunter_casting";
@@ -331,7 +343,7 @@ class Hunter extends CI_Controller {
 			$this->form_validation->set_rules('title', 'Title', 'required');
 			$this->form_validation->set_rules('description', 'Description', 'required');
 			$this->form_validation->set_rules('requirements', 'Requirements', 'required');
-			$this->form_validation->set_rules('image', 'Image', 'callback_check_upload');
+			$this->form_validation->set_rules('image', 'Image', 'callback_check_upload[logo]');
 
 			//$this->form_validation->set_rules('logo', 'Logo', 'callback_check_upload');
 			
@@ -662,7 +674,7 @@ class Hunter extends CI_Controller {
 	
 	function accepted_list($id)
 	{
-		if($this->session->userdata('logged_in')&& isset($id))
+		if($this->session->userdata('logged_in')&& isset($id) && $this->session->userdata('logged_in')['type'] == "hunter")
 		{
 			$args['user_data'] = $this->session->userdata('logged_in');
 			
@@ -698,7 +710,7 @@ class Hunter extends CI_Controller {
 
 	function finalize_casting($id_casting)
 	{
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter")
 		{
 				$this->castings_model->finalize_casting($id_casting);	
 				redirect(HOME."/hunter/casting_list");
@@ -709,7 +721,7 @@ class Hunter extends CI_Controller {
 
 	function edit()
 	{
-		if($this->session->userdata('logged_in'))
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter")
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id= $hunter_id['id'];
@@ -737,14 +749,7 @@ class Hunter extends CI_Controller {
 			$this->form_validation->set_rules('address', 'Address', 'required');
 			$this->form_validation->set_rules('about_us', 'About_us', 'required');
 			$this->form_validation->set_rules('we_look_for', 'We_look_for', 'required');
-			//$this->form_validation->set_rules('logo', 'Logo', 'callback_check_upload');
 			
-			 
-			 /*
-			if(!(isset($hunter_id) && !(is_numeric($hunter_id))))
-			
-			$this->form_validation->set_rules('logo', 'Logo', 'callback_check_upload');
-			 */
 
 			if ($this->form_validation->run() == FALSE)
 			{
@@ -767,11 +772,10 @@ class Hunter extends CI_Controller {
 				$this->hunter_model->update($profile);
 
 				//Por ultimo subir la foto
-				if($this->check_upload('') == TRUE)
-					$this->_upload_image_hunter($profile['id'],$profile['logo']);
+			
 
-				if($this->check_upload('') == TRUE && (isset($hunter_id) && is_numeric($hunter_id)))
-					$this->_upload_image_hunter($profile['id'],$profile['logo']);
+				if($this->check_upload('','hunter_profile') == TRUE && (isset($hunter_id) && is_numeric($hunter_id)))
+					$this->_upload_image_hunter($profile['id'],'hunter_profile');
 
 
 				redirect(HOME.'/hunter/edit');
@@ -784,11 +788,220 @@ class Hunter extends CI_Controller {
 			redirect(HOME);
 	}
 
-	function check_upload($image)
+
+	function manage_hunters()
 	{
-		if($_FILES['logo']['error'] == 4)
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter")
 		{
-			$this->form_validation->set_message('check_upload', 'Ups, deber subir un archivo antes de continuar.');
+			$hunter_id = $this->session->userdata('logged_in');
+		 	$hunter_id = $hunter_id['id'];
+			$args["castings_dash"]= $this->_dashboard($hunter_id);
+			
+			$args['user_data'] = $this->session->userdata('logged_in');
+			$args["content"]="castings/hunter_template";
+			$inner_args["hunter_content"]="castings/hunter_manager";
+			$args["inner_args"]=$inner_args;
+
+			$args["hunters"] = $this->hunter_model->retrieve_sub_hunters($hunter_id);
+			$this->load->view('template', $args);
+		}
+		else
+			redirect(HOME);
+	}
+
+	function assign_workload()
+	{
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter")
+		{
+			$hunter_id = $this->session->userdata('logged_in');
+		 	$hunter_id = $hunter_id['id'];
+			$args["castings_dash"]= $this->_dashboard($hunter_id);
+			
+			$args['user_data'] = $this->session->userdata('logged_in');
+			$args["content"]="castings/hunter_template";
+			$inner_args["hunter_content"]="castings/hunter_assign_workload";
+			$args["inner_args"]=$inner_args;
+
+			$args["castings"] = array(array("casting_name" => "Mundos Opuestos","quantity"=> 30000,"default"=> 1000));
+			
+			$this->load->view('template', $args);
+		}
+		else
+			redirect(HOME);
+	}
+
+
+	function check_workload()
+	{
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter")
+		{
+			$hunter_id = $this->session->userdata('logged_in');
+		 	$hunter_id = $hunter_id['id'];
+			$args["castings_dash"]= $this->_dashboard($hunter_id);
+			
+			$args['user_data'] = $this->session->userdata('logged_in');
+			$args["content"]="castings/hunter_template";
+			$inner_args["hunter_content"]="castings/hunter_check_workload";
+			$args["inner_args"]=$inner_args;
+
+			$args["castings"] = array(array("casting_name" => "Mundos Opuestos","quantity"=> 3000,"check"=> 1000));
+			
+			$this->load->view('template', $args);
+		}
+		else
+			redirect(HOME);
+	}
+
+	function create_sub_hunter()
+	{
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter" && isset($_POST["hunter_name"]))
+		{
+
+			$this->form_validation->set_rules('hunter_name', 'Nombre Hunter','trim|required|max_length[20]|xss_clean');
+			$this->form_validation->set_rules('email', 'Correo', 'trim|required|valid_email|callback_check_unique');
+			$this->form_validation->set_rules('pass1', 'Contrase&ntildea', 'trim|required|matches[pass2]|md5');
+			$this->form_validation->set_rules('pass2', 'Confirmar Contrase&ntildea', 'trim|required');
+			$this->form_validation->set_rules('image_sub_hunter', 'Imagen Hunter', 'callback_check_upload[image_sub_hunter]');
+
+			$hunter_id = $this->session->userdata('logged_in');
+			$hunter_id = $hunter_id['id'];
+
+			if ($this->form_validation->run() == FALSE)
+			{
+				
+				$args["castings_dash"]= $this->_dashboard($hunter_id);
+				
+				$args['user_data'] = $this->session->userdata('logged_in');
+				$args["content"]="castings/hunter_template";
+				$inner_args["hunter_content"]="castings/hunter_manager";
+				$args["inner_args"]=$inner_args;
+				$args["show"]=true;
+				$args["hunters"] = $this->hunter_model->retrieve_sub_hunters($hunter_id);
+
+				
+				$this->load->view('template', $args);
+			}
+			else
+			{
+				$data['name'] = $this->input->post('hunter_name');
+				$data['email'] = $this->input->post('email');
+				$data['password'] = $this->input->post('pass1');
+				$data['super_hunter_id'] = $hunter_id;
+				
+				$this->_upload_image_hunter($this->hunter_model->insert_sub_hunter($data),'image_sub_hunter');
+
+				redirect(HOME."/hunter/manage_hunters");
+			}
+		}
+		else
+			redirect(HOME);
+
+	}
+
+	function edit_sub_hunter($id_sub_hunter)
+	{
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter" && isset($_POST["hunter_name".$id_sub_hunter]))
+		{
+
+			$this->form_validation->set_rules('hunter_name'.$id_sub_hunter, 'Nombre Hunter','trim|required|max_length[20]|xss_clean');
+			$this->form_validation->set_rules('email'.$id_sub_hunter, 'Correo', 'trim|required|valid_email|callback_check_unique_update['.$id_sub_hunter.']');
+			if($_POST['pass1'.$id_sub_hunter]!="" || $_POST['pass2'.$id_sub_hunter]!="")
+			{
+				$this->form_validation->set_rules('pass1'.$id_sub_hunter, 'Contrase&ntildea', 'trim|required|matches[pass2'.$id_sub_hunter.']|md5');
+				$this->form_validation->set_rules('pass2'.$id_sub_hunter, 'Confirmar Contrase&ntildea', 'trim|required');
+			}
+
+			if(file_exists($_FILES['image_sub_hunter'.$id_sub_hunter]['tmp_name']) && is_uploaded_file($_FILES['image_sub_hunter'.$id_sub_hunter]['tmp_name']))
+				$this->form_validation->set_rules('image_sub_hunter'.$id_sub_hunter, 'Imagen Hunter', 'callback_check_upload[image_sub_hunter'.$id_sub_hunter.']');
+
+			$hunter_id = $this->session->userdata('logged_in');
+			$hunter_id = $hunter_id['id'];
+
+			if ($this->form_validation->run() == FALSE)
+			{
+				
+				$args["castings_dash"]= $this->_dashboard($hunter_id);
+				
+				$args['user_data'] = $this->session->userdata('logged_in');
+				$args["content"]="castings/hunter_template";
+				$inner_args["hunter_content"]="castings/hunter_manager";
+				$args["inner_args"]=$inner_args;
+				$args["show_edit"][$id_sub_hunter]=true;
+			    
+			    $args["hunters"] = $this->hunter_model->retrieve_sub_hunters($hunter_id);
+
+				
+				$this->load->view('template', $args);
+			}
+			else
+			{
+				$data['name'] = $this->input->post('hunter_name'.$id_sub_hunter);
+				$data['email'] = $this->input->post('email'.$id_sub_hunter);
+				
+				if($_POST['pass1'.$id_sub_hunter]!="")
+					$data['password'] = $this->input->post('pass1'.$id_sub_hunter);
+				
+				$this->hunter_model->update_sub_hunter($data,$id_sub_hunter,$hunter_id);
+				
+				if(file_exists($_FILES['image_sub_hunter'.$id_sub_hunter]['tmp_name']) && is_uploaded_file($_FILES['image_sub_hunter'.$id_sub_hunter]['tmp_name']))
+					$this->_upload_image_hunter($id_sub_hunter,'image_sub_hunter'.$id_sub_hunter);
+
+				redirect(HOME."/hunter/manage_hunters");
+			}
+		}
+		else
+			redirect(HOME);
+
+	}
+
+	function delete_sub_hunter($id_sub_hunter)
+	{
+		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter")
+		{
+			$hunter_id = $this->session->userdata('logged_in');
+		 	$hunter_id = $hunter_id['id'];
+			
+			$this->hunter_model->delete_sub_hunter($id_sub_hunter,$hunter_id);
+			redirect(HOME."/hunter/manage_hunters");
+
+		}
+		else
+			redirect(HOME);
+	}
+
+	/* truco para validar que se suba imagen, estas funciones trabajan con post, pero como la imagen
+	llega de otra forma, se aprovecha el parametro extra para mandar el nombre de la variable*/
+	function check_upload($dump,$image)
+	{
+		if($_FILES[$image]['error'] == 4)
+		{
+			$this->form_validation->set_message('check_upload', 'Debes subir un archivo antes de continuar.');
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
+
+	function check_unique($mail)
+	{
+		if($this->hunter_model->validate_mail($mail))
+		{
+			$this->form_validation->set_message('check_unique', 'Correo ya existe.');
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
+
+	function check_unique_update($mail,$id)
+	{
+		if($this->hunter_model->validate_mail_update($mail,$id))
+		{
+			$this->form_validation->set_message('check_unique', 'Correo ya existe.');
 			return FALSE;
 		}
 		else
@@ -850,16 +1063,16 @@ class Hunter extends CI_Controller {
 		return $filename;
 	}
 	
-	private function _upload_image_hunter($id)
+	private function _upload_image_hunter($id,$file)
 	{
 		$images_path = realpath(APPPATH.UPLOAD_DIR);
 		//$images_path = realpath(APPPATH.HUNTER_PROFILE_IMAGE);
 		
 		//obtener la extension del archivo
-		$type = explode('/', $_FILES['logo']['type']);
+		$type = explode('/', $_FILES[$file]['type']);
 		
 		$filename = "hunter_".$id. '.' .$type[1];
-		
+
 		$config = array(
 			'allowed_types' => 'jpg|jpeg|gif|png',
 			'upload_path' => $images_path,
@@ -869,6 +1082,7 @@ class Hunter extends CI_Controller {
 			'remove_spaces' =>TRUE
 		);
 		
+
 		//actualizar la imagen del usuario en la bd
 		$this->db->where('id', $id);
 		$this->db->set('logo',$filename);
@@ -876,13 +1090,13 @@ class Hunter extends CI_Controller {
 		
 		$this->upload->initialize($config);
 		
-		if(!$this->upload->do_upload('logo'))
+		if(!$this->upload->do_upload($file))
 		{
 			print_r($this->upload->display_errors());
 		}
 		
 		//ahora ajustar la imagen
-		$image = $this->upload->data('logo');
+		$image = $this->upload->data($file);
 
 		$config = array(
 			'image_library' => 'gd2',

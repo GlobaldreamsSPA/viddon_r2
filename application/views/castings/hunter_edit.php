@@ -12,6 +12,7 @@
 					    		<ul class="nav nav-pills nav-stacked orange">
 								  	<li><a href="<?php echo HOME."/hunter";?>"> <i class="icon-user"></i> Perfil</a> </li>
 								  	<li class="active"><a> <i class="icon-pencil"></i> Editar Datos</a></li>
+									<li><a href="<?php echo HOME."/hunter/manage_hunters/";?>"> <i class="icon-list-alt"></i> Gesti&oacute;n Hunters</a></li>
 								  	<li><a href="<?php echo HOME."/hunter/publish";?>"> <i class="icon-edit"></i> Nuevo Casting</a></li>
 									<li><a href="<?php echo HOME."/hunter/casting_list";?>"> <i class="icon-list"></i> Mis Castings</a></li>
 									<li><a href="<?php echo HOME."/hunter/logout";?>"> <i class="icon-off"></i> Cerrar Sesi&oacuten</a></li>					
@@ -54,7 +55,7 @@
 								<div style="margin-left: -15px; margin-top: -20px;" id="image_upload">
 									<h5>Logo Corporativo</h5>
 									<div class="space05"></div>
-									<?php echo form_upload(array('name' => 'logo','id'=> 'file')); ?>
+									<?php echo form_upload(array('name' => 'hunter_profile','class'=> 'file')); ?>
 									<?php 
 										  echo form_hidden('image','');
 										  echo form_error('image'); 

@@ -27,6 +27,8 @@
 	<script src="<?php echo base_url()?>js/jquery.dataTables.js"></script>
 	<script src="<?php echo base_url()?>js/bootstrap-datepicker.js"></script>	
 	<script src="<?php echo base_url()?>js/chosen.jquery.js"></script>
+	<script src="<?php echo base_url()?>js/jquery.ba-resize.js"></script>
+
 
 
 </head>
@@ -288,12 +290,17 @@
 		if($(".chzn-select").length > 0)
 			$(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({allow_single_deselect:true});
    		
-		if($("#file").length > 0)
-			$(function () {
-	
-		        $("#file").uniform();
-	
-		    });
+		if($(".file").length > 0)
+			$(function () 
+			{
+				
+				 $(".file").each(function () {
+					$(this).uniform()
+					
+			      });
+			});
+
+			
 	    
 		(function(d, s, id) 
 		{
@@ -308,17 +315,19 @@
     	
     	if($("#grow").length > 0 && $("#variable").length > 0  )
 		{
-			$('#grow').css({
-				'height': $('#variable').height()
-			});
-		    	
-		    jQuery('#variable').bind( 'resize', function(e) {
-					  
+			if($('#variable').height() >= $('#grow').height() )
+			{
 				$('#grow').css({
-					    'height': $(this).height()
+					'height': $('#variable').outerHeight()
 				});
-			});
-			
+			    	
+			    jQuery('#variable').bind( 'resize', function(e) {
+						  
+					$('#grow').css({
+						    'height': $('#variable').outerHeight()
+					});
+				});
+			}
 		}
 		
 		if($(".chosen_filter").length > 0)

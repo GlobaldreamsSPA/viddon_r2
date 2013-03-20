@@ -5,11 +5,12 @@
 				    		
 				    		<div class="span9 offset1">
 					    		<ul class="nav nav-pills nav-stacked orange">
-								  <li><a href="<?php echo HOME."/hunter";?>"> <i class="icon-user"></i> Perfil</a> </li>
-								  <li><a href="<?php echo HOME."/hunter/edit/";?>"> <i class="icon-pencil"></i> Editar Datos</a></li>
-								  <li class="active"><a> <i class="icon-edit"></i> Editando Casting</a></li>
-								  <li><a  href="<?php echo HOME."/hunter/casting_list";?>"> <i class="icon-list"></i> Mis Castings</a></li>
-								  <li><a href="<?php echo HOME."/hunter/logout";?>"> <i class="icon-off"></i> Cerrar Sesi&oacuten</a></li>					
+									<li><a href="<?php echo HOME."/hunter";?>"> <i class="icon-user"></i> Perfil</a> </li>
+									<li><a href="<?php echo HOME."/hunter/edit/";?>"> <i class="icon-pencil"></i> Editar Datos</a></li>
+			 						<li><a href="<?php echo HOME."/hunter/manage_hunters/";?>"> <i class="icon-list-alt"></i> Gesti&oacute;n Hunters</a></li>
+									<li class="active"><a> <i class="icon-edit"></i> Editando Casting</a></li>
+									<li><a  href="<?php echo HOME."/hunter/casting_list";?>"> <i class="icon-list"></i> Mis Castings</a></li>
+									<li><a href="<?php echo HOME."/hunter/logout";?>"> <i class="icon-off"></i> Cerrar Sesi&oacuten</a></li>					
 								</ul>
 							</div>
 				    	</div>
@@ -54,7 +55,7 @@
 									</select>
 									
 									<h5>Imagen para mostrar</h5>
-									<?php echo form_upload(array('name' => 'casting_image','id'=> 'file')); ?>
+									<?php echo form_upload(array('name' => 'casting_image','class'=> 'file')); ?>
 									<?php
 										echo form_hidden('image','');
 										echo form_error('image');
@@ -79,6 +80,13 @@
 									
 									?>	
 									
+									<h5>Hunters</h5>
+									
+									<?php 
+									
+									echo form_multiselect('hunters[]', $hunters,NULL,"class='chzn-select chosen_filter' style='width:60%' data-placeholder='Selecciona los hunters...'");
+									?>
+
 									<h5>Descripci&oacuten o llamado a postular</h5>
 									<textarea class="rich_textarea" name="description"><?php if(isset($update_values)) echo $update_values["description"]; else echo set_value('description');?></textarea>
 									<?php echo form_error('description'); ?>
@@ -91,7 +99,8 @@
 									<div class="space1"></div>
 								</div>
 								<legend>Perfil del postulante a buscar</legend>
-								<div>		
+								<div>
+									<?php /* ?>		
 									<div style="margin-left:15px;" class="row">
 										<div class="span6">
 										<h5>Color de ojos</h5>
@@ -146,21 +155,11 @@
 										</div>
 									</div>
 									
+									<php */ ?>
 									<div style="margin-left:15px;" class="row">
-										<div classs="span6">
-											<h5>Edad</h5>
-											<select style="width: 100%;" name="age">
-												<option value="10 a&ntildeos_o_menos">10 a&ntildeos o menos</option>
-												<option value="10-15 a&ntildeos">10-15 a&ntildeos</option>
-												<option value="15-20 a&ntildeos">15-20 a&ntildeos</option>
-												<option selected="selected" value="20-25 a&ntildeos">20-25 a&ntildeos</option>
-												<option value="25-30 a&ntildeos">25-30 a&ntildeos</option>
-												<option value="30-35 a&ntildeos">30-35 a&ntildeos</option>
-												<option value="35-40 a&ntildeos">35-40 a&ntildeos</option>
-												<option value="40-45 anos o m&aacutes">40-45 a&ntildeos o m&aacutes</option>
-												<option value="Todos">Todos</option>
-											</select>
-										</div>
+										<?php 
+											echo form_multiselect('age[]', $age_list,NULL,"class='chzn-select chosen_filter' style='width:60%' data-placeholder='Selecciona las edades...'");
+										 /* ?>
 										<div class="span6">
 											<h5>Contextura</h5>
 											<select style="width: 100%;" name="build">
@@ -171,8 +170,9 @@
 												<option value="4">Obeso</option>
 											</select>
 										</div>
+										<?php */?>
 									</div>
-									<div>	
+									<div style="margin-left:15px;" class="row">	
 										<h5>Sexo</h5>
 										<label class="radio inline">
 											<input type="radio" name="optionsRadios" id="optionsRadios1" value="2" checked>
