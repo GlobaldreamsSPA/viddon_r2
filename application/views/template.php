@@ -274,17 +274,26 @@
 				{
 					if (xmlhttp.readyState==4 && xmlhttp.status==200)
 					{
-				    	$('#post1').prepend('<img src="../img/profile/user.jpg" width="40px" height="40px"style="display:inline;float:left;">&nbsp;'+'<span style="color:gray;font-family:times new roman;"> Usuario </span> &nbsp;'+input + '<br/><br/> <hr>');
+						response = xmlhttp.responseText;
+						if (response == 0)
+						{
+							alert('Para comentar debes estar registrado en Viddon. Inténtalo nuevemente.');
+						}
+						else if(response == 2)
+						{
+				    		$('#post1').prepend('<img src="../img/profile/user.jpg" width="40px" height="40px"style="display:inline;float:left;">&nbsp;'+'<span style="color:gray;font-family:times new roman;"> Usuario </span> &nbsp;'+ input + '<br/><br/> <hr>');
+				    		$('#comment').val('');
+				    	}
 					}
 				}
 				
 				xmlhttp.open("POST", "<?php echo HOME ?>/user/comments", false);
-				xmlhttp.send();
+				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				xmlhttp.send("comment=" + input);
 			}
 
 			document.getElementById('comment').removeAttribute('disabled');
 			document.getElementById('post1').getElementsByTagName('input')[0].removeAttribute('disabled');
-			$('#comment').val('');
 		}
 		 
 		if($(".chzn-select").length > 0)

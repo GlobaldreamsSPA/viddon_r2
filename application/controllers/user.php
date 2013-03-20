@@ -15,12 +15,31 @@ class User extends CI_Controller {
 		$this->load->model('skills_model');
 		$this->load->model('castings_model');
 		$this->load->model('photos_model');
+		$this->load->model('comment_model');
 		
 	}
 
 	public function comments()
 	{
-		echo "OK";
+		/* Datos devueltos:
+		0: El usuario no esta loggeado. 
+		1: El usuario ha escrito el mismo comentario mas de una vez el mismo dia.
+		2: El comentario fue ingresado exitosamente.*/
+
+		$comment = $this->input->post('comment');
+		if(strcmp($this->session->userdata('id'),'') == 0)
+		{
+			echo 0;
+		}
+		else
+		{
+			$user_id = $this->session->userdata('id');
+			$result = $this->comment_model->insert_comment($user_id, $comment);
+			if ($result == 2)
+			{
+				echo 2;
+			}
+		}
 	}
 
 	public function index($id = NULL)
