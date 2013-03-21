@@ -13,7 +13,7 @@ class Hunter extends CI_Controller {
 	
 	function index()
 	{
-		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter")
+		if($this->session->userdata('logged_in') && $this->session->userdata('type') == "hunter")
 		{
 			
 			$hunter_id = $this->session->userdata('logged_in');
@@ -61,8 +61,10 @@ class Hunter extends CI_Controller {
 
 	   if($result)
 	   {
-	   		$result['type'] = 'hunter';
+	   		$hunter = "hunter";
 	   		$this->session->set_userdata('logged_in', $result);
+	   		$this->session->set_userdata('type', $hunter);
+
 	   		return TRUE;
 	   }
 	   else
@@ -74,7 +76,7 @@ class Hunter extends CI_Controller {
 
 	function publish()
 	{
-		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter")
+		if($this->session->userdata('logged_in') && $this->session->userdata('type') == "hunter")
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id= $hunter_id['id'];
@@ -179,7 +181,7 @@ class Hunter extends CI_Controller {
 	
 	function casting_list($page=1,$casting_state=0)
 	{
-		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter")
+		if($this->session->userdata('logged_in') && $this->session->userdata('type') == "hunter")
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id = $hunter_id['id'];
@@ -240,7 +242,7 @@ class Hunter extends CI_Controller {
 
 	function casting_detail($id=NULL)
 	{
-		if($this->session->userdata('logged_in') && isset($id) && $this->session->userdata('logged_in')['type'] == "hunter")
+		if($this->session->userdata('logged_in') && isset($id) && $this->session->userdata('type') == "hunter")
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id = $hunter_id['id'];
@@ -308,7 +310,7 @@ class Hunter extends CI_Controller {
 	
 	function edit_casting($id=NULL)
 	{
-		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter")
+		if($this->session->userdata('logged_in') && $this->session->userdata('type') == "hunter")
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id= $hunter_id['id'];
@@ -674,7 +676,7 @@ class Hunter extends CI_Controller {
 	
 	function accepted_list($id)
 	{
-		if($this->session->userdata('logged_in')&& isset($id) && $this->session->userdata('logged_in')['type'] == "hunter")
+		if($this->session->userdata('logged_in')&& isset($id) && $this->session->userdata('type') == "hunter")
 		{
 			$args['user_data'] = $this->session->userdata('logged_in');
 			
@@ -710,7 +712,7 @@ class Hunter extends CI_Controller {
 
 	function finalize_casting($id_casting)
 	{
-		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter")
+		if($this->session->userdata('logged_in') && $this->session->userdata('type') == "hunter")
 		{
 				$this->castings_model->finalize_casting($id_casting);	
 				redirect(HOME."/hunter/casting_list");
@@ -721,7 +723,7 @@ class Hunter extends CI_Controller {
 
 	function edit()
 	{
-		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter")
+		if($this->session->userdata('logged_in') && $this->session->userdata('type') == "hunter")
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id= $hunter_id['id'];
@@ -791,7 +793,7 @@ class Hunter extends CI_Controller {
 
 	function manage_hunters()
 	{
-		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter")
+		if($this->session->userdata('logged_in') && $this->session->userdata('type') == "hunter")
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id = $hunter_id['id'];
@@ -811,7 +813,7 @@ class Hunter extends CI_Controller {
 
 	function assign_workload()
 	{
-		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter")
+		if($this->session->userdata('logged_in') && $this->session->userdata('type') == "hunter")
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id = $hunter_id['id'];
@@ -833,7 +835,7 @@ class Hunter extends CI_Controller {
 
 	function check_workload()
 	{
-		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter")
+		if($this->session->userdata('logged_in') && $this->session->userdata('type') == "hunter")
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id = $hunter_id['id'];
@@ -854,7 +856,7 @@ class Hunter extends CI_Controller {
 
 	function create_sub_hunter()
 	{
-		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter" && isset($_POST["hunter_name"]))
+		if($this->session->userdata('logged_in') && $this->session->userdata('type') == "hunter" && isset($_POST["hunter_name"]))
 		{
 
 			$this->form_validation->set_rules('hunter_name', 'Nombre Hunter','trim|required|max_length[20]|xss_clean');
@@ -900,7 +902,7 @@ class Hunter extends CI_Controller {
 
 	function edit_sub_hunter($id_sub_hunter)
 	{
-		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter" && isset($_POST["hunter_name".$id_sub_hunter]))
+		if($this->session->userdata('logged_in') && $this->session->userdata('type') == "hunter" && isset($_POST["hunter_name".$id_sub_hunter]))
 		{
 
 			$this->form_validation->set_rules('hunter_name'.$id_sub_hunter, 'Nombre Hunter','trim|required|max_length[20]|xss_clean');
@@ -956,7 +958,7 @@ class Hunter extends CI_Controller {
 
 	function delete_sub_hunter($id_sub_hunter)
 	{
-		if($this->session->userdata('logged_in') && $this->session->userdata('logged_in')['type'] == "hunter")
+		if($this->session->userdata('logged_in') && $this->session->userdata('type') == "hunter")
 		{
 			$hunter_id = $this->session->userdata('logged_in');
 		 	$hunter_id = $hunter_id['id'];
