@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Viddon - Tu Talento, Nuestra Pasi&oacute;n</title>
+	<title>Viddon hola- Tu Talento, Nuestra Pasi&oacute;n</title>
 	<meta name="description" content="">
 	<meta name="keyword" content="">
 
