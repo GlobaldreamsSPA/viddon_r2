@@ -8,7 +8,4 @@ application/config/database.php
 application/config/constants.php
 application/logs
 img/.DS_Store
-
-application/config/database.php
-
-application/config/constants.php
+error_log

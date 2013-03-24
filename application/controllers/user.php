@@ -16,7 +16,7 @@ class User extends CI_Controller {
 		$this->load->model('castings_model');
 		$this->load->model('photos_model');
 		$this->load->model('comment_model');
-		
+
 	}
 
 	public function comments()

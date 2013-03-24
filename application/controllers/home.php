@@ -8,8 +8,7 @@ class Home extends CI_Controller {
 		$this->load->helper(array('url', 'form'));
 
 		//Modelos
-		$this->load->model(array('videos_model', 'user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model'));
-	
+		$this->load->model(array('videos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model'));
 	}
 
 	public function index()
@@ -30,27 +29,6 @@ class Home extends CI_Controller {
 		$args["content"] = "home/home_view";
 		$args["inner_args"] = NULL;
 		$this->load->view('template',$args);
-	}
-
-	public function fb_login()
-	{
-        $fb_data = $this->session->userdata('fb_data'); // This array contains all the user FB information
- 
-        if((!$fb_data['uid']) or (!$fb_data['me']))
-        {
-            // If this is a protected section that needs user authentication
-            // you can redirect the user somewhere else
-            // or take any other action you need
-            redirect('user/index');
-        }
-        else
-        {
-            $data = array(
-                    'fb_data' => $fb_data,
-                    );
- 
-            $this->load->view('home', $data);
-        }
 	}
 
 	public function video_list($page = 1,$actual_skills=-2)
