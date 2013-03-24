@@ -37,16 +37,7 @@
 	<div id="fb-root"></div>
 	<!-- Codigo para el boton de loggin de google -->
 	<?php
-		require_once OPENID;
-		$openid = new LightOpenID(HOME);
-		$openid->identity = 'https://www.google.com/accounts/o8/id';
-		$openid->required = array(
-					'contact/email',
-					'pref/language',
-					'namePerson'
-					);
-		$openid->returnUrl = HOME.'/user/login';
-		$auth_url = $openid->authUrl();
+		  
 	?>
 
 	<div id="headercontent">
@@ -115,12 +106,12 @@
 					
 						if(!$id && !$id_h)
 						{
+							$login_url = $this->facebook->getLoginUrl(array('scope'=>'email,user_location,user_hometown,user_education_history,user_birthday,user_relationships,user_religion_politics,user_about_me,user_likes','redirect_uri' => 'http://www.development.viddon.com/viddon_r2/user/fb_login/'));
+
 							echo "<div id='login-button-container' class='span5'>";
-							echo "<form action='".$auth_url."' method='POST'>";
-							echo "<button id='login-button'>";
-							echo "<img id='login-button-image' src='".HOME."/img/login-gmail-es.png' />";
-							echo "</button>";
-							echo "</form>";
+							echo "<a href='".$login_url."' id='login-button'>";
+							echo "<img id='login-button-image' src='".HOME."/img/fb-login.jpg' />";
+							echo "</a>";
 							echo "</div>";
 						}
 					

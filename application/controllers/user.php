@@ -17,7 +17,45 @@ class User extends CI_Controller {
 		$this->load->model('photos_model');
 		$this->load->model('comment_model');
 
+		parse_str( $_SERVER['QUERY_STRING'], $_REQUEST );
+        $CI = & get_instance();
+		$CI->config->load("facebook",TRUE);
+		$config = $CI->config->item('facebook');
+		$this->load->library('Facebook', $config);
+
 	}
+
+	public function fb_login(){
+        // Try to get the user's id on Facebook
+        $userId = $this->facebook->getUser();
+ 
+        // If user is not yet authenticated, the id will be zero
+        if($userId != 0){
+            
+            // Get user's data and print it
+            $args["fb_data"] = $this->facebook->api('/me');
+            
+
+
+            $test = $this->facebook->api('/me/likes');
+            foreach ($test['data']  as $element) {	
+            	echo "LIKE categoria: ".$element['category']." nombre : ".$element['name'];
+	            echo "</br>";
+	            echo "</br>";
+            }
+
+            $this->load->view('applicants/facebook_test',$args);
+
+            
+        }else
+        {
+        	echo HOME;
+        }
+
+
+
+
+    }
 
 	public function comments()
 	{
@@ -317,7 +355,7 @@ class User extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 	
-	public function login()
+	/*public function login()
 	{
 		require_once OPENID;
 		$openid = new LightOpenID(HOME);
@@ -385,7 +423,7 @@ class User extends CI_Controller {
 		    	redirect(HOME);
 		    }
 		}
-	}
+	}*/
 
 	public function logout()
 	{
