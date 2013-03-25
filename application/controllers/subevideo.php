@@ -10,10 +10,7 @@ class Subevideo extends CI_Controller
         $this->load->helper(array('url','oauth','form','file'));
 	}
 	public function index($p=NULL)
-	{
-		var_dump($POST);
-		var_dump($GET);
-		
+	{		
 		$oauth_TOKEN = "1%2FkPI9zAByCAcH23Femvsijo3OOa3rypJmFWW6j71hWcc";
 		$oauth_TOKEN_SECRET = "mirb97SsR-EpnAGknYNfUnKy";
 		
@@ -160,4 +157,11 @@ class Subevideo extends CI_Controller
 		$params['oauth']['algorithm'] = 'HMAC-SHA1';
 		//$params['oauth']['access_token'] = array('oauth_token'=>urlencode($this->session->userdata('oauth_token')),'oauth_token_secret'=>urlencode($this->session->userdata('oauth_token_secret')));
 		$params['oauth']['access_token'] = array('oauth_token'=>"1%2FkPI9zAByCAcH23Femvsijo3OOa3rypJmFWW6j71hWcc",'oauth_token_secret'=>"mirb97SsR-EpnAGknYNfUnKy");
-		$this->load->library
+		$this->load->library('youtube', $params);		
+		$metadata = '<entry xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:yt="http://gdata.youtube.com/schemas/2007"><media:group><media:title type="plain">Test Direct Upload</media:title><media:description type="plain">Test Direct Uploading.</media:description><media:category scheme="http://gdata.youtube.com/schemas/2007/categories.cat">People</media:category><media:keywords>test</media:keywords></media:group></entry>';
+		return $this->youtube->directUpload($videoPath, $videoType, $metadata);
+	}
+}
+
+/* End of file example.php */
+/* Location: ./application/controllers/example.php */	
