@@ -35,7 +35,7 @@ class User extends CI_Controller {
         // If user is not yet authenticated, the id will be zero
         if($userId == 0){
             // Generate a login url
-			$url = $this->facebook->getLoginUrl(array('scope'=>'email,user_location,user_hometown,user_education_history,user_birthday,user_relationships,user_religion_politics,user_about_me,user_likes','redirect_uri' => 'http://www.development.viddon.com/viddon_r2/user/fb_login/'));
+			$url = $this->facebook->getLoginUrl(array('scope'=>'email,user_location,user_hometown,user_education_history,user_birthday,user_relationships,user_religion_politics,user_about_me,user_likes','redirect_uri' => HOME.'/user/fb_login/'));
 			redirect($url);
 		} else {
             // Get user's data and print it
