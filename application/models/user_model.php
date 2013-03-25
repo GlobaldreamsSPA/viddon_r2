@@ -47,16 +47,9 @@ class User_model extends CI_Model
 	{
 		$data = array(
 				'name' => $profile['name'],
-				'bio' => $profile['bio'],
-				'dreams' => $profile['dreams'],
-				'hobbies' => $profile['hobbies'],
-				'sex' => $profile['sex'],
-				'age' => $profile['age'],
-				'height' => $profile['height'],
-				'color_skin' => $profile['color_skin'] ,
-				'color_eye' => $profile['color_eye'] ,
-				'color_hair' => $profile['color_hair'],
-				'build'=> $profile['build'] 
+				'email' => $profile['email'],
+				'last_name' => $profile['last_name'],
+				'bio' => $profile['bio']
 			);
 
 		$this->db->where('id', $profile['id']);

@@ -5,8 +5,9 @@
 		  		<div style="border-radius: 5px; margin-left:3%;" id="variable" class="row-fluid">
 		  			
 		  			<div style="margin-left: 5%; margin-top:5%; width: 90%;" >
-		  				
-		  				<img style="height:100%; width:100%;" src="<?php echo HOME."/img/concursoLlolapalooza_modif.png" ?>">
+		  				<a href="<?php echo base_url().'user/fb_login'; ?>">	
+		  					<img style="height:100%; width:100%;" src="<?php echo HOME."/img/concursoLlolapalooza_modif.png" ?>">
+		  				</a>
 		  			</div>
 
 		  			<?php /*?>

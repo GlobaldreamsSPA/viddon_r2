@@ -48,11 +48,8 @@
 				    
 					    <div class="space2"></div>
 						<?php 
-						if (isset($update_values)) $flag="/update123";
-						else 
-							$flag = "";
 						
-						echo form_open_multipart('user/edit'.$flag); ?>
+						echo form_open_multipart(); ?>
 		
 						<!-- Texto -->
 						<div class="span8 offset1">
@@ -70,20 +67,20 @@
 								<div class="row">
 									<div class="span6">								
 										<h5>Apellidos</h5>
-										<input type="text" style="width:100%;" placeholder="Escribe tu Nombre Aqui" value="<?php if(isset($update_values)) echo $update_values["name"]; else echo set_value('name');?>" name="name">
+										<input type="text" style="width:100%;" placeholder="Escribe tu Nombre Aqui" value="<?php if(isset($update_values)) echo $update_values["last_name"]; else echo set_value('last_name');?>" name="last_name">
 									</div>
 								</div>
 								<div class="row">
-								<?php echo form_error('name'); ?>
+								<?php echo form_error('last_name'); ?>
 								</div>
 								<div class="row">
 									<div class="span6">								
 										<h5>Correo</h5>
-										<input type="text" style="width:100%;" placeholder="Escribe tu Nombre Aqui" value="<?php if(isset($update_values)) echo $update_values["name"]; else echo set_value('name');?>" name="name">
+										<input type="text" style="width:100%;" placeholder="Escribe tu Nombre Aqui" value="<?php if(isset($update_values)) echo $update_values["email"]; else echo set_value('email');?>" name="email">
 									</div>
 								</div>
 								<div class="row">
-								<?php echo form_error('name'); ?>
+								<?php echo form_error('email'); ?>
 								</div>
 								<div class="space2"></div>														
 								
@@ -92,7 +89,7 @@
 							<legend>Informaci&oacute;n P&uacute;blica</legend>
 							
 							<div style="margin-left:5px;">
-								<h5>Sobre ti</h5>
+								<h5>Selecciona tus habilidades</h5>
 									<?php 
 									$skill_selected= array();
 									for ($i=0; $i<3; $i++)
@@ -105,6 +102,8 @@
 									}
 									echo form_multiselect('skills[]', $skills, $skill_selected,"class='chzn-select' style='width:245px' data-placeholder='Selecciona los tags...'");
 									?>
+								<?php echo form_error('skills'); ?>
+
 								<h5>Campo Con&oacute;ceme</h5>
 									<textarea class="rich_textarea" name="bio"><?php if(isset($update_values)) echo $update_values["bio"]; else echo set_value('bio');?></textarea>
 									<?php echo form_error('bio'); ?>
