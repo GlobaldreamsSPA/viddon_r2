@@ -4,6 +4,11 @@
 <head>
 	<meta charset="utf-8">
 	<title>Viddon - Tu Talento, Nuestra Pasi&oacute;n</title>
+
+	<link rel="icon" 
+      type="image/png" 
+      href="<?php echo HOME ?>/favicon.ico">
+
 	<meta name="description" content="">
 	<meta name="keyword" content="">
 
