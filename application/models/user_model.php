@@ -134,7 +134,9 @@ class User_model extends CI_Model
         	$data["relationship_status"] = $fb_data['relationship_status']; 
 
 	
-		return $this->db->insert('users', $data);
+		$this->db->insert('users', $data);
+
+		return $this->db->insert_id();
 	}
 
 	function update_profile_image($id_photo,$id_user)
