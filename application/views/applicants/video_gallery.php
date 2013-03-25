@@ -9,8 +9,8 @@ border: 1px solid #4C3C1B;
 	<div class="span3 user-profile-left">
 		<div class="row">
 		<?php 
-			if(file_exists(APPPATH.'/../img/profile/'.$image_profile) == TRUE)
-				echo "<img class='user_image' src='".HOME.'/img/profile/'.$image_profile."'/>";
+			if(file_exists(APPPATH.'/../img/gallery/'.$image_profile_name) == TRUE)
+				echo "<img class='user_image' src='".HOME.'/img/gallery/'.$image_profile_name."'/>";
 			else
 				echo "<img class='user_image' src='".HOME."/img/profile/user.jpg'/>";
 		?>

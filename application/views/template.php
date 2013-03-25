@@ -3,7 +3,12 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Viddon  hola - Tu Talento, Nuestra Pasi&oacute;n</title>
+	<title>Viddon - Tu Talento, Nuestra Pasi&oacute;n</title>
+
+	<link rel="icon" 
+      type="image/png" 
+      href="<?php echo HOME ?>/favicon.ico">
+
 	<meta name="description" content="">
 	<meta name="keyword" content="">
 
@@ -37,16 +42,7 @@
 	<div id="fb-root"></div>
 	<!-- Codigo para el boton de loggin de google -->
 	<?php
-		require_once OPENID;
-		$openid = new LightOpenID(HOME);
-		$openid->identity = 'https://www.google.com/accounts/o8/id';
-		$openid->required = array(
-					'contact/email',
-					'pref/language',
-					'namePerson'
-					);
-		$openid->returnUrl = HOME.'/user/login';
-		$auth_url = $openid->authUrl();
+		  
 	?>
 
 	<div id="headercontent">
@@ -73,7 +69,7 @@
 
 						if($this->session->userdata('name') != FALSE)
 						{
-							$user = $this->session->userdata('name');
+							$user = $this->session->userdata('name')." ".$this->session->userdata('last_name');
 						}
 						else if($this->session->userdata('email') != FALSE)
 						{
@@ -115,12 +111,11 @@
 					
 						if(!$id && !$id_h)
 						{
+							$login_url = HOME."/user/fb_login";
 							echo "<div id='login-button-container' class='span5'>";
-							echo "<form action='".$auth_url."' method='POST'>";
-							echo "<button id='login-button'>";
-							echo "<img id='login-button-image' src='".HOME."/img/login-gmail-es.png' />";
-							echo "</button>";
-							echo "</form>";
+							echo "<a href='".$login_url."' id='login-button'>";
+							echo "<img id='login-button-image' src='".HOME."/img/fb-login.jpg' />";
+							echo "</a>";
 							echo "</div>";
 						}
 					

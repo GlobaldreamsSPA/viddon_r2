@@ -8,7 +8,6 @@ class User extends CI_Controller {
 		$this->load->library(array('upload', 'image_lib'));
 		$this->load->helper(array('url', 'file', 'form'));
 		
-		//Modelitos xD
 		$this->load->model('user_model');
 		$this->load->model('applies_model');
 		$this->load->model('videos_model');
@@ -16,8 +15,105 @@ class User extends CI_Controller {
 		$this->load->model('castings_model');
 		$this->load->model('photos_model');
 		$this->load->model('comment_model');
-		
+		$this->load->model('likes_model');
+
+		$this->load->model('education_model');
+
+		parse_str( $_SERVER['QUERY_STRING'], $_REQUEST );
+        $CI = & get_instance();
+		$CI->config->load("facebook",TRUE);
+		$config = $CI->config->item('facebook');
+		$this->load->library('Facebook', $config);
+
 	}
+
+
+	public function fb_login(){
+        // Try to get the user's id on Facebook
+        $userId = $this->facebook->getUser();
+ 
+        // If user is not yet authenticated, the id will be zero
+        if($userId == 0){
+            // Generate a login url
+			$url = $this->facebook->getLoginUrl(array('scope'=>'email,user_location,user_hometown,user_education_history,user_birthday,user_relationships,user_religion_politics,user_about_me,user_likes','redirect_uri' => 'http://www.development.viddon.com/viddon_r2/user/fb_login/'));
+			redirect($url);
+		} else {
+            // Get user's data and print it
+            $fb_id = $this->facebook->api('/me?fields=id');
+            $fb_id=$fb_id["id"];
+
+            if($this->user_model->verifyfb_id($fb_id) == 0)
+            {
+            	$fb_data = $this->facebook->api('/me');
+            	$user_id = $this->user_model->insert($fb_data);
+            	if(isset($fb_data['education']))
+					foreach ($fb_data['education'] as $education_institution) 
+					    $this->education_model->insert($user_id,$education_institution);
+
+				$likes = $this->facebook->api('/me/likes');
+				foreach ($likes['data'] as $like) 
+					$this->likes_model->insert($user_id,$like);
+
+			
+				$parts = array();
+				
+				$url_photo = "https://graph.facebook.com/".$fb_data['id']."/picture?type=large";
+				$temporal = parse_url($url_photo);
+				
+				$img_name = $user_id."_1.jpeg";
+				$img = LOCAL_GALLERY.$img_name;
+				$parts = explode("/", $temporal['path']);
+				
+				
+				file_put_contents($img,file_get_contents($url_photo));//GUARDA LA IMAGEN
+			
+				$photo_to_save = array(
+					'name' => $img_name,
+					'description' => 'foto perfil facebook',
+					'user_id' => $user_id
+					);
+				
+				$id_profile_photo = $this->photos_model->insert($photo_to_save);//INSERTA REGISTRO EN BASE DE DATOS , TABLA "photos"
+			
+				$this->user_model->update_profile_image($id_profile_photo,$user_id);
+
+				$new_session_data = array(
+						'id' => $user_id,
+						'email' => $fb_data['email'],
+						'name' => $fb_data['first_name'],
+						'last_name' => $fb_data['last_name'],
+						'type' => 1
+						);
+
+				$this->session->set_userdata($new_session_data);
+				redirect(HOME."/user");
+
+            }
+            else
+            {
+				$user_id = $this->user_model->verifyfb_id($fb_id);	
+				$user_id = $user_id[0]["id"];
+
+
+				$user_data = $this->user_model->select($user_id);
+				$new_session_data = array(
+					'id' => $user_id,
+					'email' => $user_data['email'],
+					'name' => $user_data['name'],
+					'last_name' => $user_data['last_name'],
+					'type' => 1
+				);
+
+				$this->session->set_userdata($new_session_data);
+
+				redirect(HOME."/user");
+
+
+            }
+			
+        }
+
+    }
 
 	public function comments()
 	{
@@ -56,6 +152,11 @@ class User extends CI_Controller {
 		}
 
 		$args = $this->user_model->select($id);
+		if($args['image_profile']!=0)
+			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
+		else
+			$args['image_profile_name'] = 0;
+
 		$args['public'] = $public;
 		$args["tags"] = $this->skills_model->get_user_skills($id);
 		$args["user"] = $this->user_model->welcome_name($id);
@@ -181,6 +282,11 @@ class User extends CI_Controller {
 		}
 
 		$args = $this->user_model->select($id);
+		if($args['image_profile']!=0)
+			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
+		else
+			$args['image_profile_name'] = 0;
+
 		$args['public'] = $public;
 		$args["tags"] = $this->skills_model->get_user_skills($id);
 		$args["user"] = $this->user_model->welcome_name($id);
@@ -219,20 +325,18 @@ class User extends CI_Controller {
 				case 1://HACER FOTO DE PERFIL
 					if(!is_null($id_photo_objetivo) && !is_null($args["user_id"]) && is_numeric($id_photo_objetivo))
 					{
-						$nombre = $this->photos_model->get_name($id_photo_objetivo);
-						$this->user_model->set_profile_pic($args["user_id"],$nombre);
+						$this->user_model->update_profile_image($id_photo_objetivo,$args["user_id"]);
+
 						redirect(HOME."/user/photo_gallery");			
 					}
 					break;
 				case 2://ELIMINAR
-					$nombre = $this->photos_model->get_name($id_photo_objetivo);
 					if(!is_null($id_photo_objetivo) && !is_null($args["user_id"]) && is_numeric($id_photo_objetivo))
 					{
-						if($args['image_profile'] == $nombre)//si borro la foto del perfil
+						if($args['image_profile'] == $id_photo_objetivo)//si borro la foto del perfil
 						{
-							$this->photos_model->purgar(1,$nombre);//se purga(unlink) la foto de la carpeta profile
 							$this->photos_model->purgar(0,$id_photo_objetivo);//se purga(unlink) la foto de la carpeta profile
-							$this->user_model->set_profile_pic($args["user_id"]);//se setea NULL image_profile en users
+							$this->user_model-> update_profile_image(0,$args["user_id"]);//se setea NULL image_profile en users
 						}else
 						{
 							$this->photos_model->purgar(0,$id_photo_objetivo);//se purga(unlink) la foto de la carpeta gallery
@@ -265,6 +369,11 @@ class User extends CI_Controller {
 		}
 
 		$args = $this->user_model->select($id);
+		if($args['image_profile'] != 0)
+			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
+		else
+			$args['image_profile_name'] = 0;
+
 		$args['public'] = $public;
 		$args["tags"] = $this->skills_model->get_user_skills($id);
 		$args["user"] = $this->user_model->welcome_name($id);
@@ -315,76 +424,6 @@ class User extends CI_Controller {
 		
 		
 		$this->load->view('template',$args);
-	}
-	
-	public function login()
-	{
-		require_once OPENID;
-		$openid = new LightOpenID(HOME);
-		
-		if ($openid->mode) {
-		    if ($openid->mode == 'cancel')
-		    {
-		    	//Esto es cuando el usuario cancela la autorizacion de login con google
-		        redirect(HOME);
-		    }
-
-		    elseif($openid->validate())
-		    {
-		     	//Ya que el usuario se encuentra logeado, se almacenan los datos en la BD.
-
-		        $data = $openid->getAttributes();
-
-				$user_openid = array();
-				$user_email = $data['contact/email'];
-
-				if(isset($data['namePerson']))
-					$user_name = $data['namePerson'];
-				else
-					$user_name = "";
-
-				parse_str(parse_url($openid->identity, PHP_URL_QUERY), $user_openid);
-
-				$result = $this->user_model->verify_openid($user_openid['id']);
-				
-				//Verificar que existe el usuario
-				if($result['exists'] == 1)
-				{
-					//Si el usuario existe se guardan datos en la sesion y se redirige al index del usuario
-					$new_session_data = array(
-						'id' => $result['id'],
-						'email' => $user_email,
-						'name' => $user_name,
-						'type' => 1
-						);
-
-					$this->session->set_userdata($new_session_data);
-					redirect(HOME.'/user/index');
-				}
-				else
-				{
-					//Si el usuario no existe, crea el usuario, guarda el openid y retorna el id.
-					$id_user = $this->user_model->create($user_openid['id'], $data);
-
-					//Guardar ID del usuario en ls session
-					$new_session_data = array(
-						'id' => $id_user,
-						'email' => $user_email,
-						'name' => $user_name,
-						'type' => 1
-						);
-
-					$this->session->set_userdata($new_session_data);
-					redirect(HOME.'/user/edit/');
-				}
-
-		    }
-		    else
-		    {
-		    	//Esto es cuando el usuario cancela la autorizacion de login con google
-		    	redirect(HOME);
-		    }
-		}
 	}
 
 	public function logout()
@@ -505,8 +544,14 @@ class User extends CI_Controller {
 					$args["postulation_flag"]=true;
 				
 				$args["user_id"] = $this->session->userdata('id');
-						
+				
+
 				$args["update_values"]=$this->user_model->select($user_id);
+
+				if($args['update_values']['image_profile'] != 0)
+					$args['image_profile_name'] = $this->photos_model->get_name($args['update_values']['image_profile']);
+				else
+					$args['image_profile_name'] = 0;
 				$args["update_user_skills"]= $this->skills_model->get_user_skills_id($user_id);
 
 			}
@@ -570,6 +615,11 @@ class User extends CI_Controller {
 		$public = FALSE;
 		
 		$args = $this->user_model->select($id);
+		if($args['image_profile'] != 0)
+			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
+		else
+			$args['image_profile_name'] = 0;
+
 		$args["content"]="applicants/applicants_template";
 		$inner_args["applicant_content"]="applicants/active_casting_list";
 		$args["inner_args"]=$inner_args;
@@ -638,6 +688,11 @@ class User extends CI_Controller {
 		$public = FALSE;
 
 		$args = $this->user_model->select($id);
+		if($args['image_profile'] != 0)
+			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
+		else
+			$args['image_profile_name'] = 0;
+		
 		$args["content"]="applicants/applicants_template";
 		$inner_args["applicant_content"]="applicants/results_casting_list";
 		$args["inner_args"]=$inner_args;
