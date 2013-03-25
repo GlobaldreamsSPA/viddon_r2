@@ -263,7 +263,7 @@ class User extends CI_Controller {
 		}
 
 
-		$args["user_id"] = $this->session->userdata('id');
+		$args["user_id"] = $id;
 		$this->load->view('template',$args);
 	}
 

@@ -1,3 +1,4 @@
+
 <div class="row-fluid">		
 <div class="span3 user-profile-left">
 	<div class="row">
@@ -49,8 +50,8 @@
 <div class="span8 offset1 user-profile-right">
 		
 	<div class="space1"></div>
-	<h1 class="profile-title"> <?php echo $name; ?> 
-	</h1> 
+	<h2 class="profile-title"> <?php echo $name." ".$last_name; ?> 
+	</h2> 
 	<div class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
 	<?php
 		echo '<ul class="skills-list">';
@@ -60,7 +61,7 @@
 		echo '</ul>';
 	?>
 	<div class="space1"></div>
-	<h3 id="profile">Mi Historia</h2>
+	<h3 id="profile">Con&oacute;ceme</h2>
 	<div class="justify profile-content"><?php echo $bio;?></div>
 	<div class="space1"></div>
 			
@@ -96,22 +97,7 @@
 		</div>
 		-->
 		<div style= "overflow-y: scroll; min-height: 110px;"class="justify"><?php echo $video_description;?></div>
-		
-		<div id="facebook" style="padding-top:40px;">
-			<form name="frm">
-				<br>
-					<textarea style="width: 97%;" type="text" name="comment" id="comment" Placeholder="Escribe un comentario..."></textarea>
-				<br>
-				<div id="post1">
-					<input type="button" class="btn"  value="Comentar" onclick="get()"/>								
-				</div>
-			</form>
-		</div>
-		<div id="facebook1">
-			<div id="post" style="width: 97%;">
-		 	</div>
-		 </div>				
-		
+				
 	<?php 
 	} 
 	else
@@ -141,7 +127,7 @@
 		</div>
 								
 		<div style="padding-left: 38%; background-color: black; padding-top: 30%; padding-bottom: 30%;  border: 1px solid #d0d0d0;">
-			<button data-toggle="modal"  href="#add_video" class="btn btn-primary">Agregar Video</button>
+			<?php if(!$public) {?> <button data-toggle="modal"  href="#add_video" class="btn btn-primary">Agregar Video</button> <?php } ?>
 		</div>
 	
 	<?php
@@ -162,6 +148,8 @@
 	</form>
 	*/
 	}
-	?>																
+
+	?>			
+	<div class="fb-comments" style="width: 100% !important;"  data-href="<?php echo HOME."/user/index/".$user_id; ?> "  data-num-posts="10"></div>													
 </div>		
 </div>
