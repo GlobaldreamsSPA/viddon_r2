@@ -11,6 +11,8 @@ class Subevideo extends CI_Controller
 	}
 	public function index($p=NULL)
 	{
+		var_dump($POST);
+		var_dump($GET);
 		
 		$oauth_TOKEN = "1%2FkPI9zAByCAcH23Femvsijo3OOa3rypJmFWW6j71hWcc";
 		$oauth_TOKEN_SECRET = "mirb97SsR-EpnAGknYNfUnKy";
@@ -26,7 +28,8 @@ class Subevideo extends CI_Controller
 	{
 		//var_dump($_FILES);
 		$config['upload_path'] = 'temp/videos/';
-		$config['allowed_types'] = 'avi|flv|wmv|mov|mpeg4|mpegps|3gpp|webm'; //formatos soportados por youtube
+		//$config['allowed_types'] = 'avi|flv|wmv|mov|mpeg4|mpegps|3gpp|webm'; //formatos soportados por youtube
+		$config['allowed_types'] = 'avi|flv|wmv|mov|mpeg4|3gpp|webm'; //formatos soportados por youtube
 		$config['overwrite'] = FALSE;
         $config['remove_spaces'] = TRUE;
 		$config['max_size'] = '10240';//10 MB
@@ -52,7 +55,6 @@ class Subevideo extends CI_Controller
 			
 			
 			$xml = simplexml_load_string($resultado_subida_youtube);
-			print_r($xml);
 			var_dump($xml['link']);
 			
 			//falta realizar el registro de la subida en la base de datos, utilizando la información obtenida al ejecutar direct_upload.
@@ -94,12 +96,12 @@ class Subevideo extends CI_Controller
 	//www.your_url.com/index.php/request_youtube
 	public function request_youtube()
 	{
-		$params['key'] = 'test.viddon.com';
-		$params['secret'] = '0VfL7O7fpbQx3BFsk8CRBtSr';
+		$params['key'] = 'development.viddon.com';
+		$params['secret'] = 'R7mM_TxYhzbM5XG1RhOVNq7x';
 		$params['algorithm'] = 'HMAC-SHA1';
 		
 		$this->load->library('google_oauth', $params);
-		$data = $this->google_oauth->get_request_token(site_url('example/access_youtube'));
+		$data = $this->google_oauth->get_request_token(site_url('subevideo/access_youtube'));
 		$this->session->set_userdata('token_secret', $data['token_secret']);
 		redirect($data['redirect']); 
 	}
@@ -108,8 +110,8 @@ class Subevideo extends CI_Controller
 	//once the user approves access of your application
 	public function access_youtube()
 	{
-		$params['key'] = 'test.viddon.com';
-		$params['secret'] = '0VfL7O7fpbQx3BFsk8CRBtSr';
+		$params['key'] = 'development.viddon.com';
+		$params['secret'] = 'R7mM_TxYhzbM5XG1RhOVNq7x';
 		$params['algorithm'] = 'HMAC-SHA1';
 		
 		$this->load->library('google_oauth', $params);
@@ -136,7 +138,7 @@ class Subevideo extends CI_Controller
 	{
 		$params['apikey'] = 'AI39si4Eb8UYv17A5Rih0NCb-pkJR2ay0nYlkBC0mBjeHdhhIrzio8eL8Ct1SDEjFVUDdAguRFmLTnIrqSSvP9MXBZHiE_pNFw';
 		$params['oauth']['key'] = 'test.viddon.com';
-		$params['oauth']['secret'] = '0VfL7O7fpbQx3BFsk8CRBtSr';
+		$params['oauth']['secret'] = 'R7mM_TxYhzbM5XG1RhOVNq7x';
 		$params['oauth']['algorithm'] = 'HMAC-SHA1';
 		$params['oauth']['access_token'] = array('oauth_token'=>urlencode($this->session->userdata('oauth_token')),
 												 'oauth_token_secret'=>urlencode($this->session->userdata('oauth_token_secret')));
@@ -147,21 +149,15 @@ class Subevideo extends CI_Controller
 	
 	public function direct_upload($videoPath,$videoType)
 	{
+		var_dump($videoPath);
+		var_dump($videoType);
 		//$videoPath ='img/video03.wmv';
 		//$videoType = 'video/x-ms-wmv'; //This is the mime type of the video ex: 'video/3gpp'
 		
 		$params['apikey'] = 'AI39si4Eb8UYv17A5Rih0NCb-pkJR2ay0nYlkBC0mBjeHdhhIrzio8eL8Ct1SDEjFVUDdAguRFmLTnIrqSSvP9MXBZHiE_pNFw';
-		$params['oauth']['key'] = 'test.viddon.com';
-		$params['oauth']['secret'] = '0VfL7O7fpbQx3BFsk8CRBtSr';
+		$params['oauth']['key'] = 'development.viddon.com';
+		$params['oauth']['secret'] = 'R7mM_TxYhzbM5XG1RhOVNq7x';
 		$params['oauth']['algorithm'] = 'HMAC-SHA1';
 		//$params['oauth']['access_token'] = array('oauth_token'=>urlencode($this->session->userdata('oauth_token')),'oauth_token_secret'=>urlencode($this->session->userdata('oauth_token_secret')));
 		$params['oauth']['access_token'] = array('oauth_token'=>"1%2FkPI9zAByCAcH23Femvsijo3OOa3rypJmFWW6j71hWcc",'oauth_token_secret'=>"mirb97SsR-EpnAGknYNfUnKy");
-		$this->load->library('youtube', $params);
-		
-		$metadata = '<entry xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:yt="http://gdata.youtube.com/schemas/2007"><media:group><media:title type="plain">Test Direct Upload</media:title><media:description type="plain">Test Direct Uploading.</media:description><media:category scheme="http://gdata.youtube.com/schemas/2007/categories.cat">People</media:category><media:keywords>test</media:keywords></media:group></entry>';
-		return $this->youtube->directUpload($videoPath, $videoType, $metadata);
-	}
-}
-
-/* End of file example.php */
-/* Location: ./application/controllers/example.php */	
+		$this->load->library
