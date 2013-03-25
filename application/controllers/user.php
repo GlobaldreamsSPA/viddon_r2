@@ -445,13 +445,11 @@ class User extends CI_Controller {
 				'Ups! Todavia te falta este dato. Es muy importante para definirte como ganador(a) del concurso :)');
 
 			//Setear reglas
-			$this->form_validation->set_rules('name', 'Name', 'required');
+			$this->form_validation->set_rules('name', 'Nombre', 'required');
+			$this->form_validation->set_rules('last_name', 'Apellido', 'required');
+			$this->form_validation->set_rules('email', 'Correo', 'required');
 			$this->form_validation->set_rules('bio', 'Bio', 'required');
-			$this->form_validation->set_rules('hobbies', 'Hobbies', 'required');
-			$this->form_validation->set_rules('dreams', 'Dreams', 'required');
-			if(!(isset($user_id) && !(is_numeric($user_id))))
-				$this->form_validation->set_rules('image', 'Image', 'callback_check_upload');
-
+		
 			if ($this->form_validation->run() == FALSE)
 			{
 				//No paso todas las validaciones
@@ -462,10 +460,11 @@ class User extends CI_Controller {
 				//Guardar los datos de usuario
 				$profile['id'] = $this->session->userdata('id');
 				$profile['name'] = $this->input->post('name');
+				$profile['last_name'] = $this->input->post('last_name');
+				$profile['email'] = $this->input->post('email');
 				$profile['bio'] = $this->input->post('bio');
-				$profile['hobbies'] = $this->input->post('hobbies');
-				$profile['dreams'] = $this->input->post('dreams');
 				$profile['skills']  = $this->input->post('skills');
+				/*
 				$profile['sex'] = $this->input->post('sex');
 				$profile['age'] = $this->input->post('age');
 				$profile['height'] = $this->input->post('height');
@@ -473,7 +472,7 @@ class User extends CI_Controller {
 				$profile['color_eye'] = $this->input->post('color_eyes');
 				$profile['color_hair'] = $this->input->post('color_hair');
 				$profile['build'] = $this->input->post('build');
-
+				*/
 
 				//ingresar los datos a la base de datos
 				$this->user_model->update($profile);
@@ -481,6 +480,7 @@ class User extends CI_Controller {
 				//Ahora linkear las habilidades del usuario
 				$this->skills_model->link_skills($profile);
 
+				/*
 				//Por ultimo subir la foto
 				if($this->check_upload('') == TRUE)
 					$this->_upload_image($profile['id']);
@@ -488,6 +488,7 @@ class User extends CI_Controller {
 				if($this->check_upload('') == TRUE && (isset($user_id) && is_numeric($user_id)))
 					$this->_upload_image($profile['id']);
 
+				*/
 
 				redirect(HOME.'/user');
 			}
@@ -495,7 +496,7 @@ class User extends CI_Controller {
 			//Talentos del usuario
 			
 			$skills = $this->skills_model->get_skills();
-			
+			/*
 			//Edad del usuario
 			$age = array();
 
@@ -509,21 +510,23 @@ class User extends CI_Controller {
 				$height[$i] = $i;
 			}
 
+			
 			$sex= array(0=>"Femenino", 1 =>"Masculino");
 			$skin= array(0=>"Blanca",1=>"Morena", 2 =>"Negra");
 			$eyes= array(0=>"Verde",1=>"Azul", 2 =>"Gris",3=>"Casta&ntilde;o",4=>"Ambar",5=>"Pardos");
 			$hair= array(0=>"Casta&ntilde;o",1=>"Negro", 2 =>"Rubio",3=>"Blanco",4=>"Gris",5=>"Colorin",6=>"Otros");
 			$build= array(0=>"Delgado",1=>"Normal",2=>"Grueso",3=>"Atletico");
-			
+			*/
+
 			$args = array(
-				'skills' => $skills,
+				'skills' => $skills/*,
 				'age' => $age,
 				'height' => $height,
 				'eyes' => $eyes,
 				'skin' => $skin,
 				'hair' => $hair,
 				'sex'  => $sex,
-				'build' => $build
+				'build' => $build*/
 				);
 				
 			$args["content"]="applicants/applicants_template";
@@ -552,6 +555,7 @@ class User extends CI_Controller {
 					$args['image_profile_name'] = $this->photos_model->get_name($args['update_values']['image_profile']);
 				else
 					$args['image_profile_name'] = 0;
+
 				$args["update_user_skills"]= $this->skills_model->get_user_skills_id($user_id);
 
 			}
