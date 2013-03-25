@@ -60,87 +60,39 @@
 							<div style="margin-left:15px;">
 								<div class="row">
 									<div class="span6">								
-										<h5>Nombre</h5>
+										<h5>Nombres</h5>
 										<input type="text" style="width:100%;" placeholder="Escribe tu Nombre Aqui" value="<?php if(isset($update_values)) echo $update_values["name"]; else echo set_value('name');?>" name="name">
 									</div>
 								</div>
 								<div class="row">
-									<?php echo form_error('name'); ?>
-									
-									<div style="margin-left: -10px; margin-top: -20px;" id="image_upload">
-										<h5>Sube una imagen de t&iacute</h5>
-										<?php echo form_upload(array('name' => 'image_profile','class'=> 'file')); ?>
-										<?php 
-											  echo form_hidden('image','');
-											  echo form_error('image'); 
-										?>
+								<?php echo form_error('name'); ?>
+								</div>
+								<div class="row">
+									<div class="span6">								
+										<h5>Apellidos</h5>
+										<input type="text" style="width:100%;" placeholder="Escribe tu Nombre Aqui" value="<?php if(isset($update_values)) echo $update_values["name"]; else echo set_value('name');?>" name="name">
 									</div>
+								</div>
+								<div class="row">
+								<?php echo form_error('name'); ?>
+								</div>
+								<div class="row">
+									<div class="span6">								
+										<h5>Correo</h5>
+										<input type="text" style="width:100%;" placeholder="Escribe tu Nombre Aqui" value="<?php if(isset($update_values)) echo $update_values["name"]; else echo set_value('name');?>" name="name">
+									</div>
+								</div>
+								<div class="row">
+								<?php echo form_error('name'); ?>
 								</div>
 								<div class="space2"></div>														
-								<div class="row">									
-										<div class="span4">
-											<h5>Sexo</h5>
-											<?php
-												if(isset($update_values)) $sex_set=$update_values["sex"]; else $sex_set=2; 
-												echo form_dropdown('sex', $sex, $sex_set, "style='width: 100%;'") 
-											?>
-										</div>
-										
-										<div class="span4">
-											<h5>Edad</h5>
-											<?php
-												if(isset($update_values)) $age_set=$update_values["age"]; else $age_set=18; 
-												echo form_dropdown('age', $age, $age_set, "style='width: 100%;'") 
-											?>
-										</div>
-										
-										<div class="span4">
-											<h5>Estatura</h5>
-											<?php
-												if(isset($update_values)) $height_set=$update_values["height"]; else $height_set=165; 
-												echo form_dropdown('height', $height, $height_set, "style='width: 100%;'") 
-											?>
-										</div>
-									</div>
-								<div class="row">
-										<div class="span4">
-											<h5>Color de piel</h5>
-											<?php
-												if(isset($update_values)) $skin_set=$update_values["color_skin"]; else $skin_set=0; 
-												echo form_dropdown('color_skin', $skin, $skin_set, "style='width: 100%;'") 
-											?>
-										</div>
-										<div class="span4">
-										<h5>Color de ojos</h5>
-											<?php
-												if(isset($update_values)) $eye_set=$update_values["color_eye"]; else $eye_set=0; 
-												echo form_dropdown('color_eyes', $eyes, $eye_set, "style='width: 100%;'") 
-											?>
-										</div>
-										<div class="span4">
-											<h5>Color de cabello</h5>
-											<?php
-													if(isset($update_values)) $hair_set=$update_values["color_hair"]; else $hair_set=0; 
-													echo form_dropdown('color_hair', $hair, $hair_set, "style='width: 100%;'") 
-											?>
-										</div>										
-								</div>
 								
-								<div class="row">
-									<div class="span4">
-											<h5>Contextura</h5>
-											<?php
-													if(isset($update_values)) $build_set=$update_values["build"]; else $build_set=0; 
-													echo form_dropdown('build', $build, $build_set, "style='width: 100%;'") 
-											?>
-										</div>
-								</div>
 								
 							</div>
 							<legend>Informaci&oacute;n P&uacute;blica</legend>
 							
 							<div style="margin-left:5px;">
-								<h5>Selecciona tus habilidades</h5>
+								<h5>Sobre ti</h5>
 									<?php 
 									$skill_selected= array();
 									for ($i=0; $i<3; $i++)
@@ -153,15 +105,9 @@
 									}
 									echo form_multiselect('skills[]', $skills, $skill_selected,"class='chzn-select' style='width:245px' data-placeholder='Selecciona los tags...'");
 									?>
-								<h5>Biograf&iacutea</h5>
+								<h5>Campo Con&oacute;ceme</h5>
 									<textarea class="rich_textarea" name="bio"><?php if(isset($update_values)) echo $update_values["bio"]; else echo set_value('bio');?></textarea>
 									<?php echo form_error('bio'); ?>
-								<h5>tus Hobbies</h5>
-									<textarea class="rich_textarea" name="hobbies"><?php if(isset($update_values)) echo $update_values["hobbies"]; else echo set_value('hobbies');?></textarea>
-									<?php echo form_error('hobbies'); ?>
-								<h5>Tus Sueños</h5>
-									<textarea class="rich_textarea" name="dreams"><?php if(isset($update_values)) echo $update_values["dreams"]; else echo set_value('dreams');?></textarea>
-									<?php echo form_error('dreams'); ?>
 								<div class="space2"></div>
 									<button class="btn btn-primary" type="submit"> Guardar Datos </button>
 								</form>

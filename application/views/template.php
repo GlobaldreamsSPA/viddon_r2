@@ -12,7 +12,6 @@
 	<meta name="description" content="">
 	<meta name="keyword" content="">
 
-
 	<link href="<?php echo base_url()?>style/main.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/bootstrap.css" rel="stylesheet">
 	<link href="<?php echo base_url()?>style/jquery.dataTables.css" rel="stylesheet">
@@ -48,19 +47,24 @@
 	<div id="headercontent">
 	    <div id="upperhalf">
 		    <div class="row-fluid" >
-		    	<div class="span5 header-text-left">
-					<a class="anchor-image-logo" href="<?php echo HOME?>" style="margin-left: 50px;"title="Volver a la P&aacute;ina Principal">
-						<img class="image-logo" src="<?php echo base_url(); ?>img/logo.png"/>
+		    	<div class="span1">
+					<a class="anchor-image-logo" href="<?php echo HOME?>" style="margin-left: 38px;"title="Volver a la P&aacute;ina Principal">
+						<img class="image-logo" src="<?php echo base_url(); ?>img/logo.jpg"/>
 					</a>
-					<a href="<?php echo HOME?>/home/what_is" style="color:white; font-weight: bold; margin-left: 15px;">
+				</div>
+				<div class="span2 header-text-left">
+					<a href="<?php echo HOME?>/home/what_is" style="color:white; margin-left: 15px;">
 						Tu Talento, Nuestra Pasi&oacute;n
 					</a>
-					<div style="float: right;" class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
 				</div>
-				<div class="span2">
-					<a  href="http://www.facebook.com/pages/Viddoncom/499177723428347?ref=hl"> <img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/fb-logo.png"/></a>
-					<a href="https://twitter.com/ViddonCom"><img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/twitter-logo.png"/></a>
+				<div class="span1" style="text-align: right; margin-top: -3px;">
+					<a href="https://twitter.com/ViddonCom" target=”_blank”><img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/twitter-logo.png"/></a>
+					<a  href="http://www.facebook.com/pages/Viddoncom/499177723428347?ref=hl" target=”_blank”> <img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/fb-logo.png"/></a>
 				</div>
+				<div class="span3">
+					<div style="margin-left: -20px;" class="fb-like" data-href="https://www.facebook.com/pages/Viddoncom/499177723428347" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>				
+				</div>
+				
 				<div class="span4">
 					<?php
 					

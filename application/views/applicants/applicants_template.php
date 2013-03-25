@@ -49,33 +49,19 @@
 				<div  style="border-radius: 5px; margin-left:8%; padding-left: 10px; padding-right: 10px; text-align:center;" id="grow" class="row-fluid">
 					<div class="space1"></div>
 					<h3 id="profile" >Galeria Videos</h3>
-					<?php //explicativo en caso de estar en video_gallery
-					if(isset($auxiliar))
-					{ 
-					?>
-					<span class="label label-important">Así se verá tu galeria pública</span>
-		  			<?php
-					}
-					?> 
+
 					<img style="margin-top: 16px;" src="<?php echo HOME.'/img/dummy_galeria_videos.png';?>">
 					<?php //Si está en su perfil, muestra enlace a la galeria de videos
 					if(!$public)
 					{ 
 					?>
-		  				<a class="MBT-readmore" style="float: right;" href="<?php echo HOME.'/user/video_gallery/';?>">Ver m&aacute;s >></a>
+		  				<a class="MBT-readmore" href="<?php echo HOME.'/user/video_gallery/';?>">Ver m&aacute;s >></a>
 		  			<?php
 					} 
 		  			?>
-		  			<div class="space2"></div>						
+		  			<div class="space4"></div>						
 					<h3 id="profile" >Galeria Fotos</h3>
-					<?php //explicativo en caso de estar en video_gallery
-					if(isset($auxiliar))
-					{ 
-					?>
-					<span class="label label-important">Así se verá tu galeria pública</span>
-		  			<?php
-					}
-					?> 
+
 						
 					<?php
 						if(isset($photos))
@@ -89,7 +75,7 @@
 										$i++;
 										?>
 										<li><img src="<?php echo GALLERY.$photo['name'];?>" alt="<?php echo $photo['description'];?>" title="<?php echo $photo['description'];?>" /></li>
-							  <?php	if($i>=2)break; //SACA SÓLO 2 FOTOS
+							  <?php	if($i>=1)break; //SACA SÓLO 2 FOTOS
 									}?>
 								</ul>
 							</div>

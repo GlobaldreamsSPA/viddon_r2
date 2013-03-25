@@ -1,7 +1,7 @@
 /* Color pagina */
 body 
 { 
-	background: black !important;
+	background: #1a1a1a !important;
 	
 }
 
@@ -71,7 +71,9 @@ img.image-logo
 {
 	position: relative;
 	top: -5px;
-	width:	15% !important;
+	width:	100px !important;
+	height:	27px !important;
+
 }
 
 
@@ -110,6 +112,7 @@ div.space4
 {
     vertical-align: middle;
 	padding-top: 13px;
+	font-size: 12px;
 }
 
 

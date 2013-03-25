@@ -4,6 +4,12 @@
 			<div class= "span8">
 		  		<div style="border-radius: 5px; margin-left:3%;" id="variable" class="row-fluid">
 		  			
+		  			<div style="margin-left: 5%; margin-top:5%; width: 90%;" >
+		  				
+		  				<img style="height:100%; width:100%;" src="<?php echo HOME."/img/concursoLlolapalooza_modif.png" ?>">
+		  			</div>
+
+		  			<?php /*?>
 		  			<div style="margin-left: 15%; margin-top:10%; height:270px; width: 70%;" id="myCarousel" class="carousel slide">
 					  <!-- Carousel items -->
 					  <div class="carousel-inner">
@@ -12,7 +18,7 @@
 								<img style="height:100%; width:100%;" src="<?php echo $castings[0]['full_image']; ?>">
 							</a>
 						</div>
-						<?php for($i=1; $i<8; $i++){ ?>
+						<?php for($i=1; $i<3; $i++){ ?>
 						<div class="item">
 						    <a href="<?php echo site_url("home/casting_detail/".$castings[$i]['id']); ?>">
 								<img style="height:100%; width:100%;" src="<?php echo $castings[$i]['full_image']; ?>">
@@ -24,10 +30,10 @@
 					  <a style="margin-top:5%;" class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
 					  <a style="margin-top:5%;" class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 					</div>
-					
+					<?php */?>
 					<div class="space1"></div>
 		  			<h2 style="margin-left:5%;" id="profile" style="font-weight:bold;"> Videos Mas Visitados</h3>
-
+		  			
 				<?php
 				$i=0; 
 				foreach ($video_list as $video) {
