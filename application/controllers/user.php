@@ -544,8 +544,14 @@ class User extends CI_Controller {
 					$args["postulation_flag"]=true;
 				
 				$args["user_id"] = $this->session->userdata('id');
-						
+				
+
 				$args["update_values"]=$this->user_model->select($user_id);
+
+				if($args['update_values']['image_profile'] != 0)
+					$args['image_profile_name'] = $this->photos_model->get_name($args['update_values']['image_profile']);
+				else
+					$args['image_profile_name'] = 0;
 				$args["update_user_skills"]= $this->skills_model->get_user_skills_id($user_id);
 
 			}
