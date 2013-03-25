@@ -152,10 +152,10 @@ class User extends CI_Controller {
 		}
 
 		$args = $this->user_model->select($id);
-		if(!is_null($args['image_profile']))
+		if($args['image_profile']!=0)
 			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
 		else
-			$args['image_profile_name'] = null;
+			$args['image_profile_name'] = 0;
 
 		$args['public'] = $public;
 		$args["tags"] = $this->skills_model->get_user_skills($id);
@@ -282,10 +282,10 @@ class User extends CI_Controller {
 		}
 
 		$args = $this->user_model->select($id);
-		if(!is_null($args['image_profile']))
+		if($args['image_profile']!=0)
 			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
 		else
-			$args['image_profile_name'] = null;
+			$args['image_profile_name'] = 0;
 
 		$args['public'] = $public;
 		$args["tags"] = $this->skills_model->get_user_skills($id);
@@ -336,7 +336,7 @@ class User extends CI_Controller {
 						if($args['image_profile'] == $id_photo_objetivo)//si borro la foto del perfil
 						{
 							$this->photos_model->purgar(0,$id_photo_objetivo);//se purga(unlink) la foto de la carpeta profile
-							$this->user_model->set_profile_pic($args["user_id"]);//se setea NULL image_profile en users
+							$this->user_model-> update_profile_image(0,$args["user_id"]);//se setea NULL image_profile en users
 						}else
 						{
 							$this->photos_model->purgar(0,$id_photo_objetivo);//se purga(unlink) la foto de la carpeta gallery
@@ -369,10 +369,10 @@ class User extends CI_Controller {
 		}
 
 		$args = $this->user_model->select($id);
-		if(!is_null($args['image_profile']))
+		if($args['image_profile'] != 0)
 			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
 		else
-			$args['image_profile_name'] = null;
+			$args['image_profile_name'] = 0;
 
 		$args['public'] = $public;
 		$args["tags"] = $this->skills_model->get_user_skills($id);
@@ -609,10 +609,10 @@ class User extends CI_Controller {
 		$public = FALSE;
 		
 		$args = $this->user_model->select($id);
-		if(!is_null($args['image_profile']))
+		if($args['image_profile'] != 0)
 			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
 		else
-			$args['image_profile_name'] = null;
+			$args['image_profile_name'] = 0;
 
 		$args["content"]="applicants/applicants_template";
 		$inner_args["applicant_content"]="applicants/active_casting_list";
@@ -682,10 +682,10 @@ class User extends CI_Controller {
 		$public = FALSE;
 
 		$args = $this->user_model->select($id);
-		if(!is_null($args['image_profile']))
+		if($args['image_profile'] != 0)
 			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
 		else
-			$args['image_profile_name'] = null;
+			$args['image_profile_name'] = 0;
 		
 		$args["content"]="applicants/applicants_template";
 		$inner_args["applicant_content"]="applicants/results_casting_list";
