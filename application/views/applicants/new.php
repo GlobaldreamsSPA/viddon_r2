@@ -2,8 +2,8 @@
 				    	<div class="span3 user-profile-left">
 				    		<div class="row">
 				    		<?php 
-				    			if(isset($update_values) && file_exists(APPPATH.'/../img/profile/'.$update_values['image_profile']) == TRUE)
-				    				echo "<img class='user_image' src='".HOME.'/img/profile/'.$update_values['image_profile']."'/>";
+				    			if(isset($update_values) && file_exists(APPPATH.'/../img/gallery/'.$image_profile_name) == TRUE)
+				    				echo "<img class='user_image' src='".HOME.'/img/gallery/'.$image_profile_name."'/>";
 				    			else
 				    				echo "<img class='user_image' src='".HOME."/img/profile/user.jpg'/>";
 				    		?>

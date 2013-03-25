@@ -33,31 +33,7 @@ class User_model extends CI_Model
 		$this->db->where('id', $id_user);
 		$this->db->update('users', $data);
 	}
-	
-	function set_profile_pic($id_user,$name_photo_nueva=NULL)//$name_photo_nueva sale de la galeria de fotos
-	{
-		//se carga la imagen desde la carpeta "gallery"
-		$img_galeria = LOCAL_GALLERY.$name_photo_nueva;
-		file_put_contents(LOCAL_USER_PROFILE_IMAGE.$name_photo_nueva, file_get_contents($img_galeria));//MUEVE LA IMAGEN A PROFILE
-		
-		$data = array
-				(
-				'image_profile' => $name_photo_nueva
-				);
-	
-		$this->db->where('id', $id_user);
-		$this->db->update('users', $data);
-		
-/*
-	$data = array(
-		'image_profile' => $id_video_nuevo
-	);
 
-$this->db->where('id', $id_user);
-$this->db->update('users', $data);
-	 
-*/
-	}
 	
 	function get_image_profile($user_id)
 	{
@@ -159,6 +135,16 @@ $this->db->update('users', $data);
 
 	
 		return $this->db->insert('users', $data);
+	}
+
+	function update_profile_image($id_photo,$id_user)
+	{
+		$data = array(
+				'image_profile' => $id_photo
+		);
+
+		$this->db->where('id', $id_user);
+		$this->db->update('users', $data);
 	}
 
 	

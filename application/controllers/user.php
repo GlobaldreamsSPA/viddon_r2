@@ -57,7 +57,7 @@ class User extends CI_Controller {
 			
 				$parts = array();
 				
-				$url_photo = "https://graph.facebook.com/".$fb_data['id']."/picture";
+				$url_photo = "https://graph.facebook.com/".$fb_data['id']."/picture?type=large";
 				$temporal = parse_url($url_photo);
 				
 				$img_name = $user_id."_1.jpeg";
@@ -73,18 +73,20 @@ class User extends CI_Controller {
 					'user_id' => $user_id
 					);
 				
-				$this->photos_model->insert($photo_to_save);//INSERTA REGISTRO EN BASE DE DATOS , TABLA "photos"
+				$id_profile_photo = $this->photos_model->insert($photo_to_save);//INSERTA REGISTRO EN BASE DE DATOS , TABLA "photos"
 			
+				$this->user_model->update_profile_image($id_profile_photo,$user_id);
 
 				$new_session_data = array(
 						'id' => $user_id,
 						'email' => $fb_data['email'],
-						'name' => $fb_data['name'],
+						'name' => $fb_data['first_name'],
 						'last_name' => $fb_data['last_name'],
 						'type' => 1
 						);
 
 				$this->session->set_userdata($new_session_data);
+				redirect(HOME."/user");
 
             }
             else
@@ -103,6 +105,9 @@ class User extends CI_Controller {
 				);
 
 				$this->session->set_userdata($new_session_data);
+
+				redirect(HOME."/user");
+
 
             }
 			
@@ -147,6 +152,11 @@ class User extends CI_Controller {
 		}
 
 		$args = $this->user_model->select($id);
+		if(!is_null($args['image_profile']))
+			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
+		else
+			$args['image_profile_name'] = null;
+
 		$args['public'] = $public;
 		$args["tags"] = $this->skills_model->get_user_skills($id);
 		$args["user"] = $this->user_model->welcome_name($id);
@@ -272,6 +282,11 @@ class User extends CI_Controller {
 		}
 
 		$args = $this->user_model->select($id);
+		if(!is_null($args['image_profile']))
+			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
+		else
+			$args['image_profile_name'] = null;
+
 		$args['public'] = $public;
 		$args["tags"] = $this->skills_model->get_user_skills($id);
 		$args["user"] = $this->user_model->welcome_name($id);
@@ -310,18 +325,16 @@ class User extends CI_Controller {
 				case 1://HACER FOTO DE PERFIL
 					if(!is_null($id_photo_objetivo) && !is_null($args["user_id"]) && is_numeric($id_photo_objetivo))
 					{
-						$nombre = $this->photos_model->get_name($id_photo_objetivo);
-						$this->user_model->set_profile_pic($args["user_id"],$nombre);
+						$this->user_model->update_profile_image($id_photo_objetivo,$args["user_id"]);
+
 						redirect(HOME."/user/photo_gallery");			
 					}
 					break;
 				case 2://ELIMINAR
-					$nombre = $this->photos_model->get_name($id_photo_objetivo);
 					if(!is_null($id_photo_objetivo) && !is_null($args["user_id"]) && is_numeric($id_photo_objetivo))
 					{
-						if($args['image_profile'] == $nombre)//si borro la foto del perfil
+						if($args['image_profile'] == $id_photo_objetivo)//si borro la foto del perfil
 						{
-							$this->photos_model->purgar(1,$nombre);//se purga(unlink) la foto de la carpeta profile
 							$this->photos_model->purgar(0,$id_photo_objetivo);//se purga(unlink) la foto de la carpeta profile
 							$this->user_model->set_profile_pic($args["user_id"]);//se setea NULL image_profile en users
 						}else
@@ -356,6 +369,11 @@ class User extends CI_Controller {
 		}
 
 		$args = $this->user_model->select($id);
+		if(!is_null($args['image_profile']))
+			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
+		else
+			$args['image_profile_name'] = null;
+
 		$args['public'] = $public;
 		$args["tags"] = $this->skills_model->get_user_skills($id);
 		$args["user"] = $this->user_model->welcome_name($id);
@@ -591,6 +609,11 @@ class User extends CI_Controller {
 		$public = FALSE;
 		
 		$args = $this->user_model->select($id);
+		if(!is_null($args['image_profile']))
+			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
+		else
+			$args['image_profile_name'] = null;
+
 		$args["content"]="applicants/applicants_template";
 		$inner_args["applicant_content"]="applicants/active_casting_list";
 		$args["inner_args"]=$inner_args;
@@ -659,6 +682,11 @@ class User extends CI_Controller {
 		$public = FALSE;
 
 		$args = $this->user_model->select($id);
+		if(!is_null($args['image_profile']))
+			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
+		else
+			$args['image_profile_name'] = null;
+		
 		$args["content"]="applicants/applicants_template";
 		$inner_args["applicant_content"]="applicants/results_casting_list";
 		$args["inner_args"]=$inner_args;
