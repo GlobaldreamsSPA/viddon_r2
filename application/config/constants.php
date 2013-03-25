@@ -28,7 +28,7 @@ define('HUNTER_UPLOAD_IMAGE', '../img/logo_hunter');
 define('CASTINGS_PATH', '/img/casting_image/');
 define('CASTINGS_FULL_PATH', '/img/casting_image_full/');
 define('OPENID' , realpath(APPPATH.'../utils/openid.php'));
-define('HOME', 'http://localhost/release1.0/viddon_r2');
+define('HOME', 'http://development.viddon.com/viddon_matil/viddon_r2');
 define('GALLERY', HOME.'/img/gallery/');
 define('LOCAL_GALLERY', 'img/gallery/');
 
