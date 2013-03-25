@@ -64,7 +64,7 @@
 
 						if($this->session->userdata('name') != FALSE)
 						{
-							$user = $this->session->userdata('name');
+							$user = $this->session->userdata('name')." ".$this->session->userdata('last_name');
 						}
 						else if($this->session->userdata('email') != FALSE)
 						{
@@ -106,8 +106,7 @@
 					
 						if(!$id && !$id_h)
 						{
-							$login_url = $this->facebook->getLoginUrl(array('scope'=>'email,user_location,user_hometown,user_education_history,user_birthday,user_relationships,user_religion_politics,user_about_me,user_likes','redirect_uri' => 'http://www.development.viddon.com/viddon_r2/user/fb_login/'));
-
+							$login_url = HOME."/user/fb_login";
 							echo "<div id='login-button-container' class='span5'>";
 							echo "<a href='".$login_url."' id='login-button'>";
 							echo "<img id='login-button-image' src='".HOME."/img/fb-login.jpg' />";

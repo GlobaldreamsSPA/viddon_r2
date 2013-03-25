@@ -10,11 +10,6 @@ class Home extends CI_Controller {
 		//Modelos
 		$this->load->model(array('videos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model'));
 	
-		parse_str( $_SERVER['QUERY_STRING'], $_REQUEST );
-        $CI = & get_instance();
-		$CI->config->load("facebook",TRUE);
-		$config = $CI->config->item('facebook');
-		$this->load->library('Facebook', $config);
 	}
 
 	public function index()

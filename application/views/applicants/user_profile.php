@@ -63,15 +63,7 @@
 	<h3 id="profile">Mi Historia</h2>
 	<div class="justify profile-content"><?php echo $bio;?></div>
 	<div class="space1"></div>
-	
-	<h3 id="profile">Mis Hobbies</h2>
-	<div class="justify profile-content"><?php echo $hobbies;?></div>
-	<div class="space1"></div>
-	
-	<h3 id="profile">Mis Sueños</h2>
-	<div class="justify profile-content"><?php echo $dreams;?></div>
-
-	<div class="space4"></div>						
+			
 
 	<legend style="font-weight: bold;">Video Principal</legend>
 	<?php if(isset($video_ID)){?>

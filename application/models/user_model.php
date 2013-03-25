@@ -7,40 +7,22 @@ class User_model extends CI_Model
         parent::__construct();
     }
 
-	function insert($profile)
+	function get_main_video_id($id_user)
 	{
-		$data = array(
-				'name' => $profile['name'],
-				'bio' => $profile['bio'],
-				'dreams' => $profile['dreams'],
-				'hobbies' => $profile['hobbies'],
-				'sex' => $profile['sex'],
-				'age' => $profile['age']
-			);
-
-		$this->db->insert('users', $data);
-
-		$this->db->select_max('id');
+		$this->db->select('id_main_video');
+		$this->db->where('id', $id_user);
 		$query = $this->db->get('users')->first_row('array');
-		return $query['id'];
+		return $query['id_main_video'];
 	}
-
-		function get_main_video_id($id_user)
-		{
-			$this->db->select('id_main_video');
-			$this->db->where('id', $id_user);
-			$query = $this->db->get('users')->first_row('array');
-			return $query['id_main_video'];
-		}
 		
 		
-		function has_main_video($id_user)
+	function has_main_video($id_user)
+	{
+		if($this->get_main_video_id($id_user) == NULL)
 		{
-			if($this->get_main_video_id($id_user) == NULL)
-			{
-				return false;
-			}else return true;
-		}
+			return false;
+		}else return true;
+	}
 	
 	function set_main_video($id_user,$id_video_nuevo=NULL)
 	{
@@ -127,45 +109,56 @@ $this->db->update('users', $data);
 		return $query;
 	}
 
-	function verify_openid($openid)
+	function verifyfb_id($id_fb)
 	{
-		$this->db->select('google_login_token, id');
+		$this->db->select('id_fb, id');
 		$this->db->from('users');
-		$this->db->where('google_login_token', $openid);
+		$this->db->where('id_fb', $id_fb);
 		$query = $this->db->get();
 		
-		$data = array();
-
 		if($query->num_rows == 0)
-		{
-			$data['exists'] = 0;
-		}
-		else
-		{
-			$user = $query->result_array();
-			$user = $user['0'];
-			
-			$data['exists'] = 1;
-			$data['id'] = $user['id'];
-		}
+			return 0;
 
-		return $data;
+		else
+			return $query->result_array();
+		
+
+		
 	}
 
-	function create($openid, $google_data)
+	function insert($fb_data)
 	{
 		$data = array(
-			'google_login_token' => $openid,
-			'email' => $google_data['contact/email']
+			'id_fb' => $fb_data['id'],
+			'name' => $fb_data['first_name'],
+			'last_name' => $fb_data['last_name'],
+			'email' => $fb_data['email'],
+			'sex' => $fb_data['gender'],
+			'facebook_profile_url' => $fb_data['link'],
+			'birth_date' => $fb_data['birthday'],
+			'location_language' => $fb_data['locale']
 			);
 
-		$this->db->insert('users', $data);
+		if(isset($fb_data['religion']))
+       		$data["religion"]=$fb_data['religion']; 
+   		
+   		if(isset($fb_data['political']))
+        	$data["political"]=$fb_data['political']; 
 
-		//Retornar el id del usuario
-		$this->db->select_max('id');
-		$query = $this->db->get('users')->first_row('array');
+    	if(isset($fb_data['bio']))
+        	$data["bio"] = $fb_data['bio']; 
+
+	    if(isset($fb_data['hometown']))
+	     	$data["hometown"] = $fb_data['hometown']['name']; 
+
+	    if(isset($fb_data['location']))
+	      	$data["location"] = $fb_data['location']['name']; 
+
+	    if(isset($fb_data['relationship_status']))
+        	$data["relationship_status"] = $fb_data['relationship_status']; 
+
 	
-		return $query['id'];
+		return $this->db->insert('users', $data);
 	}
 
 	

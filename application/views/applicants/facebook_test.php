@@ -1,4 +1,5 @@
 <div>
+
     <img src="https://graph.facebook.com/<?php echo $fb_data['id']; ?>/picture" alt="" class="pic" />
      <br />
     <?php echo "Id Facebook : ".$fb_data['id']; ?>
@@ -58,4 +59,5 @@
         
       } 
     ?>
+
 </div>

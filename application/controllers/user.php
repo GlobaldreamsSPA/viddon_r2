@@ -8,7 +8,6 @@ class User extends CI_Controller {
 		$this->load->library(array('upload', 'image_lib'));
 		$this->load->helper(array('url', 'file', 'form'));
 		
-		//Modelitos xD
 		$this->load->model('user_model');
 		$this->load->model('applies_model');
 		$this->load->model('videos_model');
@@ -16,6 +15,9 @@ class User extends CI_Controller {
 		$this->load->model('castings_model');
 		$this->load->model('photos_model');
 		$this->load->model('comment_model');
+		$this->load->model('likes_model');
+
+		$this->load->model('education_model');
 
 		parse_str( $_SERVER['QUERY_STRING'], $_REQUEST );
         $CI = & get_instance();
@@ -25,35 +27,86 @@ class User extends CI_Controller {
 
 	}
 
+
 	public function fb_login(){
         // Try to get the user's id on Facebook
         $userId = $this->facebook->getUser();
  
         // If user is not yet authenticated, the id will be zero
-        if($userId != 0){
-            
+        if($userId == 0){
+            // Generate a login url
+			$url = $this->facebook->getLoginUrl(array('scope'=>'email,user_location,user_hometown,user_education_history,user_birthday,user_relationships,user_religion_politics,user_about_me,user_likes','redirect_uri' => 'http://www.development.viddon.com/viddon_r2/user/fb_login/'));
+			redirect($url);
+		} else {
             // Get user's data and print it
-            $args["fb_data"] = $this->facebook->api('/me');
-            
+            $fb_id = $this->facebook->api('/me?fields=id');
+            $fb_id=$fb_id["id"];
 
+            if($this->user_model->verifyfb_id($fb_id) == 0)
+            {
+            	$fb_data = $this->facebook->api('/me');
+            	$user_id = $this->user_model->insert($fb_data);
+            	if(isset($fb_data['education']))
+					foreach ($fb_data['education'] as $education_institution) 
+					    $this->education_model->insert($user_id,$education_institution);
 
-            $test = $this->facebook->api('/me/likes');
-            foreach ($test['data']  as $element) {	
-            	echo "LIKE categoria: ".$element['category']." nombre : ".$element['name'];
-	            echo "</br>";
-	            echo "</br>";
+				$likes = $this->facebook->api('/me/likes');
+				foreach ($likes['data'] as $like) 
+					$this->likes_model->insert($user_id,$like);
+
+			
+				$parts = array();
+				
+				$url_photo = "https://graph.facebook.com/".$fb_data['id']."/picture";
+				$temporal = parse_url($url_photo);
+				
+				$img_name = $user_id."_1.jpeg";
+				$img = LOCAL_GALLERY.$img_name;
+				$parts = explode("/", $temporal['path']);
+				
+				
+				file_put_contents($img,file_get_contents($url_photo));//GUARDA LA IMAGEN
+			
+				$photo_to_save = array(
+					'name' => $img_name,
+					'description' => 'foto perfil facebook',
+					'user_id' => $user_id
+					);
+				
+				$this->photos_model->insert($photo_to_save);//INSERTA REGISTRO EN BASE DE DATOS , TABLA "photos"
+			
+
+				$new_session_data = array(
+						'id' => $user_id,
+						'email' => $fb_data['email'],
+						'name' => $fb_data['name'],
+						'last_name' => $fb_data['last_name'],
+						'type' => 1
+						);
+
+				$this->session->set_userdata($new_session_data);
+
             }
+            else
+            {
+				$user_id = $this->user_model->verifyfb_id($fb_id);	
+				$user_id = $user_id[0]["id"];
 
-            $this->load->view('applicants/facebook_test',$args);
 
-            
-        }else
-        {
-        	echo HOME;
+				$user_data = $this->user_model->select($user_id);
+				$new_session_data = array(
+					'id' => $user_id,
+					'email' => $user_data['email'],
+					'name' => $user_data['name'],
+					'last_name' => $user_data['last_name'],
+					'type' => 1
+				);
+
+				$this->session->set_userdata($new_session_data);
+
+            }
+			
         }
-
-
-
 
     }
 
@@ -354,76 +407,6 @@ class User extends CI_Controller {
 		
 		$this->load->view('template',$args);
 	}
-	
-	/*public function login()
-	{
-		require_once OPENID;
-		$openid = new LightOpenID(HOME);
-		
-		if ($openid->mode) {
-		    if ($openid->mode == 'cancel')
-		    {
-		    	//Esto es cuando el usuario cancela la autorizacion de login con google
-		        redirect(HOME);
-		    }
-
-		    elseif($openid->validate())
-		    {
-		     	//Ya que el usuario se encuentra logeado, se almacenan los datos en la BD.
-
-		        $data = $openid->getAttributes();
-
-				$user_openid = array();
-				$user_email = $data['contact/email'];
-
-				if(isset($data['namePerson']))
-					$user_name = $data['namePerson'];
-				else
-					$user_name = "";
-
-				parse_str(parse_url($openid->identity, PHP_URL_QUERY), $user_openid);
-
-				$result = $this->user_model->verify_openid($user_openid['id']);
-				
-				//Verificar que existe el usuario
-				if($result['exists'] == 1)
-				{
-					//Si el usuario existe se guardan datos en la sesion y se redirige al index del usuario
-					$new_session_data = array(
-						'id' => $result['id'],
-						'email' => $user_email,
-						'name' => $user_name,
-						'type' => 1
-						);
-
-					$this->session->set_userdata($new_session_data);
-					redirect(HOME.'/user/index');
-				}
-				else
-				{
-					//Si el usuario no existe, crea el usuario, guarda el openid y retorna el id.
-					$id_user = $this->user_model->create($user_openid['id'], $data);
-
-					//Guardar ID del usuario en ls session
-					$new_session_data = array(
-						'id' => $id_user,
-						'email' => $user_email,
-						'name' => $user_name,
-						'type' => 1
-						);
-
-					$this->session->set_userdata($new_session_data);
-					redirect(HOME.'/user/edit/');
-				}
-
-		    }
-		    else
-		    {
-		    	//Esto es cuando el usuario cancela la autorizacion de login con google
-		    	redirect(HOME);
-		    }
-		}
-	}*/
 
 	public function logout()
 	{
