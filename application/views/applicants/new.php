@@ -48,11 +48,8 @@
 				    
 					    <div class="space2"></div>
 						<?php 
-						if (isset($update_values)) $flag="/update123";
-						else 
-							$flag = "";
 						
-						echo form_open_multipart('user/edit'.$flag); ?>
+						echo form_open_multipart(); ?>
 		
 						<!-- Texto -->
 						<div class="span8 offset1">
@@ -105,6 +102,8 @@
 									}
 									echo form_multiselect('skills[]', $skills, $skill_selected,"class='chzn-select' style='width:245px' data-placeholder='Selecciona los tags...'");
 									?>
+								<?php echo form_error('skills'); ?>
+
 								<h5>Campo Con&oacute;ceme</h5>
 									<textarea class="rich_textarea" name="bio"><?php if(isset($update_values)) echo $update_values["bio"]; else echo set_value('bio');?></textarea>
 									<?php echo form_error('bio'); ?>

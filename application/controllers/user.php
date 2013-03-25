@@ -441,14 +441,15 @@ class User extends CI_Controller {
 		else
 		{
 			//Setear mensajes
-			$this->form_validation->set_message('required', 
-				'Ups! Todavia te falta este dato. Es muy importante para definirte como ganador(a) del concurso :)');
+			$this->form_validation->set_message('required', 'Este campo es obligatorio');
+			$this->form_validation->set_message('valid_email', 'Este campo debe ser un correo v&aacute;lido');
 
 			//Setear reglas
 			$this->form_validation->set_rules('name', 'Nombre', 'required');
 			$this->form_validation->set_rules('last_name', 'Apellido', 'required');
-			$this->form_validation->set_rules('email', 'Correo', 'required');
+			$this->form_validation->set_rules('email', 'Correo', 'required|valid_email');
 			$this->form_validation->set_rules('bio', 'Bio', 'required');
+			$this->form_validation->set_rules('skills', 'Habilidades', 'required');
 		
 			if ($this->form_validation->run() == FALSE)
 			{
