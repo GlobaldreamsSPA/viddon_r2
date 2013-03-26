@@ -135,8 +135,6 @@ border: 1px solid #4C3C1B;
 								echo '</div>';	
 							}?>
 							</ul>
-						   
->>>>>>> 31b162e56ab3a9849785533fe1fa72002f81436e
 	</div>
 </div>
 					
