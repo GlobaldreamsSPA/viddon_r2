@@ -25,10 +25,10 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class= "span8">
-		  		<div style="border-radius: 5px; margin-left:3%; min-height: 1850px" id="variable" class="row-fluid">
+		  		<div style="border-radius: 5px; margin-left:3%;" id="variable" class="row-fluid">
 
 		  			<div class="space05"></div>
-		  			<h2 style="margin-left:10%;" style="font-weight:bold;"><a href="<?php echo site_url("home/casting_list"); ?>">Castings/ </a> <?php echo $casting['title']; ?></h3>
+		  			<h2 style="margin-left:10%;" style="font-weight:bold;"><?php echo $casting['title']; ?></h3>
 		  			<div class="space2"></div>
 					<img style="margin-left:12%; margin-top:10px; height: 300px; width: 75%;" src="<?php echo $casting['full_image'] ?>">
 					<div class="space2"></div>
@@ -64,17 +64,7 @@
 					<ul style="padding-top:20px; padding-right:75px; padding-left:75px; text-align:justify;">
 						<li>El Casting empezó el d&iacutea: <?php echo $casting['start_date'] ?>.</li>
 						<li>El Casting termina el d&iacutea: <?php echo $casting['end_date'] ?>.</li>
-						<li>El Casting requiere un máximo de: <?php echo $casting['max_applies'] ?> personas.</li>
 						<li><?php echo $casting['applies'] ?> Personas ya han postulado a este casting.</li>
-					</ul>
-					<div class="space2"></div>
-					<h2 style="margin-left:10%;" id="profile" style="font-weight:bold;">Detalles generales del Casting</h3>
-					<ul style="padding-top:20px; padding-right:75px; padding-left:75px; text-align:justify;">
-						<li>Color de ojos preferido: <?php echo $casting['eyes-color'] ?>.</li>
-						<li>Color de ojos preferido: <?php echo $casting['eyes-color'] ?>.</li>
-						<li>Color de piel preferido: <?php echo $casting['skin-color'] ?>.</li>
-						<li>Color de pelo preferido: <?php echo $casting['hair-color'] ?>.</li>
-						<li>Altura del postulante: <?php echo $casting['height'] ?>.</li>
 						<li>Edad preferida: <?php echo $casting['age'] ?> a&ntildeos.</li>
 						<li>G&eacutenero preferido: <?php echo $casting['sex'] ?>.</li>
 					</ul>
@@ -85,16 +75,21 @@
 			</div>
 			<div class="span4">
 			  	<div style="border-radius: 5px; margin-left:8%; text-align:center;" id="grow" class="row-fluid">
-			  		<h2 id="profile"  style="font-weight:bold;">Castings Relacionados</h3>
-		  			<?php foreach($castings as $casting){ ?>
+			  		<div class="space1"></div>
+			  		<h2 id="profile"  style="font-weight:bold;">Castings Viddon</h3>
+			  		<?php foreach($castings as $casting){ ?>
 			  			<a href="<?php echo site_url("home/casting_detail/".$casting['id']); ?>">
-		  					<img style="margin-top: 44px; width: 70%; height: 170px;" src="<?php echo $casting['image']; ?>">
+		  					<img style="margin-top: 44px; width: 84%; " src="<?php echo $casting['image']; ?>">
 		  				</a>
 		  			<?php } ?>
 					<div class= "space2"></div>
-					<a class="MBT-readmore" style="float: right;" href="<?php echo HOME;?>/home/casting_list">Ver Todos Los Castings >></a>
+					<div class= "space2"></div>
+					<div style="margin-left: 5%;" class="span11">
+					<a class="twitter-timeline" href="https://twitter.com/ViddonCom" data-widget-id="316343995661959169">Tweets por @ViddonCom</a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+					</div>
 				</div>
-			</div>	
+			</div>
 		</div>
   	</div>
   	<div class="space4"></div> 	
