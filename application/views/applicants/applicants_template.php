@@ -46,61 +46,51 @@
 			</div>	
 		
 			<div class="span3">
+				<?php //Si está en su perfil, muestra enlace a la galeria de fotos
+				if(!$public)
+				{ 
+				?>
 				<div  style="border-radius: 5px; margin-left:8%; padding-left: 10px; padding-right: 10px; text-align:center;" id="grow" class="row-fluid">
 					<div class="space1"></div>
 					<h3 id="profile" >Galeria Videos</h3>
 
 					<img style="margin-top: 16px;" src="<?php echo HOME.'/img/dummy_galeria_videos.png';?>">
-					<?php //Si está en su perfil, muestra enlace a la galeria de videos
-					if(!$public)
-					{ 
-					?>
-		  				<a class="MBT-readmore" href="<?php echo HOME.'/user/video_gallery/';?>">Ver m&aacute;s >></a>
-		  			<?php
-					} 
-		  			?>
+					
+		  			<a class="MBT-readmore" href="<?php echo HOME.'/user/video_gallery/';?>">Ver m&aacute;s >></a>
+		  			
 		  			<div class="space4"></div>						
 					<h3 id="profile" >Galeria Fotos</h3>
 
-						
-					<?php
-						if(isset($photos))
-						{?>
-							<div id="galeria_publica">
-								<ul style="list-style: none;">
-									<?php
-									$i = 0;
-									foreach($photos as $photo)
-									{
-										$i++;
-										?>
-										<li><img src="<?php echo GALLERY.$photo['name'];?>" alt="<?php echo $photo['description'];?>" title="<?php echo $photo['description'];?>" /></li>
-							  <?php	if($i>=1)break; //SACA SÓLO 2 FOTOS
-									}?>
-								</ul>
-							</div>
-							
-				  <?php	} 
-						else
-						{
-						?>
-						<img style="margin-top: 16px;"  src="<?php echo HOME.'/img/dummy_galeria_fotos.png';?>">
-						
-						<?php
-						}?>
 					
-					
-					
-					<?php //Si está en su perfil, muestra enlace a la galeria de fotos
-					if(!$public)
-					{ 
-					?>
-		  				<a class="MBT-readmore" style="float: right;" href="<?php echo HOME.'/user/photo_gallery/';?>">Ver m&aacute;s >></a>
-		  			<?php
-					} 
-		  			?>
+					<img style="margin-top: 16px;"  src="<?php echo HOME.'/img/dummy_galeria_fotos.png';?>">
+										
+				
+		  			<a class="MBT-readmore" style="float: right;" href="<?php echo HOME.'/user/photo_gallery/';?>">Ver m&aacute;s >></a>
+		  			
 					<div class="space4"></div>
 				</div>
+				<?php
+				} 
+		  		else
+		  		{
+		  		?>
+				<div style="border-radius: 5px; margin-left:8%; text-align:center;" id="grow" class="row-fluid">
+			  		<div class="space1"></div>
+			  		<h2 id="profile"  style="font-weight:bold;">Castings Viddon</h3>
+			  		<?php foreach($castings as $casting){ ?>
+			  			<a href="<?php echo site_url("home/casting_detail/".$casting['id']); ?>">
+		  					<img style="margin-top: 44px; width: 84%; " src="<?php echo $casting['image']; ?>">
+		  				</a>
+		  			<?php } ?>
+					<div class= "space2"></div>
+					<div class="space2"></div>
+					<div class= "space2"></div>
+					<div style="margin-left: 5%;" class="span11">
+					<a class="twitter-timeline" href="https://twitter.com/ViddonCom" data-widget-id="316343995661959169">Tweets por @ViddonCom</a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+					</div>
+				</div>
+				<?php }?>
 			</div>
 			
 		</div>

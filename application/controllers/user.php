@@ -144,11 +144,16 @@ class User extends CI_Controller {
 		$public = FALSE;
 
 		if($this->session->userdata('id') === FALSE || ($id != NULL && $id != $this->session->userdata('id')))
+		{
 			$public = TRUE;
+			$castings= $this->castings_model->get_castings(NULL, 2, 1);
+		}
 		else
 		{
 			$id = $this->session->userdata('id');
 			$public = FALSE;
+			$castings= null;
+
 		}
 
 		$args = $this->user_model->select($id);
@@ -156,6 +161,9 @@ class User extends CI_Controller {
 			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
 		else
 			$args['image_profile_name'] = 0;
+
+		$args["castings"]= $castings;
+
 
 		$args['public'] = $public;
 		$args["tags"] = $this->skills_model->get_user_skills($id);

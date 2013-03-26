@@ -129,7 +129,7 @@
 		<div style="padding-left: 38%; background-color: black; padding-top: 30%; padding-bottom: 30%;  border: 1px solid #d0d0d0;">
 			<?php if(!$public) {?> <button data-toggle="modal"  href="#add_video" class="btn btn-primary">Agregar Video</button> <?php } ?>
 		</div>
-	
+		<div class="space2"> </div>
 	<?php
 	/*
 	<form id="video_upload_form" action="" method="post">

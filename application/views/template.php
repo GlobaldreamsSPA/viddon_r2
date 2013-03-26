@@ -335,6 +335,18 @@
 						    'height': $('#variable').outerHeight()
 					});
 				});
+			}else
+			{
+				$('#variable').css({
+					'height': $('#grow').outerHeight()
+				});
+			    	
+			    jQuery('#grow').bind( 'resize', function(e) {
+						  
+					$('#variable').css({
+						    'height': $('#grow').outerHeight()
+					});
+				});
 			}
 		}
 		

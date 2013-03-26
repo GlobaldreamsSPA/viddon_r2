@@ -18,7 +18,7 @@ class Home extends CI_Controller {
 		$args = array();
 		$video_list = $this->videos_model->get_videos(1, 8);
 		$args["video_list"] = array();
-		$args["castings"] = $this->castings_model->get_castings(NULL, 3, 1);
+		$args["castings"] = $this->castings_model->get_castings(NULL, 2, 1);
 		
 		foreach ($video_list as $video_data)
 		{
@@ -167,7 +167,7 @@ class Home extends CI_Controller {
 		}
 		
 		$gender_interpreter= array("Ambos","Masculino","Femenino");		
-		$args["castings"] = $this->castings_model->get_castings(NULL, 8, 1);
+		$args["castings"] = $this->castings_model->get_castings(NULL, 2, 1);
 		if(isset($args["casting"]['sex']))
 			$args["casting"]['sex'] = $gender_interpreter[$args["casting"]['sex']]; 
 
