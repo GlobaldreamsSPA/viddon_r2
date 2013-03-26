@@ -53,17 +53,21 @@
 				<div  style="border-radius: 5px; margin-left:8%; padding-left: 10px; padding-right: 10px; text-align:center;" id="grow" class="row-fluid">
 					<div class="space1"></div>
 					<h3 id="profile" >Galeria Videos</h3>
-
-					<img style="margin-top: 16px;" src="<?php echo HOME.'/img/dummy_galeria_videos.png';?>">
 					
+					<a href="<?php echo HOME.'/user/video_gallery/';?>">
+						<img style="margin-top: 16px;" src="<?php echo HOME.'/img/dummy_galeria_videos.png';?>">
+					</a>
+
 		  			<a class="MBT-readmore" href="<?php echo HOME.'/user/video_gallery/';?>">Ver m&aacute;s >></a>
 		  			
 		  			<div class="space4"></div>						
 					<h3 id="profile" >Galeria Fotos</h3>
 
+		  			<a href="<?php echo HOME.'/user/photo_gallery/';?>">
 					
-					<img style="margin-top: 16px;"  src="<?php echo HOME.'/img/dummy_galeria_fotos.png';?>">
-										
+						<img style="margin-top: 16px;"  src="<?php echo HOME.'/img/dummy_galeria_fotos.png';?>">
+					
+					</a>				
 				
 		  			<a class="MBT-readmore" style="float: right;" href="<?php echo HOME.'/user/photo_gallery/';?>">Ver m&aacute;s >></a>
 		  			
