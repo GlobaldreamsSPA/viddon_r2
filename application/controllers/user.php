@@ -275,7 +275,7 @@ class User extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
-	public function photo_gallery($page=1,$ope=NULL,$id_photo_objetivo=NULL) //TODO: TERMINAR
+	public function photo_gallery($ope=NULL,$id_photo_objetivo=NULL) //TODO: TERMINAR
 	{
 		$args = array();
 		$public = FALSE;
@@ -309,10 +309,7 @@ class User extends CI_Controller {
 		}
 		
 		//AHORA OBTENGO LOS ELEMENTOS NECESARIOS PARA LA GALERIA
-		$args['videos'] = $this->videos_model->get_videos_by_user($this->session->userdata('id'),$page);
 		$args['image_profile'] =$this->user_model->get_image_profile($this->session->userdata('id'));
-		$args['page']=$page;
-		$args["chunks"]=ceil($this->videos_model->count_videos_by_user($this->session->userdata('id'))/8);	
 		
 		
 		$args["content"]="applicants/applicants_template";

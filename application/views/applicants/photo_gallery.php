@@ -1,3 +1,10 @@
+<style>
+.glow {
+border: 1px solid #4C3C1B;
+ background-color: #EFEECB;
+}
+</style>
+
 		  			<div class="row-fluid">		
 				    	<div class="span3 user-profile-left">
 				    		<div class="row">
@@ -97,39 +104,35 @@
 					    	foreach($photos as $photo){
 					    		$i++;
 								if($i%2 == 0 )								
-					    			if($photo["id"] == $id_main_video) echo '<div style="padding:8px;" title="Imagen Perfil" class="span6 glow">'; //carga el efecto de "brillo"
-									else echo '<div style="padding:8px;" class="span6">';	
+					    			if($photo["id"] == $image_profile) echo '<div style="padding:8px;  text-align:center; height: 230px;" title="Imagen Perfil" class="span6 glow">'; //carga el efecto de "brillo"
+									else echo '<div style="padding:8px;  text-align:center; height: 230px;" class="span6">';	
 								else
 									{
 									echo '<div class="space1"></div>';
 									echo '<div class="row">';
-									if($photo["id"] == $id_main_video) echo '<div style="padding:8px;" title="Imagen Perfil" class="span6 glow">';//carga el efecto de "brillo"
-									else echo '<div style="padding:8px;" class="span6">';
+									if($photo["id"] == $image_profile) echo '<div style="padding:8px;  text-align:center; height: 230px;" title="Imagen Perfil" class="span6 glow">';//carga el efecto de "brillo"
+									else echo '<div style="padding:8px;  text-align:center; height: 230px;" class="span6">';
 									}								
 					    	?>
 					    		<div class="row">
 									<?php if(!$public) {?>
-										<div style="margin-top: 20px;" class="span1">
-											<a class="btn-del" title="Establecer como foto de perfil" href="<?php echo HOME."/user/photo_gallery/".$page."/1/".$photo['id'];?>" class="btn btn-primary"><i class="icon-star-empty"></i></a>
+										<div class="span1">
+											<a class="btn-del" title="Establecer como foto de perfil" href="<?php echo HOME."/user/photo_gallery/1/".$photo['id'];?>" class="btn btn-primary"><i class="icon-star-empty"></i></a>
 										</div>
-										<div style="margin-top: 20px; margin-left: 1px;" class="span1">
-											<a class="btn-del" title="Eliminar foto" href="<?php echo HOME."/user/photo_gallery/".$page."/2/".$photo['id'];?>" class="btn btn-primary"><i class="icon-remove"></i></a>
+										<div style="margin-left: 1px;" class="span1">
+											<a class="btn-del" title="Eliminar foto" href="<?php echo HOME."/user/photo_gallery/2/".$photo['id'];?>" class="btn btn-primary"><i class="icon-remove"></i></a>
 										</div>
 										
 									<?php } ?>
 								</div>
-						    	<li class="span12">
-							        <a href="#" class="thumbnail"><!-- ABRA VISOR DE GALERIA -->
-										<img data-src="<?php echo GALLERY.$photo['name'];?>" alt="<?php echo $photo['description'];?>" title="<?php echo $photo['description'];?>" style="width: 100%; height: 150px;" src="<?php echo GALLERY.$photo['name'];?>">              
-									</a>
-						        </li>
+								<img data-src="<?php echo GALLERY.$photo['name'];?>" alt="<?php echo $photo['description'];?>" title="<?php echo $photo['description'];?>" style="height: 180px; width: auto;" src="<?php echo GALLERY.$photo['name'];?>">              
 						    </div>
 
 						            
 							<?php 
 							if($i%2 == 0 )								
 								echo '</div>';	
-							if($i%2 != 0 && $i == count($videos))
+							if($i%2 != 0 && $i == count($photos))
 								echo '</div>';	
 							}?>
 							</ul>
