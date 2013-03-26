@@ -107,7 +107,15 @@ class User_model extends CI_Model
 			'birth_date' => $fb_data['birthday'],
 			'location_language' => $fb_data['locale']
 			);
-
+			
+			//guarda el sexo como binario
+			if($data['sex'] == 'male') $data['sex'] = 1;
+			else $data['sex'] = 0;
+			
+			//cambia formato al date
+			$data['birth_date'] = date('Y-m-d', strtotime($data['birth_date']));
+			
+			
 		if(isset($fb_data['religion']))
        		$data["religion"]=$fb_data['religion']; 
    		
