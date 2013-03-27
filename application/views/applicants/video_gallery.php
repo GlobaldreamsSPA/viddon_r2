@@ -74,7 +74,7 @@ border: 1px solid #4C3C1B;
 					</div>
 					<div class="modal-body">
 							<div>	
-								<input name="url_ytb" style="width:96%" type="text" placeholder="Dirección - URL Video" value="">
+								<input name="url_ytb" style="width:96%" type="text" placeholder="Dirección - URL Video" value="" required="required">
 								<input name="name_ytb" style="width:96%" type="text" placeholder="Nombre">
 								<div class="space1"></div>	
 								<textarea class="rich_textarea_pop_up" name="description_ytb" rows="6" placeholder="Descripción"></textarea>
