@@ -160,14 +160,15 @@ class User extends CI_Controller {
 
 		if($this->session->userdata('id') === FALSE || ($id != NULL && $id != $this->session->userdata('id')))
 		{
-			$id = $this->session->userdata('id');
-			$public = FALSE;
-			$castings = null;
+			$public = TRUE;
+			$castings= $this->castings_model->get_castings(NULL, 2, 1);
 		}
 		else
 		{
-			$public = TRUE;
-			$castings= $this->castings_model->get_castings(NULL, 2, 1);
+			$id = $this->session->userdata('id');
+			$public = FALSE;
+			$castings= null;
+
 		}
 
 		$args = $this->user_model->select($id);
@@ -203,7 +204,7 @@ class User extends CI_Controller {
 					);
 					//Insertar estos datos
 					$this->videos_model->insert($video_to_save);
-					if(isset($_POST["from_gallery"]) && ($_POST['from_gallery'] == 'yes')) ;redirect(HOME.'/user/video_gallery/');
+					if(isset($_POST["from_gallery"]) && ($_POST['from_gallery'] == 'yes')) redirect(HOME.'/user/video_gallery/');
 				}
 				else
 				{
@@ -211,11 +212,7 @@ class User extends CI_Controller {
 				}
 			}
 			
-		}else
-		{
-			redirect(HOME.'/user/video_gallery/');
 		}
-		
 		
 		
 		//PROCESA SUBIDA DE FOTO A GALERIA
