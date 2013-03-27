@@ -192,11 +192,7 @@ class User extends CI_Controller {
 					'user_id' => $id
 					);
 					//Insertar estos datos
-					$unique_flag = $this->videos_model->insert($video_to_save);
-
-					if($unique_flag!=0)
-						$this->user_model->set_main_video($id,$unique_flag);
-
+					$this->videos_model->insert($video_to_save);
 					if(isset($_POST["from_gallery"]) && ($_POST['from_gallery'] == 'yes')) redirect(HOME.'/user/video_gallery/');
 				}
 				else
@@ -451,6 +447,7 @@ class User extends CI_Controller {
 	public function logout()
 	{
 		$this->session->sess_destroy();
+		$this->facebook->destroySession();
 		redirect(HOME);
 	}
 	
