@@ -68,7 +68,6 @@
 
 	<legend style="font-weight: bold;">Video Principal</legend>
 	<?php if(isset($video_ID)){?>
-		
 		<div class="justify video-title">
 			<div class="span9">
 				<h3 id="profile" ><?php echo $video_title;?></h5>
@@ -80,7 +79,9 @@
 			<?php } ?>
 
 		</div>
-		<iframe width="100%" height="300" src="http://www.youtube.com/embed/<?php echo $video_ID."?rel=0";?>" frameborder="0" allowfullscreen></iframe>
+
+
+		<iframe style="margin-top: 20px;" width="100%" height="300" src="http://www.youtube.com/embed/<?php echo $video_ID."?rel=0";?>" frameborder="0" allowfullscreen></iframe>
 		<div class="space05"></div>
 		<!--
 		<div class="social_data_container">			

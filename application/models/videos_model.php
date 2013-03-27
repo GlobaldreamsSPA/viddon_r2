@@ -17,7 +17,20 @@ class Videos_model extends CI_Model
     	$result = $this->db->get();
 
     	if($result->num_rows() == 0)
+    	{
 			$this->db->insert('videos', $data);
+			$video_id= $this->db->insert_id();
+
+			$this->db->select('*');
+	    	$this->db->from('videos');
+
+	    	$validate = $this->db->get();
+
+	    	if($validate->num_rows() == 1)
+				return $video_id;
+			else 
+				return 0;
+		}
 		else
 		{
 			$video = $result->first_row('array');
@@ -25,8 +38,11 @@ class Videos_model extends CI_Model
 
 			$this->db->where('id', $data['id']);
 			$this->db->update('videos', $data);
+			return 0;
 		}
-    }
+
+		
+	}
 
     function delete($video_id)
     {

@@ -8,7 +8,7 @@ class Home extends CI_Controller {
 		$this->load->helper(array('url', 'form'));
 
 		//Modelos
-		$this->load->model(array('videos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model'));
+		$this->load->model(array('videos_model','photos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model'));
 	
 	}
 
@@ -23,6 +23,9 @@ class Home extends CI_Controller {
 		foreach ($video_list as $video_data)
 		{
 			$user_data = $this->user_model->select($video_data["2"]);
+			if($user_data['image_profile']!=0)
+				$user_data['image_profile'] = $this->photos_model->get_name($user_data['image_profile']);
+
 			array_push($video_data, $user_data["name"], $user_data["image_profile"]);
 			array_push($args["video_list"], $video_data);
 		}
@@ -75,6 +78,9 @@ class Home extends CI_Controller {
 			array_push($video_data, $views, $dislikes,$likes);
 			*/
 			$user_data= $this->user_model->select($video_data["2"]);
+			if($user_data['image_profile']!=0)
+				$user_data['image_profile'] = $this->photos_model->get_name($user_data['image_profile']);
+
 			array_push($video_data,$user_data["name"],$user_data["image_profile"]);
 			array_push($args["video_list"], $video_data);
 		}
