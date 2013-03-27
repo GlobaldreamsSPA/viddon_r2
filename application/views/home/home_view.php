@@ -33,7 +33,7 @@
 					</div>
 					<?php */?>
 					<div class="space1"></div>
-		  			<h2 style="margin-left:5%;" id="profile" style="font-weight:bold;"> Videos Mas Visitados</h3>
+		  			<h2 style="margin-left:5%;" id="profile" style="font-weight:bold;"> Últimos Videos</h3>
 		  			
 				<?php
 				$i=0; 
@@ -50,7 +50,10 @@
 							<div class="row row_text_main">
 								<div class="span3 offset1">
 									<?php
-										echo "<img class='user_image_main_page' src='".HOME.'/img/profile/'.$video[4]."'/>";
+									if(file_exists(APPPATH.'/../img/gallery/'.$video[4]) == TRUE)
+										echo "<img class='user_image_main_page' src='".HOME.'/img/gallery/'.$video[4]."'/>";
+									else
+										echo "<img class='user_image_main_page' src='".HOME."/img/profile/user.jpg'/>";
 									?>
 								</div>
 								<div class="span7">

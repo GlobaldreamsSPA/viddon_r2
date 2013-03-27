@@ -46,7 +46,10 @@
 							<div class="row row_text_main">
 								<div class="span3 offset1">
 									<?php
-										echo "<img class='user_image_main_page' src='".HOME.'/img/profile/'.$video[4]."'/>";
+									if(file_exists(APPPATH.'/../img/gallery/'.$video[4]) == TRUE)
+										echo "<img class='user_image_main_page' src='".HOME.'/img/gallery/'.$video[4]."'/>";
+									else
+										echo "<img class='user_image_main_page' src='".HOME."/img/profile/user.jpg'/>";
 									?>
 								</div>
 								<div class="span7">
