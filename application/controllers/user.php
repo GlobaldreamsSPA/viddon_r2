@@ -160,15 +160,14 @@ class User extends CI_Controller {
 
 		if($this->session->userdata('id') === FALSE || ($id != NULL && $id != $this->session->userdata('id')))
 		{
-			$public = TRUE;
-			$castings= $this->castings_model->get_castings(NULL, 2, 1);
+			$id = $this->session->userdata('id');
+			$public = FALSE;
+			$castings = null;
 		}
 		else
 		{
-			$id = $this->session->userdata('id');
-			$public = FALSE;
-			$castings= null;
-
+			$public = TRUE;
+			$castings= $this->castings_model->get_castings(NULL, 2, 1);
 		}
 
 		$args = $this->user_model->select($id);
