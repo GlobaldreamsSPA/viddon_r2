@@ -87,16 +87,19 @@
 								
 								<h3 id="profile" style="font-weight:bold;"> Postulantes</h3>
 								<ul style="list-style: none;">
-								<?php 
-									foreach($postulantes as $postu)
-									{?>
-										<li style="margin-right:10px;display: inline;">
-										<a style="text-decoration:none;" href="<?php echo HOME.'/user/index/'.$postu['id'] ?>" title="<?php echo $postu['name'] ?>">
-										<img style=" margin-top:10px; height: 10%; width: 10%;" src="<?php echo HOME.'/img/profile/'.$postu['image_profile'];?>">
-										</a>
-										</li>
-									<?php	
-									}
+								<?php
+									if(!is_null($postulantes))
+									{
+										foreach($postulantes as $postu)
+										{?>
+											<li style="margin-right:10px;display: inline;">
+											<a style="text-decoration:none;" href="<?php echo HOME.'/user/index/'.$postu['id'] ?>" title="<?php echo $postu['name'] ?>">
+											<img style=" margin-top:10px; height: 10%; width: 10%;" src="<?php echo HOME.'/img/profile/'.$postu['image_profile'];?>">
+											</a>
+											</li>
+										<?php	
+										}
+									}									
 								?>
 								</ul>
 								
@@ -106,15 +109,18 @@
 								<h3 id="profile" style="font-weight:bold;"> Seleccionados</h3>
 						
 								<ul style="list-style: none;">
-								<?php 
-									foreach($seleccionados as $sele)
-									{?>
-										<li style="margin-right:10px;display: inline;">
-										<a href="<?php echo HOME.'/user/index/'.$sele['id'] ?>" title="<?php echo $sele['name'] ?>">
-										<img style="margin-top:10px; height: 10%; width: 10%;" src="<?php echo HOME.'/img/profile/'.$sele['image_profile'];?>">
-										</a>
-										</li>
-									<?php	
+								<?php
+									if(!is_null($seleccionados))
+									{ 
+										foreach($seleccionados as $sele)
+										{?>
+											<li style="margin-right:10px;display: inline;">
+											<a href="<?php echo HOME.'/user/index/'.$sele['id'] ?>" title="<?php echo $sele['name'] ?>">
+											<img style="margin-top:10px; height: 10%; width: 10%;" src="<?php echo HOME.'/img/profile/'.$sele['image_profile']."jpg";?>">
+											</a>
+											</li>
+										<?php	
+										}
 									}
 								?>
 								</ul>

@@ -286,20 +286,27 @@ class Hunter extends CI_Controller {
 			$args["seleccionados"] = $this->applies_model->get_short_user_applies($id,1);
 			
 			//se transforman en arreglo de usuarios
-			$postulantes_textual = array();
-			foreach($args["postulantes"] as $postulante_numerico)
+			if($args["postulantes"] != 0)
 			{
-				$postulantes_textual[] = $this->user_model->select_applicant($postulante_numerico['user_id']);
+				$postulantes_textual = array();
+				foreach($args["postulantes"] as $postulante_numerico)
+				{
+					$postulantes_textual[] = $this->user_model->select_applicant($postulante_numerico['user_id']);
+				}
+				$args["postulantes"] = $postulantes_textual;
 			}
-			$args["postulantes"] = $postulantes_textual;
+			else $args["postulantes"] = NULL;
 			
-			$seleccionados_textual = array();
-			foreach($args["seleccionados"] as $postulante_numerico)
+			if($args["seleccionados"] != 0)
 			{
-				$seleccionados_textual[] = $this->user_model->select_applicant($postulante_numerico['user_id']);
+				$seleccionados_textual = array();			
+				foreach($args["seleccionados"] as $postulante_numerico)
+				{
+					$seleccionados_textual[] = $this->user_model->select_applicant($postulante_numerico['user_id']);
+				}
+				$args["seleccionados"] = $seleccionados_textual;
 			}
-			$args["seleccionados"] = $seleccionados_textual;
-			
+			else $args["seleccionados"] = NULL;
 					
 			$this->load->view('template', $args);
 		}
