@@ -27,18 +27,13 @@ class User extends CI_Controller {
 
 	}
 
-
 	public function fb_login(){
-        // Try to get the user's id on Facebook
+
         $userId = $this->facebook->getUser();
- 
-        // If user is not yet authenticated, the id will be zero
         if($userId == 0){
-            // Generate a login url
 			$url = $this->facebook->getLoginUrl(array('scope'=>'email,user_location,user_hometown,user_education_history,user_birthday,user_relationships,user_religion_politics,user_about_me,user_likes','redirect_uri' => HOME.'/user/fb_login/'));
 			redirect($url);
 		} else {
-            // Get user's data and print it
             $fb_id = $this->facebook->api('/me?fields=id');
             $fb_id=$fb_id["id"];
 
@@ -54,7 +49,6 @@ class User extends CI_Controller {
 				foreach ($likes['data'] as $like) 
 					$this->likes_model->insert($user_id,$like);
 
-			
 				$parts = array();
 				
 				$url_photo = "https://graph.facebook.com/".$fb_data['id']."/picture?type=large";
@@ -63,7 +57,6 @@ class User extends CI_Controller {
 				$img_name = $user_id."_1.jpeg";
 				$img = LOCAL_GALLERY.$img_name;
 				$parts = explode("/", $temporal['path']);
-				
 				
 				file_put_contents($img,file_get_contents($url_photo));//GUARDA LA IMAGEN
 			
@@ -86,8 +79,7 @@ class User extends CI_Controller {
 						);
 
 				$this->session->set_userdata($new_session_data);
-				redirect(HOME."/user");
-
+				$first_time = TRUE;
             }
             else
             {
@@ -105,12 +97,9 @@ class User extends CI_Controller {
 				);
 
 				$this->session->set_userdata($new_session_data);
-
-				redirect(HOME."/user");
-
-
+				$first_time = FALSE;
             }
-			
+            $this->index(NULL, $first_time);
         }
 
     }
@@ -153,7 +142,7 @@ class User extends CI_Controller {
 		return false;
 	}
 
-	public function index($id = NULL)
+	public function index($id = NULL, $first_time = FALSE)
 	{
 		$args = array();
 		$public = FALSE;
@@ -294,6 +283,7 @@ class User extends CI_Controller {
 		}
 
 
+		$args['first_time'] = $first_time;
 		$args["user_id"] = $id;
 		$this->load->view('template',$args);
 	}
