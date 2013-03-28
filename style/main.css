@@ -71,9 +71,9 @@ div.content
 img.image-logo 
 {
 	position: relative;
-	top: -5px;
-	width:	100px !important;
-	height:	27px !important;
+	top: -7px;
+	width:	60% !important;
+	height: 30px;
 
 }
 
@@ -136,7 +136,7 @@ h1.profile-title{
 #profile 
 {
 	font-family: "profile_font";
-	color: #6699CC;
+	color: #1097db;
 }
 		
 /* posicion imagen usuario */
