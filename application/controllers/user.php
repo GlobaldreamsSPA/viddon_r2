@@ -179,14 +179,18 @@ class User extends CI_Controller {
 		if(isset($_POST["url_ytb"]))
 		{
 			$code_link = array();
-			$code_link = explode("=", parse_url($_POST["url_ytb"], PHP_URL_QUERY));
-			if(isset($code_link[1]))
+			$code_link = parse_url($_POST["url_ytb"], PHP_URL_QUERY);
+			$link = array();
+
+			parse_str($code_link, $link);
+
+			if(isset($link['v']))
 			{
-				if((strlen ($code_link[1]) == 11))
+				if((strlen ($link['v']) == 11))
 				{
 					$video_to_save = array(
 					'title' => $_POST["name_ytb"],
-					'link' => $code_link[1],
+					'link' => $link['v'],
 					'type' => 'youtube',
 					'description' => $_POST["description_ytb"],
 					'user_id' => $id

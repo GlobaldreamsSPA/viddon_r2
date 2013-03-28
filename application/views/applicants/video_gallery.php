@@ -111,7 +111,7 @@ border: 1px solid #4C3C1B;
     	?>
     			
     			<div>
-						<div style="height: 15px !important;" class="span10">
+						<div style="min-height: 15px !important;" class="span10">
 							<label style="font-size: 150%;" id="profile" ><?php echo $video[0]; ?></label>
 						</div>
 						<?php if(!$public) {?>
@@ -124,7 +124,7 @@ border: 1px solid #4C3C1B;
 							
 						<?php } ?>
 				</div>
-	    		<iframe width="100%" height="180px" src="http://www.youtube.com/embed/<?php echo $video[1].'?rel=0'?>" frameborder="0" allowfullscreen></iframe>	
+	    		<iframe width="100%" height="200px" src="http://www.youtube.com/embed/<?php echo $video[1].'?rel=0'?>" frameborder="0" allowfullscreen></iframe>	
 				
 			</div>
 	    <?php 
