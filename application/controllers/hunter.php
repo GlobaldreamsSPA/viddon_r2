@@ -33,7 +33,6 @@ class Hunter extends CI_Controller {
 
 	function verifylogin()
  	{
-	   //This method will have the credentials validation
 	   $this->load->library('form_validation');
 
 	   $this->form_validation->set_rules('email', 'Email', 'trim|required|xss_clean');

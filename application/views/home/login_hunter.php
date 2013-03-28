@@ -1,3 +1,26 @@
+<div id="success" class="modal hide fade in" >
+<div class="modal-header">  
+<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a> 
+</div>
+<div class="modal-body">
+<h4>Aviso</h4>
+<p>Mensaje registrado con &eacute;xito, nos contactaremos a la brevedad contigo.</p>      
+</div>
+<div class="modal-footer">
+<?php echo anchor('home', 'Volver a la p&aacute;gina principal',"class='btn'") ?>
+</div>
+</div>
+
+<?php if(isset($flag)){ ?>
+<script type="text/javascript">
+
+  $('#success').modal({
+    show: true
+  });
+</script>
+<?php } ?>
+
+
 <div class="content" id="content">
 	<div class="container-fluid">
 	  	<div class="row">
@@ -22,7 +45,7 @@
 					</div>
 					<div class="space1"></div>
 					<div class="row-fluid" style="border-radius: 5px; margin-left:8%;">
-						<form class="form-horizontal">
+				  		<?php echo form_open('home/login_hunter', array('class' => 'form-horizontal')); ?>
 							<h4 style="margin-left:15%;" id="profile">Cont&aacutectanos</h4>
 							<div  style="text-align:center;">
 					            <input style="width:65%;" type="text" name="contact_name" id="input1" placeholder="Nombre" value="<?php echo set_value('contact_name'); ?>">
