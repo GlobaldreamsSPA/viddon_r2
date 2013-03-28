@@ -151,7 +151,7 @@ class User extends CI_Controller {
 		{
 			if(is_null($id))
 				redirect(HOME);
-			
+
 			$public = TRUE;
 			$castings= $this->castings_model->get_castings(NULL, 2, 1);
 		}
@@ -695,7 +695,6 @@ class User extends CI_Controller {
 				if(isset($casting["skills"]))
 				{
 					$tags_id= explode('-', $casting["skills"]);
-					unset($tags_id[count($tags_id)-1]);
 					$tags_id_temp=array();
 					foreach ($tags_id as $tag) {
 						array_push($tags_id_temp, $args["tags"][$tag]);

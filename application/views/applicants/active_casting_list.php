@@ -106,7 +106,7 @@
 													<?php
 																if(isset($casting['tags']))
 													    		{
-														    		echo '<ul style="margin-left:75px;" class="skills-list">';
+														    		echo '<ul class="skills-list">';
 														    		foreach ($casting['tags'] as $tag) {
 																		echo '<li> <a href="#">'.$tag.'</a></li>';
 																	}
