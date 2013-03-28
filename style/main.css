@@ -142,7 +142,6 @@ h1.profile-title{
 img.user_image
 {
 	margin-top: 32px;
-	min-height: 30%;
 	min-width: 60%;
 	max-width: 100%;
 }
