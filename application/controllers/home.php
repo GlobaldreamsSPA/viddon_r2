@@ -8,7 +8,7 @@ class Home extends CI_Controller {
 		$this->load->helper(array('url', 'form'));
 
 		//Modelos
-		$this->load->model(array('videos_model','photos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model'));
+		$this->load->model(array('videos_model','contact_model','photos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model'));
 	
 	}
 
@@ -140,6 +140,29 @@ class Home extends CI_Controller {
 	public function login_hunter()
 	{
 		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_message('required', 'Este campo es obligatorio');
+		$this->form_validation->set_message('valid_email', 'Este campo debe ser un correo v&aacute;lido');
+
+		$this->form_validation->set_rules('contact_name', 'Nombre', 'required|xss_clean');
+		$this->form_validation->set_rules('contact_email', 'Correo', 'required|xss_clean|valid_email');
+		$this->form_validation->set_rules('contact_message', 'Mensaje', 'required|xss_clean');
+
+		if($this->form_validation->run() != FALSE)
+		{
+			$data= array();
+			$data["nombre"] =$_POST["contact_name"];
+			$data["email"] =$_POST["contact_email"];
+			$data["mensaje"] =$_POST["contact_message"];
+
+			$this->contact_model->insert($data);
+
+			$args["flag"]=true;
+
+			
+		}
+
 		$args['content'] = 'home/login_hunter';
 		$args['inner_args'] = NULL;
 		$this->load->view('template',$args);
