@@ -51,12 +51,23 @@ class Home extends CI_Controller {
 			$video_list = $this->videos_model->get_videos_by_skills($page, 9,$args["actual_skills"]);
 		}else
 		{*/	
+		$args["get_uri"] ="";
 		if(isset($_GET['search_terms']))
+		{
+			$args["get_uri"] = "/?search_terms=".str_replace(' ', '+', $_GET['search_terms']);
+
 			$video_list = $this->videos_model->search_videos($_GET['search_terms'], $page, 9);
-		else
-			$video_list = $this->videos_model->get_videos($page, 9);
-		$args["chunks"]=ceil($this->videos_model->count() / 9);
 			
+			$args["chunks"]=ceil($this->videos_model->count_search_videos($_GET['search_terms']) / 9);
+		}
+		else
+		{
+			$video_list = $this->videos_model->get_videos($page, 9);
+			$args["chunks"]=ceil($this->videos_model->count() / 9);
+
+
+		}
+
 		$args["video_list"] = array();
 		
 		foreach ($video_list as $video_data)

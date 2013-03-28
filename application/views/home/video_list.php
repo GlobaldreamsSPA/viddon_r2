@@ -61,7 +61,7 @@
 					<div class="space1"></div>
 					<div class="pagination">  
 					  <ul id="pagination_bt">
-					    <li <?php if($page==1) echo "class=disabled";?>><a <?php if($page!=1) echo "href='".base_url()."home/video_list/".($page-1)."/".$actual_skills_url."/'";?>>Prev</a></li>  
+					    <li <?php if($page==1) echo "class=disabled";?>><a <?php if($page!=1) echo "href='".base_url()."home/video_list/".($page-1).$get_uri."'";?>>Prev</a></li>  
 						<?php
 						$pag_size = 16; 
 						$margen = $pag_size/2;
@@ -74,11 +74,11 @@
 						
 						for($i = $begin_pag; $i <= $end_pag; $i++){ 
 							?>
-							<li <?php if($page==$i) echo "class=disabled";?>><a <?php if($page!=$i) echo "href='".base_url()."home/video_list/".$i."/".$actual_skills_url."/'";?> > <?php echo $i; ?></a></li>  
+							<li <?php if($page==$i) echo "class=disabled";?>><a <?php if($page!=$i) echo "href='".base_url()."home/video_list/".$i.$get_uri."'";?> > <?php echo $i; ?></a></li>  
 						<?php 
 						} 
 						?>
-					    <li <?php if($page==$chunks) echo "class=disabled";?>><a <?php if($page!=$chunks) echo "href='".base_url()."home/video_list/".($page+1)."/".$actual_skills_url."/'";?>>Next</a></li>
+					    <li <?php if($page==$chunks) echo "class=disabled";?>><a <?php if($page!=$chunks) echo "href='".base_url()."home/video_list/".($page+1).$get_uri."'";?>>Next</a></li>
 					     
 					  </ul>  
 					</div>  

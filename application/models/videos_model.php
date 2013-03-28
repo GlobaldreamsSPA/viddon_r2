@@ -93,8 +93,23 @@ class Videos_model extends CI_Model
 
 	function search_videos($search, $page, $cant)
 	{
-		$this->db->select('title, link, user_id');
-		$this->db->like('title', $search);
+		$this->db->select('title, link, user_id,count(id)');
+		$search_value = array();
+		$search_value = explode(' ', $search);
+		$flag = FALSE;
+		$where = "";
+		foreach ($search_value as $iter) 
+		{
+			if($flag)
+				$this->db->or_like('title', $iter); 
+			else
+				$this->db->like('title', $iter);
+
+			$flag =TRUE;
+		}
+		$this->db->order_by("count(id)", "desc");	
+		$this->db->group_by('id');
+
 		$query = $this->db->get('videos', $cant, ($page-1)*$cant);
 		$result = array();
 		foreach ($query->result_array() as $value) 
@@ -103,6 +118,30 @@ class Videos_model extends CI_Model
 		}
 		return $result;
 	}
+
+	function count_search_videos($search)
+	{
+		$this->db->select('title, link, user_id,count(id)');
+		$search_value = array();
+		$search_value = explode(' ', $search);
+		$flag = FALSE;
+		$where = "";
+		foreach ($search_value as $iter) 
+		{
+			if($flag)
+				$this->db->or_like('title', $iter); 
+			else
+				$this->db->like('title', $iter);
+
+			$flag =TRUE;
+		}
+		$this->db->group_by('id');
+
+		$query = $this->db->get('videos');
+		
+		return $query->num_rows();
+	}
+
 
 	function get_video_applicant($id_user)
 	{
