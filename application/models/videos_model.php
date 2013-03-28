@@ -91,6 +91,19 @@ class Videos_model extends CI_Model
 		return $result;
 	}
 
+	function search_videos($search, $page, $cant)
+	{
+		$this->db->select('title, link, user_id');
+		$this->db->like('title', $search);
+		$query = $this->db->get('videos', $cant, ($page-1)*$cant);
+		$result = array();
+		foreach ($query->result_array() as $value) 
+		{
+			$result[] = array($value['title'], $value['link'], $value['user_id']);
+		}
+		return $result;
+	}
+
 	function get_video_applicant($id_user)
 	{
 		$this->db->where('user_id', $id_user);

@@ -35,13 +35,14 @@ class Home extends CI_Controller {
 		$this->load->view('template',$args);
 	}
 
-	public function video_list($page = 1,$actual_skills=-2)
+	public function video_list($page=1)
 	{
+		/*
 		$args = array();
 		
-		$args["actual_skills_url"] = $actual_skills;			
+		$args["actual_skills_url"] = $actual_skills;		
 
-
+		
 		if($actual_skills != -2)
 		{			
 			$args["actual_skills"] = explode("_",$actual_skills);//PARAMETROS FILTRO URL
@@ -49,13 +50,14 @@ class Home extends CI_Controller {
 
 			$video_list = $this->videos_model->get_videos_by_skills($page, 9,$args["actual_skills"]);
 		}else
-		{
-			$args["actual_skills"] = $actual_skills;
-			$video_list = $this->videos_model->get_videos($page, 9);		
-			$args["chunks"]=ceil($this->videos_model->count() / 9);
+		{*/	
+		if(isset($_GET['search_terms']))
+			$video_list = $this->videos_model->search_videos($_GET['search_terms'], $page, 9);
+		else
+			$video_list = $this->videos_model->get_videos($page, 9);
+		$args["chunks"]=ceil($this->videos_model->count() / 9);
 			
-		}		
-		$args["video_list"]=array();
+		$args["video_list"] = array();
 		
 		foreach ($video_list as $video_data)
 		{

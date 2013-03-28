@@ -7,32 +7,15 @@
 			<div class="row control-group">
 
 				<div style="margin-top:15px;"  class="span1 offset1">
-					<h4 class="control-label" name="category">Categor&iacutea</h4>
+					<h4 class="control-label" style="position: relative; bottom: 17px; left: -20px;" name="category">Buscar un video</h4>
 				</div>
-
+				<?php echo form_open('home/video_list',array('method' => 'get')); ?>
 				<div style="margin-top:15px;" class="span2">
-					<?php
-					
-					if($actual_skills != -2)
-					{
-						$skills_selected= array();
-						for ($i=0; $i<sizeof($tags); $i++)
-						{
-							if(isset($actual_skills[$i]))
-								$skills_selected[$i]=$actual_skills[$i];
-								
-						}
-					}
-					else
-						$skills_selected=-2;
-
-					echo form_multiselect('tags[]', $tags,$skills_selected,"class='chzn-select chosen_filter'  id='filter' style='width:100%' data-placeholder='Selecciona los tags...'");
-					?>
-
+					<input id='filter' style='width:1020;' placeholder="Ingresa un termino" name="search_terms"></input>
 				</div>
 				<div style="margin-top:15px;" class="span2">
-					<a href="<?php echo HOME."/home/video_list/1/-2/"?>" id="filter_button" class="btn btn-info">Actualizar</a>
-					
+					<input type="submit" style="position: relative; bottom: 03px; left: 15px;" id="filter_button" class="btn btn-info" value="Buscar"/>
+				</form>
 				</div>
 			</div>
 			<?php
