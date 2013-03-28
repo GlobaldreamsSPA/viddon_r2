@@ -111,7 +111,7 @@
 							$login_url = HOME."/user/fb_login";
 							echo "<div id='login-button-container' class='span5'>";
 							echo "<a href='".$login_url."' id='login-button'>";
-							echo "<img id='login-button-image' src='".HOME."/img/fb-login.jpg' />";
+							echo "<img style: id='login-button-image' src='".HOME."/img/fb-login4.png' />";
 							echo "</a>";
 							echo "</div>";
 						}
