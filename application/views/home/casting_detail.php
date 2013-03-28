@@ -28,11 +28,11 @@
 		  		<div style="border-radius: 5px; margin-left:3%;" id="variable" class="row-fluid">
 
 		  			<div class="space05"></div>
-		  			<h2 style="margin-left:10%;" style="font-weight:bold;"><?php echo $casting['title']; ?></h3>
+		  			<h2 style="margin-left:10%;font-weight:bold;" id="profile"><?php echo $casting['title']; ?></h3>
 		  			<div class="space2"></div>
 					<img style="margin-left:12%; margin-top:10px; height: 300px; width: 75%;" src="<?php echo $casting['full_image'] ?>">
 					<div class="space2"></div>
-					<h2 style="margin-left:10%;" id="profile" style="font-weight:bold;">Caza Talentos</h3>
+					<h3 style="margin-left:10%;" id="profile" style="font-weight:bold;">Caza Talentos</h3>
 					<div class="row">
 						<div style="margin-left:12%;" class="span1">
 							<img class='user_image_main_page' src="<?php echo $casting['logo'] ?>"/>
@@ -42,7 +42,7 @@
 						</div>
 					</div>
 					<div class="space2"></div>
-					<h2 style="margin-left:10%;" id="profile" style="font-weight:bold;">Categorias</h3>
+					<h3 style="margin-left:10%;" id="profile" style="font-weight:bold;">Categorias</h3>
 					<div class="space05"></div>
 					<?php
 								if(isset($tags))
@@ -55,12 +55,12 @@
 								}
 					?>
 					<div class="space2"></div>
-		  			<h2 style="margin-left:10%;" id="profile" style="font-weight:bold;"> Descripci&oacuten</h3>
+		  			<h3 style="margin-left:10%;" id="profile" style="font-weight:bold;"> Descripci&oacuten</h3>
 		  			<div style="padding-top:35px; padding-right:75px; padding-left:75px; text-align:justify;">
 		  				<?php echo $casting['description'] ?></div>
 
 					<div class="space2"></div>
-					<h2 style="margin-left:10%;" id="profile" style="font-weight:bold;">Detalles generales del Casting</h3>
+					<h3 style="margin-left:10%;" id="profile" style="font-weight:bold;">Detalles generales del Casting</h3>
 					<ul style="padding-top:20px; padding-right:75px; padding-left:75px; text-align:justify;">
 						<li>El Casting empezó el d&iacutea: <?php echo $casting['start_date'] ?>.</li>
 						<li>El Casting termina el d&iacutea: <?php echo $casting['end_date'] ?>.</li>
