@@ -57,15 +57,8 @@
 						Tu Talento, Nuestra Pasi&oacute;n
 					</a>
 				</div>
-				<div class="span1" style="text-align: right; margin-top: -3px;">
-					<a href="https://twitter.com/ViddonCom" target=”_blank”><img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/twitter-logo.png"/></a>
-					<a  href="http://www.facebook.com/pages/Viddoncom/499177723428347?ref=hl" target=”_blank”> <img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/fb-logo.png"/></a>
-				</div>
-				<div class="span3">
-					<div style="margin-left: -20px;" class="fb-like" data-href="https://www.facebook.com/pages/Viddoncom/499177723428347" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>				
-				</div>
 				
-				<div class="span4">
+				<div class="span4 offset4">
 					<?php
 					
 						/*verificacion usuario postulante*/
@@ -543,10 +536,19 @@
 
 <footer>
 
+
+
 <ul class"row">
-	<li class="span8"><p class="second">GlobalDreams SPA | Las Violetas 2267, Providencia, Santiago | <a href="<?php echo base_url();?>docs/terms.pdf">T&eacuterminos y condiciones</a> | <a href="mailto:contacto@viddon.com">Cont&aacutectanos</a></p></p></li>
+	<li class="span12"><p class="second">GlobalDreams SPA | Las Violetas 2267, Providencia, Santiago | <a href="<?php echo base_url();?>docs/terms.pdf">T&eacuterminos y condiciones</a> | <a href="mailto:contacto@viddon.com">Cont&aacutectanos</a></p></p></li>
 </ul>
-<ul class"row">
-	<li class="span8"><p class="second">Viddon &copy; 2013 | Todos los derechos reservados</p></li>
+<ul class="row">
+				<ul class="span4" style="margin-top: -3px;">
+					<a style="text-decoration: none; color: black;" class="second">Viddon &copy; 2013 | Todos los derechos reservados</a>
+					<a style="margin-left: 20px;" href="https://twitter.com/ViddonCom" target=”_blank”><img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/twitter-logo.png"/></a>
+					<a  href="http://www.facebook.com/pages/Viddoncom/499177723428347?ref=hl" target=”_blank”> <img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/fb-logo.png"/></a>
+				</ul>
+				<ul class="span3">
+					<div class="fb-like" data-href="https://www.facebook.com/pages/Viddoncom/499177723428347" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>				
+				</ul>
 </ul>
 </footer>

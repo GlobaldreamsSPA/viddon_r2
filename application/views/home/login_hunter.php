@@ -8,7 +8,7 @@
 	  		</div>
 	  		<div class="span4" id="variable" style="min-height: 0px !important; ">
 		  			<div class="row-fluid" style="border-radius: 5px; margin-left:8%">	
-		  				<h4 style="margin-left:15%;">Ingreso Hunter</h4>
+		  				<h4 style="margin-left:15%;" id="profile">Ingreso Hunter</h4>
 				  		<?php echo form_open('hunter/verifylogin', array('class' => 'form-horizontal')); ?>
 							<div  style="text-align:center;">
 								<input style="width:65%;" name="email" value="<?php echo set_value('email'); ?>" type="text" id="inputEmail" placeholder="Email">
@@ -23,7 +23,7 @@
 					<div class="space1"></div>
 					<div class="row-fluid" style="border-radius: 5px; margin-left:8%;">
 						<form class="form-horizontal">
-							<h4 style="margin-left:15%;">Cont&aacutectanos</h4>
+							<h4 style="margin-left:15%;" id="profile">Cont&aacutectanos</h4>
 							<div  style="text-align:center;">
 					            <input style="width:65%;" type="text" name="contact_name" id="input1" placeholder="Nombre">
 								<div class="space1"></div>		            
