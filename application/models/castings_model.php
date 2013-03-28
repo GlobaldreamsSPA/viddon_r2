@@ -14,31 +14,12 @@ class Castings_model extends CI_Model
     }
 
 	
-	function update($casting)
+	function update($casting,$id)
     {
-    	$data = array(
-				'title' => $casting['title'],
-				'start_date' => $casting['start_date'],
-				'end_date' => $casting['end_date'],
-				'description' => $casting['description'],
-				'logo' => $casting['logo'],
-				'image' => $casting['image'],
-				'max_applies' => $casting['max_applies'],
-				'requirements' => $casting['requirements'],
-				'skills' => $casting['skills'],
-				'category' => $casting['category'],
-				'eyes-color' => $casting['eyes-color'],
-				'entity_id' => $casting['entity_id'],
-				'skin-color' => $casting['skin-color'],
-				'height' => $casting['height'],
-				'build' => $casting['build'],
-				'age' => $casting['age'],
-				'sex' => $casting['sex'],
-				'hair-color' => $casting['hair-color']
-			);
+    	
 
-		$this->db->where('id', $casting['id']);
-		$this->db->update('castings', $data);
+		$this->db->where('id', $id);
+		$this->db->update('castings', $casting);
     }
 
     function _routes($casting, $full_image = FALSE)

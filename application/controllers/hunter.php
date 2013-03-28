@@ -350,7 +350,7 @@ class Hunter extends CI_Controller {
 			$this->form_validation->set_rules('title', 'Title', 'required');
 			$this->form_validation->set_rules('description', 'Description', 'required');
 			$this->form_validation->set_rules('requirements', 'Requirements', 'required');
-			$this->form_validation->set_rules('image', 'Image', 'callback_check_upload[logo]');
+			$this->form_validation->set_rules('image', 'Image', 'callback_check_upload[casting_image]');
 
 			//$this->form_validation->set_rules('logo', 'Logo', 'callback_check_upload');
 			
@@ -368,7 +368,6 @@ class Hunter extends CI_Controller {
 				if($this->input->post())
 				{
 					//Guardar los datos a la BD
-					$casting['id'] = $id;
 					$casting['title'] = $this->input->post('title');
 					$casting['start_date'] = $this->input->post('start-date');
 					$casting['end_date'] = $this->input->post('end-date');
@@ -398,7 +397,7 @@ class Hunter extends CI_Controller {
 
 
 					//UPDATE
-					$this->castings_model->update($casting);
+					$this->castings_model->update($casting,$id);
 
 					//Por ultimo subir la foto
 					$form_file_name = 'casting_image';
