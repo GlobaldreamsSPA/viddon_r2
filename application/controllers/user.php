@@ -149,11 +149,15 @@ class User extends CI_Controller {
 
 		if($this->session->userdata('id') === FALSE || ($id != NULL && $id != $this->session->userdata('id')))
 		{
+			if(is_null($id))
+				redirect(HOME);
+			
 			$public = TRUE;
 			$castings= $this->castings_model->get_castings(NULL, 2, 1);
 		}
 		else
 		{
+			
 			$id = $this->session->userdata('id');
 			$public = FALSE;
 			$castings= null;
@@ -297,6 +301,9 @@ class User extends CI_Controller {
 
 	public function photo_gallery($ope=NULL,$id_photo_objetivo=NULL) //TODO: TERMINAR
 	{
+		if($this->session->userdata('id') == FALSE)
+			redirect(HOME);
+
 		$args = array();
 		$public = FALSE;
 		$id_user = NULL;
@@ -381,6 +388,9 @@ class User extends CI_Controller {
 
 	public function video_gallery($page=1,$ope=NULL,$id_video_objetivo=NULL)
 	{
+		if($this->session->userdata('id') == FALSE)
+			redirect(HOME);
+
 		$args = array();
 		$public = FALSE;
 		$id_user = NULL;
@@ -642,6 +652,9 @@ class User extends CI_Controller {
 
 	function active_casting_list($id = NULL)
 	{
+		if($this->session->userdata('id') == FALSE)
+			redirect(HOME);
+
 		$id = $this->session->userdata('id');
 		$public = FALSE;
 		
@@ -715,6 +728,9 @@ class User extends CI_Controller {
 
 	function results_casting($id = NULL)
 	{
+		if($this->session->userdata('id') == FALSE)
+			redirect(HOME);
+
 		$id = $this->session->userdata('id');
 		$public = FALSE;
 
