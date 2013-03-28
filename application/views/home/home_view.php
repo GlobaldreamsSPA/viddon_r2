@@ -6,7 +6,7 @@
 		  			
 		  			<div style="margin-left: 5%; margin-top:5%; width: 90%;" >
 		  				<a href="<?php echo base_url().'user/fb_login'; ?>">	
-		  					<img style="height:100%; width:100%;" src="<?php echo HOME."/img/concursoLlolapaloozaweb.jpg" ?>">
+		  					<img style="height:100%; width:100%;" src="<?php echo HOME."/img/concursoLlolapalooza_modif.jpg" ?>">
 		  				</a>
 		  			</div>
 
@@ -49,12 +49,14 @@
 							<div class="space1"></div>
 							<div class="row row_text_main">
 								<div class="span3 offset1">
+								<a class="home-video-author" href="<?php echo HOME.'/user/index/'.$video[2]; ?>">
 									<?php
 									if(file_exists(APPPATH.'/../img/gallery/'.$video[4]) == TRUE)
 										echo "<img class='user_image_main_page' src='".HOME.'/img/gallery/'.$video[4]."'/>";
 									else
 										echo "<img class='user_image_main_page' src='".HOME."/img/profile/user.jpg'/>";
 									?>
+								</a>
 								</div>
 								<div class="span7">
 									<p class="home-video-title"><?php echo $video[0]; ?></p>
@@ -64,8 +66,8 @@
 						</div>
 					</div>
 			<?php if($i%2 == 0 || $i == count($video_list)) echo "</div>"; }?>
+					<a class="MBT-readmore" style="margin-right:5%; float: right;" href="<?php echo HOME."/home/video_list"?>">Todos Los Videos >></a>
 					<div class= "space2"></div>
-					<a class="MBT-readmore" style="float: right;" href="<?php echo HOME."/home/video_list"?>">Todos Los Videos >></a>
 					<div class= "space2"></div>
 				</div>
 			</div>
@@ -75,11 +77,12 @@
 			  		<h2 id="profile"  style="font-weight:bold;">Castings Viddon</h3>
 			  		<?php foreach($castings as $casting){ ?>
 			  			<a href="<?php echo site_url("home/casting_detail/".$casting['id']); ?>">
-		  					<img style="margin-top: 44px; width: 84%; " src="<?php echo $casting['image']; ?>">
+		  					<img style="margin-top: 7%; width: 84%; " src="<?php echo $casting['image']; ?>">
 		  				</a>
 		  			<?php } ?>
 					<div class= "space2"></div>
 					<div class= "space2"></div>
+					<div style="height: 41px;"></div>
 					<div style="margin-left: 5%;" class="span11">
 					<a class="twitter-timeline" href="https://twitter.com/ViddonCom" data-widget-id="316343995661959169">Tweets por @ViddonCom</a>
 					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>

@@ -193,6 +193,7 @@ class Videos_model extends CI_Model
 	function get_videos($page, $cant)
 	{
 		$this->db->select('*');
+		$this->db->order_by('id', "desc");
 		$query = $this->db->get('videos', $cant, ($page-1)*$cant);
 		$result = array();
 		foreach ($query->result_array() as $value) 

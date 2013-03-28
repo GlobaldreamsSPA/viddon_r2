@@ -79,11 +79,12 @@
 			  		<h2 id="profile"  style="font-weight:bold;">Castings Viddon</h3>
 			  		<?php foreach($castings as $casting){ ?>
 			  			<a href="<?php echo site_url("home/casting_detail/".$casting['id']); ?>">
-		  					<img style="margin-top: 44px; width: 84%; " src="<?php echo $casting['image']; ?>">
+		  					<img style="margin-top: 7%; width: 84%; " src="<?php echo $casting['image']; ?>">
 		  				</a>
 		  			<?php } ?>
 					<div class= "space2"></div>
 					<div class= "space2"></div>
+					<div style="height: 41px;"></div>	
 					<div style="margin-left: 5%;" class="span11">
 					<a class="twitter-timeline" href="https://twitter.com/ViddonCom" data-widget-id="316343995661959169">Tweets por @ViddonCom</a>
 					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
