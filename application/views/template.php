@@ -49,7 +49,7 @@
 		    <div class="row-fluid" >
 		    	<div class="span2">
 					<a href="<?php echo HOME?>"  style="margin-left: 40px;"title="Volver a la P&aacute;ina Principal">
-						<img class="image-logo" src="<?php echo base_url(); ?>img/logo.jpg"/>
+						<img class="image-logo" src="<?php echo base_url(); ?>img/logo.png"/>
 					</a>
 				</div>
 				<div class="span2 header-text-left">
