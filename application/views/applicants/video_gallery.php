@@ -62,7 +62,7 @@ border: 1px solid #4C3C1B;
     <div class="span8 offset1 user-profile-right"> <!-- CARGAREMOS LOS DATOS DE LA GALERIA -->
 		<div class="row">
 			<div class="span8">
-	    	<h2>Galeria de videos</h2>
+	    	<h2><a href="<?php echo HOME."/user"?>"> Perfil</a> / Galeria de videos</h2>
 			</div>
 			<div style="margin-top:15px;" class="span4">
 					<button data-toggle="modal"  href="#add_video" class="btn btn-primary">Agregar Video</button>
