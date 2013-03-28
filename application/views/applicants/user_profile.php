@@ -21,10 +21,18 @@ Gracias por participar!!</p>
 <div class="span3 user-profile-left">
 	<div class="row">
 	<?php 
+
+		if(!$public)
+			echo "<a href= '".HOME."/user/photo_gallery/'>";
+
 		if(file_exists(APPPATH.'/../img/gallery/'.$image_profile_name) == TRUE)
 			echo "<img class='user_image' src='".HOME.'/img/gallery/'.$image_profile_name."'/>";
 		else
 			echo "<img class='user_image' src='".HOME."/img/profile/user.jpg'/>";
+		
+		if(!$public)
+			echo "</a>";
+
 	?>
 	</div>
 	<div class="space2"></div>
