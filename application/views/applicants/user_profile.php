@@ -1,5 +1,23 @@
+<div id="lollapalooza" class="modal hide fade in" >
+<div class="modal-header">  
+<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a> 
+</div>
+<div class="modal-body">
+<h4>Felicitaciones</h4>
+<p>Ya est&aacutes participando en el concurso Viddon Lollapalooza.
+Te informaremos del sorteo a tu correo electr&oacutenico registrado en Facebook.
+Gracias por participar!!</p>
+</div>
+<div class="modal-footer">
+<?php echo "<img style='height: 30px; float: left !important;' src='".HOME."/img/lollapalooza.jpg'/>"; ?>
+<?php echo anchor('user', 'Volver al Perfil',"class='btn'") ?>
+</div>
+</div>
+<?php if($first_time === TRUE){
+	echo "<script> setTimeout( function(){\$('#lollapalooza').modal({ show: true });}, 2000); </script>";
+}?>
 
-<div class="row-fluid">		
+<div class="row-fluid">
 <div class="span3 user-profile-left">
 	<div class="row">
 	<?php 
