@@ -215,9 +215,8 @@ class Home extends CI_Controller {
 
 		if(isset($args["casting"]["skills"]))
 		{
-			$args["tags"]=	$this->skills_model->get_skills();			
+			$args["tags"]=	$this->skills_model->get_skills();
 			$tags_id= explode('-', $args["casting"]["skills"]);
-			unset($tags_id[count($tags_id)-1]);
 			$tags_id_temp=array();
 			foreach ($tags_id as $tag) {
 				array_push($tags_id_temp, $args["tags"][$tag]);

@@ -56,16 +56,16 @@
 					?>
 					<div class="space2"></div>
 		  			<h2 style="margin-left:10%;" id="profile" style="font-weight:bold;"> Descripci&oacuten</h3>
-		  			<p style="padding-top:35px; padding-right:75px; padding-left:75px; text-align:justify;">
-		  				<?php echo $casting['description'] ?></p>
+		  			<div style="padding-top:35px; padding-right:75px; padding-left:75px; text-align:justify;">
+		  				<?php echo $casting['description'] ?></div>
 
 					<div class="space2"></div>
 					<h2 style="margin-left:10%;" id="profile" style="font-weight:bold;">Detalles generales del Casting</h3>
 					<ul style="padding-top:20px; padding-right:75px; padding-left:75px; text-align:justify;">
 						<li>El Casting empezó el d&iacutea: <?php echo $casting['start_date'] ?>.</li>
 						<li>El Casting termina el d&iacutea: <?php echo $casting['end_date'] ?>.</li>
-						<li><?php echo $casting['applies'] ?> Personas ya han postulado a este casting.</li>
-						<li>Edad preferida: <?php echo $casting['age'] ?> a&ntildeos.</li>
+						<li>Han postulado <?php echo $casting['applies'] ?> personas a este casting.</li>
+						<li>Edad preferida: <?php echo $casting['age'] ?>.</li>
 						<li>G&eacutenero preferido: <?php echo $casting['sex'] ?>.</li>
 					</ul>
 					<div class="space2"></div>
