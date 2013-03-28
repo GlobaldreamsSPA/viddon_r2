@@ -6,7 +6,7 @@
 		  			
 		  			<div style="margin-left: 5%; margin-top:5%; width: 90%;" >
 		  				<a href="<?php echo base_url().'user/fb_login'; ?>">	
-		  					<img style="height:100%; width:100%;" src="<?php echo HOME."/img/concursoLlolapalooza_modif.jpg" ?>">
+		  					<img style="height:100%; width:100%;" src="<?php echo HOME."/img/concursoLlolapaloozaweb.jpg" ?>">
 		  				</a>
 		  			</div>
 
