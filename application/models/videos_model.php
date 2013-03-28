@@ -22,6 +22,7 @@ class Videos_model extends CI_Model
 			$video_id= $this->db->insert_id();
 
 			$this->db->select('*');
+			$this->db->where('user_id', $data['user_id']);
 	    	$this->db->from('videos');
 
 	    	$validate = $this->db->get();

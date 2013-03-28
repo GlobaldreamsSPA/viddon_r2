@@ -196,7 +196,10 @@ class User extends CI_Controller {
 					'user_id' => $id
 					);
 					//Insertar estos datos
-					$this->videos_model->insert($video_to_save);
+					$first = $this->videos_model->insert($video_to_save);
+					if($first != 0)
+						$this->user_model->set_main_video($id,$first);
+
 					if(isset($_POST["from_gallery"]) && ($_POST['from_gallery'] == 'yes')) redirect(HOME.'/user/video_gallery/');
 				}
 				else
