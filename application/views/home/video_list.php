@@ -2,10 +2,14 @@
 	<div class="container-fluid">
 			<div style="border-radius: 5px;" class="row-fluid">
 						
+			<h2 style="margin-left:5%;" id="profile" style="font-weight:bold;"> Todos los Videos</h3>
+
 			<div class="row control-group">
-				<div class="span2 offset1">
-					<h2 class="control-label" id="profile" name="category">Categor&iacutea</h2>
+
+				<div style="margin-top:15px;"  class="span1 offset1">
+					<h4 class="control-label" name="category">Categor&iacutea</h4>
 				</div>
+
 				<div style="margin-top:15px;" class="span2">
 					<?php
 					

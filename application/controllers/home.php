@@ -16,7 +16,7 @@ class Home extends CI_Controller {
 	{
 
 		$args = array();
-		$video_list = $this->videos_model->get_videos(1, 8);
+		$video_list = $this->videos_model->get_videos(1, 4);
 		$args["video_list"] = array();
 		$args["castings"] = $this->castings_model->get_castings(NULL, 2, 1);
 		
