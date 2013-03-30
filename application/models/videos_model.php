@@ -34,11 +34,6 @@ class Videos_model extends CI_Model
 		}
 		else
 		{
-			$video = $result->first_row('array');
-			$data['id'] = $video['id'];
-
-			$this->db->where('id', $data['id']);
-			$this->db->update('videos', $data);
 			return 0;
 		}
 

@@ -266,14 +266,14 @@ class User extends CI_Controller {
 				
 			}
 			
-			
+			/*
 			$JSON = file_get_contents("https://gdata.youtube.com/feeds/api/videos/{$args['video_ID']}?v=2&alt=json");
 			$JSON_Data = json_decode($JSON);
 			$JSON_Data_entry = $JSON_Data->{'entry'};
 			
 			$args["views"] = "0";
 			$args["dislikes"] = "0";
-			$args["likes"] = "0";
+			$args["likes"] = "0";*/
 		}
 		else//si no tiene videos, seteo lo que se necesite
 		{

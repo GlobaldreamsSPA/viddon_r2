@@ -5,6 +5,20 @@
 	<meta charset="utf-8">
 	<title>Viddon - Tu Talento, Nuestra Pasi&oacute;n</title>
 
+	<meta property="og:title" content="Viddon. Tu Talento, Nuestra Pasión"/>
+	
+	
+	<?php if(isset($public)) {?>
+	
+	<meta property="og:description" content="Conoce a <?php echo $name.' '.$last_name; ?>, únete a la revolución del talento!."/>
+
+		<meta property="og:image" content="<?php echo HOME.'/img/gallery/'.$image_profile_name ?>"/>
+	<?php }else{ ?>
+	<meta property="og:description" content="La nueva plataforma online que llevará a toda la gente con talento al éxito, la revolución ya comienza!."/>
+	<meta property="og:image" content="<?php echo HOME.'/img/logo.png'?>"/>
+
+	<?php } ?>
+
 	<link rel="icon" 
       type="image/png" 
       href="<?php echo HOME ?>/favicon.ico">
