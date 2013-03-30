@@ -578,6 +578,7 @@ class User extends CI_Controller {
 			{
 				$id = $this->session->userdata('id');
 				$temp= array();
+				$temp=$this->user_model->select($user_id);
 				$args = array_merge ( $args, $temp);
 		
 				if($this->videos_model->verify_videos($id) == 1)
