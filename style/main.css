@@ -52,7 +52,7 @@ div.content
 
 /*Estilo del boton superior*/
 #login-button-image {
-	width: 100%;
+	width: 90%;
 	border-radius: 3px;
 }
 
@@ -72,6 +72,8 @@ img.image-logo
 {
 	position: relative;
 	top: -7px;
+	height: 31px !important;
+
 }
 
 
