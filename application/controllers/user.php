@@ -182,19 +182,48 @@ class User extends CI_Controller {
 		//PROCESA SUBIDA DE VIDEO A GALERIA
 		if(isset($_POST["url_ytb"]))
 		{
-			$code_link = array();
-			$code_link = parse_url($_POST["url_ytb"], PHP_URL_QUERY);
-			$link = array();
-
-			parse_str($code_link, $link);
-
-			if(isset($link['v']))
+			if(strpos($_POST["url_ytb"], 'youtu.be') === FALSE)
 			{
-				if((strlen ($link['v']) == 11))
+				$code_link = array();
+				$code_link = parse_url($_POST["url_ytb"], PHP_URL_QUERY);
+				$link = array();
+
+				parse_str($code_link, $link);
+
+				if(isset($link['v']))
+				{
+					if((strlen ($link['v']) == 11))
+					{
+						$video_to_save = array(
+						'title' => $_POST["name_ytb"],
+						'link' => $link['v'],
+						'type' => 'youtube',
+						'description' => $_POST["description_ytb"],
+						'user_id' => $id
+						);
+						//Insertar estos datos
+						$first = $this->videos_model->insert($video_to_save);
+						if($first != 0)
+							$this->user_model->set_main_video($id,$first);
+
+						if(isset($_POST["from_gallery"]) && ($_POST['from_gallery'] == 'yes')) redirect(HOME.'/user/video_gallery/');
+					}
+					else
+						redirect(HOME.'/user/video_gallery/');
+				}
+			}
+			else
+			{
+				$code_link = array();
+				$code_link = explode ('/', $_POST["url_ytb"] );
+
+				$link = end ($code_link);
+
+				if(strlen ($link) == 11)
 				{
 					$video_to_save = array(
 					'title' => $_POST["name_ytb"],
-					'link' => $link['v'],
+					'link' => $link,
 					'type' => 'youtube',
 					'description' => $_POST["description_ytb"],
 					'user_id' => $id
@@ -207,38 +236,24 @@ class User extends CI_Controller {
 					if(isset($_POST["from_gallery"]) && ($_POST['from_gallery'] == 'yes')) redirect(HOME.'/user/video_gallery/');
 				}
 				else
-				{
 					redirect(HOME.'/user/video_gallery/');
-				}
+				
+				
 			}
 			
 		}
 		//PROCESA SUBIDA DE FOTO A GALERIA
-		if(isset($_POST["url_photo"]))
-		{
-			$ultimo_indicador = $this->photos_model->get_last_indicator($id);
-			
-			$parts = array();
-			
-			$temporal = parse_url($_POST["url_photo"]);
-			
-			$url = $_POST["url_photo"];
-			$img_name = $id."_".($ultimo_indicador+1).".jpeg";
-			$img = LOCAL_GALLERY.$img_name;
-			$parts = explode("/", $temporal['path']);
-			
-			
-			file_put_contents($img,file_get_contents($url));//GUARDA LA IMAGEN
-		
-			$photo_to_save = array(
-				'name' => $img_name,
-				'description' => $_POST["description"],
-				'user_id' => $id
-				);
-			
-			$this->photos_model->insert($photo_to_save);//INSERTA REGISTRO EN BASE DE DATOS , TABLA "photos"
-			if(isset($_POST["from_gallery"]) && ($_POST['from_gallery'] == 'yes')) redirect(HOME.'/user/photo_gallery/');
-		}
+		if(isset($_POST["url_photo"]) && strcmp("", $_POST["url_photo"]) != 0)
+	    {
+			$this->_upload_url_photo($id);
+		    if(isset($_POST["from_gallery"]) && ($_POST['from_gallery'] == 'yes')) 
+		    redirect(HOME.'/user/photo_gallery/');
+	    }
+	    elseif (isset($_FILES['upload_photo']) && strcmp("", $_FILES['upload_photo']['name']) != 0) {
+		    $this->_upload_image($id);
+		    if(isset($_POST["from_gallery"]) && ($_POST['from_gallery'] == 'yes')) 
+		    	redirect(HOME.'/user/photo_gallery/');
+	    }
 
 
 
@@ -296,6 +311,101 @@ class User extends CI_Controller {
 		$args["user_id"] = $id;
 		$this->load->view('template',$args);
 	}
+
+	private function _upload_url_photo($id)
+  	{
+	    $list = explode('.', $_POST['url_photo']);
+	    $type = array_pop($list);
+
+	    $allowed_types = array('jpg','jpeg','gif','png');
+	    $allowed = FALSE;
+
+	    for ($i=0; $i < count($allowed_types); $i++) { 
+		    if(strcmp($type, $allowed_types[$i]) == 0)
+		    {
+			    $allowed = TRUE;
+			    break;
+		    }
+	    }
+
+	    if($allowed == TRUE)
+	    {
+	      $ultimo_indicador = $this->photos_model->get_last_indicator($id);
+	      
+	      $parts = array();
+	      
+	      $temporal = parse_url($_POST["url_photo"]);
+	      
+	      $url = $_POST["url_photo"];
+	      $img_name = $id."_".($ultimo_indicador+1).".".$type;
+	      $img = LOCAL_GALLERY.$img_name;
+	      $parts = explode("/", $temporal['path']);
+	      
+	      
+	      file_put_contents($img,file_get_contents($url));//GUARDA LA IMAGEN
+	    
+	      $photo_to_save = array(
+	        'name' => $img_name,
+	        'user_id' => $id
+	        );
+	      
+	      $this->photos_model->insert($photo_to_save);//INSERTA REGISTRO EN BASE DE DATOS , TABLA "photos"
+	    }
+	    else
+	    {
+	      return;
+	    }
+ 	}
+
+private function _upload_image($id)
+  {
+    $images_path = realpath(LOCAL_GALLERY);
+    
+    //obtener la extension del archivo
+    $type = explode('/', $_FILES['upload_photo']['type']);
+    $ultimo_indicador = $this->photos_model->get_last_indicator($id);
+    $img_name = $id."_".($ultimo_indicador+1).".".$type[1];
+    
+    $config = array(
+      'allowed_types' => 'jpg|jpeg|gif|png',
+      'upload_path' => $images_path,
+      'file_name' => $img_name,
+      'overwrite' => TRUE,
+      'max_size' => 2048,
+      'remove_spaces' =>TRUE
+    );
+    
+    $this->upload->initialize($config);
+    
+    if(!$this->upload->do_upload('upload_photo'))
+    {
+      print_r($this->upload->display_errors());
+    }
+
+    $photo_to_save = array(
+      'name' => $img_name,
+      'user_id' => $id
+      );
+    
+    $this->photos_model->insert($photo_to_save);//INSERTA REGISTRO EN BASE DE DATOS , TABLA "photos"
+    
+    /*
+    //ahora ajustar la imagen
+    $image = $this->upload->data('image_profile');
+
+    $config = array(
+      'image_library' => 'gd2',
+      'source_image' => $image['full_path'],
+      'new_image' => realpath(APPPATH.IMAGES_DIR),
+      'maintain_ratio' => TRUE,
+      'width' => '230',
+      'height' => '230'
+    );
+    
+    $this->image_lib->initialize($config);
+    $this->image_lib->resize();
+    */
+}
 
 	public function photo_gallery($ope=NULL,$id_photo_objetivo=NULL) //TODO: TERMINAR
 	{
@@ -614,51 +724,7 @@ class User extends CI_Controller {
 		}
 	}
 
-	private function _upload_image($id)
-	{
-		$images_path = realpath(APPPATH.UPLOAD_DIR);
-		
-		//obtener la extension del archivo
-		$type = explode('/', $_FILES['image_profile']['type']);
-		
-		$filename = $id. '.' .$type[1];
-		
-		$config = array(
-			'allowed_types' => 'jpg|jpeg|gif|png',
-			'upload_path' => $images_path,
-			'file_name' => $filename,
-			'overwrite' => TRUE,
-			'max_size' => 2048,
-			'remove_spaces' =>TRUE
-		);
-		
-		//actualizar la imagen del usuario en la bd
-		$this->db->where('id', $id);
-		$this->db->set('image_profile',$filename);
-		$this->db->update('users');
-		
-		$this->upload->initialize($config);
-		
-		if(!$this->upload->do_upload('image_profile'))
-		{
-			print_r($this->upload->display_errors());
-		}
-		
-		//ahora ajustar la imagen
-		$image = $this->upload->data('image_profile');
 
-		$config = array(
-			'image_library' => 'gd2',
-			'source_image' => $image['full_path'],
-			'new_image' => realpath(APPPATH.IMAGES_DIR),
-			'maintain_ratio' => TRUE,
-			'width' => '230',
-			'height' => '230'
-		);
-		
-		$this->image_lib->initialize($config);
-		$this->image_lib->resize();
-	}
 
 	function active_casting_list($id = NULL)
 	{
