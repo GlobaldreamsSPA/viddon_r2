@@ -182,19 +182,48 @@ class User extends CI_Controller {
 		//PROCESA SUBIDA DE VIDEO A GALERIA
 		if(isset($_POST["url_ytb"]))
 		{
-			$code_link = array();
-			$code_link = parse_url($_POST["url_ytb"], PHP_URL_QUERY);
-			$link = array();
-
-			parse_str($code_link, $link);
-
-			if(isset($link['v']))
+			if(strpos($_POST["url_ytb"], 'youtu.be') === FALSE)
 			{
-				if((strlen ($link['v']) == 11))
+				$code_link = array();
+				$code_link = parse_url($_POST["url_ytb"], PHP_URL_QUERY);
+				$link = array();
+
+				parse_str($code_link, $link);
+
+				if(isset($link['v']))
+				{
+					if((strlen ($link['v']) == 11))
+					{
+						$video_to_save = array(
+						'title' => $_POST["name_ytb"],
+						'link' => $link['v'],
+						'type' => 'youtube',
+						'description' => $_POST["description_ytb"],
+						'user_id' => $id
+						);
+						//Insertar estos datos
+						$first = $this->videos_model->insert($video_to_save);
+						if($first != 0)
+							$this->user_model->set_main_video($id,$first);
+
+						if(isset($_POST["from_gallery"]) && ($_POST['from_gallery'] == 'yes')) redirect(HOME.'/user/video_gallery/');
+					}
+					else
+						redirect(HOME.'/user/video_gallery/');
+				}
+			}
+			else
+			{
+				$code_link = array();
+				$code_link = explode ('/', $_POST["url_ytb"] );
+
+				$link = end ($code_link);
+
+				if(strlen ($link) == 11)
 				{
 					$video_to_save = array(
 					'title' => $_POST["name_ytb"],
-					'link' => $link['v'],
+					'link' => $link,
 					'type' => 'youtube',
 					'description' => $_POST["description_ytb"],
 					'user_id' => $id
@@ -207,9 +236,9 @@ class User extends CI_Controller {
 					if(isset($_POST["from_gallery"]) && ($_POST['from_gallery'] == 'yes')) redirect(HOME.'/user/video_gallery/');
 				}
 				else
-				{
 					redirect(HOME.'/user/video_gallery/');
-				}
+				
+				
 			}
 			
 		}
