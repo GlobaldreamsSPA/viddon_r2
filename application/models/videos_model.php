@@ -7,6 +7,17 @@ class Videos_model extends CI_Model
         parent::__construct();
     }
 
+	function update($id_video,$titulo_video,$descripcion)
+	{
+		$data = array(
+               'title' => $titulo_video,
+               'description' => $descripcion
+            );
+
+		$this->db->where('id', $id_video);
+		$this->db->update('videos', $data); 
+	}
+	
     function insert($data)
     {
     	//Primero verificar que el video no exista

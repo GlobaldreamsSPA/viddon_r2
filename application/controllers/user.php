@@ -213,8 +213,6 @@ class User extends CI_Controller {
 			}
 			
 		}
-		
-		
 		//PROCESA SUBIDA DE FOTO A GALERIA
 		if(isset($_POST["url_photo"]))
 		{
@@ -402,6 +400,17 @@ class User extends CI_Controller {
 			$id = $this->session->userdata('id');
 			$public = FALSE;
 		}
+		
+		
+		//proceso la operación de actualización del video $_POST['id_editando']
+		if(isset($_POST['id_editando']))
+		{
+			//agregar validaciones aquí
+			
+			$this->videos_model->update($_POST['id_editando'],$_POST['nombre_video_edit'],$_POST['description_video_edit']);
+			redirect(HOME."/user/video_gallery"); //vuelve a cargar
+		}
+		
 
 		$args = $this->user_model->select($id);
 		if($args['image_profile'] != 0)

@@ -26,7 +26,7 @@ class Subevideo extends CI_Controller
 	{
 		$config['upload_path'] = 'temp/videos/';
 		//$config['allowed_types'] = 'avi|flv|wmv|mov|mpeg4|mpegps|3gpp|webm'; //formatos soportados por youtube
-		$config['allowed_types'] = 'avi|flv|wmv|mov|mpeg4|3gpp|webm'; //formatos mime compatibles
+		$config['allowed_types'] = 'avi|flv|wmv|mov|mpeg4|mp4|3gpp|webm'; //formatos mime compatibles
 		$config['overwrite'] = FALSE;
         $config['remove_spaces'] = TRUE;
 		$config['max_size'] = '10240';//10 MB
