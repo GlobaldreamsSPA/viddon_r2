@@ -115,20 +115,22 @@ border: 1px solid #4C3C1B;
       ?>
         <div class="row">
         <?php if(!$public) {?>
-          <div style="margin-top: 20px;" class="span1">
+          <div class="span1">
             <a class="btn-del" title="Establecer como foto de perfil" href="<?php echo HOME."/user/photo_gallery/1/".$photo['id'];?>" class="btn btn-primary"><i class="icon-star-empty"></i></a>
           </div>
-          <div style="margin-top: 20px; margin-left: 1px;" class="span1">
+          <div style="margin-left: 1px;" class="span1">
             <a class="btn-del" title="Eliminar foto" href="<?php echo HOME."/user/photo_gallery/2/".$photo['id'];?>" class="btn btn-primary"><i class="icon-remove"></i></a>
           </div>
           
         <?php } ?>
       </div>
-        <li class="span12">
-            <a href="#" class="thumbnail"><!-- ABRA VISOR DE GALERIA -->
-          <img data-src="<?php echo GALLERY.$photo['name'];?>" alt="<?php echo $photo['description'];?>" title="<?php echo $photo['description'];?>" style="width: 100%; height: 150px;" src="<?php echo GALLERY.$photo['name'];?>">              
-        </a>
-          </li>
+        <div class="row">
+	        <div style="margin-left:1%;" class="span12">
+	            <a href="#" class="thumbnail"><!-- ABRA VISOR DE GALERIA -->
+	          <img data-src="<?php echo GALLERY.$photo['name'];?>" alt="<?php echo $photo['description'];?>" title="<?php echo $photo['description'];?>" style="width: auto; height: 150px;" src="<?php echo GALLERY.$photo['name'];?>">              
+	        </a>
+	        </div>
+       </div>
       </div>
 
       <?php 
