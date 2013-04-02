@@ -251,6 +251,11 @@
 				window.prettyPrint && prettyPrint();
 				$("#dp2").datepicker();
 			});
+
+		if($(".carousel").length > 0)
+			$('.carousel').carousel({
+		  		interval: 7000
+			});
 		
 		/* comentarios perfil usuario*/
 		function get()

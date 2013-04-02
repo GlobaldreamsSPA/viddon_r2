@@ -30,7 +30,7 @@
 		  			<div class="space05"></div>
 		  			<h2 style="margin-left:10%;font-weight:bold;" id="profile"><?php echo $casting['title']; ?></h3>
 		  			<div class="space2"></div>
-					<img style="margin-left:12%; margin-top:10px; height: 300px; width: 75%;" src="<?php echo $casting['full_image'] ?>">
+					<img style="margin-left:12%; margin-top:10px; height: 350px; width: auto;" src="<?php echo $casting['full_image'] ?>">
 					<div class="space2"></div>
 					<h3 style="margin-left:10%;" id="profile" style="font-weight:bold;">Caza Talentos</h3>
 					<div class="row">
