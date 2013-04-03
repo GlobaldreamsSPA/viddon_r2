@@ -5,6 +5,20 @@
 	<meta charset="utf-8">
 	<title>Viddon - Tu Talento, Nuestra Pasi&oacute;n</title>
 
+	<meta property="og:title" content="Viddon. Tu Talento, Nuestra Pasión"/>
+	
+	
+	<?php if(isset($public)) {?>
+	
+	<meta property="og:description" content="Conoce a <?php echo $name.' '.$last_name; ?>, únete a la revolución del talento!."/>
+
+		<meta property="og:image" content="<?php echo HOME.'/img/gallery/'.$image_profile_name ?>"/>
+	<?php }else{ ?>
+	<meta property="og:description" content="La nueva plataforma online que llevará a toda la gente con talento al éxito, la revolución ya comienza!."/>
+	<meta property="og:image" content="<?php echo HOME.'/img/logo.png'?>"/>
+
+	<?php } ?>
+
 	<link rel="icon" 
       type="image/png" 
       href="<?php echo HOME ?>/favicon.ico">
@@ -53,12 +67,12 @@
 					</a>
 				</div>
 				<div class="span2 header-text-left">
-					<a href="<?php echo HOME?>/home/what_is" style="margin-left: -55px;" style="color:white;">
+					<a href="<?php echo HOME?>/home/what_is" style="margin-left: -65px;" style="color:white;">
 						Tu Talento, Nuestra Pasi&oacute;n
 					</a>
 				</div>
 				
-				<div class="span4 offset3">
+				<div class="span4 offset4">
 					<?php
 					
 						/*verificacion usuario postulante*/
@@ -99,7 +113,7 @@
 						}
 						else
 						{
-							echo "<div class='span5 offset2'>";
+							echo "<div class='span5'>";
 							echo "<i class='icon-star icon-white'></i>";
 							echo "<a href='".base_url()."home/login_hunter'>&iquestBuscas Talento?</a>";
 							echo "</div>";
@@ -109,9 +123,9 @@
 						if(!$id && !$id_h)
 						{
 							$login_url = HOME."/user/fb_login";
-							echo "<div id='login-button-container' class='span5'>";
+							echo "<div id='login-button-container' class='span6'>";
 							echo "<a href='".$login_url."' id='login-button'>";
-							echo "<img style: id='login-button-image' src='".HOME."/img/fb-login.png' />";
+							echo "<img style='margin-top: 2px;' id='login-button-image' src='".HOME."/img/fb-login.png' />";
 							echo "</a>";
 							echo "</div>";
 						}
@@ -236,6 +250,11 @@
 			$(function(){
 				window.prettyPrint && prettyPrint();
 				$("#dp2").datepicker();
+			});
+
+		if($(".carousel").length > 0)
+			$('.carousel').carousel({
+		  		interval: 7000
 			});
 		
 		/* comentarios perfil usuario*/

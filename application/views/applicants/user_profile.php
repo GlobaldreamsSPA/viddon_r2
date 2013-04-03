@@ -78,7 +78,7 @@ Gracias por participar!!</p>
 	<div class="space1"></div>
 	<h2 class="profile-title"> <?php echo $name." ".$last_name; ?> 
 	</h2> 
-	<div class="fb-like" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+<div style="margin-left: 10px;" class="fb-like" data-href="<?php echo HOME.'/user/index/'.$user_id; ?>" data-send="true" data-width="450" data-show-faces="false"></div>				
 	<?php
 		echo '<ul class="skills-list">';
 		foreach ($tags as $tag) {

@@ -93,7 +93,8 @@ border: 1px solid #4C3C1B;
 						<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
 					</div>
 				</form>
-			</div>    	<!-- MODAL-->
+			</div>    	
+		<!-- MODAL-->
     	
     	<?php
     	//video[0] => titulo
@@ -102,6 +103,34 @@ border: 1px solid #4C3C1B;
     	//video[3] => id del video
     	$i=0;
     	foreach($videos as $video){
+    		
+		?>	
+    		<!-- CARGO EL MODAL PARA EDITAR EL VIDEO-->
+			<div id="edit_video_<?php echo $video[3];?>" class="modal hide fade" style="width: 430px !important;" tabindex="-1" role="dialog" aria-labelledby="EditaVideo" aria-hidden="true">
+				<form id="video_edit_form_<?php echo $video[3];?>" action="<?php echo HOME.'/user/video_gallery/'?>" method="post">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h3 id="myModalLabel">Editar video</h3>
+					</div>
+					<div class="modal-body">
+							<div>	
+								<input name="nombre_video_edit" style="width:96%" type="text" value="<?php echo $video[0];?>" placeholder="Nombre">
+								<div class="space1"></div>	
+								<textarea class="rich_textarea_pop_up" name="description_video_edit" rows="6" placeholder="Descripción"><?php echo $video[2];?></textarea>
+								<input type="hidden" name="id_editando" value="<?php echo $video[3];?>" />
+								<div class="space1"></div>	
+							</div>
+					</div>
+					<div class="modal-footer" style="height: 30px;">
+						<button type="submit" class="btn btn-primary">Actualizar</button>
+						<button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+					</div>
+				</form>
+			</div>    	
+			<!-- MODAL EDICION-->
+			
+    	<?php
+    		
     		$i++;
 			if($i%2 == 0 )								
     			if($video[3] == $id_main_video) echo '<div style="padding:8px;" title="Video Principal" class="span6 glow">'; //carga el efecto de "brillo"
@@ -117,13 +146,17 @@ border: 1px solid #4C3C1B;
     	?>
     			
     			<div>
-						<div style="min-height: 15px !important;" class="span10">
+						<div style="min-height: 15px !important;" class="span9">
 							<label style="font-size: 150%;" id="profile" ><?php echo $video[0]; ?></label>
 						</div>
 						<?php if(!$public) {?>
 							<div class="span1">
+								<a id="editing_tagevent" class="btn-del" title="Editar Información" data-toggle="modal"  href="#edit_video_<?php echo $video[3];?>" class="btn btn-primary"><i class="icon-edit"></i></a>
+							</div>
+							<div class="span1">
 								<a class="btn-del" title="Establecer como principal" href="<?php echo HOME."/user/video_gallery/".$page."/1/".$video[3];?>" class="btn btn-primary"><i class="icon-star-empty"></i></a>
 							</div>
+							<div style="visibility:hidden;" id="idvideo" value="<?php echo $video['3'];?>"></div>
 							<div style="margin-left: 5px;" class="span1">
 								<a class="btn-del" title="Eliminar video" href="<?php echo HOME."/user/video_gallery/".$page."/2/".$video[3];?>" class="btn btn-primary"><i class="icon-remove"></i></a>
 							</div>
@@ -146,7 +179,7 @@ border: 1px solid #4C3C1B;
 		            <ul id="pagination_bt">
 		                <li <?php if($page==1) echo "class='disabled'";?> ><a <?php if($page!=1) echo "href= '".base_url()."user/video_gallery/".($page-1)."/'";?>>Prev</a></li>  
 		                <?php 
-		                
+		    	            
 		                $pag_size = 6; //se puede fijar una constante que lo maneje
 						$margen = $pag_size/2;
 						

@@ -7,6 +7,17 @@ class Videos_model extends CI_Model
         parent::__construct();
     }
 
+	function update($id_video,$titulo_video,$descripcion)
+	{
+		$data = array(
+               'title' => $titulo_video,
+               'description' => $descripcion
+            );
+
+		$this->db->where('id', $id_video);
+		$this->db->update('videos', $data); 
+	}
+	
     function insert($data)
     {
     	//Primero verificar que el video no exista
@@ -34,11 +45,6 @@ class Videos_model extends CI_Model
 		}
 		else
 		{
-			$video = $result->first_row('array');
-			$data['id'] = $video['id'];
-
-			$this->db->where('id', $data['id']);
-			$this->db->update('videos', $data);
 			return 0;
 		}
 
@@ -193,6 +199,7 @@ class Videos_model extends CI_Model
 	function get_videos($page, $cant)
 	{
 		$this->db->select('*');
+		$this->db->order_by('id', "desc");
 		$query = $this->db->get('videos', $cant, ($page-1)*$cant);
 		$result = array();
 		foreach ($query->result_array() as $value) 
