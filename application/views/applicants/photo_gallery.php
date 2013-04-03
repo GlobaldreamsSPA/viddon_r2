@@ -56,7 +56,7 @@ border: 1px solid #4C3C1B;
     <div class="span8 offset1 user-profile-right"> <!-- CARGAREMOS LOS DATOS DE LA GALERIA -->
     <div class="row">
       <div class="span8">
-        <h2>Galeria de Fotos</h2>
+        <h2><a href="<?php echo HOME."/user"?>"> Perfil</a> / Galeria de Fotos</h2>
       </div>      
       <div style="margin-top:15px;" class="span4">
         <button data-toggle="modal"  href="#add_photo" class="btn btn-primary">Agregar foto</button>
