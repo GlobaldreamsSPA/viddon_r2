@@ -69,7 +69,7 @@
 					</a>
 				</div>
 				<div class="span2 header-text-left">
-					<a href="<?php echo HOME?>/home/what_is" style="margin-left: -65px;" style="color:white;">
+					<a href="<?php echo HOME?>/home/what_is" style="margin-left: -60px;" style="color:white;">
 						Tu Talento, Nuestra Pasi&oacute;n
 					</a>
 				</div>
@@ -329,7 +329,7 @@
 			var js, fjs = d.getElementsByTagName(s)[0];
 			if (d.getElementById(id)) return;
 			js = d.createElement(s); js.id = id;
-			js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
+			js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=[374106952676336]";
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 
