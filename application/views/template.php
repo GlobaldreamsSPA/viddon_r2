@@ -6,7 +6,9 @@
 	<title>Viddon - Tu Talento, Nuestra Pasi&oacute;n</title>
 
 	<meta property="og:title" content="Viddon. Tu Talento, Nuestra Pasión"/>
-	
+	<meta property="fb:app_id" content="374106952676336"/>
+	<meta property="og:type" content="website" />
+
 	
 	<?php if(isset($public)) {?>
 	
