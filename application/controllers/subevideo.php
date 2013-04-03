@@ -44,7 +44,7 @@ class Subevideo extends CI_Controller
 		else 
 		{
 			$data = array('upload_data' => $this->upload->data());
-			$path_temporal = $config['upload_path'].$_FILES['userfile']['name'];
+			$path_temporal = $config['upload_path'].str_replace(" ","_", $_FILES['userfile']['name']);
 			
 			//realiza la subida a youtube//
 			$resultado_subida_youtube = $this->direct_upload($path_temporal,$_FILES['userfile']['type']);
