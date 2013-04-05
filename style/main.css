@@ -101,7 +101,7 @@ img.image-logo
 {
 	position: relative;
 	top: -7px;
-	height: 31px !important;
+	height: 32px !important;
 
 }
 
@@ -163,7 +163,7 @@ h1.profile-title{
 
 #profile 
 {
-	font-family: "profile_font";
+	font-weight: normal !important;
 	color: #1097db;
 }
 		
@@ -260,8 +260,8 @@ div#main_videos
 
 div#main_videos_list
 {
-	margin-left: 3%;
-	width: 30%;
+	margin-left: 2%;
+	width: 31%;
 	display: block;
 }
 
@@ -275,7 +275,7 @@ div#main_casting
 div.video_text_main
 {
 	position:relative;
-	left: -10px;
+	left: -3%;
 	top: -25px;
 	background: white !important;
 	box-shadow: 01px 01px 01px #E2E2E2; 
@@ -284,6 +284,7 @@ div.video_text_main
 .home-video-title
 {
 	color: #6699CC;
+	font-size: 14px;
 	font-weight: bold;
 }
 
@@ -342,9 +343,19 @@ div.black_line{
 img.user_image_main_page
 {
 	position: relative;
-	left: 20px;
-	max-height: 60px;
-	max-width: 60px;
+	margin-top: 15%;
+	left: 4%;
+	max-height: 80%;
+	max-width: 80%;
+}
+
+img.hunter_casting_logo_detail
+{
+	position: relative;
+	margin-top: 15%;
+	left: 4%;
+	max-height: 100%;
+	max-width: 100%;
 }
 
 ul.skills-list
@@ -457,10 +468,3 @@ footer #contacto li ul li p
 {
 	font-size: 14px;
 }
-
-/* Fuente para el perfil */
-@font-face {  
-	font-family: "profile_font";
-	src: url(../font/Rokkitt-Bold.ttf); /* IE */
-	src: local("real_profile_font"), url(../font/Rokkitt-Bold.ttf) format("truetype"); /* non-IE */
-}    

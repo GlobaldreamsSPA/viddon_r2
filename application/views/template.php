@@ -69,7 +69,7 @@
 					</a>
 				</div>
 				<div class="span2 header-text-left">
-					<a href="<?php echo HOME?>/home/what_is" style="margin-left: -65px;" style="color:white;">
+					<a href="<?php echo HOME?>/home/what_is" style="margin-left: -60px;" style="color:white;">
 						Tu Talento, Nuestra Pasi&oacute;n
 					</a>
 				</div>
@@ -242,6 +242,25 @@
 				});
 			});
 		
+      	if($("#playermodal").length > 0)
+      	{
+	      	$("a[data-target=#playermodal]").click(function(ev) {
+			    ev.preventDefault();
+			    var target = $(this).attr("href");
+
+			    // load the url and show modal on success
+			    $("#playermodal .modal-body").load(target, function() { 
+			         $("#playermodal").modal("show"); 
+			    });
+			});
+
+			jQuery(".modal-backdrop, #playermodal .close, #playermodal .btn").live("click", function() {
+	        jQuery("#playermodal iframe").attr("src", null);
+			});
+		}
+
+
+
 		if($("#dp1").length > 0)
 			$(function(){
 				window.prettyPrint && prettyPrint();

@@ -12,46 +12,13 @@ class Home extends CI_Controller {
 	
 	}
 
-	public function index()
+	public function index($page=1)
 	{
 
 		$args = array();
-		$video_list = $this->videos_model->get_videos(1, 4);
-		$args["video_list"] = array();
-		$args["castings"] = $this->castings_model->get_castings(NULL, 2, 1);
 		
-		foreach ($video_list as $video_data)
-		{
-			$user_data = $this->user_model->select($video_data["2"]);
-			if($user_data['image_profile']!=0)
-				$user_data['image_profile'] = $this->photos_model->get_name($user_data['image_profile']);
-
-			array_push($video_data, $user_data["name"], $user_data["image_profile"]);
-			array_push($args["video_list"], $video_data);
-		}
-    
-		$args["content"] = "home/home_view";
-		$args["inner_args"] = NULL;
-		$this->load->view('template',$args);
-	}
-
-	public function video_list($page=1)
-	{
-		/*
-		$args = array();
-		
-		$args["actual_skills_url"] = $actual_skills;		
-
-		
-		if($actual_skills != -2)
-		{			
-			$args["actual_skills"] = explode("_",$actual_skills);//PARAMETROS FILTRO URL
-			$args["chunks"]=ceil($this->videos_model->count_videos_by_skills($args["actual_skills"]) / 9);
-
-			$video_list = $this->videos_model->get_videos_by_skills($page, 9,$args["actual_skills"]);
-		}else
-		{*/	
 		$args["get_uri"] ="";
+		
 		if(isset($_GET['search_terms']))
 		{
 			$args["get_uri"] = "/?search_terms=".str_replace(' ', '+', $_GET['search_terms']);
@@ -94,23 +61,24 @@ class Home extends CI_Controller {
 			if($user_data['image_profile']!=0)
 				$user_data['image_profile'] = $this->photos_model->get_name($user_data['image_profile']);
 
-			array_push($video_data,$user_data["name"],$user_data["image_profile"]);
+			array_push($video_data,$user_data["name"],$user_data["image_profile"], $user_data["last_name"]);
 			array_push($args["video_list"], $video_data);
 		}
     
 		
 		$args["tags"]=	$this->skills_model->get_skills();
 		
-		$temp[-1]= "--  Seleccionar Todos  --";
-		$temp[-2]= "--     Vaciar Campo    --";
-		$args["tags"] = $temp + $args["tags"];
 		
 		$args["page"]=$page;
-		$args['content']='home/video_list';		
-		$args["inner_args"]=NULL;
+		$args["castings"] = $this->castings_model->get_castings(NULL, 2, 1);
 		
+		
+    
+		$args["content"] = "home/home_view";
+		$args["inner_args"] = NULL;
 		$this->load->view('template',$args);
 	}
+
 
 	public function casting_list($page = 1,$actual_categories = -2)//el actual es un string de categorias
 	{
@@ -184,6 +152,25 @@ class Home extends CI_Controller {
 		$args['content'] = 'home/what_is';		
 		$args["inner_args"]=NULL;
 		$this->load->view('template',$args);
+	}
+
+
+	public function video()
+	{
+		if(isset($_GET['id']))
+		{
+			$args['id_video'] = $_GET['id'];		
+			$args['name'] = $_GET['name'];		
+			$args['description'] = $_GET['description'];
+			$args['username'] = $_GET['username'];	
+			$args['userlastname'] = $_GET['userlastname'];		
+			$args['image'] = $_GET['image'];	
+			$args['iduser'] = $_GET['iduser'];		
+	
+
+
+			$this->load->view('home/video_modal',$args);
+		}
 	}
 
 	public function terms()

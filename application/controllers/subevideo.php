@@ -190,16 +190,16 @@ class Subevideo extends CI_Controller
 	
 	 
 	//ARMA EL METADATA DEL VIDEO; SEGUN LOS DATOS QUE RECIBIO
-	private function _spitYMetadata($data=NULL)//TODO: FALTA QUE META LOS DATOS DONDE CORRESPONDE
+	private function _spitYMetadata($data=NULL)//TODO: Analizar cuan customizable es la descripción del video. Y formatearla adecuadamente.
 	{
 		$string = "";
 		if(!is_null($data))
 		{
 			$string = $string."<entry xmlns='http://www.w3.org/2005/Atom' xmlns:media='http://search.yahoo.com/mrss/' xmlns:yt='http://gdata.youtube.com/schemas/2007'><media:group><media:title type='plain'>";
 			$string = $string.$data['title'];
-			$string = $string."</media:title><media:description type='plain'>";
+			$string = $string."</media:title><media:description type='plain'>";//type='formated' ?
 			//Armar una descripción acorde, con un enlace al usuario de viddon
-			$string = $string.$data['description']."<br />Video perteneciente a: ".$this->user_model->welcome_name($data['user_id'])."<br />Vealo en <a href='http://www.viddon.com'>Viddon.com</a>";
+			$string = $string.$data['description']."          Video perteneciente a: ".$this->user_model->welcome_name($data['user_id'])."<br />         Vealo en http://www.viddon.com";
 			$string = $string."</media:description><media:category scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>";
 			$string = $string."Entertainment";
 			$string = $string."</media:category><media:keywords>";
