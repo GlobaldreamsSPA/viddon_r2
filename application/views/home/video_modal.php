@@ -1,3 +1,16 @@
+<script type="text/javascript">
+		(function(d, s, id) 
+		{
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
 <div style="margin-left:10px;" class="row">
 	<div class="span4">
 		<div style="margin-bottom: 10px;font-size: 18px;" id="profile" ><?php echo $name;?></div>
@@ -15,10 +28,10 @@
 				</a>
 			</div>
 			<div class="span6">
+				<div class="fb-like" data-href="<?php echo HOME.'/user/index/'.$iduser; ?>" data-send="true" data-layout="box_count" data-width="450" data-show-faces="true"></div>
 				<div style="margin-top: 15%; margin-left:2%;" >
 					<a class="home-video-author" href="<?php echo HOME.'/user/index/'.$iduser; ?>"><?php echo $username." ".$userlastname; ?></a>								
 				</div>
-				<div class="fb-like" data-href="<?php echo HOME.'/user/index/'.$iduser; ?>" data-send="true" data-layout="box_count" data-width="450" data-show-faces="true"></div>
 			</div>
 		</div>
 		
