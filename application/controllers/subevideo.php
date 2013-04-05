@@ -1,4 +1,5 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Subevideo extends CI_Controller
 {
@@ -8,6 +9,11 @@ class Subevideo extends CI_Controller
 		//$this->load->library(array('session','Youtube','Google_oauth'));
 		$this->load->library('session');
         $this->load->helper(array('url','oauth','form','file'));
+		
+		$this->load->model('videos_model');
+		$this->load->model('user_model');
+		
+		
 	}
 	public function index($p=NULL)
 	{		
@@ -22,14 +28,39 @@ class Subevideo extends CI_Controller
 
 	}
 	
-	public function subir_video()
+	public function subir_video($titulo_video=NULL, $descripcion_video=NULL)
 	{
+		if($this->session->userdata('id') == FALSE) redirect(HOME);
+		else $userid = $this->session->userdata('id');
+		
+		
+		if(is_null($titulo_video) && isset($_POST))
+		{
+			$titulo_video = $_POST['uploaded_title'];
+		}
+		
+		if(is_null($descripcion_video) && isset($_POST))
+		{
+			$descripcion_video = $_POST['uploaded_desc'];
+		}
+		
+		//se analiza toda la información necesaria respecto al usuario, username, correo, etc.
+		//se carga en el arreglo $mDATA la información correspondiente, con el que se generará el metadata del video.
+		$mDATA = array(
+				'title' => $titulo_video,
+				'link' => '',
+				'type' => 'youtube',
+				'description' => $descripcion_video,
+				'user_id' => $userid
+			);	
+			
 		$config['upload_path'] = 'temp/videos/';
 		//$config['allowed_types'] = 'avi|flv|wmv|mov|mpeg4|mpegps|3gpp|webm'; //formatos soportados por youtube
-		$config['allowed_types'] = 'avi|flv|wmv|mov|mpeg4|mp4|3gpp|webm'; //formatos mime compatibles
+		$config['allowed_types'] = 'avi|flv|wmv|mov|mpeg4|mp4|3gp|3gpp|webm'; //formatos mime compatibles
 		$config['overwrite'] = FALSE;
         $config['remove_spaces'] = TRUE;
 		$config['max_size'] = '10240';//10 MB
+		
 		
 		//$video_name = $date.$_FILES['video']['name'];
         //$config['file_name'] = $video_name;
@@ -47,15 +78,29 @@ class Subevideo extends CI_Controller
 			$path_temporal = $config['upload_path'].str_replace(" ","_", $_FILES['userfile']['name']);
 			
 			//realiza la subida a youtube//
-			$resultado_subida_youtube = $this->direct_upload($path_temporal,$_FILES['userfile']['type']);
+			$resultado_subida_youtube = $this->direct_upload($path_temporal,$_FILES['userfile']['type'],$mDATA);
+			
+			
+		try{
+        	$xml = new SimpleXMLElement($resultado_subida_youtube);
+    	}
+    	catch (Exception $e){    
+        	 echo $e->getMessage();
+    	}
+			
+			
 			
 			$xml = new SimpleXMLElement($resultado_subida_youtube);
 			
 			$temp = array();
 			$temp = explode(":",$xml->id);
-			echo "<br />".$temp[(sizeof($temp) - 1)];
-									
-			//falta realizar el registro de la subida en la base de datos, utilizando la información obtenida al ejecutar direct_upload.
+			$mDATA['link'] = $temp[(sizeof($temp) - 1)]; //guarda el link code
+							
+			
+			//Insertar en base de datos información del video correspondiente
+			$first = $this->videos_model->insert($mDATA);
+			if($first != 0) $this->user_model->set_main_video($userid,$first);
+			
 			//elimina el video de la carpeta temporal
 			unlink("./".$path_temporal);
 			
@@ -92,9 +137,9 @@ class Subevideo extends CI_Controller
 		
 		$this->session->set_userdata('oauth_token', $oauth['oauth_token']);
 		$this->session->set_userdata('oauth_token_secret', $oauth['oauth_token_secret']);
-		var_dump(htmlentities($oauth['oauth_token']));
-		var_dump($oauth['oauth_token']);
-		var_dump($oauth['oauth_token_secret']);
+		//var_dump(htmlentities($oauth['oauth_token']));
+		//var_dump($oauth['oauth_token']);
+		//var_dump($oauth['oauth_token_secret']);
 	}
 	
 	//This method can be called without having
@@ -122,9 +167,8 @@ class Subevideo extends CI_Controller
 		echo $this->youtube->getUserUploads();
 	}
 	
-	public function direct_upload($videoPath,$videoType)
+	public function direct_upload($videoPath,$videoType,$mDATA=NULL)
 	{
-		
 		$oauth_TOKEN = "1/djnKkGT7RtoDfZ69094D_YnWjJyiTZTse82lYJ7vhac";
 		$oauth_TOKEN_SECRET = "gFts5fWFUM7IfRgsAf7PTxzo";
 		//$videoPath ='img/video03.wmv';
@@ -136,11 +180,36 @@ class Subevideo extends CI_Controller
 		$params['oauth']['algorithm'] = 'HMAC-SHA1';
 		//$params['oauth']['access_token'] = array('oauth_token'=>urlencode($this->session->userdata('oauth_token')),'oauth_token_secret'=>urlencode($this->session->userdata('oauth_token_secret')));
 		$params['oauth']['access_token'] = array('oauth_token'=>urlencode($oauth_TOKEN),'oauth_token_secret'=>urlencode($oauth_TOKEN_SECRET));
-		$this->load->library('youtube', $params);		
-		$metadata = '<entry xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:yt="http://gdata.youtube.com/schemas/2007"><media:group><media:title type="plain">Test Direct Upload</media:title><media:description type="plain">Test Direct Uploading.</media:description><media:category scheme="http://gdata.youtube.com/schemas/2007/categories.cat">People</media:category><media:keywords>test</media:keywords></media:group></entry>';
-		return $this->youtube->directUpload($videoPath, $videoType, $metadata);
+		$this->load->library('youtube', $params);
+		
+		//función privada que genera el metadata correspondiente
+		$metastring = $this->_spitYMetadata($mDATA);
+	
+		return $this->youtube->directUpload($videoPath, $videoType, $metastring);
+	}
+	
+	 
+	//ARMA EL METADATA DEL VIDEO; SEGUN LOS DATOS QUE RECIBIO
+	private function _spitYMetadata($data=NULL)//TODO: FALTA QUE META LOS DATOS DONDE CORRESPONDE
+	{
+		$string = "";
+		if(!is_null($data))
+		{
+			$string = $string."<entry xmlns='http://www.w3.org/2005/Atom' xmlns:media='http://search.yahoo.com/mrss/' xmlns:yt='http://gdata.youtube.com/schemas/2007'><media:group><media:title type='plain'>";
+			$string = $string.$data['title'];
+			$string = $string."</media:title><media:description type='plain'>";
+			//Armar una descripción acorde, con un enlace al usuario de viddon
+			$string = $string.$data['description']."<br />Video perteneciente a: ".$this->user_model->welcome_name($data['user_id'])."<br />Vealo en <a href='http://www.viddon.com'>Viddon.com</a>";
+			$string = $string."</media:description><media:category scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>";
+			$string = $string."Entertainment";
+			$string = $string."</media:category><media:keywords>";
+			$string = $string."music, viddon, arts, talents, scenes, vidon, bidon";
+			$string = $string."</media:keywords></media:group></entry>";		
+		}
+		else
+		{
+			$string = $string."<entry xmlns='http://www.w3.org/2005/Atom' xmlns:media='http://search.yahoo.com/mrss/' xmlns:yt='http://gdata.youtube.com/schemas/2007'><media:group><media:title type='plain'>Test Direct Upload</media:title><media:description type='plain'></media:description><media:category scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>People</media:category><media:keywords>test</media:keywords></media:group></entry>";
+		}
+		return $string;		
 	}
 }
-
-/* End of file example.php */
-/* Location: ./application/controllers/example.php */	

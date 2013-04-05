@@ -104,6 +104,7 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'mpeg4' => array('video/mp4v-es', 'audio/mp4'),
 				'mp4'   => 'video/mp4',
 				'3gpp' 	=> 'video/3gpp',
+				'3gp'	=> 'video/3gp',
 				'webm' 	=>  'video/webm'
 			);
 
