@@ -80,15 +80,16 @@ border: 1px solid #4C3C1B;
 					</div>
 					<div class="modal-body">
 							<div>	
-								<input name="url_ytb" style="width:96%" type="text" placeholder="Dirección - URL Video" value="" required="required">
+								<input name="url_ytb" style="width:90%" type="text" placeholder="Dirección - URL Video" value="" required="required"><a href="#" title="Debes pegar la dirección URL de tu video. La que se aprecia en la barra del navegador	Ej:   http://www.youtube.com/watch?v=EpQFtbFyaUw"><i class="icon-question-sign"></i></a>
 								<input name="name_ytb" style="width:96%" type="text" placeholder="Nombre">
 								<div class="space1"></div>	
 								<textarea class="rich_textarea_pop_up" name="description_ytb" rows="6" placeholder="Descripción"></textarea>
 								<input type="hidden" name="from_gallery" value="yes" />
 								<div class="space1"></div>	
 							</div>
-					</div>
-					<div class="modal-footer" style="height: 30px;">
+					</div> 
+					<div class="modal-footer" style="height: 30px;"> 
+						O puedes <a href="<?php echo HOME; ?>/subevideo">Subir Tu Video AQUI</a><i title="Utiliza esta opcion si no sabes subir videos en Youtube" class="icon-info-sign"></i>
 						<button type="submit" class="btn btn-primary">Guardar</button>
 						<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
 					</div>
