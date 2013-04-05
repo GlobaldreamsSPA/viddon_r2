@@ -14,7 +14,6 @@ a:hover {	text-decoration: underline}
 #variable{min-height: 1080px;}
 
 /*---------- Black --------------*/ 
-/*
 .MBT-readmore{ 
 background:#000800; 
 text-align:right; 
@@ -33,35 +32,6 @@ font:bold 11px sans-serif;
 .MBT-readmore:hover{ 
 font:bold 11px sans-serif; 
 color:#fff; 
-}
-*/
-
-.MBT-readmore {
-	width: 150px;
-	height: 25px;
-	background-image: linear-gradient(bottom, rgb(22,150,255) 36%, rgb(3,162,254) 56%, rgb(80,208,255) 87%);
-	background-image: -o-linear-gradient(bottom, rgb(22,150,255) 36%, rgb(3,162,254) 56%, rgb(80,208,255) 87%);
-	background-image: -moz-linear-gradient(bottom, rgb(22,150,255) 36%, rgb(3,162,254) 56%, rgb(80,208,255) 87%);
-	background-image: -webkit-linear-gradient(bottom, rgb(22,150,255) 36%, rgb(3,162,254) 56%, rgb(80,208,255) 87%);
-	background-image: -ms-linear-gradient(bottom, rgb(22,150,255) 36%, rgb(3,162,254) 56%, rgb(80,208,255) 87%);
-
-	background-image: -webkit-gradient(
-	linear,
-	left bottom,
-	left top,
-	color-stop(0.36, rgb(22,150,255)),
-	color-stop(0.56, rgb(3,162,254)),
-	color-stop(0.87, rgb(80,208,255))
-);
-	border-radius: 5px;
-}
-
-.MBT-readmore a{
-	color: white;
-	font-family: arial, helvetica;
-	padding-left: 6%;
-	position: relative;
-	top: 10%;
 }
 
 .chzn-container .chzn-results {
