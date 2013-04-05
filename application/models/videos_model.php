@@ -100,7 +100,7 @@ class Videos_model extends CI_Model
 
 	function search_videos($search, $page, $cant)
 	{
-		$this->db->select('title, link, user_id,count(id)');
+		$this->db->select('title, description, link, user_id,count(id)');
 		$search_value = array();
 		$search_value = explode(' ', $search);
 		$flag = FALSE;
@@ -121,7 +121,7 @@ class Videos_model extends CI_Model
 		$result = array();
 		foreach ($query->result_array() as $value) 
 		{
-			$result[] = array($value['title'], $value['link'], $value['user_id']);
+			$result[] = array($value['title'], $value['link'], $value['user_id'],$value['description']);
 		}
 		return $result;
 	}
@@ -204,7 +204,7 @@ class Videos_model extends CI_Model
 		$result = array();
 		foreach ($query->result_array() as $value) 
 		{
-			$result[] = array($value['title'], $value['link'], $value['user_id']);
+			$result[] = array($value['title'], $value['link'], $value['user_id'],$value['description']);
 		}
 		return $result;
 	}

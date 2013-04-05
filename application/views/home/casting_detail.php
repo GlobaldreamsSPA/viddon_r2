@@ -26,11 +26,9 @@
 		<div class="row">
 			<div class= "span8">
 		  		<div style="border-radius: 5px; margin-left:3%;" id="variable" class="row-fluid">
-
-		  			<div class="space05"></div>
+			  		<div class="space1"></div>
 		  			<h2 style="margin-left:10%;font-weight:bold;" id="profile"><?php echo $casting['title']; ?></h3>
-		  			<div class="space2"></div>
-					<img style="margin-left:8%; margin-top:10px; width: 85%;" src="<?php echo $casting['full_image'] ?>">
+					<img style="margin-left:8%; margin-top:4%; width: 85%;" src="<?php echo $casting['full_image'] ?>">
 					<div class="space2"></div>
 					<h3 style="margin-left:10%;" id="profile" style="font-weight:bold;">Caza Talentos</h3>
 					<div class="row">

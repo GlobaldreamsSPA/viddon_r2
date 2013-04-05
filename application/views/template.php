@@ -242,6 +242,25 @@
 				});
 			});
 		
+      	if($("#playermodal").length > 0)
+      	{
+	      	$("a[data-target=#playermodal]").click(function(ev) {
+			    ev.preventDefault();
+			    var target = $(this).attr("href");
+
+			    // load the url and show modal on success
+			    $("#playermodal .modal-body").load(target, function() { 
+			         $("#playermodal").modal("show"); 
+			    });
+			});
+
+			jQuery(".modal-backdrop, #playermodal .close, #playermodal .btn").live("click", function() {
+	        jQuery("#playermodal iframe").attr("src", null);
+			});
+		}
+
+
+
 		if($("#dp1").length > 0)
 			$(function(){
 				window.prettyPrint && prettyPrint();
@@ -329,7 +348,7 @@
 			var js, fjs = d.getElementsByTagName(s)[0];
 			if (d.getElementById(id)) return;
 			js = d.createElement(s); js.id = id;
-			js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=[374106952676336]";
+			js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
 

@@ -133,7 +133,7 @@ h1.profile-title{
 
 #profile 
 {
-	font-family: "profile_font";
+	font-weight: normal !important;
 	color: #1097db;
 }
 		
@@ -230,8 +230,8 @@ div#main_videos
 
 div#main_videos_list
 {
-	margin-left: 3%;
-	width: 30%;
+	margin-left: 2%;
+	width: 31%;
 	display: block;
 }
 
@@ -245,7 +245,7 @@ div#main_casting
 div.video_text_main
 {
 	position:relative;
-	left: -10px;
+	left: -3%;
 	top: -25px;
 	background: white !important;
 	box-shadow: 01px 01px 01px #E2E2E2; 
@@ -254,6 +254,7 @@ div.video_text_main
 .home-video-title
 {
 	color: #6699CC;
+	font-size: 14px;
 	font-weight: bold;
 }
 
@@ -437,10 +438,3 @@ footer #contacto li ul li p
 {
 	font-size: 14px;
 }
-
-/* Fuente para el perfil */
-@font-face {  
-	font-family: "profile_font";
-	src: url(../font/Rokkitt-Bold.ttf); /* IE */
-	src: local("real_profile_font"), url(../font/Rokkitt-Bold.ttf) format("truetype"); /* non-IE */
-}    
