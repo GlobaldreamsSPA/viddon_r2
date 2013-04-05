@@ -1,22 +1,3 @@
-<div id="lollapalooza" class="modal hide fade in" >
-<div class="modal-header">  
-<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a> 
-</div>
-<div class="modal-body">
-<h4>Felicitaciones</h4>
-<p>Ya est&aacutes participando en el concurso Viddon Lollapalooza.
-Te informaremos del sorteo a tu correo electr&oacutenico registrado en Facebook.
-Gracias por participar!!</p>
-</div>
-<div class="modal-footer">
-<?php echo "<img style='height: 30px; float: left !important;' src='".HOME."/img/lollapalooza.jpg'/>"; ?>
-<?php echo anchor('user', 'Volver al Perfil',"class='btn'") ?>
-</div>
-</div>
-<?php if($first_time === TRUE){
-	echo "<script> setTimeout( function(){\$('#lollapalooza').modal({ show: true });}, 2000); </script>";
-}?>
-
 <div class="row-fluid">
 <div class="span3 user-profile-left">
 	<div class="row">
@@ -145,15 +126,14 @@ Gracias por participar!!</p>
 				</div>
 				<div class="modal-body">
 						<div>	
-							<input name="url_ytb" style="width:90%" type="text" placeholder="Dirección - URL Video" value="" required="required"><a href="#" title="Debes pegar la dirección URL de tu video. La que se aprecia en la barra del navegador	Ej:   http://www.youtube.com/watch?v=EpQFtbFyaUw"><i class="icon-question-sign"></i></a>
+							<input name="url_ytb" style="width:96%" type="text" placeholder="Dirección - URL Video" value="">
 							<input name="name_ytb" style="width:96%" type="text" placeholder="Nombre">
 							<div class="space1"></div>	
 							<textarea class="rich_textarea_pop_up" name="description_ytb" rows="6" placeholder="Descripción"></textarea>
 							<div class="space1"></div>	
 						</div>
-				</div> 
+				</div>
 				<div class="modal-footer" style="height: 30px;">
-					O puedes <a href="<?php echo HOME; ?>/subevideo">Subir Tu Video AQUI</a><i title="Utiliza esta opcion si no sabes subir videos en Youtube" class="icon-info-sign"></i>
 					<button type="submit" class="btn btn-primary">Guardar</button>
 					<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
 				</div>

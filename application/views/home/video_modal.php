@@ -18,6 +18,7 @@
 				<div style="margin-top: 15%; margin-left:2%;" >
 					<a class="home-video-author" href="<?php echo HOME.'/user/index/'.$iduser; ?>"><?php echo $username." ".$userlastname; ?></a>								
 				</div>
+				<div class="fb-like" data-href="<?php echo HOME.'/user/index/'.$iduser; ?>" data-send="true" data-layout="box_count" data-width="450" data-show-faces="true"></div>
 			</div>
 		</div>
 		
