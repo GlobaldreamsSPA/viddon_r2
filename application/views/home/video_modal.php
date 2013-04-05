@@ -29,7 +29,7 @@
 	</div>
 	<div class="span8">
 		<div style="text-align: center">
-			<iframe width="100%" height="270px" src="http://www.youtube.com/embed/<?php echo $id_video.'?rel=0&autoplay=1'?>" frameborder="0" allowfullscreen></iframe> 
+			<iframe width="100%" height="270px" src="http://www.youtube.com/embed/<?php echo $id_video.'?rel=0&autoplay=1&showinfo=0'?>" frameborder="0" allowfullscreen></iframe> 
 		</div>
 	</div>
 </div>

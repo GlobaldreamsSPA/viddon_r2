@@ -1,4 +1,3 @@
-
 <div style="padding: 5px; width: 50% !important;"  class="modal fade hide" id="playermodal" tabindex="-1" role="dialog" aria-hidden="true">
   <div style="padding: 0px; margin-top: 20px;" class="modal-body">
   </div>
@@ -41,7 +40,7 @@
 		  			<div class="row">
 			  			<?php echo form_open('home',array('method' => 'get')); ?>
 							<div style="margin-left: 6%; margin-top:15px;" class="span3">
-								<input id='filter' style='width:1020;' placeholder="Ingresa un termino" name="search_terms"></input>
+								<input id='filter' style='width:1020;' placeholder="Busca por t&iacute;tulo" name="search_terms"></input>
 							</div>
 							<div style="margin-top:15px;" class="span2">
 								<input type="submit" style="position: relative; bottom: 03px; left: 15px;" id="filter_button" class="btn btn-info" value="Buscar"/>
@@ -57,8 +56,8 @@
 					?>
 					<div id="main_videos_list" class='span4'>
 						<div class="space1"></div>
-						<a href="<?php echo HOME.'/home/video?id='.str_replace(' ', '%20', $video[1]).'&name='.str_replace(' ', '%20', $video[0]).'&iduser='.str_replace(' ', '%20', $video[2]).'&username='.str_replace(' ', '%20', $video[4]).'&description='.str_replace(' ', '%20',  strip_tags($video[3])).'&userlastname='.str_replace(' ', '%20', $video[6]).'&image='.str_replace(' ', '%20', $video[5]) ?>" data-target="#playermodal" data-toggle="modal">
-							<img src="<?php echo 'http://img.youtube.com/vi/'.$video[1].'/0.jpg'; ?>"/>
+						<a href="<?php echo HOME.'/home/video?id='.urlencode($video[1]).'&name='. urlencode($video[0]).'&iduser='.urlencode($video[2]).'&username='.urlencode($video[4]).'&description='.urlencode($video[3]).'&userlastname='.urlencode($video[6]).'&image='.urlencode($video[5]) ?>" data-target="#playermodal" data-toggle="modal">							
+							<img class="fade_new" src="<?php echo 'http://img.youtube.com/vi/'.$video[1].'/0.jpg'; ?>"/>
 						</a>
 						<span class="arrow"></span>
 						<div class="container video_text_main span12">

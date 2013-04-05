@@ -13,6 +13,17 @@ a:hover {	text-decoration: underline}
 
 #variable{min-height: 1080px;}
 
+.fade_new {
+   opacity: 1;
+   transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+   }
+
+.fade_new:hover {
+      opacity: 0.85;
+      }
+
 /*---------- Black --------------*/ 
 .MBT-readmore{ 
 background:#000800; 
