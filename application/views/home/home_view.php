@@ -56,7 +56,9 @@
 						</div>
 					</div>
 			<?php if($i%2 == 0 || $i == count($video_list)) echo "</div>"; }?>
-					<a class="MBT-readmore" style="margin-right:5%; float: right;" href="<?php echo HOME."/home/video_list"?>">Todos Los Videos >></a>
+					<div class="MBT-readmore" style="margin-right:5%; float: right;">
+						<a href="<?php echo HOME."/home/video_list"?>">Todos Los Videos >></a>
+					</div>
 					<div class= "space2"></div>
 					<div class= "space2"></div>
 				</div>
