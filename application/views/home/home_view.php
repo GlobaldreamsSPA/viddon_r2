@@ -1,4 +1,4 @@
-<div style="padding: 5px; width: 50% !important;"  class="modal fade hide" id="playermodal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade hide" id="playermodal" tabindex="-1" role="dialog" aria-hidden="true">
   <div style="padding: 0px; margin-top: 20px;" class="modal-body">
   </div>
   <div class="modal-footer">
@@ -57,7 +57,10 @@
 					<div id="main_videos_list" class='span4'>
 						<div class="space1"></div>
 						<a href="<?php echo HOME.'/home/video?id='.urlencode($video[1]).'&name='. urlencode($video[0]).'&iduser='.urlencode($video[2]).'&username='.urlencode($video[4]).'&description='.urlencode($video[3]).'&userlastname='.urlencode($video[6]).'&image='.urlencode($video[5]) ?>" data-target="#playermodal" data-toggle="modal">							
-							<img class="fade_new" src="<?php echo 'http://img.youtube.com/vi/'.$video[1].'/0.jpg'; ?>"/>
+							<div class="image">
+								<img class="fade_new" src="<?php echo 'http://img.youtube.com/vi/'.$video[1].'/0.jpg'; ?>" alt=""/>
+							    <img class="hoverimage" src="<?php echo HOME.'/img/player_arrow.png'; ?>" alt="" />
+							</div>
 						</a>
 						<span class="arrow"></span>
 						<div class="container video_text_main span12">
