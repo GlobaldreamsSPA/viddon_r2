@@ -25,7 +25,7 @@ a:hover {	text-decoration: underline}
    }
 
 .image { position: relative; background-color: black;}
-.hoverimage { width:14%; position: absolute; top: 40%; left: 43%; display: none; }
+.hoverimage { width:14%; position: absolute; top: 40%; left: 44%; display: none; }
 .image:hover .hoverimage { display: block;}
 .image:hover .fade_new{opacity: 0.35;}
 

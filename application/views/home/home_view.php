@@ -40,7 +40,7 @@
 		  			<div class="row">
 			  			<?php echo form_open('home',array('method' => 'get')); ?>
 							<div style="margin-left: 6%; margin-top:15px;" class="span3">
-								<input id='filter' style='width:1020;' placeholder="Busca por t&iacute;tulo" name="search_terms"></input>
+								<input id='filter' style='width:110%;' placeholder="Busca por t&iacute;tulo" name="search_terms"></input>
 							</div>
 							<div style="margin-top:15px;" class="span2">
 								<input type="submit" style="position: relative; bottom: 03px; left: 15px;" id="filter_button" class="btn btn-info" value="Buscar"/>
