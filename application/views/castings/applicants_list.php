@@ -106,7 +106,7 @@
 					    		<div class="span5">
 						    		<row>
 							    		<div class="span3">
-							    			<img style="max-width: 75%; max-height: 75%;" src="<?php echo HOME.'/img/profile/'.$applicant["image_profile"] ?>"/>
+							    			<img style="max-width: 75%; max-height: 75%;" src="<?php echo HOME.'/img/gallery/'.$applicant["image_profile"] ?>"/>
 										</div>
 										<div class="span6">
 											<p style="font-size: 12px;">

@@ -94,7 +94,7 @@
 										{?>
 											<li style="margin-right:10px;display: inline;">
 											<a style="text-decoration:none;" href="<?php echo HOME.'/user/index/'.$postu['id'] ?>" title="<?php echo $postu['name'] ?>">
-											<img style=" margin-top:10px; height: 10%; width: 10%;" src="<?php echo HOME.'/img/profile/'.$postu['image_profile'];?>">
+											<img style=" margin-top:10px; height: 10%; width: 10%;" src="<?php echo HOME.'/img/gallery/'.$postu['image_profile'];?>">
 											</a>
 											</li>
 										<?php	
@@ -116,7 +116,7 @@
 										{?>
 											<li style="margin-right:10px;display: inline;">
 											<a href="<?php echo HOME.'/user/index/'.$sele['id'] ?>" title="<?php echo $sele['name'] ?>">
-											<img style="margin-top:10px; height: 10%; width: 10%;" src="<?php echo HOME.'/img/profile/'.$sele['image_profile']."jpg";?>">
+											<img style="margin-top:10px; height: 10%; width: 10%;" src="<?php echo HOME.'/img/gallery/'.$sele['image_profile'];?>">
 											</a>
 											</li>
 										<?php	

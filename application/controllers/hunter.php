@@ -6,7 +6,7 @@ class Hunter extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper(array('url', 'file', 'form','security'));
-		$this->load->model(array('hunter_model', 'castings_model', 'casting_categories_model', 'user_model', 'applies_model', 'videos_model','skills_model'));
+		$this->load->model(array('hunter_model', 'photos_model','castings_model', 'casting_categories_model', 'user_model', 'applies_model', 'videos_model','skills_model'));
 		$this->load->library(array('upload', 'image_lib', 'form_validation'));
 		
 	}
@@ -289,7 +289,10 @@ class Hunter extends CI_Controller {
 				$postulantes_textual = array();
 				foreach($args["postulantes"] as $postulante_numerico)
 				{
+			
 					$postulantes_textual[] = $this->user_model->select_applicant($postulante_numerico['user_id']);
+					if($postulantes_textual[count($postulantes_textual)-1]['image_profile']!=0)
+						$postulantes_textual[count($postulantes_textual)-1]['image_profile'] = $this->photos_model->get_name($postulantes_textual[count($postulantes_textual)-1]['image_profile']);
 				}
 				$args["postulantes"] = $postulantes_textual;
 			}
@@ -301,6 +304,8 @@ class Hunter extends CI_Controller {
 				foreach($args["seleccionados"] as $postulante_numerico)
 				{
 					$seleccionados_textual[] = $this->user_model->select_applicant($postulante_numerico['user_id']);
+					if($seleccionados_textual[count($seleccionados_textual)-1]['image_profile']!=0)
+						$seleccionados_textual[count($seleccionados_textual)-1]['image_profile'] = $this->photos_model->get_name($seleccionados_textual[count($seleccionados_textual)-1]['image_profile']);				
 				}
 				$args["seleccionados"] = $seleccionados_textual;
 			}
@@ -642,6 +647,10 @@ class Hunter extends CI_Controller {
 					{
 						$video_info = $this->videos_model->get_video_applicant($id['user_id']);//saca primer video que tenga registrado
 					}
+
+					if($applicant_info['image_profile']!=0)
+						$applicant_info['image_profile'] = $this->photos_model->get_name($applicant_info['image_profile']);
+				
 					$applicant_info["apply_id"]= $id["id"]; 
 					$applicant_info["apply_state"]= $id["state"];
 					$applicant_info['tags'] = $this->skills_model->get_user_skills($id['user_id']);
@@ -703,6 +712,9 @@ class Hunter extends CI_Controller {
 				{
 					$applicant_info=$this->user_model->select_applicant($id['user_id']);
 					$applicant_info["observation"]=$id["observation"];
+					if($applicant_info['image_profile']!=0)
+						$applicant_info['image_profile'] = $this->photos_model->get_name($applicant_info['image_profile']);
+				
 					array_push($args["applicants"],$applicant_info);
 					$args["mailto_all"]=$args["mailto_all"].$applicant_info["email"].";";
 				}				

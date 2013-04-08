@@ -47,7 +47,7 @@
 	          	 foreach ($applicants as $applicant) {?>
 					<tr>
 			            <td style="vertical-align:middle;">
-			            	<img style="max-width: 80px; max-height:80px;" src="<?php echo HOME."/img/profile/".$applicant["image_profile"] ?>"/>
+			            	<img style="max-width: 80px; max-height:80px;" src="<?php echo HOME."/img/gallery/".$applicant["image_profile"] ?>"/>
 			    		</td>
 			            <td style="vertical-align:middle;"><?php echo $applicant["name"]?></td>
 			            <td style="vertical-align:middle;"><?php echo $applicant["observation"]?></td>
