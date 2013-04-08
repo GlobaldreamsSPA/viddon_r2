@@ -15,8 +15,7 @@ border: 1px solid #4C3C1B;
 			if(file_exists(APPPATH.'/../img/gallery/'.$image_profile_name) == TRUE)
 				echo "<img class='user_image' src='".HOME.'/img/gallery/'.$image_profile_name."'/>";
 			else
-				echo "<img class='user_image' src='".HOME."/img/profile/user.jpg'/>";
-		
+				echo "<img class='user_image' src='".HOME."/img/profile/user.jpg'/>";		
 			echo "</a>";
 
 		?>
@@ -70,16 +69,25 @@ border: 1px solid #4C3C1B;
 			<legend></legend>
 		</div>
 
-    	<!-- CARGO EL MODAL-->
-			<div id="add_video" class="modal hide fade" style="width: 430px !important;" tabindex="-1" role="dialog" aria-labelledby="AgregaVideo" aria-hidden="true">
-				<form id="video_upload_form" action="<?php echo HOME.'/user/'?>" method="post">
-					
+    	<!-- CARGO EL MODAL-->   	
+			<div id="add_video" class="modal hide fade" style="width: 430px !important;" tabindex="-1" role="dialog" aria-labelledby="AgregaVideo" aria-hidden="true">					
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 						<h3 id="myModalLabel">Agregar video</h3>
 					</div>
 					<div class="modal-body">
-							<div>	
+						
+						<div>
+							<ul class="nav nav-tabs">
+							  <li><a href="#link" data-toggle="tab">Enlazar Youtube</a></li>
+							  <li><a href="#upload" data-toggle="tab">Desde tu PC</a></li>
+							</ul>
+						</div>
+						<div class="tab-content">
+						  <!-- Primer tab -->
+						  <div class="tab-pane active" id="link">
+						  	<form id="video_upload_form" action="<?php echo HOME.'/user/'?>" method="post">
+							<div class="form_elements">	
 								<input name="url_ytb" style="width:90%" type="text" placeholder="Dirección - URL Video" value="" required="required"><a href="#" title="Debes pegar la dirección URL de tu video. La que se aprecia en la barra del navegador	Ej:   http://www.youtube.com/watch?v=EpQFtbFyaUw"><i class="icon-question-sign"></i></a>
 								<input name="name_ytb" style="width:96%" type="text" placeholder="Nombre">
 								<div class="space1"></div>	
@@ -87,16 +95,24 @@ border: 1px solid #4C3C1B;
 								<input type="hidden" name="from_gallery" value="yes" />
 								<div class="space1"></div>	
 							</div>
+							<button type="submit" class="btn btn-primary">Guardar</button>
+							<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+							</form>
+						  </div>
+						  
+						  <div class="tab-pane" id="upload">
+						  	<?php
+						  	$this->load->view('upload_form'); 
+						  	//include('');
+						  	?>
+						  	O puedes <a href="<?php echo HOME; ?>/subevideo">Subir Tu Video AQUI</a><i title="Utiliza esta opcion si no sabes subir videos en Youtube" class="icon-info-sign"></i>
+						  </div>
+						</div>
 					</div> 
-					<div class="modal-footer" style="height: 30px;"> 
-						O puedes <a href="<?php echo HOME; ?>/subevideo">Subir Tu Video AQUI</a><i title="Utiliza esta opcion si no sabes subir videos en Youtube" class="icon-info-sign"></i>
-						<button type="submit" class="btn btn-primary">Guardar</button>
-						<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
-					</div>
-				</form>
+					
 			</div>    	
 		<!-- MODAL-->
-    	
+		
     	<?php
     	//video[0] => titulo
     	//video[1]=> link
