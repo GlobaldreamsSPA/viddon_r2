@@ -1,9 +1,9 @@
 <div style="margin-left:10px;" class="row">
-	<div class="span4">
+	<div class="span4" style="padding-right: 2%; border-right:solid 1px">
 		<div style="margin-bottom: 10px;font-size: 18px;" id="profile" ><?php echo $name;?></div>
 		<div style= "overflow-y: scroll; height: 130px; width: 100%;"><?php echo $description;?></div>
 		
-		<div class="row">
+		<div style="margin-top:5%;"class="row">
 			<div class="span6">
 				<a class="home-video-author" href="<?php echo HOME.'/user/index/'.$iduser; ?>">
 					<?php
@@ -16,7 +16,7 @@
 			</div>
 			<div class="span6">
 				
-				<div style="margin-top: 15%; margin-left:2%;" >
+				<div style="margin-top: 15%;" >
 					<a class="home-video-author" href="<?php echo HOME.'/user/index/'.$iduser; ?>"><?php echo $username." ".$userlastname; ?></a>								
 				</div>
 				<iframe src="//www.facebook.com/plugins/like.php?href=<?php echo HOME.'/user/index/'.$iduser; ?>&amp;send=false&amp;layout=box_count&amp;width=450&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=90&amp;appId=374106952676336" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:90px;" allowTransparency="true"></iframe>
@@ -28,7 +28,8 @@
 
 	</div>
 	<div class="span8">
-		<div style="text-align: center">
+		<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
+		<div style="padding-left:2%; padding-top:5%; text-align: center">
 			<iframe width="100%" height="270px" src="http://www.youtube.com/embed/<?php echo $id_video.'?rel=0&autoplay=1&showinfo=0'?>" frameborder="0" allowfullscreen></iframe> 
 		</div>
 	</div>

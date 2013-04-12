@@ -1,8 +1,5 @@
 <div class="modal fade hide" id="playermodal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div style="padding: 0px; margin-top: 20px;" class="modal-body">
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+  <div style="padding: 0px;" class="modal-body">
   </div>
 </div>
 
@@ -11,25 +8,26 @@
 		<div class="row">
 			<div class= "span8">
 		  		<div style="border-radius: 5px; margin-left:3%;" id="variable" class="row-fluid">
-		  			
-		  			<div style="margin-left: 5%; margin-top:5%; width: 90%;" id="myCarousel" class="carousel slide">
-					  <!-- Carousel items -->
-					  <div class="carousel-inner">
-					    <div class="active item">
-					    	<!-- <a href="<?php echo base_url().'user/fb_login'; ?>">	
-		  						<img style="height:100%; width:100%;" src="<?php echo HOME."/img/concursoLlolapaloozaweb.jpg" ?>">
-		  					</a>
+		  			<div style="padding-top:2.8%; border-top-left-radius: 5px; border-top-right-radius: 5px; padding-bottom:0.5%; background:url(<?php echo HOME."/img/bgslide.png" ?>)">
+			  			<div style="margin-left: 2.5%; width: 95%;" id="myCarousel" class="carousel slide">
+						  <!-- Carousel items -->
+						  <div class="carousel-inner">
+						    <div class="active item">
+						    	<!-- <a href="<?php echo base_url().'user/fb_login'; ?>">	
+			  						<img style="height:100%; width:100%;" src="<?php echo HOME."/img/concursoLlolapaloozaweb.jpg" ?>">
+			  					</a>
+							</div>
+							<div class="item">
+							-->
+						    	<a href="<?php echo base_url().'user/fb_login'; ?>">	
+			  						<img style="height:100%; width:100%;" src="<?php echo HOME."/img/home_viddon_graphic.jpg" ?>">
+			  					</a>
+							</div>
+						  </div>
+						  <!-- Carousel nav -->
+						  <a style="margin-top:2%;" class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+						  <a style="margin-top:2%;" class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 						</div>
-						<div class="item">
-						-->
-					    	<a href="<?php echo base_url().'user/fb_login'; ?>">	
-		  						<img style="height:100%; width:100%;" src="<?php echo HOME."/img/home_viddon_graphic.jpg" ?>">
-		  					</a>
-						</div>
-					  </div>
-					  <!-- Carousel nav -->
-					  <a style="margin-top:2%;" class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-					  <a style="margin-top:2%;" class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 					</div>
 					<div class="space1"> </div>
 					<div class="row">
@@ -52,7 +50,7 @@
 				$i=0; 
 				foreach ($video_list as $video) {
 					$i++;
-					if(($i-1)%3 == 0 or $i==1) echo "<div class='row-fluid'>";
+					if(($i-1)%3 == 0 or $i==1) echo "<div style='margin-left: 1px;' class='row'>";
 					?>
 					<div id="main_videos_list" class='span4'>
 						<div class="space1"></div>

@@ -5,6 +5,11 @@ border: 1px solid #4C3C1B;
 }
 </style>
 
+<div class="modal fade hide"  style="padding-right: 1%; padding-left: 0.3%" id="playermodal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div style="padding: 0px;" class="modal-body">
+  </div>
+</div>
+
 <div class="row-fluid">		
 	<div class="span3 user-profile-left">
 		<div class="row">
@@ -15,7 +20,8 @@ border: 1px solid #4C3C1B;
 			if(file_exists(APPPATH.'/../img/gallery/'.$image_profile_name) == TRUE)
 				echo "<img class='user_image' src='".HOME.'/img/gallery/'.$image_profile_name."'/>";
 			else
-				echo "<img class='user_image' src='".HOME."/img/profile/user.jpg'/>";		
+				echo "<img class='user_image' src='".HOME."/img/profile/user.jpg'/>";
+		
 			echo "</a>";
 
 		?>
@@ -69,25 +75,16 @@ border: 1px solid #4C3C1B;
 			<legend></legend>
 		</div>
 
-    	<!-- CARGO EL MODAL-->   	
-			<div id="add_video" class="modal hide fade" style="width: 430px !important;" tabindex="-1" role="dialog" aria-labelledby="AgregaVideo" aria-hidden="true">					
+    	<!-- CARGO EL MODAL-->
+			<div id="add_video" class="modal hide fade" style="width: 430px !important;" tabindex="-1" role="dialog" aria-labelledby="AgregaVideo" aria-hidden="true">
+				<form id="video_upload_form" action="<?php echo HOME.'/user/'?>" method="post">
+					
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 						<h3 id="myModalLabel">Agregar video</h3>
 					</div>
 					<div class="modal-body">
-						
-						<div>
-							<ul class="nav nav-tabs">
-							  <li><a href="#link" data-toggle="tab">Enlazar Youtube</a></li>
-							  <li><a href="#upload" data-toggle="tab">Desde tu PC</a></li>
-							</ul>
-						</div>
-						<div class="tab-content">
-						  <!-- Primer tab -->
-						  <div class="tab-pane active" id="link">
-						  	<form id="video_upload_form" action="<?php echo HOME.'/user/'?>" method="post">
-							<div class="form_elements">	
+							<div>	
 								<input name="url_ytb" style="width:90%" type="text" placeholder="Dirección - URL Video" value="" required="required"><a href="#" title="Debes pegar la dirección URL de tu video. La que se aprecia en la barra del navegador	Ej:   http://www.youtube.com/watch?v=EpQFtbFyaUw"><i class="icon-question-sign"></i></a>
 								<input name="name_ytb" style="width:96%" type="text" placeholder="Nombre">
 								<div class="space1"></div>	
@@ -95,24 +92,16 @@ border: 1px solid #4C3C1B;
 								<input type="hidden" name="from_gallery" value="yes" />
 								<div class="space1"></div>	
 							</div>
-							<button type="submit" class="btn btn-primary">Guardar</button>
-							<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
-							</form>
-						  </div>
-						  
-						  <div class="tab-pane" id="upload">
-						  	<?php
-						  	$this->load->view('upload_form'); 
-						  	//include('');
-						  	?>
-						  	O puedes <a href="<?php echo HOME; ?>/subevideo">Subir Tu Video AQUI</a><i title="Utiliza esta opcion si no sabes subir videos en Youtube" class="icon-info-sign"></i>
-						  </div>
-						</div>
 					</div> 
-					
+					<div class="modal-footer" style="height: 30px;"> 
+						O puedes <a href="<?php echo HOME; ?>/subevideo">Subir Tu Video AQUI</a><i title="Utiliza esta opcion si no sabes subir videos en Youtube" class="icon-info-sign"></i>
+						<button type="submit" class="btn btn-primary">Guardar</button>
+						<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+					</div>
+				</form>
 			</div>    	
 		<!-- MODAL-->
-		
+    	
     	<?php
     	//video[0] => titulo
     	//video[1]=> link
@@ -162,9 +151,9 @@ border: 1px solid #4C3C1B;
 				
     	?>
     			
-    			<div>
+    			<div style="margin-left:2%;" class="row">
 						<div style="min-height: 15px !important;" class="span9">
-							<label style="font-size: 150%;" id="profile" ><?php echo $video[0]; ?></label>
+							<label style="font-size: 120%;" id="profile" ><?php echo substr(strip_tags($video[0]),0,18).".."; ?></label>
 						</div>
 						<?php if(!$public) {?>
 							<div class="span1">
@@ -180,7 +169,15 @@ border: 1px solid #4C3C1B;
 							
 						<?php } ?>
 				</div>
-	    		<iframe width="100%" height="200px" src="http://www.youtube.com/embed/<?php echo $video[1].'?rel=0'?>" frameborder="0" allowfullscreen></iframe>	
+
+				<a href="<?php echo HOME.'/home/video?id='.urlencode($video[1]).'&name='. urlencode($video[0]).'&iduser='.urlencode($user_id).'&username='.urlencode($name).'&description='.urlencode($video[2]).'&userlastname='.urlencode($last_name).'&image='.urlencode($image_profile_name) ?>" data-target="#playermodal" data-toggle="modal">							
+					<div class="image">
+						<div>
+						<img class="fade_new" src="<?php echo 'http://img.youtube.com/vi/'.$video[1].'/0.jpg'; ?>" alt=""/>
+						</div>
+						<img class="hoverimage" src="<?php echo HOME.'/img/player_arrow.png'; ?>" alt="" />
+					</div>
+				</a>
 				
 			</div>
 	    <?php 

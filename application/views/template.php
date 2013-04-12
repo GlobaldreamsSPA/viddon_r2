@@ -588,13 +588,13 @@
 
 
 <div class"row">
-	<div class="span8 offset3"><p>GlobalDreams SPA | Las Violetas 2267, Providencia, Santiago | <a href="<?php echo base_url();?>docs/terms.pdf">T&eacuterminos y condiciones</a> | <a href="mailto:contacto@viddon.com">Cont&aacutectanos</a></p></p></div>
+	<div class="span8 offset3"><p style="color: #7d7d7d;">GlobalDreams SPA | La Concepci&oacute;n 81 oficina 1002, Providencia, Santiago | <a href="<?php echo base_url();?>docs/terms.pdf">T&eacuterminos y condiciones</a> | <a href="mailto:contacto@viddon.com">Cont&aacutectanos</a></p></p></div>
 </div>
 <div class="row">
 	<div class="span8 offset3">
 		<div class="row">
 				<div class="span11 offset1" style="margin-top: -3px;">
-					<a style="margin-left: 30px; text-decoration: none; color: black;" class="second">Viddon &copy; 2013 | Todos los derechos reservados</a>
+					<a style="margin-left: 30px; text-decoration: none; color: #7d7d7d;" class="second">Viddon &copy; 2013 | Todos los derechos reservados</a>
 					<a style="margin-left: 20px;" href="https://twitter.com/ViddonCom" target=”_blank”><img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/twitter-logo.png"/></a>
 					<a  href="http://www.facebook.com/pages/Viddoncom/499177723428347?ref=hl" target=”_blank”> <img style="width: 25px; height: 25px;" src="<?php echo base_url(); ?>img/fb-logo.png"/></a>
 					<div style="margin-left: 10px;" class="fb-like" data-href="https://www.facebook.com/pages/Viddoncom/499177723428347" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>				
