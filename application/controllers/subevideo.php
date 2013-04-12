@@ -117,8 +117,8 @@ class Subevideo extends CI_Controller
 	//www.your_url.com/index.php/request_youtube
 	public function request_youtube()
 	{
-		$params['key'] = 'development.viddon.com';
-		$params['secret'] = 'R7mM_TxYhzbM5XG1RhOVNq7x';
+		$params['key'] = 'www.viddon.com';
+		$params['secret'] = 'PhKZBCgdQxVcXkYgs4ffrBas';
 		$params['algorithm'] = 'HMAC-SHA1';
 		
 		$this->load->library('google_oauth', $params);
@@ -131,8 +131,8 @@ class Subevideo extends CI_Controller
 	//once the user approves access of your application
 	public function access_youtube()
 	{
-		$params['key'] = 'development.viddon.com';
-		$params['secret'] = 'R7mM_TxYhzbM5XG1RhOVNq7x';
+		$params['key'] = 'www.viddon.com';
+		$params['secret'] = 'PhKZBCgdQxVcXkYgs4ffrBas';
 		$params['algorithm'] = 'HMAC-SHA1';
 		
 		$this->load->library('google_oauth', $params);
@@ -142,8 +142,13 @@ class Subevideo extends CI_Controller
 		$this->session->set_userdata('oauth_token', $oauth['oauth_token']);
 		$this->session->set_userdata('oauth_token_secret', $oauth['oauth_token_secret']);
 		//var_dump(htmlentities($oauth['oauth_token']));
-		//var_dump($oauth['oauth_token']);
-		//var_dump($oauth['oauth_token_secret']);
+		
+		/*
+		echo " oauth token <br />";
+		var_dump($oauth['oauth_token']);
+		echo "oauth token secret <br />";
+		var_dump($oauth['oauth_token_secret']);
+		 */
 	}
 	
 	//This method can be called without having
@@ -161,9 +166,9 @@ class Subevideo extends CI_Controller
 	public function youtube_auth()
 	{
 		$params['apikey'] = 'AI39si4Eb8UYv17A5Rih0NCb-pkJR2ay0nYlkBC0mBjeHdhhIrzio8eL8Ct1SDEjFVUDdAguRFmLTnIrqSSvP9MXBZHiE_pNFw';
-		$params['oauth']['key'] = 'development.viddon.com';
-		$params['oauth']['secret'] = 'R7mM_TxYhzbM5XG1RhOVNq7x';
-		$params['oauth']['algorithm'] = 'HMAC-SHA1';
+		$params['key'] = 'www.viddon.com';
+		$params['secret'] = 'PhKZBCgdQxVcXkYgs4ffrBas';
+		$params['algorithm'] = 'HMAC-SHA1';
 		$params['oauth']['access_token'] = array('oauth_token'=>urlencode($this->session->userdata('oauth_token')),
 												 'oauth_token_secret'=>urlencode($this->session->userdata('oauth_token_secret')));
 		
@@ -173,14 +178,14 @@ class Subevideo extends CI_Controller
 	
 	public function direct_upload($videoPath,$videoType,$mDATA=NULL)
 	{
-		$oauth_TOKEN = "1/djnKkGT7RtoDfZ69094D_YnWjJyiTZTse82lYJ7vhac";
-		$oauth_TOKEN_SECRET = "gFts5fWFUM7IfRgsAf7PTxzo";
+		$oauth_TOKEN = "1/u3MtbVmZO0eyFiP3rJDqoh7mDQkDp1g2u-HDkuyf94g";
+		$oauth_TOKEN_SECRET = "aaLqnwwxUXdxNX1OeukuCz8n";
 		//$videoPath ='img/video03.wmv';
 		//$videoType = 'video/x-ms-wmv'; //This is the mime type of the video ex: 'video/3gpp'
 		
 		$params['apikey'] = 'AI39si4Eb8UYv17A5Rih0NCb-pkJR2ay0nYlkBC0mBjeHdhhIrzio8eL8Ct1SDEjFVUDdAguRFmLTnIrqSSvP9MXBZHiE_pNFw';
-		$params['oauth']['key'] = 'development.viddon.com';
-		$params['oauth']['secret'] = 'R7mM_TxYhzbM5XG1RhOVNq7x';
+		$params['oauth']['key'] = 'www.viddon.com';
+		$params['oauth']['secret'] = 'PhKZBCgdQxVcXkYgs4ffrBas';
 		$params['oauth']['algorithm'] = 'HMAC-SHA1';
 		//$params['oauth']['access_token'] = array('oauth_token'=>urlencode($this->session->userdata('oauth_token')),'oauth_token_secret'=>urlencode($this->session->userdata('oauth_token_secret')));
 		$params['oauth']['access_token'] = array('oauth_token'=>urlencode($oauth_TOKEN),'oauth_token_secret'=>urlencode($oauth_TOKEN_SECRET));
