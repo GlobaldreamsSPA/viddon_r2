@@ -59,7 +59,7 @@ class Subevideo extends CI_Controller
 		$config['allowed_types'] = 'avi|flv|wmv|mov|mpeg4|mp4|3gp|3gpp|webm'; //formatos mime compatibles
 		$config['overwrite'] = FALSE;
         $config['remove_spaces'] = TRUE;
-		$config['max_size'] = '10240';//10 MB
+		$config['max_size'] = '20480';//20 MB
 		
 		
 		//$video_name = $date.$_FILES['video']['name'];
@@ -67,12 +67,15 @@ class Subevideo extends CI_Controller
 		
 		$this->load->library('upload', $config);
 		$this->upload->initialize($config);
-		if (!$this->upload->do_upload()) 
+		if (!$this->upload->do_upload())  //trata de subir el archivo sino se sube correctamente
 		{
 			$error = array('error' => $this->upload->display_errors());
-			$this->load->view('upload_form', $error);
+			//REGISTRE EL ERROR
+			
+			redirect(HOME."/user/video_gallery#uploaderror");
+			//$this->load->view('upload_form', $error);
 		} 
-		else 
+		else //si lo subió exitosamente
 		{
 			$data = array('upload_data' => $this->upload->data());
 			$path_temporal = $config['upload_path'].str_replace(" ","_", $_FILES['userfile']['name']);
@@ -85,27 +88,28 @@ class Subevideo extends CI_Controller
         	$xml = new SimpleXMLElement($resultado_subida_youtube);
     	}
     	catch (Exception $e){    
-        	 echo $e->getMessage();
+        	 echo "HOLA HOLA HOLA".$e->getMessage();
     	}
 			
 			
 			
-			$xml = new SimpleXMLElement($resultado_subida_youtube);
-			
-			$temp = array();
-			$temp = explode(":",$xml->id);
-			$mDATA['link'] = $temp[(sizeof($temp) - 1)]; //guarda el link code
-							
-			
-			//Insertar en base de datos información del video correspondiente
-			$first = $this->videos_model->insert($mDATA);
-			if($first != 0) $this->user_model->set_main_video($userid,$first);
-			
-			//elimina el video de la carpeta temporal
-			unlink("./".$path_temporal);
-			
-			//carga el mensaje de exito en la vista
-			$this->load->view('upload_success', $data);
+		$xml = new SimpleXMLElement($resultado_subida_youtube);
+		
+		$temp = array();
+		$temp = explode(":",$xml->id);
+		$mDATA['link'] = $temp[(sizeof($temp) - 1)]; //guarda el link code
+						
+		
+		//Insertar en base de datos información del video correspondiente
+		$first = $this->videos_model->insert($mDATA);
+		if($first != 0) $this->user_model->set_main_video($userid,$first);//lo setea como main video si es el primero en ser ingresado
+		
+		//elimina el video de la carpeta temporal
+		unlink("./".$path_temporal);
+		
+		//carga el mensaje de exito en la vista
+		redirect(HOME."/user/video_gallery#success");
+		//$this->load->view('upload_success', $data);
 		}
 	}	
 	

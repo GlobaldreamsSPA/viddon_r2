@@ -1,4 +1,11 @@
-<?php echo $error;?><!-- Si ocurrió un error, lo muestra -->
+<?php
+	if(isset($error))
+	{
+		//registro el error
+		echo($error);
+	} 
+	
+?><!-- Si ocurrió un error, lo muestra -->
 
 <h1>Terminos y condiciones de uso</h1>
 <p>Al utilizar este medio para publicar sus videos,....
@@ -13,7 +20,4 @@
 </textarea><br>
 <input type="submit" value="Subir" />
 </form>
-<div style="margin-top: 20px;" class="span3">
-<a title="Volver a galeria" href="<?php echo HOME.'/user/video_gallery/'?>" style="width:70% !important;"class="btn btn-primary" type="submit" name="apply"><i class="icon-film"></i> Galeria</a>
-</div>
 <p>Si llegaste a esta seccion y no sabes que hacer, te recomendamos intentar subir tu video utilizando Youtube en el siguiente enlace: <a href="http://www.youtube.com/upload" target="_blank">Youtube Upload</a></p>
