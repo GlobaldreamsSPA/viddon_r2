@@ -30,6 +30,8 @@ class Hunter extends CI_Controller {
 		else
 			redirect(HOME);
 	}
+	
+	
 
 	function verifylogin()
  	{
@@ -311,6 +313,23 @@ class Hunter extends CI_Controller {
 		else
 			redirect(HOME);
 
+	}
+
+
+	function custom_form($casting_id=NULL)
+	{
+		if($this->session->userdata('logged_in') && isset($id) && $this->session->userdata('type') == "hunter")
+		{
+			if(!is_null($casting_id))
+			{
+				//cargo las preguntas existentes
+				
+				
+				//cargo la vista
+				
+			}
+		}
+		else redirect(HOME);
 	}
 	
 	function edit_casting($id=NULL)
