@@ -15,14 +15,16 @@ border: 1px solid #4C3C1B;
 		<div class="row">
 		<?php 
 
-			echo "<a href= '".HOME."/user/photo_gallery/'>";
+			if(!$public)
+				echo "<a href= '".HOME."/user/photo_gallery/'>";
 
 			if(file_exists(APPPATH.'/../img/gallery/'.$image_profile_name) == TRUE)
 				echo "<img class='user_image' src='".HOME.'/img/gallery/'.$image_profile_name."'/>";
 			else
 				echo "<img class='user_image' src='".HOME."/img/profile/user.jpg'/>";
-		
-			echo "</a>";
+			
+			if(!$public)
+				echo "</a>";
 
 		?>
 		</div>
@@ -67,11 +69,24 @@ border: 1px solid #4C3C1B;
     <div class="span8 offset1 user-profile-right"> <!-- CARGAREMOS LOS DATOS DE LA GALERIA -->
 		<div class="row">
 			<div class="span8">
-	    	<h2><a href="<?php echo HOME."/user"?>"> Perfil</a> / Galeria de videos</h2>
+	    	<h2>
+	    	<?php if(!$public) {?>
+	    		<a href="<?php echo HOME."/user"?>">
+	    	<?php } 
+	    	else {?>
+	    		<a href="<?php echo HOME."/user/index/".$user_id?>">
+	    	<?php }?>
+	    	Perfil</a> 
+	    	
+	    	/ Galeria de videos
+	    	</h2>
 			</div>
+			<?php if(!$public) {?>
+
 			<div style="margin-top:15px;" class="span4">
 					<button data-toggle="modal"  href="#add_video" class="btn btn-primary">Agregar Video</button>
 			</div>
+			<?php } ?>
 			<legend></legend>
 		</div>
 
@@ -85,7 +100,7 @@ border: 1px solid #4C3C1B;
 					</div>
 					<div class="modal-body">
 							<div>	
-								<input name="url_ytb" style="width:90%" type="text" placeholder="Dirección - URL Video" value="" required="required"><a href="#" title="Debes pegar la dirección URL de tu video. La que se aprecia en la barra del navegador	Ej:   http://www.youtube.com/watch?v=EpQFtbFyaUw"><i class="icon-question-sign"></i></a>
+								<input name="url_ytb" style="width:90%" type="text" placeholder="Dirección - URL Video" value="" required="required"><a style="margin-left:1.5%;"href="#" title="Debes pegar la dirección URL de tu video. La que se aprecia en la barra del navegador	Ej:   http://www.youtube.com/watch?v=EpQFtbFyaUw"><i style="margin-top: -2px;"class="icon-question-sign"></i></a>
 								<input name="name_ytb" style="width:96%" type="text" placeholder="Nombre">
 								<div class="space1"></div>	
 								<textarea class="rich_textarea_pop_up" name="description_ytb" rows="6" placeholder="Descripción"></textarea>
@@ -94,7 +109,6 @@ border: 1px solid #4C3C1B;
 							</div>
 					</div> 
 					<div class="modal-footer" style="height: 30px;"> 
-						O puedes <a href="<?php echo HOME; ?>/subevideo">Subir Tu Video AQUI</a><i title="Utiliza esta opcion si no sabes subir videos en Youtube" class="icon-info-sign"></i>
 						<button type="submit" class="btn btn-primary">Guardar</button>
 						<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
 					</div>
@@ -160,11 +174,11 @@ border: 1px solid #4C3C1B;
 								<a id="editing_tagevent" class="btn-del" title="Editar Información" data-toggle="modal"  href="#edit_video_<?php echo $video[3];?>" class="btn btn-primary"><i class="icon-edit"></i></a>
 							</div>
 							<div class="span1">
-								<a class="btn-del" title="Establecer como principal" href="<?php echo HOME."/user/video_gallery/".$page."/1/".$video[3];?>" class="btn btn-primary"><i class="icon-star-empty"></i></a>
+								<a class="btn-del" title="Establecer como principal" href="<?php echo HOME.'/user/video_gallery/'.$user_id.'/'.$page.'/1/'.$video[3];?>" class="btn btn-primary"><i class="icon-star-empty"></i></a>
 							</div>
 							<div style="visibility:hidden;" id="idvideo" value="<?php echo $video['3'];?>"></div>
 							<div style="margin-left: 5px;" class="span1">
-								<a class="btn-del" title="Eliminar video" href="<?php echo HOME."/user/video_gallery/".$page."/2/".$video[3];?>" class="btn btn-primary"><i class="icon-remove"></i></a>
+								<a class="btn-del" title="Eliminar video" href="<?php echo HOME.'/user/video_gallery/'.$user_id.'/'.$page.'/2/'.$video[3];?>" class="btn btn-primary"><i class="icon-remove"></i></a>
 							</div>
 							
 						<?php } ?>
@@ -191,7 +205,7 @@ border: 1px solid #4C3C1B;
 	        <div class="space1"></div>
 		        <div class="pagination">  
 		            <ul id="pagination_bt">
-		                <li <?php if($page==1) echo "class='disabled'";?> ><a <?php if($page!=1) echo "href= '".base_url()."user/video_gallery/".($page-1)."/'";?>>Prev</a></li>  
+		                <li <?php if($page==1) echo "class='disabled'";?> ><a <?php if($page!=1) echo "href= '".base_url()."user/video_gallery/".$user_id."/".($page-1)."/'";?>>Prev</a></li>  
 		                <?php 
 		    	            
 		                $pag_size = 6; //se puede fijar una constante que lo maneje
@@ -206,9 +220,9 @@ border: 1px solid #4C3C1B;
 					 
 		                for($i = $begin_pag; $i <= $end_pag; $i++) 
 		                { ?>
-		                	<li <?php if($page==$i) echo "class='disabled'";?> ><a <?php if($page!=$i) echo "href= '".base_url()."user/video_gallery/".$i."/'";?> > <?php echo $i; ?></a></li>  
+		                	<li <?php if($page==$i) echo "class='disabled'";?> ><a <?php if($page!=$i) echo "href= '".base_url()."user/video_gallery/".$user_id."/".$i."/'";?> > <?php echo $i; ?></a></li>  
 		                <?php } ?>
-		                <li <?php if($page==$chunks) echo "class='disabled'";?> ><a <?php if($page!=$chunks) echo "href= '".base_url()."user/video_gallery/".($page+1)."/'";?>>Next</a></li>
+		                <li <?php if($page==$chunks) echo "class='disabled'";?> ><a <?php if($page!=$chunks) echo "href= '".base_url()."user/video_gallery/".$user_id."/".($page+1)."/'";?>>Next</a></li>
 		            </ul>  
 		        </div>  
 	        <div class="space1"></div>  

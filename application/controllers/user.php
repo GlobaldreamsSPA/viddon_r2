@@ -494,88 +494,89 @@ private function _upload_image($id)
 	}
 
 
-	public function video_gallery($page=1,$ope=NULL,$id_video_objetivo=NULL)
+	public function video_gallery($id=null,$page=1,$ope=NULL,$id_video_objetivo=NULL)
 	{
-		if($this->session->userdata('id') == FALSE)
+		if($this->session->userdata('id') == FALSE && is_null($id))
 			redirect(HOME);
 
 		$args = array();
-		$public = FALSE;
-		$id_user = NULL;
 		
-		if($this->session->userdata('id') === FALSE || ($id_user != NULL && $id_user != $this->session->userdata('id')))
-			$public = TRUE;
+		if(!is_null($id) && ($this->session->userdata('id') == FALSE || $id!= $this->session->userdata('id')))
+		{	
+			$args = $this->user_model->select($id);
+			$args["castings"]= $this->castings_model->get_castings(NULL, 2, 1);
+			$args['public'] = TRUE;
+			$args['id_main_video'] =$this->user_model->get_main_video_id($id);
+
+		}
 		else
 		{
 			$id = $this->session->userdata('id');
-			$public = FALSE;
-		}
-		
-		
-		//proceso la operación de actualización del video $_POST['id_editando']
-		if(isset($_POST['id_editando']))
-		{
-			//agregar validaciones aquí
-			
-			$this->videos_model->update($_POST['id_editando'],$_POST['nombre_video_edit'],$_POST['description_video_edit']);
-			redirect(HOME."/user/video_gallery"); //vuelve a cargar
-		}
-		
+			$args = $this->user_model->select($id);
+			$args['public'] = FALSE;
 
-		$args = $this->user_model->select($id);
+			//proceso la operación de actualización del video $_POST['id_editando']
+			if(isset($_POST['id_editando']))
+			{
+				//agregar validaciones aquí
+				
+				$this->videos_model->update($_POST['id_editando'],$_POST['nombre_video_edit'],$_POST['description_video_edit']);
+				redirect(HOME."/user/video_gallery"); //vuelve a cargar
+			}
+
+			if($this->videos_model->verify_videos($id) != 1)
+			{
+				$args["postulation_flag"]=false;
+				$args["postulation_message"]="Necesitas Tener Videos para poder postular";
+			}
+			else {
+				$args["postulation_flag"]=true;
+			}
+
+			$args['id_main_video'] =$this->user_model->get_main_video_id($id);
+
+
+			if(!is_null($ope))
+			{
+				switch($ope){
+					case 1://HACER MAIN
+						if(!is_null($id_video_objetivo) && !is_null($id) && is_numeric($id_video_objetivo))
+						{
+							$this->user_model->set_main_video($id,$id_video_objetivo);
+							redirect(HOME."/user/video_gallery");			
+						}
+						break;
+					case 2://ELIMINAR
+						if(!is_null($id_video_objetivo) && !is_null($id) && is_numeric($id_video_objetivo))
+						{
+							if($args['id_main_video'] == $id_video_objetivo)
+								$this->user_model->set_main_video($id);
+							$this->videos_model->delete($id_video_objetivo);	
+							redirect(HOME."/user/video_gallery");		
+						}
+						break;
+				} 
+			}
+
+		}
+		
+		
 		if($args['image_profile'] != 0)
 			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
 		else
 			$args['image_profile_name'] = 0;
 
-		$args['public'] = $public;
-		$args["tags"] = $this->skills_model->get_user_skills($id);
-		$args["user"] = $this->user_model->welcome_name($id);
-
-		if($this->videos_model->verify_videos($id) != 1)
-		{
-			$args["postulation_flag"]=false;
-			$args["postulation_message"]="Necesitas Tener Videos para poder postular";
-		}
-		else {
-			$args["postulation_flag"]=true;
-		}
 		
 		//AHORA OBTENGO LOS ELEMENTOS NECESARIOS PARA LA GALERIA
-		$args['videos'] = $this->videos_model->get_videos_by_user($this->session->userdata('id'),$page);
-		$args['id_main_video'] =$this->user_model->get_main_video_id($this->session->userdata('id'));
+		$args['videos'] = $this->videos_model->get_videos_by_user($id,$page);
 		$args['page']=$page;
-		$args["chunks"]=ceil($this->videos_model->count_videos_by_user($this->session->userdata('id'))/8);	
+		$args["chunks"]=ceil($this->videos_model->count_videos_by_user($id)/8);	
 		
 		
 		$args["content"]="applicants/applicants_template";
 		$inner_args["applicant_content"]="applicants/video_gallery";
 		$args["inner_args"]=$inner_args;
-		$args["auxiliar"] = TRUE;
-		$args["user_id"] = $this->session->userdata('id');
-		
-		if(!is_null($ope))
-		{
-			switch($ope){
-				case 1://HACER MAIN
-					if(!is_null($id_video_objetivo) && !is_null($args["user_id"]) && is_numeric($id_video_objetivo))
-					{
-						$this->user_model->set_main_video($args["user_id"],$id_video_objetivo);
-						redirect(HOME."/user/video_gallery");			
-					}
-					break;
-				case 2://ELIMINAR
-					if(!is_null($id_video_objetivo) && !is_null($args["user_id"]) && is_numeric($id_video_objetivo))
-					{
-						if($args['id_main_video'] == $id_video_objetivo)
-							$this->user_model->set_main_video($args["user_id"]);
-						$this->videos_model->delete($id_video_objetivo);	
-						redirect(HOME."/user/video_gallery");		
-					}
-					break;
-			} 
-		}
-		
+		$args["user_id"] = $id;
 		
 		$this->load->view('template',$args);
 	}

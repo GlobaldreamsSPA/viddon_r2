@@ -78,18 +78,20 @@
 		<div class="justify video-title">
 			
 
-			<?php if(!$public) {?>
-				<div class="span9">
-					<h3 id="profile" ><?php echo $video_title;?></h5>
-				</div>
-				<div style="margin-top: 20px;" class="span3">
-					<a href="<?php echo HOME.'/user/video_gallery/'?>" style="width:70% !important;"class="btn btn-primary" type="submit" name="apply"><i class="icon-film"></i> Galeria</a>
-				</div>
-			<?php }
-			else { ?>
+			<div class="span9">
 				<h3 id="profile" ><?php echo $video_title;?></h5>
+			</div>
+			<div style="margin-top: 20px;" class="span3">
 
-			<?php } ?>
+				<?php if(!$public) {?>
+					<a href="<?php echo HOME.'/user/video_gallery/'?>" style="width:70% !important;"class="btn btn-primary" type="submit" name="apply">
+				<?php }
+				else { ?>
+					<a href="<?php echo HOME.'/user/video_gallery/'.$user_id?>" style="width:70% !important;"class="btn btn-primary" type="submit" name="apply">
+				<?php } ?>
+				<i class="icon-film"></i> Galeria</a>
+			</div>
+							
 
 		</div>
 
