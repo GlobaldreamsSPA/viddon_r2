@@ -50,7 +50,8 @@
 				$i=0; 
 				foreach ($video_list as $video) {
 					$i++;
-					if(($i-1)%3 == 0 or $i==1) echo "<div style='margin-left: 1px;' class='row'>";
+					if(($i-1)%3 == 0 or $i==1) 
+						echo "<div style='margin-left: 1px;' class='row'>";
 					?>
 					<div id="main_videos_list" class='span4'>
 						<div class="space1"></div>
@@ -81,7 +82,10 @@
 							</div>
 						</div>
 					</div>
-				<?php if($i%3 == 0 || $i == count($video_list)) echo "</div>"; }?>
+				<?php 
+					if($i%3 == 0 || $i == count($video_list)) 
+						echo "</div>"; 
+				}?>
 					<div class="row">
 						<div class="space1"></div>
 						<div class="pagination">  

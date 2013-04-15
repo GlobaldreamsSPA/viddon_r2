@@ -41,7 +41,11 @@
 									<h5>Fecha de t&eacutermino</h5>
 									<input type="text" class="span3" value="<?php if(isset($update_values)) echo $update_values["end_date"]; else echo $today->format('Y-m-d');?>" id="dp2" data-date-format="yyyy-mm-dd" name="end-date">
 									
-									
+									<h5>Meta Postulantes</h5>
+									<input type="text" name="max_applies" class="span5" placeholder="Ingresa Cantidad" value="<?php if(isset($update_values)) echo $update_values["max_applies"]; else echo set_value('max_applies');?>">
+									<?php echo form_error('max_applies'); ?>
+	
+
 									<h5>Categor&iacutea</h5>
 									<select class="span5" name="category">
 										<?php
@@ -97,10 +101,13 @@
 	
 									
 									<div class="space1"></div>
+
+									<button type="submit" class="btn btn-primary">Guardar Cambios</button>
+
 								</div>
+								<?php /* ?>		
 								<legend>Perfil del postulante a buscar</legend>
 								<div>
-									<?php /* ?>		
 									<div style="margin-left:15px;" class="row">
 										<div class="span6">
 										<h5>Color de ojos</h5>
@@ -155,11 +162,10 @@
 										</div>
 									</div>
 									
-									<php */ ?>
 									<div style="margin-left:15px;" class="row">
 										<?php 
 											echo form_multiselect('age[]', $age_list,NULL,"class='chzn-select chosen_filter' style='width:60%' data-placeholder='Selecciona las edades...'");
-										 /* ?>
+										 ?>
 										<div class="span6">
 											<h5>Contextura</h5>
 											<select style="width: 100%;" name="build">
@@ -170,7 +176,6 @@
 												<option value="4">Obeso</option>
 											</select>
 										</div>
-										<?php */?>
 									</div>
 									<div style="margin-left:15px;" class="row">	
 										<h5>Sexo</h5>
@@ -187,9 +192,10 @@
 											Ambos
 										</label>
 										<div class="space2"></div>
-										<button type="submit" class="btn btn-primary">Guardar Cambios</button>
 									</div>									
 					  			</div>
+					  			<php */ ?>
+
 							</form>
 						</div>
 						

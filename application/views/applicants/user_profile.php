@@ -79,9 +79,9 @@
 			
 
 			<div class="span9">
-				<h3 id="profile" ><?php echo $video_title;?></h3>
+				<label style="font-size: 110%;"id="profile" ><?php echo $video_title;?></label>
 			</div>
-			<div style="margin-top: 20px;" class="span3">
+			<div style="margin-top: -1%" class="span3">
 
 				<?php if(!$public) {?>
 					<a href="<?php echo HOME.'/user/video_gallery/'?>" style="width:70% !important;"class="btn btn-primary" type="submit" name="apply">

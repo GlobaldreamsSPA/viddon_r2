@@ -33,6 +33,10 @@
 				<h5>Fecha de t&eacutermino</h5>
 				<input type="text" class="span3" value="<?php echo $today->format('Y-m-d'); ?>" id="dp2" data-date-format="yyyy-mm-dd" name="end-date">
 				
+				<h5>Meta Postulantes</h5>
+				<input type="text" name="max_applies" class="span5" placeholder="Ingresa Cantidad" value="<?php if(isset($update_values)) echo $update_values["max_applies"]; else echo set_value('max_applies');?>">
+				<?php echo form_error('max_applies'); ?>
+	
 				
 				<h5>Categor&iacutea</h5>
 				<select class="span5" name="category">
@@ -74,13 +78,15 @@
 				<textarea class="rich_textarea" name="requirements"></textarea>
 				<?php echo form_error('requirements'); ?>
 
-				
 				<div class="space1"></div>
+
+				<button type="submit" class="btn btn-primary">Publicar casting</button>
+
 			</div>
-			
+			<?php /* ?>	
 			<legend>Perfil del postulante a buscar</legend>
 			<div>	
-				<?php /* ?>	
+				
 				<div style="margin-left:15px;" class="row">
 					<div class="span6">
 					<h5>Color de ojos</h5>
@@ -134,7 +140,6 @@
 						</select>
 					</div>
 				</div>
-				<?php */?>
 				<div style="margin-left:15px;">
 					<h5>Edad</h5>
 						
@@ -155,10 +160,12 @@
 						<input type="radio" name="optionsRadios" id="optionsRadios3" value="0">
 						Ambos
 					</label>
+
+
 					<div class="space2"></div>
-					<button type="submit" class="btn btn-primary">Publicar casting</button>
 				</div>									
 			</div>
+			<?php */?>
 		</form>
 	</div>			
 </div>

@@ -99,10 +99,11 @@ class Hunter extends CI_Controller {
 				'Este dato es requerido para publicar el casting.');
 
 			//Setear reglas
-			$this->form_validation->set_rules('title', 'Title', 'required');
-			$this->form_validation->set_rules('description', 'Description', 'required');
-			$this->form_validation->set_rules('requirements', 'Requirements', 'required');
-			$this->form_validation->set_rules('image', 'Image', 'callback_check_upload[logo]');
+			$this->form_validation->set_rules('title', 'Titulo', 'required');
+			$this->form_validation->set_rules('description', 'Descripcion', 'required');
+			$this->form_validation->set_rules('requirements', 'Requerimientos', 'required');
+			$this->form_validation->set_rules('image', 'Imagen', 'callback_check_upload[logo]');
+			$this->form_validation->set_rules('max_applies', 'Meta Postulantes', 'required|numeric');
 
 			if ($this->form_validation->run() == FALSE)
 			{
@@ -133,7 +134,9 @@ class Hunter extends CI_Controller {
 					$casting['category'] = $this->input->post('category');
 					//convierto la "categoria a su id correspondiente"
 					$casting['category'] = $this->casting_categories_model->get_id_by_name($casting['category']);
-					
+					$casting['max_applies'] = $this->input->post('max_applies');
+
+					/*
 					
 					$casting['eyes-color'] = $this->input->post('eyes-color');
 					$casting['hair-color'] = $this->input->post('hair-color');
@@ -141,6 +144,7 @@ class Hunter extends CI_Controller {
 					$casting['height'] = $this->input->post('height');
 					$casting['age'] = $this->input->post('age');
 					$casting['sex'] = $this->input->post('optionsRadios');
+					*/
 					$casting['entity_id'] = $hunter_id;
 
 					$casting_id = $this->castings_model->insert($casting);

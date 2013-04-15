@@ -501,7 +501,7 @@ private function _upload_image($id)
 
 		$args = array();
 		
-		if(!is_null($id) && ($this->session->userdata('id') == FALSE || $id!= $this->session->userdata('id')))
+		if(!is_null($id) && ($this->session->userdata('id') == FALSE || $id != $this->session->userdata('id')))
 		{	
 			$args = $this->user_model->select($id);
 			$args["castings"]= $this->castings_model->get_castings(NULL, 2, 1);
