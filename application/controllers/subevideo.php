@@ -75,41 +75,45 @@ class Subevideo extends CI_Controller
 			redirect(HOME."/user/video_gallery#uploaderror");
 			//$this->load->view('upload_form', $error);
 		} 
-		else //si lo subió exitosamente
+		else //si lo subió localmente exitosamente
 		{
 			$data = array('upload_data' => $this->upload->data());
 			$path_temporal = $config['upload_path'].str_replace(" ","_", $_FILES['userfile']['name']);
+			
+			//CONVIERTE EL VIDEO
+			//ffmpeg -i INPUTFILE -y -vcodec libx264 -vpre medium -acodec libfaac -ac 2 -ar 48000 -ab 192k  OUTPUTFILE
+			
+			
+			
 			
 			//realiza la subida a youtube//
 			$resultado_subida_youtube = $this->direct_upload($path_temporal,$_FILES['userfile']['type'],$mDATA);
 			
 			
-		try{
-        	$xml = new SimpleXMLElement($resultado_subida_youtube);
-    	}
-    	catch (Exception $e){    
-        	 echo "HOLA HOLA HOLA".$e->getMessage();
-    	}
+			try{
+	        	$xml = new SimpleXMLElement($resultado_subida_youtube);
+	    	}
+	    	catch (Exception $e){    
+	        	 echo "Error al recibir respuesta desde Youtube:".$e->getMessage();
+				 //redirect(HOME."/user/video_gallery#ytubeerror");
 			
+	    	}
 			
+			$temp = array();
+			$temp = explode(":",$xml->id);
+			$mDATA['link'] = $temp[(sizeof($temp) - 1)]; //guarda el link code
+							
 			
-		$xml = new SimpleXMLElement($resultado_subida_youtube);
-		
-		$temp = array();
-		$temp = explode(":",$xml->id);
-		$mDATA['link'] = $temp[(sizeof($temp) - 1)]; //guarda el link code
-						
-		
-		//Insertar en base de datos información del video correspondiente
-		$first = $this->videos_model->insert($mDATA);
-		if($first != 0) $this->user_model->set_main_video($userid,$first);//lo setea como main video si es el primero en ser ingresado
-		
-		//elimina el video de la carpeta temporal
-		unlink("./".$path_temporal);
-		
-		//carga el mensaje de exito en la vista
-		redirect(HOME."/user/video_gallery#success");
-		//$this->load->view('upload_success', $data);
+			//Insertar en base de datos información del video correspondiente
+			$first = $this->videos_model->insert($mDATA);
+			if($first != 0) $this->user_model->set_main_video($userid,$first);//lo setea como main video si es el primero en ser ingresado
+			
+			//elimina el video de la carpeta temporal
+			unlink("./".$path_temporal);
+			
+			//carga el mensaje de exito en la vista
+			redirect(HOME."/user/video_gallery#success");
+			//$this->load->view('upload_success', $data);
 		}
 	}	
 	
@@ -199,7 +203,7 @@ class Subevideo extends CI_Controller
 	
 	 
 	//ARMA EL METADATA DEL VIDEO; SEGUN LOS DATOS QUE RECIBIO
-	private function _spitYMetadata($data=NULL)//TODO: Analizar cuan customizable es la descripción del video. Y formatearla adecuadamente.
+	private function _spitYMetadata($data=NULL)//TODO: Analizar cuan customizable es la descripción del video. Y formatear adecuadamente.
 	{
 		$string = "";
 		if(!is_null($data))
@@ -208,7 +212,7 @@ class Subevideo extends CI_Controller
 			$string = $string.$data['title'];
 			$string = $string."</media:title><media:description type='plain'>";//type='formated' ?
 			//Armar una descripción acorde, con un enlace al usuario de viddon
-			$string = $string.$data['description']."          Video perteneciente a: ".$this->user_model->welcome_name($data['user_id'])."<br />         Vealo en http://www.viddon.com";
+			$string = $string.$data['description']."          Video perteneciente a: ".$this->user_model->welcome_name($data['user_id'])."<br />         Vealo en http://www.viddon.com/user/index/".$data['user_id']."";
 			$string = $string."</media:description><media:category scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>";
 			$string = $string."Entertainment";
 			$string = $string."</media:category><media:keywords>";

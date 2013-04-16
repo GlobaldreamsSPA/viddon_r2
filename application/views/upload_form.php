@@ -14,10 +14,11 @@
 
 
 <?php echo form_open_multipart('subevideo/subir_video');?>
-<input type="file" name="userfile" size="20" required="required"/><br />
-<input name='uploaded_title' type="text" required="required" placeholder="Titulo del Video" /><br />
-<textarea name="uploaded_desc" cols="20" rows="5" placeholder="Descripcion">
-</textarea><br>
-<input type="submit" value="Subir" />
+	<input type="file" name="userfile" size="20" required="required"/><br />
+	<input name='uploaded_title' type="text" required="required" placeholder="Titulo del Video" /><br />
+	<textarea name="uploaded_desc" cols="20" rows="5" placeholder="Descripcion">
+	</textarea><br>
+	<button type="submit" class="btn btn-primary">Guardar</button>
+	<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
 </form>
 <p>Si llegaste a esta seccion y no sabes que hacer, te recomendamos intentar subir tu video utilizando Youtube en el siguiente enlace: <a href="http://www.youtube.com/upload" target="_blank">Youtube Upload</a></p>
