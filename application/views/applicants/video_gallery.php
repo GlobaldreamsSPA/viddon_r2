@@ -1,7 +1,8 @@
 <style>
 .glow {
-border: 1px solid #4C3C1B;
- background-color: #EFEECB;
+ background-color: #FFF;
+ -webkit-box-shadow: 3px 3px 2px rgba(50, 50, 50, 0.43); -moz-box-shadow:    3px 3px 2px rgba(50, 50, 50, 0.43); box-shadow:         3px 3px 2px rgba(50, 50, 50, 0.43);
+ margin-bottom: 1%;
 }
 </style>
 
