@@ -101,11 +101,11 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'json'  => array('application/json', 'text/json'),
 				'wmv'   => array('video/wmv', 'flv-application/octet-stream', 'application/octet-stream'),
 				'flv'   => array('video/flv', 'video/x-flv', 'flv-application/octet-stream','application/octet-stream'),
-				'mpeg4' => array('video/mp4','video/mp4v-es', 'audio/mp4'),
-				'mp4'   => 'video/mp4',
-				'3gpp' 	=> 'video/3gpp',
-				'3gp'	=> 'video/3gp',
-				'webm' 	=>  'video/webm'
+				'FLV'   => array('video/flv', 'video/x-flv', 'flv-application/octet-stream','application/octet-stream'),
+				'mpeg4' => array('video/mp4','video/mp4v-es', 'audio/mp4','flv-application/octet-stream', 'application/octet-stream'),
+				'mp4'   => array('video/mp4', 'flv-application/octet-stream', 'application/octet-stream'),
+				'3gp'   => array('video/3gpp', 'video/x-3gp', 'flv-application/octet-stream', 'application/octet-stream'),
+				'webm' 	=> array('video/webm', 'flv-application/octet-stream', 'application/octet-stream')
 			);
 
 

@@ -53,15 +53,14 @@ class Subevideo extends CI_Controller
 				'description' => $descripcion_video,
 				'user_id' => $userid
 			);	
-			
+		
+		unset($config);	
 		$config['upload_path'] = 'temp/videos/';
-		//$config['allowed_types'] = 'avi|flv|wmv|mov|mpeg4|mpegps|3gpp|webm'; //formatos soportados por youtube
-		$config['allowed_types'] = 'avi|flv|wmv|mov|mpeg4|mp4|3gp|3gpp|webm'; //formatos mime compatibles
+		$config['allowed_types'] = 'flv|avi|wmv|mov|mpeg4|mpegps|mp4|3gp|webm'; //formatos soportados por youtube
+		//$config['allowed_types'] = 'avi|flv|wmv|mov|mpeg4|mp4|3gp|3gpp|webm'; //formatos mime compatibles
 		$config['overwrite'] = FALSE;
         $config['remove_spaces'] = TRUE;
 		$config['max_size'] = '20480';//20 MB
-		
-		
 		//$video_name = $date.$_FILES['video']['name'];
         //$config['file_name'] = $video_name;
 		
@@ -70,7 +69,8 @@ class Subevideo extends CI_Controller
 		if (!$this->upload->do_upload())  //trata de subir el archivo sino se sube correctamente
 		{
 			$error = array('error' => $this->upload->display_errors());
-			//REGISTRE EL ERROR
+			//REGISTRO EL PROBLEMA AL SUBIRLO
+			log_message('info', 'Uploader -> Falló al intentar subir el video al servidor:  - MIMETYPE detectado: '.$this->upload->file_type.'	- Error: '.$error['error']);
 			
 			redirect(HOME."/user/video_gallery#uploaderror");
 			//$this->load->view('upload_form', $error);
@@ -79,37 +79,54 @@ class Subevideo extends CI_Controller
 		{
 			$data = array('upload_data' => $this->upload->data());
 			$path_temporal = $config['upload_path'].str_replace(" ","_", $_FILES['userfile']['name']);
+			$path_temporal_convertido = $config['upload_path']."convertido_".str_replace(" ","_", $_FILES['userfile']['name']);
 			
-			//CONVIERTE EL VIDEO
-			//ffmpeg -i INPUTFILE -y -vcodec libx264 -vpre medium -acodec libfaac -ac 2 -ar 48000 -ab 192k  OUTPUTFILE
+			//comando shell que convierte el video
+			$comando_conversor = "ffmpeg -i". $path_temporal." -y -vcodec libx264 -vpre medium -acodec libfaac -ac 2 -ar 48000 -ab 192k  ".$path_temporal_convertido;
 			
+			$nonyoutube = TRUE;
+			$contador = 0;
+			while($nonyoutube)
+			{
+				if($contador != 0) $path_temporal = $path_temporal_convertido; //si reboto el primer upload, sube el convertido
+				
+				//realiza la subida a youtube//lo sube la primera vez
+				$resultado_subida_youtube = $this->direct_upload($path_temporal,$_FILES['userfile']['type'],$mDATA);
+				try{
+	        		$xml = new SimpleXMLElement($resultado_subida_youtube); //con esto se verifica si el resultado de youtube fue "bueno"
+		    	}
+		    	catch(Exception $e){    
+		        	 //echo "Error al recibir respuesta desde Youtube:".$e->getMessage();
+		        	 log_message('info', 'Uploader -> Falló al intentar subir el video a Youtube:  - MIMETYPE detectado: '.$this->upload->file_type.'	- Error: '.$e->getMessage());
+					 
+					 exec($comando_conversor); //supuestamente realiza la conversion
+		    	}
+				
+				$temp = array();
+				$temp = explode(":",$xml->id); //este campo corresponde al codigo del enlace
+				if(strlen($temp[(sizeof($temp) - 1)]) == 11) //corregir esta evaluacion, muy básica?
+				{
+					$nonyoutube = FALSE;
+				} 		
+				
+				if($contador>1) break; //sólo 2 intentos
+				$contador++;
+			}
 			
-			
-			
-			//realiza la subida a youtube//
-			$resultado_subida_youtube = $this->direct_upload($path_temporal,$_FILES['userfile']['type'],$mDATA);
-			
-			
-			try{
-	        	$xml = new SimpleXMLElement($resultado_subida_youtube);
-	    	}
-	    	catch (Exception $e){    
-	        	 echo "Error al recibir respuesta desde Youtube:".$e->getMessage();
-				 //redirect(HOME."/user/video_gallery#ytubeerror");
-			
-	    	}
-			
+			/*
 			$temp = array();
 			$temp = explode(":",$xml->id);
-			$mDATA['link'] = $temp[(sizeof($temp) - 1)]; //guarda el link code
+			 */
+			$mDATA['link'] = $temp[(sizeof($temp) - 1)]; //guarda el code link
 							
 			
 			//Insertar en base de datos información del video correspondiente
 			$first = $this->videos_model->insert($mDATA);
 			if($first != 0) $this->user_model->set_main_video($userid,$first);//lo setea como main video si es el primero en ser ingresado
 			
-			//elimina el video de la carpeta temporal
+			//elimina el/los video(s) de la carpeta temporal
 			unlink("./".$path_temporal);
+			unlink("./".$path_temporal_convertido);
 			
 			//carga el mensaje de exito en la vista
 			redirect(HOME."/user/video_gallery#success");
@@ -219,7 +236,7 @@ class Subevideo extends CI_Controller
 			$string = $string."music, viddon, arts, talents, scenes, vidon, bidon";
 			$string = $string."</media:keywords></media:group></entry>";		
 		}
-		else
+		else //TODO: Agregar otros datos en caso "default"
 		{
 			$string = $string."<entry xmlns='http://www.w3.org/2005/Atom' xmlns:media='http://search.yahoo.com/mrss/' xmlns:yt='http://gdata.youtube.com/schemas/2007'><media:group><media:title type='plain'>Test Direct Upload</media:title><media:description type='plain'></media:description><media:category scheme='http://gdata.youtube.com/schemas/2007/categories.cat'>People</media:category><media:keywords>test</media:keywords></media:group></entry>";
 		}
