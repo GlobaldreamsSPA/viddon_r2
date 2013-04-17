@@ -1,24 +1,33 @@
-<?php
-	if(isset($error))
-	{
-		//registro el error
-		echo($error);
-	} 
-	
-?><!-- Si ocurrió un error, lo muestra -->
-
-<h1>Terminos y condiciones de uso</h1>
-<p>Al utilizar este medio para publicar sus videos,....
-	Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-</p>
-
-
 <?php echo form_open_multipart('subevideo/subir_video');?>
-	<input type="file" name="userfile" size="20" required="required"/><br />
-	<input name='uploaded_title' type="text" required="required" placeholder="Titulo del Video" /><br />
-	<textarea name="uploaded_desc" cols="20" rows="5" placeholder="Descripcion">
-	</textarea><br>
-	<button type="submit" class="btn btn-primary">Guardar</button>
-	<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+	<div style="padding:2%;"class="row">
+		<div class="span6">	
+			<input type="file" class="file" name="userfile" size="20" required="required"/><br />
+			<input name='uploaded_title' style="margin-top:2%; width:96%" type="text" required="required" placeholder="Titulo del Video" /><br />
+			<?php
+				if(isset($error))
+				{
+					//registro el error
+					echo($error);
+				} 
+			
+			?><!-- Si ocurrió un error, lo muestra -->
+
+			<div style="margin-top: 1%; font-size: 100%;"class="justify">
+				Para utilizar este medio de subida de videos, tienes que tener en cuenta:
+				<ul>
+				<li>El tamaño máximo de los videos debe ser de 20 mb.</li>
+				<li>El límite de tiempo de los videos es de 10 minutos.</li>
+				<li>Si no sabes como disminuir el tamaño de tu video, ingresa a <a href="http://video.online-convert.com/es/convertir-a-flv" target="_blank">este link</a>.</li>
+				<li>Si tienes algún problema cumpliendo los requisitos anteriores, <a href="mailto:contacto@viddon.com">Cont&aacutectanos</a>.</li>
+				<ul>
+			</div>
+		</div>
+		<div class="span6">
+			<h4 style="line-height: 18px; margin: 0; margin-bottom: 2%;">Descripci&oacute;n</h4>
+			<textarea class="rich_textarea_pop_up" name="uploaded_desc" cols="20" rows="5" placeholder="Descripcion">
+			</textarea><br>
+			<button type="submit" class="btn btn-primary">Guardar</button>
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+		</div>
+	</div>
 </form>
-<p>Si llegaste a esta seccion y no sabes que hacer, te recomendamos intentar subir tu video utilizando Youtube en el siguiente enlace: <a href="http://www.youtube.com/upload" target="_blank">Youtube Upload</a></p>

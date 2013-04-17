@@ -91,30 +91,42 @@ border: 1px solid #4C3C1B;
 		</div>
 
     	<!-- CARGO EL MODAL-->
-			<div id="add_video" class="modal hide fade" style="width: 430px !important;" tabindex="-1" role="dialog" aria-labelledby="AgregaVideo" aria-hidden="true">
+			<div id="add_video" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="AgregaVideo" aria-hidden="true">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 						<h3 id="myModalLabel">Agregar video</h3>
 					</div>
 					<div class="modal-body">
 							<ul class="nav nav-tabs">
-							  <li><a href="#enlazar" data-toggle="tab">Desde Youtube</a></li>
+							  <li class="active"><a href="#enlazar" data-toggle="tab">Desde Youtube</a></li>
 							  <li><a href="#pc" data-toggle="tab">Desde tu PC</a></li>
 							</ul>
 							
 							<div class="tab-content">
 							  <div class="tab-pane active" id="enlazar">
 							  	<form id="video_upload_form" action="<?php echo HOME.'/user/'?>" method="post">
-							  		<div>	
-										<input name="url_ytb" style="width:90%" type="text" placeholder="Dirección - URL Video" value="" required="required"><a style="margin-left:1.5%;"href="#" title="Debes pegar la dirección URL de tu video. La que se aprecia en la barra del navegador	Ej:   http://www.youtube.com/watch?v=EpQFtbFyaUw"><i style="margin-top: -2px;"class="icon-question-sign"></i></a>
-										<input name="name_ytb" style="width:96%" type="text" placeholder="Nombre">
-										<div class="space1"></div>	
-										<textarea class="rich_textarea_pop_up" name="description_ytb" rows="6" placeholder="Descripción"></textarea>
-										<input type="hidden" name="from_gallery" value="yes" />
-										<div class="space1"></div>	
-									</div>
-									<button type="submit" class="btn btn-primary">Guardar</button>
-									<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+							  		<div style="padding:2%;"class="row">
+								  		<div class="span6">	
+											<input name="url_ytb" style="width:96%" type="text" placeholder="Dirección - URL Video" value="" required="required">											
+											<input name="name_ytb" style="width:96%" type="text" placeholder="Titulo del Video">
+											<div class="space1"></div>
+											<div style="margin-top: 1%; font-size: 100%;"class="justify">
+ 												Debes pegar la dirección URL de tu video. La que se aprecia en la barra del navegador	Ej:   
+ 												<ul>
+ 													<li>http://www.youtube.com/watch?v=LautYzjYv3A</li>
+ 													<li>http://youtu.be/LautYzjYv3A</li>
+ 												</ul>
+ 											</div>	
+										</div>
+										<div class="span6">	
+											<h4 style="line-height: 18px; margin: 0; margin-bottom: 2%;">Descripci&oacute;n</h4>
+											<textarea class="rich_textarea_pop_up" name="description_ytb" rows="6" placeholder="Descripción"></textarea>
+											<input type="hidden" name="from_gallery" value="yes" />
+											<div class="space1"></div>	
+											<button type="submit" class="btn btn-primary">Guardar</button>
+											<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+							  			</div>
+							  		</div>
 							  	</form>
 							  </div>
 							  <div class="tab-pane" id="pc">
@@ -123,6 +135,7 @@ border: 1px solid #4C3C1B;
 							  	?>
 							  </div>
 							</div>
+							<div class="justify" style="-webkit-box-shadow: 3px 3px 2px rgba(50, 50, 50, 0.43); -moz-box-shadow:    3px 3px 2px rgba(50, 50, 50, 0.43); box-shadow:         3px 3px 2px rgba(50, 50, 50, 0.43);background-color:#e5e5e5; padding:1%; font-size:82%;">*Si tienes una cuenta de gmail te recomendamos intentar subir tu video utilizando Youtube, para luego enlazarlo (pestaña "desde youtube"), desde el siguiente enlace: <a href="http://www.youtube.com/upload" target="_blank">Youtube Upload</a></div>
 					</div>
 					<!-- 
 					<div class="modal-footer" style="height: 30px;">
