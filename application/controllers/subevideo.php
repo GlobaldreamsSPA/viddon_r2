@@ -72,8 +72,8 @@ class Subevideo extends CI_Controller
 			//REGISTRO EL PROBLEMA AL SUBIRLO
 			log_message('info', 'Uploader -> Falló al intentar subir el video al servidor:  - MIMETYPE detectado: '.$this->upload->file_type.'	- Error: '.$error['error']);
 			
-			//redirect(HOME."/user/video_gallery#uploaderror");
-			$this->load->view('upload_form', $error);
+			redirect(HOME."/user/video_gallery#uploaderror");
+			//$this->load->view('upload_form', $error);
 		} 
 		else //si lo subió localmente exitosamente
 		{
@@ -129,8 +129,8 @@ class Subevideo extends CI_Controller
 			unlink("./".$path_temporal_convertido);
 			
 			//carga el mensaje de exito en la vista
-			//redirect(HOME."/user/video_gallery#success");
-			$this->load->view('upload_success', $data);
+			redirect(HOME."/user/video_gallery#success");
+			//$this->load->view('upload_success', $data);
 		}
 	}	
 	
