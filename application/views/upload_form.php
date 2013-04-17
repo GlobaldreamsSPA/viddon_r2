@@ -16,7 +16,7 @@
 				Para utilizar este medio de subida de videos, tienes que tener en cuenta:
 				<ul style="margin-top:1px;">
 				<li>El tamaño máximo de los videos debe ser de 20 mb.</li>
-				<li>El límite de tiempo de los videos es de 10 minutos.</li>
+				<li>El límite de tiempo de los videos es de 5 minutos.</li>
 				<li>Si no sabes como disminuir el tamaño de tu video, ingresa a <a href="http://video.online-convert.com/es/convertir-a-flv" target="_blank">este link</a>.</li>
 				<li>Se paciente al momento de subir tu video, el formulario se redirigirá automáticamente.</li>
 				<li>Youtube tarda unos minutos en procesar videos, por lo que no se veran los videos inmediatamente  .</li>

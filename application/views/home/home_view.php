@@ -120,7 +120,7 @@
 			<div class="span4">
 			  	<div style="border-radius: 5px; margin-left:8%; text-align:center;" id="grow" class="row-fluid">
 			  		<div class="space1"></div>
-			  		<h2 id="profile"  style="font-weight:bold;">Castings Viddon</h3>
+			  		<h2 id="profile"  style="font-weight:bold;">Casting Viddon</h3>
 			  		<?php foreach($castings as $casting){ ?>
 			  			<a href="<?php echo site_url("home/casting_detail/".$casting['id']); ?>">
 		  					<img style="margin-top: 7%; width: 84%; " src="<?php echo $casting['image']; ?>">

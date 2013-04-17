@@ -1,3 +1,31 @@
+<!-- CARGO EL MODAL-->
+    <div id="add_question" class="modal hide fade" style="width: 430px !important;" tabindex="-1" role="dialog" aria-labelledby="AgregaVideo" aria-hidden="true">
+      <form id="photo_upload_form" enctype="multipart/form-data" action="#" method="post">
+        
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="myModalLabel">Agregar Pregunta</h3>
+        </div>
+        <div class="modal-body">
+            <div> 
+		        <select>
+					<option value="volvo">Texto</option>
+					<option value="saab">Alternativas</option>
+					<option value="mercedes">Afirmacion</option>
+				</select> 
+            	
+            	<h3>ACA VA EL CONTENIDO VARIABLE, DEPENDE DE EL TIPO DE PREGUNTA</h3>
+
+
+            </div>
+        </div>
+        <div class="modal-footer" style="height: 30px;">
+          <button type="submit" class="btn btn-primary">Guardar</button>
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+        </div>
+      </form>
+    </div>      <!-- MODAL-->
+
 <div class="row-fluid">		
 	<div class="span3 user-profile-left">
 		<img class='user_image' src="<?php echo HOME."/img/logo_hunter/".$user_data['logo'] ?>"/>
@@ -80,9 +108,65 @@
 
 				<div class="space1"></div>
 
-				<button type="submit" class="btn btn-primary">Publicar casting</button>
+				<!-- IMPORTANTE MAQUETA FORMULARIO-->
+				<div style="border: solid 1px black; padding: 2%;">
+						<div class="span8">
+				    		<h3> Preguntas Personalizadas</h3>
+
+						</div>
+
+						<div style="margin-top:15px;" class="span4">
+								<button data-toggle="modal"  href="#add_question" class="btn btn-primary">Agregar Pregunta</button>
+						</div>
+					<legend></legend>
+					<table id="datatables" class="table">
+			          <thead>
+			            <tr>
+			              <th>Nombre</th>
+			              <th>Tipo</th>
+			              <th>Acci&oacuten</th>
+			            </tr>
+			          </thead>
+			          <tbody>
+			          	
+	          			<tr>
+				            <td style="vertical-align:middle;">
+				            	¿Tienes alguna fobia?
+				            	<input type="hidden" name="question" value="¿Tienes alguna fobia?" />
+				            	<input type="hidden" name="alternatives" value="si,no" />
+
+				    		</td>
+				            <td style="vertical-align:middle;">
+				            	Alternativas
+				            </td>
+				            <td  style="vertical-align:middle;" class="row center">
+					            <div class="span4">
+									<a class="btn" href="#">
+										<i class="icon-zoom-in"></i>                                            
+									</a>
+								</div>
+								<div class="span4">
+									<a class="btn" href="#">
+										<i class="icon-edit"></i>                                            
+									</a>
+								</div>
+								<div class="span4">
+									<a class="btn" href="#">
+										<i class="icon-remove"></i>                                            
+									</a>
+								</div>
+							</td>
+			            </tr>    
+			          </tbody>
+			        </table>
+			        <div class="space2">
+			        </div>
+		    	</div>
+			     
+				<button style="margin-top: 2%;"type="submit" class="btn btn-primary">Publicar casting</button>
 
 			</div>
+			
 			<?php /* ?>	
 			<legend>Perfil del postulante a buscar</legend>
 			<div>	
