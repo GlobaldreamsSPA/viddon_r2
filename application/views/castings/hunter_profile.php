@@ -32,11 +32,11 @@
 							<div style="margin-left:10%; margin-top:30px; height: 250px; width: 80%;" id="myCarousel" class="carousel slide">
 							<!-- Carousel items -->
 								<div class="carousel-inner">
-									<?php ?>
-								    <div class="active item">
-										<img style="width:100%; height:100%;" id="image_casting" src=<? echo HOME."/img/casting_image/castings_dummy.png"?> />
+									<?php foreach($castings as $casting){ ?>
+								    <div class="item">
+										<img style="width:100%; height:100%;" id="image_casting" src=<?php echo $casting['image']?> >
 									</div>
-									<?php ?>
+									<?php } ?>
 							  	</div>
 								<!-- Carousel nav -->
 								<a style="margin-top:5%; margin-left: 10px;" class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>

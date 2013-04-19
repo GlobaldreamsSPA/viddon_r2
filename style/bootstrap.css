@@ -4409,7 +4409,7 @@ a.thumbnail:hover {
 }
 .modal {
   position: fixed;
-  top: 400px;
+  top: 20%;
   left: 50%;
   z-index: 1050;
   overflow: auto;
@@ -5015,7 +5015,7 @@ button.close {
     margin: 0;
   }
   .modal.fade.in {
-    top: auto;
+    top: 5%;
   }
 }
 @media (max-width: 480px) {
