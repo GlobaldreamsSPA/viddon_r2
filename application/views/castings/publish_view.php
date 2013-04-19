@@ -199,6 +199,14 @@
 					echo form_error('image');
 				?>
 				
+				<!--
+				<h5>Filtros Predefinidos Optativos</h5>
+				<?php 
+				echo form_multiselect('filtros[]', $filtros,NULL,"class='chzn-select chosen_filter' style='width:60%' data-placeholder='Selecciona los filtros...'");
+				?>
+				-->
+				
+				
 				<h5>Habilidades</h5>
 				<?php 
 				
@@ -233,44 +241,48 @@
 								<button data-toggle="modal"  href="#add_question" class="btn btn-primary">Agregar Pregunta</button>
 						</div>
 					<legend></legend>
-					<table id="datatables" class="table">
+					
+					
+					<!-- SCRIPT PARA GENERAR FILAS EN LA TABLA -->
+					<script>
+						/**
+						 * @param type Tipo de pregunta
+						 * @param value Los valores de las posibles respuesta, en caso de ser de seleccion
+						 */
+						function addQuestionData(type,title,value)
+						{	
+							//obtener el numero de la pregunta previa
+							var separador1 = '|$';
+							var separador2 = '|*'; 
+							var question_number = document.getElementsByClassName('pregunta').length; //numero de ultima pregunta ingresada
+							var hidden_data = "<input type='hidden' value='type|$"+type+"|*title|$"+title+"|*valores|$"+value+"' class='pregunta' name='question_"+question_number+"' />";
+							$('#tablapreguntas').find('tbody:last').append(hidden_data);
+							 
+							var reguleque = new RegExp('[|#]','g');
+							
+							value = value.replace(reguleque,',');
+							$('#tablapreguntas').find('tbody:last').append("<tr><td>"+type+"</td><td>"+title+"</td><td>"+value+"</td></tr>");
+							
+						}
+					</script>
+					 
+					<!-- enlaces creadores/llamadores de la funcion -->
+					<a href="#latabla" onclick="addQuestionData('text','Preguntita','NADA')">AgregarTextual</a>
+					<a href="#latabla" onclick="addQuestionData('select','Preguntass','op1|#op2|#op3')">AgregarSelect</a>
+					<a href="#latabla" onclick="addQuestionData('multiselect','PreguntONAs','op1|#op2|#op3|#op4')">AgregarMultiSelect</a>
+					
+					
+					
+					<!-- LA TABLA DE PREGUNTAS -->
+					<table id="tablapreguntas" name="latabla">
 			          <thead>
 			            <tr>
-			              <th>Nombre</th>
 			              <th>Tipo</th>
-			              <th>Acci&oacuten</th>
+			              <th>Titulo</th>
+			              <th>Alternativas/Pregunta</th>
 			            </tr>
 			          </thead>
-			          <tbody>
-			          	
-	          			<tr>
-				            <td style="vertical-align:middle;">
-				            	¿Tienes alguna fobia?
-				            	<input type="hidden" name="question" value="¿Tienes alguna fobia?" />
-				            	<input type="hidden" name="alternatives" value="si,no" />
-
-				    		</td>
-				            <td style="vertical-align:middle;">
-				            	Alternativas
-				            </td>
-				            <td  style="vertical-align:middle;" class="row center">
-					            <div class="span4">
-									<a class="btn" href="#">
-										<i class="icon-zoom-in"></i>                                            
-									</a>
-								</div>
-								<div class="span4">
-									<a class="btn" href="#">
-										<i class="icon-edit"></i>                                            
-									</a>
-								</div>
-								<div class="span4">
-									<a class="btn" href="#">
-										<i class="icon-remove"></i>                                            
-									</a>
-								</div>
-							</td>
-			            </tr>    
+			          <tbody>   
 			          </tbody>
 			        </table>
 			        <div class="space2">
@@ -281,14 +293,55 @@
 
 			</div>
 			
-			<?php /* ?>	
-			<legend>Perfil del postulante a buscar</legend>
+			<?php /* //FILTROS ESPACIALES ?>
+			
+			<script>
+				$(function () {
+				  $('#optional_filter_eyes').change(function () {                
+				     $('#eyes').toggle(this.checked);
+				  }).change(); //ensure visible state matches initially
+				});
+				
+				$(function () {
+				  $('#optional_filter_hair').change(function () {                
+				     $('#hair').toggle(this.checked);
+				  }).change(); //ensure visible state matches initially
+				});
+				
+				$(function () {
+				  $('#optional_filter_skin').change(function () {                
+				     $('#skin').toggle(this.checked);
+				  }).change(); //ensure visible state matches initially
+				});
+				
+				$(function () {
+				  $('#optional_filter_height').change(function () {                
+				     $('#height').toggle(this.checked);
+				  }).change(); //ensure visible state matches initially
+				});
+				
+				$(function () {
+				  $('#optional_filter_age').change(function () {                
+				     $('#age').toggle(this.checked);
+				  }).change(); //ensure visible state matches initially
+				});
+				
+				$(function () {
+				  $('#optional_filter_sex').change(function () {                
+				     $('#sex').toggle(this.checked);
+				  }).change(); //ensure visible state matches initially
+				});
+			</script>	
+			<legend>Filtros Espaciales</legend>
 			<div>	
 				
 				<div style="margin-left:15px;" class="row">
 					<div class="span6">
-					<h5>Color de ojos</h5>
-					<select style="width: 100%;" name="eyes-color">
+					<h5>
+						<input id="optional_filter_eyes" type="checkbox" />
+						Color de ojos
+					</h5>
+					<select id='eyes' style="width: 100%;" name="eyes-color" >
 						<option value="Verde">Verde</option>
 						<option value="Azul">Azul</option>
 						<option value="Gris">Gris</option>
@@ -298,9 +351,13 @@
 						<option value="Todos">Todos</option>
 					</select>
 					</div>
+					
 					<div class="span6">
-					<h5>Color de cabello</h5>
-					<select style="width: 100%;" name="hair-color">
+					<h5>
+						<input id="optional_filter_hair" type="checkbox" />
+						Color de cabello
+					</h5>
+					<select id='hair' style="width: 100%;" name="hair-color">
 						<option value="Casta&ntildeo">Casta&ntildeo</option>
 						<option value="Negro">Negro</option>
 						<option value="Rubio">Rubio</option>
@@ -313,8 +370,11 @@
 				</div>
 				<div style="margin-left:15px;" class="row">
 					<div class="span6">
-						<h5>Color de piel</h5>
-						<select style="width: 100%;" name="skin-color">
+						<h5>
+							<input id="optional_filter_skin" type="checkbox" />
+							Color de piel
+						</h5>
+						<select id='skin' style="width: 100%;" name="skin-color">
 							<option value="Blanca">Blanca</option>
 							<option value="Negra">Negra</option>
 							<option value="Trigue&ntildea">Trigue&ntildea</option>
@@ -324,8 +384,11 @@
 					</div>
 					
 					<div class="span6">
-						<h5>Estatura</h5>
-						<select style="width: 100%;" name="height">
+						<h5>
+							<input id="optional_filter_height" type="checkbox" />
+							Estatura
+							</h5>
+						<select id='height' style="width: 100%;" name="height">
 							<option value="150 cm o menos">150 cm o menos</option>
 							<option selected="selected" value="150 cm">150 cm</option>
 							<option value="160 cm">160 cm</option>
@@ -339,31 +402,37 @@
 					</div>
 				</div>
 				<div style="margin-left:15px;">
-					<h5>Edad</h5>
-						
-					<?php 
-					echo form_multiselect('age[]', $age_list,NULL,"class='chzn-select chosen_filter' style='width:60%' data-placeholder='Selecciona las edades...'");
-					?>
 					
-					<h5>Sexo</h5>
-					<label class="radio inline">
-						<input type="radio" name="optionsRadios" id="optionsRadios1" value="2" checked>
-						Femenino
-					</label>
-					<label class="radio inline">
-						<input type="radio" name="optionsRadios" id="optionsRadios2" value="1">
-						Masculino
-					</label>
-					<label class="radio inline">
-						<input type="radio" name="optionsRadios" id="optionsRadios3" value="0">
-						Ambos
-					</label>
-
-
+					<h5>
+						<input id="optional_filter_age" type="checkbox" />
+						Edad
+					</h5> 
+					<div id="age">
+					<?php 
+					echo form_multiselect('age[]', $age_list,NULL,"class='chzn-select chosen_filter age' style='width:60%' data-placeholder='Selecciona las edades...'");
+					?>
+					</div>
+						<h5>
+						<input id="optional_filter_sex" type="checkbox" />
+						Sexo</h5>
+						<div id="sex">
+							<label class="radio inline">
+							<input type="radio" name="optionsRadios" id="optionsRadios1" value="2" checked>
+							Femenino
+							</label>
+							<label class="radio inline">
+								<input type="radio" name="optionsRadios" id="optionsRadios2" value="1">
+								Masculino
+							</label>
+							<label class="radio inline">
+								<input type="radio" name="optionsRadios" id="optionsRadios3" value="0">
+								Ambos
+							</label>
+						</div>
 					<div class="space2"></div>
 				</div>									
 			</div>
-			<?php */?>
+			<?php */ //FILTROS ESPACIALES?>
 		</form>
 	</div>			
 </div>

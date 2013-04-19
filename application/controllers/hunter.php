@@ -6,7 +6,7 @@ class Hunter extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper(array('url', 'file', 'form','security'));
-		$this->load->model(array('hunter_model', 'photos_model','castings_model', 'casting_categories_model', 'user_model', 'applies_model', 'videos_model','skills_model'));
+		$this->load->model(array('hunter_model', 'photos_model','castings_model', 'casting_categories_model', 'user_model', 'applies_model', 'videos_model','skills_model','custom_questions_model','custom_options_model'));
 		$this->load->library(array('upload', 'image_lib', 'form_validation'));
 		
 	}
@@ -20,7 +20,7 @@ class Hunter extends CI_Controller {
 		 	$hunter_id= $hunter_id['id'];
 			
 			$args["castings_dash"]= $this->_dashboard($hunter_id);
-	
+			$args["castings"]= $this->castings_model->get_castings($hunter_id, null, null, 0);
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
 			$args["content"]="castings/hunter_template";
 			$inner_args["hunter_content"]="castings/hunter_profile";
@@ -90,6 +90,8 @@ class Hunter extends CI_Controller {
 			$temp[-2]= "--     Vaciar Campo    --";
 
 			$args["skills"]=	$temp + $skills = $this->skills_model->get_skills();
+			$args["filtros"] = array("-1" => "Todos","-2" => "Limpiar",1 => "Color de Pelo",2 =>"Color de Ojos",3 =>"Color de Piel",4 =>"Edad",5 =>"Estatura",6 =>"Contextura");
+				
 			$args["hunters"]= $temp + array("hunter1","hunter2","hunter3","hunter4");
 			$args["age_list"] = $temp + array(0=>"10 a&ntildeos o menos",1=>"10-15 a&ntildeos",2=>"15-20 a&ntildeos",3=>"20-25 a&ntildeos",4=>"20-30 a&ntildeos",5=>"30-35 a&ntildeos",6=>"35-40 a&ntildeos",7=>"40-45 a&ntildeos o m&aacutes");	
 
@@ -148,7 +150,57 @@ class Hunter extends CI_Controller {
 					$casting['entity_id'] = $hunter_id;
 
 					$casting_id = $this->castings_model->insert($casting);
-
+					
+					
+					//Procesan/insertan las preguntas
+					$question_head= "question_";
+					//var_dump($this->input->post($question.''.$i));
+					
+					for($i=0;isset($_POST[$question_head."$i"]);$i++)//POR CADA PREGUNTA
+					{
+						$question_data = array(); //el que se le pasará a la función para insertar la pregunta
+						//caracteres separadores
+						// |$   -> equivale a ":" Separa las partes
+ 						// |*   -> equivale a " " Separa atributo-valor
+ 						// |#   -> equivale a "," Separa opciones
+ 						 
+						//var_dump($_POST[$question_head."$i"]);
+						$partes_pregunta = explode("|*", $_POST[$question_head."$i"]);
+						foreach($partes_pregunta as $parte) //obtiene el arreglo elemento->valor
+						{
+							$valores_pregunta = explode("|$",$parte);
+							
+							switch($valores_pregunta[0])//sobre el nombre del valor
+							{
+								case 'type':
+									$question_data['tipo'] = $valores_pregunta[1];
+									break;
+									
+								case 'title':
+									$question_data['texto'] = $valores_pregunta[1];
+									break;
+									
+								case 'valores':
+									$question_data['options'] = $valores_pregunta[1];
+									break;
+							}
+						}
+						//ya está armado el arreglo $question_data
+						$id_pregunta_insertada = $this->custom_questions_model->insert($casting_id,$question_data); //se inserta la pregunta
+						
+						//si tiene valores(opciones)
+						if($question_data['options'] != 'NADA')
+						{
+							$opciones = explode("|#",$question_data['options']);
+							foreach($opciones as $opcion)
+							{
+								$this->custom_options_model->insert($id_pregunta_insertada,$opcion); 
+							}
+						}
+						
+					}
+					 
+ 
 					//Por ultimo subir la foto
 					$form_file_name = 'logo';
 					$images = array(

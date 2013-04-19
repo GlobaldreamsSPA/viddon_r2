@@ -45,7 +45,7 @@
 
 								<div class="span11">
 									<div class="span7">
-										<a href="<?php echo site_url("home/casting_detail/".$casting['id']); ?>">
+										<a href="<?php echo site_url("hunter/casting_detail/".$casting['id']); ?>">
 											<img style='height:100%; width: 100%;' src="<?php echo $casting['image'] ?>"/>
 										</a>
 									</div>
