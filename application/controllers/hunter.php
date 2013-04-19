@@ -528,12 +528,12 @@ class Hunter extends CI_Controller {
 	//revisa si algún(por lo menos 1) filtro físico está presente
 	private function _has_word_filter($words)
 	{
-		if($words != "_n") return true;
+		if($words != "") return true;
 		else return false;
 	}
 	
 
-	function applicants_list($id=NULL,$page=1,$applies_state=0,$sex=-2,$build=-2,$skin_color=-2,$eyes_color=-2,$hair_color=-2,$height_range=-2,$age_range=-2,$filter_categories=-2,$name_p='_n')
+	function applicants_list($id=NULL,$page=1,$applies_state=0,$sex=-2,$build=-2,$skin_color=-2,$eyes_color=-2,$hair_color=-2,$height_range=-2,$age_range=-2,$filter_categories=-2,$name_p='')
 	{
 		if($this->session->userdata('logged_in') && isset($id))
 		{

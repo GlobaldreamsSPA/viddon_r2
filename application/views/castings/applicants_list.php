@@ -49,7 +49,7 @@
 
 									?>
 								<div class="space1"> </div>
-								<a href="<?php echo HOME."/hunter/applicants_list/".$id_casting."/1/0/-2/-2/-2/-2/-2/-2/-2/-2/_n/"?>" id="filter_button" class="btn btn-info">Actualizar</a>
+								<a href="<?php echo HOME."/hunter/applicants_list/".$id_casting."/1/0/-2/-2/-2/-2/-2/-2/-2/-2//"?>" id="filter_button" class="btn btn-info">Actualizar</a>
                				</div>
 					    </div>
 					    
