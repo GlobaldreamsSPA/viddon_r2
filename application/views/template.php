@@ -238,7 +238,7 @@
       	if($("#datatables").length > 0)
       		$(document).ready(function() {
 			    $('#datatables').dataTable({
-		    	"sPaginationType": "full_numbers"
+		    		"sPaginationType": "full_numbers"
 				});
 			});
 		
@@ -588,7 +588,7 @@
 
 
 <div class"row">
-	<div class="span8 offset3"><p style="color: #7d7d7d;">GlobalDreams SPA | La Concepci&oacute;n 81 oficina 1002, Providencia, Santiago | <a href="<?php echo base_url();?>docs/terms.pdf">T&eacuterminos y condiciones</a> | <a href="mailto:contacto@viddon.com">Cont&aacutectanos</a></p></p></div>
+	<div class="span8 offset3"><p style="color: #7d7d7d;">GlobalDreams SPA | Publica tus castings <a href="<?php echo base_url();?>home/login_hunter">con nosotros</a> | Lee los <a href="<?php echo base_url();?>docs/terms.pdf">T&eacuterminos y condiciones</a> | <a href="mailto:contacto@viddon.com">Cont&aacutectanos</a></p></p></div>
 </div>
 <div class="row">
 	<div class="span8 offset3">
