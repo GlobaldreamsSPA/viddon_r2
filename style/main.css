@@ -17,6 +17,36 @@ a:hover {	text-decoration: underline}
 
 #variable{min-height: 1080px;}
 
+/* formato links sociales pagina principal*/
+.social_container{
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+
+-webkit-box-shadow: -1px -1px 13px rgba(50, 50, 50, 0.35);
+-moz-box-shadow:    -1px -1px 13px rgba(50, 50, 50, 0.35);
+box-shadow:         -1px -1px 13px rgba(50, 50, 50, 0.35);
+
+
+background: #ffffff; /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ijk5JSIgc3RvcC1jb2xvcj0iI2RhZDlkOSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+background: -moz-linear-gradient(top,  #ffffff 0%, #dad9d9 99%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(99%,#dad9d9)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #ffffff 0%,#dad9d9 99%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #ffffff 0%,#dad9d9 99%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #ffffff 0%,#dad9d9 99%); /* IE10+ */
+background: linear-gradient(to bottom,  #ffffff 0%,#dad9d9 99%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dad9d9',GradientType=0 ); /* IE6-8 */
+
+height: 10%;
+padding-left: 10%;
+padding-right: 5%;
+margin-right: 5%;
+margin-left: 5%;
+}
+
+/* Play que aparece sobre imagen de video*/
 .fade_new {
    opacity: 1;
    transition: opacity .25s ease-in-out;
@@ -29,6 +59,7 @@ a:hover {	text-decoration: underline}
 .image:hover .hoverimage { display: block;}
 .image:hover .fade_new{opacity: 0.35;}
 
+/* Modal donde aparece el video de youtube*/
 #playermodal{
   position: fixed;
   top: 50%;
@@ -39,6 +70,7 @@ a:hover {	text-decoration: underline}
   width: 50% !important;
 }
 
+/* Modal para agregar video */
 #add_video{
   position: fixed;
   top: 40%;
@@ -239,25 +271,6 @@ div.justify
 	max-height: 120px;
 }
 
-/* formato vistas y likes youtube, bajo cada video*/	
-span#youtubedata
-{
-	margin-left:2px;
-	font-size:80%;
-	float:right;
-}
-
-label.youtubedata
-{
-	display:inline;
-}
-
-div.social_data_container
-{
-	max-width: 600px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-}
 
 /* formato videos pagina principal*/
 div#main_videos
