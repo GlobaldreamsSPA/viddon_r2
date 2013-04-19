@@ -20,7 +20,7 @@ class Hunter extends CI_Controller {
 		 	$hunter_id= $hunter_id['id'];
 			
 			$args["castings_dash"]= $this->_dashboard($hunter_id);
-			$args["castings"]= $this->castings_model->get_castings($hunter_id, null, null, 0);
+	
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
 			$args["content"]="castings/hunter_template";
 			$inner_args["hunter_content"]="castings/hunter_profile";
@@ -191,7 +191,7 @@ class Hunter extends CI_Controller {
 						//si tiene valores(opciones)
 						if($question_data['options'] != 'NADA')
 						{
-							$opciones = explode("|#",$question_data['options']);
+							$opciones = explode("%#",$question_data['options']);
 							foreach($opciones as $opcion)
 							{
 								$this->custom_options_model->insert($id_pregunta_insertada,$opcion); 
