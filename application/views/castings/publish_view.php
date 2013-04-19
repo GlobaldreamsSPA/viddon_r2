@@ -138,11 +138,15 @@
 						function addQuestionData(type,title,value)
 						{	
 							//obtener el numero de la pregunta previa
-							var questionNumber = 1;
-							
-							var hidden_data = "<input type='hidden' value='title:"+title+" valores:"+value+"' name='question_"+questionNumber+"' />";
-							//alert(hidden_data);
+							var separador1 = '|$';
+							var separador2 = '|*'; 
+							var question_number = document.getElementsByClassName('pregunta').length; //numero de ultima pregunta ingresada
+							var hidden_data = "<input type='hidden' value='type|$"+type+"|*title|$"+title+"|*valores|$"+value+"' class='pregunta' name='question_"+question_number+"' />";
 							$('#tablapreguntas').find('tbody:last').append(hidden_data);
+							 
+							var reguleque = new RegExp('[|#]','g');
+							
+							value = value.replace(reguleque,',');
 							$('#tablapreguntas').find('tbody:last').append("<tr><td>"+type+"</td><td>"+title+"</td><td>"+value+"</td></tr>");
 							
 						}
@@ -150,7 +154,8 @@
 					 
 					<!-- enlaces creadores/llamadores de la funcion -->
 					<a href="#latabla" onclick="addQuestionData('text','Preguntita','NADA')">AgregarTextual</a>
-					<a href="#latabla" onclick="addQuestionData('select','Preguntass','op1,op2,op3')">AgregarSelect</a>
+					<a href="#latabla" onclick="addQuestionData('select','Preguntass','op1|#op2|#op3')">AgregarSelect</a>
+					<a href="#latabla" onclick="addQuestionData('multiselect','PreguntONAs','op1|#op2|#op3|#op4')">AgregarMultiSelect</a>
 					
 					
 					

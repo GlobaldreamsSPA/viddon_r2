@@ -22,9 +22,20 @@ class Custom_questions_model extends CI_Model
 			return $query->result_array();
 	}
 	
-	function getQuestionsBy($type)
+	function getQuestionsBy($by)
 	{
-		
+		$this->db->select('*');
+		switch($by)
+		{
+			case 'type':
+				$this->db->where('type', $by);
+				break; 
+		}
+		$query = $this->db->get($this->table);
+		if($query->num_rows == 0)
+			return 0;
+		else
+			return $query->result_array();
 	}
 	
 		
@@ -36,7 +47,8 @@ class Custom_questions_model extends CI_Model
 		'idcasting' => $casting_id
 		);
 
-		return $this->db->insert($this->table, $data);
+		$this->db->insert($this->table, $data);//realiza el insert
+		return $this->db->insert_id(); //devuelve el valor del id insertado
 	}
 	
 	function delete($id_question)

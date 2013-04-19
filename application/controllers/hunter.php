@@ -6,7 +6,7 @@ class Hunter extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper(array('url', 'file', 'form','security'));
-		$this->load->model(array('hunter_model', 'photos_model','castings_model', 'casting_categories_model', 'user_model', 'applies_model', 'videos_model','skills_model'));
+		$this->load->model(array('hunter_model', 'photos_model','castings_model', 'casting_categories_model', 'user_model', 'applies_model', 'videos_model','skills_model','custom_questions_model','custom_options_model'));
 		$this->load->library(array('upload', 'image_lib', 'form_validation'));
 		
 	}
@@ -150,7 +150,57 @@ class Hunter extends CI_Controller {
 					$casting['entity_id'] = $hunter_id;
 
 					$casting_id = $this->castings_model->insert($casting);
-
+					
+					
+					//Procesan/insertan las preguntas
+					$question_head= "question_";
+					//var_dump($this->input->post($question.''.$i));
+					
+					for($i=0;isset($_POST[$question_head."$i"]);$i++)//POR CADA PREGUNTA
+					{
+						$question_data = array(); //el que se le pasará a la función para insertar la pregunta
+						//caracteres separadores
+						// |$   -> equivale a ":" Separa las partes
+ 						// |*   -> equivale a " " Separa atributo-valor
+ 						// |#   -> equivale a "," Separa opciones
+ 						 
+						//var_dump($_POST[$question_head."$i"]);
+						$partes_pregunta = explode("|*", $_POST[$question_head."$i"]);
+						foreach($partes_pregunta as $parte) //obtiene el arreglo elemento->valor
+						{
+							$valores_pregunta = explode("|$",$parte);
+							
+							switch($valores_pregunta[0])//sobre el nombre del valor
+							{
+								case 'type':
+									$question_data['tipo'] = $valores_pregunta[1];
+									break;
+									
+								case 'title':
+									$question_data['texto'] = $valores_pregunta[1];
+									break;
+									
+								case 'valores':
+									$question_data['options'] = $valores_pregunta[1];
+									break;
+							}
+						}
+						//ya está armado el arreglo $question_data
+						$id_pregunta_insertada = $this->custom_questions_model->insert($casting_id,$question_data); //se inserta la pregunta
+						
+						//si tiene valores(opciones)
+						if($question_data['options'] != 'NADA')
+						{
+							$opciones = explode("|#",$question_data['options']);
+							foreach($opciones as $opcion)
+							{
+								$this->custom_options_model->insert($id_pregunta_insertada,$opcion); 
+							}
+						}
+						
+					}
+					 
+ 
 					//Por ultimo subir la foto
 					$form_file_name = 'logo';
 					$images = array(
