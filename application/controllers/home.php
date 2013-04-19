@@ -8,7 +8,7 @@ class Home extends CI_Controller {
 		$this->load->helper(array('url', 'form'));
 
 		//Modelos
-		$this->load->model(array('videos_model','contact_model','photos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model'));
+		$this->load->model(array('videos_model','contact_model','photos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model','custom_options_model','custom_questions_modal'));
 	
 	}
 
@@ -186,6 +186,22 @@ class Home extends CI_Controller {
 		{
 			$args["casting"] = $this->castings_model->get_full_casting($id);
 			$args["casting"]["applies"] = $this->applies_model->get_applies_cant($id);
+			
+			//carga las preguntas custom de este casting
+			$args["custom_questions"] = $this->custom_questions_model->getQuestionsBy($id);
+			foreach($args["custom_questions"] as $pregunta)
+			{
+				$opciones = $this->custom_options_model->getOptionsByQuestion($pregunta['id']); //saca las opciones para esta pregunta
+				if((!$opciones == 0))
+				{
+					//hay opciones
+					$pregunta[] = array('opciones' => $opciones); //para mandarlo a la vista //con todo
+				}
+				else
+				{
+					//no hay opciones(no se define "custom_options")
+				}
+			}
 		}
 
 		
