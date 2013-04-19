@@ -70,7 +70,7 @@ class Subevideo extends CI_Controller
 		{
 			$error = array('error' => $this->upload->display_errors());
 			//REGISTRO EL PROBLEMA AL SUBIRLO
-			log_message('info', 'Uploader -> Falló al intentar subir el video al servidor:  - MIMETYPE detectado: '.$this->upload->file_type.'	- Error: '.$error['error']);
+			log_message('error', 'Uploader -> Falló al intentar subir el video al servidor:  - MIMETYPE detectado: '.$this->upload->file_type.'	- Error: '.$error['error']);
 			
 			redirect(HOME."/user/video_gallery#uploaderror");
 			//$this->load->view('upload_form', $error);
@@ -97,7 +97,7 @@ class Subevideo extends CI_Controller
 		    	}
 		    	catch(Exception $e){    
 		        	 //echo "Error al recibir respuesta desde Youtube:".$e->getMessage();
-		        	 log_message('info', 'Uploader -> Falló al intentar subir el video a Youtube:  - MIMETYPE detectado: '.$this->upload->file_type.'	- Error: '.$e->getMessage());
+		        	 log_message('error', 'Uploader -> Falló al intentar subir el video a Youtube:  - MIMETYPE detectado: '.$this->upload->file_type.'	- Error: '.$e->getMessage());
 					 
 					 exec($comando_conversor); //supuestamente realiza la conversion
 		    	}
