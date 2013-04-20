@@ -163,7 +163,7 @@ class Hunter extends CI_Controller {
 						//caracteres separadores
 						// |$   -> equivale a ":" Separa las partes
  						// |*   -> equivale a " " Separa atributo-valor
- 						// |#   -> equivale a "," Separa opciones
+ 						// *#   -> equivale a "," Separa opciones
  						 
 						var_dump($_POST[$question_head."$i"]);
 						$partes_pregunta = explode("|*", $_POST[$question_head."$i"]);
@@ -192,7 +192,7 @@ class Hunter extends CI_Controller {
 						//si tiene valores(opciones)
 						if($question_data['options'] != '')
 						{
-							$opciones = explode("|#",$question_data['options']);
+							$opciones = explode("@#",$question_data['options']);
 							foreach($opciones as $opcion)
 							{
 								$this->custom_options_model->insert($id_pregunta_insertada,$opcion); 
