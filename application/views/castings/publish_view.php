@@ -320,11 +320,6 @@
 					</script>
 					 
 					<!-- enlaces creadores/llamadores de la funcion -->
-					<a href="#latabla" onclick="addQuestionData('text','Preguntita','NADA')">AgregarTextual</a>
-					<a href="#latabla" onclick="addQuestionData('select','Preguntass','op1|#op2|#op3')">AgregarSelect</a>
-					<a href="#latabla" onclick="addQuestionData('multiselect','PreguntONAs','op1|#op2|#op3|#op4')">AgregarMultiSelect</a>
-					
-					
 					
 					<!-- LA TABLA DE PREGUNTAS -->
 					<table id="tablapreguntas" name="latabla">
