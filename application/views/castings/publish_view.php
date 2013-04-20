@@ -310,7 +310,7 @@
 							var hidden_data = "<input type='hidden' value='type|$"+type+"|*title|$"+title+"|*valores|$"+value+"' class='pregunta' name='question_"+question_number+"' />";
 							$('#tablapreguntas').find('tbody:last').append(hidden_data);
 							 
-							var reguleque = new RegExp('[|#]','g');
+							var reguleque = new RegExp('|#','g');
 							
 							value = value.replace(reguleque,',');
 							$('#tablapreguntas').find('tbody:last').append("<tr><td>"+type+"</td><td>"+title+"</td><td>"+value+"</td></tr>");
