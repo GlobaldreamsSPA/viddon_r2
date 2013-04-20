@@ -64,7 +64,8 @@
 
 				var input_text = document.createElement('input');
 				input_text.setAttribute('type', 'text');
-				input_text.setAttribute('onkeypress', "tab_event(event)");
+				input_text.setAttribute('onkeypress', "change_event(event)");
+				input_text.setAttribute('onkeydown', "change_event(event)");
 				input_text.setAttribute('style', "margin-bottom: 10px; margin-left: 4px;");
 				input_text.setAttribute('class', 'added_option');
 
@@ -100,7 +101,8 @@
 			var input_text = document.createElement('input');
 			input_text.setAttribute('type', 'text');
 			input_text.setAttribute('style', 'margin-left: 4px; margin-bottom: 10px;');
-			input_text.setAttribute('onkeypress', 'tab_event(event)');
+			input_text.setAttribute('onkeypress', 'change_event(event)');
+			input_text.setAttribute('onkeydown', 'change_event(event)');
 			input_text.setAttribute('class', 'added_option');
 
 			anchor.parentElement.appendChild(document.createElement('br'));
@@ -109,16 +111,26 @@
 			anchor.parentElement.appendChild(anchor);
 		}
 
-		function tab_event(event)
+		function change_event(event)
 		{
-			//Capturar el evento de presionar el tab
-			if(event.charCode == 0 && event.keyCode == 9)
+			console.log(event);
+			//Capturar el evento al presionar tab o keydown
+			if((event.charCode == 0 && event.keyCode == 9) || (navigator.userAgent.indexOf('Chrome') != -1 && event.charCode == 0 && event.keyCode == 40))
 			{
+				if(event.keyCode == 9)
+				{
+					var offset = 2;
+				}
+				else if(event.keyCode == 40 && navigator.userAgent.indexOf('Chrome') != -1)
+				{
+					var offset = 1;
+				}
+
 				add_question(body_elem.getElementsByTagName('a')[0]);
 				body_elem = document.getElementById('modal-body');
 				
 				input_elements = body_elem.getElementsByTagName('input');
-				input_elements[input_elements.length - 2].focus();
+				input_elements[input_elements.length - offset].focus();
 			}
 		}
 
@@ -181,8 +193,8 @@
 			<div>
 				<h4>Ingresar alternativas</h4>
 				<input type="radio" style="position: relative; top: -06px;"/>
-				<input type="text" class="added_option" style="margin-bottom: 10px;" onkeypress="tab_event(event)"/>
-				<a onclick="add_question(this)" style="margin-left: 5px; position: relative; top: -4px; cursor: pointer;">Agregar otro campo</a>
+				<input type="text" class="added_option" style="margin-bottom: 10px;" onkeydown="change_event(event)" onkeypress="change_event(event)"/>
+				<a onclick="add_question(this);" style="margin-left: 5px; position: relative; top: -4px; cursor: pointer;">Agregar otro campo</a>
             </div>
         </div>
         <div class="modal-footer" style="height: 30px;">
@@ -310,7 +322,7 @@
 							var hidden_data = "<input type='hidden' value='type|$"+type+"|*title|$"+title+"|*valores|$"+value+"' class='pregunta' name='question_"+question_number+"' />";
 							$('#tablapreguntas').find('tbody:last').append(hidden_data);
 							 
-							var reguleque = new RegExp('|#','g');
+							var reguleque = new RegExp('[|#]','g');
 							
 							value = value.replace(reguleque,',');
 							$('#tablapreguntas').find('tbody:last').append("<tr><td>"+type+"</td><td>"+title+"</td><td>"+value+"</td></tr>");
