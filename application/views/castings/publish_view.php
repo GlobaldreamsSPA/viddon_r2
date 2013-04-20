@@ -13,6 +13,7 @@
 		{
 			load_form('select');
 			title_text = document.getElementById('added_question').value = "";
+			document.getElementById('modal-body').getElementsByTagName('select')[0].selectedIndex = 2;
 		}
 
 		function load_form(value)
@@ -137,8 +138,16 @@
 					if(options.item(i).value.trim() != '')
 						string_options = string_options.concat(options.item(i).value.trim()+ "|#");
 				}
+				 
+				if(string_options.substring(0,2) == "|#")
+				{
+					string_options = string_options.substring(2, string_options.length-2);
+				}
+				else
+				{
+					string_options = string_options.substring(0, string_options.length-2);
+				}
 
-				string_options = string_options.substring(0, string_options.length-2);
 				console.log(string_options);
 				addQuestionData(value, title_text, string_options);
 			}
@@ -146,9 +155,14 @@
 			{
 				addQuestionData(value, title_text, '');
 			}
+
 			//Limpiar formulario
 			clean_modal_body_form();
 		}
+
+		jQuery(".modal-backdrop, #add_question .close, #add_question .btn").live("click", function() {
+	        clean_modal_body_form();
+			});
 
 	</script>
     <div id="add_question" class="modal hide fade" style="width: 430px !important;" tabindex="-1" role="dialog" aria-labelledby="AgregaVideo" aria-hidden="true">
