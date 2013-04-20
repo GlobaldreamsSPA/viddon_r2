@@ -12,49 +12,6 @@
 </div>
 </div>
 
-<!-- EL MODAL PARA EL FORMULARIO CUSTOM -->
-<div id="custom-form" class="modal hide fade in">
-<div class="modal-header">
-<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
-</div>
-<div class="modal-body">
-<?php 
-	if(isset($custom_questions))
-	{
-		foreach($custom_questions as $pregunta)
-		{
-			//imprime encabezado de pregunta
-			print_r($pregunta);
-			//luego genera el formulario
-			
-			
-			if((($pregunta['type'] == 'select') || ($pregunta['type'] == 'multiselect')))
-			{
-				//genera el campo(input) del multiselect para esta pregunta
-				foreach($pregunta['opciones'] as $opcion)
-				{
-					//genera el input de esta opcion
-					
-				}
-			
-			}else
-			{
-				//sino genera el input para la pregunta tex
-			}
-		}
-	}
-?>	
-</div>
-<div class="modal-footer">
-<a href="#" class="btn" data-dismiss="modal">Cerrar</a>
-</div>
-</div>
-<!-- FIN EL MODAL PARA EL FORMULARIO CUSTOM -->
-
-
-
-
-
 <?php if(isset($postulation_message)){ ?>
 <script type="text/javascript">
 
@@ -109,6 +66,47 @@
 						<li>Edad preferida: <?php echo $casting['age'] ?>.</li>
 						<li>G&eacutenero preferido: <?php echo $casting['sex'] ?>.</li>
 					</ul>
+					<div class="space2"></div>
+
+					<?php 
+						if($custom_options)
+						{
+							foreach ($custom_options as $custom_option) {
+								if(strcmp($custom_option['type'], 'text') == 0)
+								{
+									//Pregunta va h5 y texto es textarea
+									echo "<h5>".$custom_option['text']."</h5>";
+									echo "<textarea style='resize: none; width: 97%; margin-top: 15px;' cols='50' rows='3' placeholder='La respuesta del postulante iría acá'></textarea>";
+								}
+								if(strcmp($custom_option['type'], 'select') == 0)
+								{
+									//Pregunta va h5 y se crea un select con varios options
+									echo "<h5>".$custom_option['text']."</h5>";
+									echo "<select>";
+									foreach ($custom_option['options'] as $option)
+									{
+										echo "<option value='".$option['option']."'>".$option['option']."</option>";
+									}
+									echo "</select>";
+								}
+
+								if(strcmp($custom_option['type'], 'multiselect') == 0)
+								{
+									//Pregunta va h5 y se crea un select chozen
+									echo "<h5>".$custom_option['text']."</h5>";
+
+									$options =  array();
+									foreach ($custom_option['options'] as $option)
+									{
+										$options[] = $option['option'];
+									}
+
+									echo form_multiselect('options[]',$options ,NULL,"class='chzn-select chosen_filter' style='width:60%' data-placeholder='Selecciona los tags...'");
+								}
+							}
+						}
+					?>
+
 					<div class="space2"></div>
 					<a style="margin-left:10%;" href="<?php echo HOME."/home/apply_casting/".$casting['id'];?>" id="participate_button" class="btn btn-large btn-success" type="submit" name="apply">POSTULAR</a>
 					<div class="space4"></div>

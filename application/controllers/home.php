@@ -188,20 +188,24 @@ class Home extends CI_Controller {
 			$args["casting"]["applies"] = $this->applies_model->get_applies_cant($id);
 			
 			//carga las preguntas custom de este casting
-			$args["custom_questions"] = $this->custom_questions_model->getQuestionsBy($id);
-			foreach($args["custom_questions"] as $pregunta)
+			$custom_questions = $this->custom_questions_model->getQuestionsBy($id);
+			$custom_options = array();
+
+			for($i =0; $i < count($custom_questions); $i++)
 			{
-				$opciones = $this->custom_options_model->getOptionsByQuestion($pregunta['id']); //saca las opciones para esta pregunta
+				$custom_options[$i] = array('type' => $custom_questions[$i]['type'], 'text' => $custom_questions[$i]['text'], 'options' => array());
+				$opciones = $this->custom_options_model->getOptionsByQuestion($custom_questions[$i]['id']);
+
 				if((!$opciones == 0))
 				{
 					//hay opciones
-					$pregunta[] = array('opciones' => $opciones); //para mandarlo a la vista //con todo
-				}
-				else
-				{
-					//no hay opciones(no se define "custom_options")
+					foreach ($opciones as $option) {
+						$custom_options[$i]['options'][] = array('option' => $option['option']);	
+					}
 				}
 			}
+
+			$args['custom_options'] = $custom_options;
 		}
 
 		
