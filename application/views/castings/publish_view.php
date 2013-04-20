@@ -9,6 +9,12 @@
 			return value;
 		}
 
+		function clean_modal_body_form()
+		{
+			load_form('select');
+			title_text = document.getElementById('added_question').value = "";
+		}
+
 		function load_form(value)
 		{
 			if(typeof value == 'undefined')
@@ -139,7 +145,7 @@
 				addQuestionData(value, title_text, '');
 			}
 			//Limpiar formulario
-			load_form('select');
+			clean_modal_body_form();
 		}
 
 	</script>
@@ -166,7 +172,7 @@
         </div>
         <div class="modal-footer" style="height: 30px;">
           <a class="btn btn-primary" data-dismiss="modal" onclick="save_options(this)">Guardar</a>
-          <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="load_form('select')">Cerrar</button>
+          <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="clean_modal_body_form()">Cerrar</button>
         </div>
       </form>
     </div>      <!-- MODAL-->
@@ -289,7 +295,8 @@
 							var hidden_data = "<input type='hidden' value='type|$"+type+"|*title|$"+title+"|*valores|$"+value+"' class='pregunta' name='question_"+question_number+"' />";
 							$('#tablapreguntas').find('tbody:last').append(hidden_data);
 							 
-							var reguleque = new RegExp('%#','g'); //cambia el %# por comas para mostrar las opciones en la tabla							
+							var reguleque = new RegExp('[|#]','g');
+							
 							value = value.replace(reguleque,',');
 							$('#tablapreguntas').find('tbody:last').append("<tr><td>"+type+"</td><td>"+title+"</td><td>"+value+"</td></tr>");
 							
@@ -298,8 +305,8 @@
 					 
 					<!-- enlaces creadores/llamadores de la funcion -->
 					<a href="#latabla" onclick="addQuestionData('text','Preguntita','NADA')">AgregarTextual</a>
-					<a href="#latabla" onclick="addQuestionData('select','Preguntass','op1%#op2%#op3')">AgregarSelect</a>
-					<a href="#latabla" onclick="addQuestionData('multiselect','PreguntONAs','op1%#op2%#op3%#op4')">AgregarMultiSelect</a>
+					<a href="#latabla" onclick="addQuestionData('select','Preguntass','op1|#op2|#op3')">AgregarSelect</a>
+					<a href="#latabla" onclick="addQuestionData('multiselect','PreguntONAs','op1|#op2|#op3|#op4')">AgregarMultiSelect</a>
 					
 					
 					
