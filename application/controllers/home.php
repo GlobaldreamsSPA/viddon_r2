@@ -8,7 +8,7 @@ class Home extends CI_Controller {
 		$this->load->helper(array('url', 'form'));
 
 		//Modelos
-		$this->load->model(array('videos_model','contact_model','photos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model','custom_options_model','custom_questions_modal'));
+		$this->load->model(array('videos_model','contact_model','photos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model','custom_options_model','custom_questions_model'));
 	
 	}
 

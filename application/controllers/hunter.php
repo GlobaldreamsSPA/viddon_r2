@@ -94,7 +94,7 @@ class Hunter extends CI_Controller {
 			$args["filtros"] = array("-1" => "Todos","-2" => "Limpiar",1 => "Color de Pelo",2 =>"Color de Ojos",3 =>"Color de Piel",4 =>"Edad",5 =>"Estatura",6 =>"Contextura");
 				
 			$args["hunters"]= $temp + array("hunter1","hunter2","hunter3","hunter4");
-			$args["age_list"] = $temp + array(0=>"10 a&ntildeos o menos",1=>"10-15 a&ntildeos",2=>"15-20 a&ntildeos",3=>"20-25 a&ntildeos",4=>"20-30 a&ntildeos",5=>"30-35 a&ntildeos",6=>"35-40 a&ntildeos",7=>"40-45 a&ntildeos o m&aacutes");	
+			$args["age_list"] = $temp + array(0=>"10 a&ntildeos o menos",1=>"10-15 a&ntildeos",2=>"15-20 a&ntildeos",3=>"20-25 a&ntildeos",4=>"25-30 a&ntildeos",5=>"30-35 a&ntildeos",6=>"35-40 a&ntildeos",7=>"40-45 a&ntildeos o m&aacutes");	
 
 			
 	   	 	//Setear mensajes
