@@ -165,7 +165,7 @@ class Hunter extends CI_Controller {
  						// |*   -> equivale a " " Separa atributo-valor
  						// |#   -> equivale a "," Separa opciones
  						 
-						//var_dump($_POST[$question_head."$i"]);
+						var_dump($_POST[$question_head."$i"]);
 						$partes_pregunta = explode("|*", $_POST[$question_head."$i"]);
 						foreach($partes_pregunta as $parte) //obtiene el arreglo elemento->valor
 						{
@@ -190,9 +190,9 @@ class Hunter extends CI_Controller {
 						$id_pregunta_insertada = $this->custom_questions_model->insert($casting_id,$question_data); //se inserta la pregunta
 						
 						//si tiene valores(opciones)
-						if($question_data['options'] != 'NADA')
+						if($question_data['options'] != '')
 						{
-							$opciones = explode("%#",$question_data['options']);
+							$opciones = explode("|#",$question_data['options']);
 							foreach($opciones as $opcion)
 							{
 								$this->custom_options_model->insert($id_pregunta_insertada,$opcion); 
