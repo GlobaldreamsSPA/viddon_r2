@@ -143,15 +143,15 @@
 			if(value != "text")
 			{
 				var options = document.getElementById('modal-body').getElementsByClassName('added_option');
-				var string_options = options.item(0).value.trim() + "|#";
+				var string_options = options.item(0).value.trim() + "@#";
 
 				for(var i=1; i< options.length; i++)
 				{
 					if(options.item(i).value.trim() != '')
-						string_options = string_options.concat(options.item(i).value.trim()+ "|#");
+						string_options = string_options.concat(options.item(i).value.trim()+ "@#");
 				}
 				 
-				if(string_options.substring(0,2) == "|#")
+				if(string_options.substring(0,2) == "@#")
 				{
 					string_options = string_options.substring(2, string_options.length-2);
 				}
@@ -321,8 +321,8 @@
 							var question_number = document.getElementsByClassName('pregunta').length; //numero de ultima pregunta ingresada
 							var hidden_data = "<input type='hidden' value='type|$"+type+"|*title|$"+title+"|*valores|$"+value+"' class='pregunta' name='question_"+question_number+"' />";
 							$('#tablapreguntas').find('tbody:last').append(hidden_data);
-							 
-							var reguleque = new RegExp('[|#]','g');
+
+							var reguleque = new RegExp('@#','g');
 							
 							value = value.replace(reguleque,',');
 							$('#tablapreguntas').find('tbody:last').append("<tr><td>"+type+"</td><td>"+title+"</td><td>"+value+"</td></tr>");
@@ -333,7 +333,7 @@
 					<!-- enlaces creadores/llamadores de la funcion -->
 					
 					<!-- LA TABLA DE PREGUNTAS -->
-					<table id="tablapreguntas" name="latabla">
+					<table class="table" id="tablapreguntas" name="latabla">
 			          <thead>
 			            <tr>
 			              <th>Tipo</th>
