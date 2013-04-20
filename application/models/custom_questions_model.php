@@ -22,15 +22,21 @@ class Custom_questions_model extends CI_Model
 			return $query->result_array();
 	}
 	
-	function getQuestionsBy($by)
+	function getQuestionsBy($id_casting,$by=NULL)
 	{
 		$this->db->select('*');
-		switch($by)
+		if(!is_null($by))
 		{
-			case 'type':
-				$this->db->where('type', $by);
-				break; 
+			switch($by)
+			{
+				case 'type':
+					$this->db->where('type', $by);
+					break; 
+			}
 		}
+		
+		$this->db->where('idcasting', $id_casting);
+		
 		$query = $this->db->get($this->table);
 		if($query->num_rows == 0)
 			return 0;

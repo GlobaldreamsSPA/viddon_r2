@@ -519,7 +519,7 @@
 
 			uri= uri.substr(0,uri.length - 1);
 			if(uri=="")
-				uri="_n";
+				uri="";
 
 			
 			result = temp + uri + "/";
@@ -530,7 +530,7 @@
 
 		if($(".filter_input_a1").length > 0)
 		{
-			$(".filter_input_a1").change({regexp: '/[0-9_-]+/[A-Za-z_ñ]+/',target: '#filter_button'},update_input_filter);
+			$(".filter_input_a1").change({regexp: '/[0-9_-]+/[A-Za-z_ñ]*/',target: '#filter_button'},update_input_filter);
 			$('.filter_input_a1').trigger('change');
 		}
 		

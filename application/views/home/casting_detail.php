@@ -12,6 +12,49 @@
 </div>
 </div>
 
+<!-- EL MODAL PARA EL FORMULARIO CUSTOM -->
+<div id="custom-form" class="modal hide fade in">
+<div class="modal-header">
+<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
+</div>
+<div class="modal-body">
+<?php 
+	if(isset($custom_questions))
+	{
+		foreach($custom_questions as $pregunta)
+		{
+			//imprime encabezado de pregunta
+			print_r($pregunta);
+			//luego genera el formulario
+			
+			
+			if((($pregunta['type'] == 'select') || ($pregunta['type'] == 'multiselect')))
+			{
+				//genera el campo(input) del multiselect para esta pregunta
+				foreach($pregunta['opciones'] as $opcion)
+				{
+					//genera el input de esta opcion
+					
+				}
+			
+			}else
+			{
+				//sino genera el input para la pregunta tex
+			}
+		}
+	}
+?>	
+</div>
+<div class="modal-footer">
+<a href="#" class="btn" data-dismiss="modal">Cerrar</a>
+</div>
+</div>
+<!-- FIN EL MODAL PARA EL FORMULARIO CUSTOM -->
+
+
+
+
+
 <?php if(isset($postulation_message)){ ?>
 <script type="text/javascript">
 

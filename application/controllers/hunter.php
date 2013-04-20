@@ -20,7 +20,7 @@ class Hunter extends CI_Controller {
 		 	$hunter_id= $hunter_id['id'];
 			
 			$args["castings_dash"]= $this->_dashboard($hunter_id);
-			$args["castings"]= $this->castings_model->get_castings($hunter_id, null, null, 0);
+	
 	   	 	$args['user_data'] = $this->session->userdata('logged_in');
 			$args["content"]="castings/hunter_template";
 			$inner_args["hunter_content"]="castings/hunter_profile";
@@ -191,7 +191,7 @@ class Hunter extends CI_Controller {
 						//si tiene valores(opciones)
 						if($question_data['options'] != 'NADA')
 						{
-							$opciones = explode("|#",$question_data['options']);
+							$opciones = explode("%#",$question_data['options']);
 							foreach($opciones as $opcion)
 							{
 								$this->custom_options_model->insert($id_pregunta_insertada,$opcion); 
@@ -528,12 +528,12 @@ class Hunter extends CI_Controller {
 	//revisa si algún(por lo menos 1) filtro físico está presente
 	private function _has_word_filter($words)
 	{
-		if($words != "_n") return true;
+		if($words != "") return true;
 		else return false;
 	}
 	
 
-	function applicants_list($id=NULL,$page=1,$applies_state=0,$sex=-2,$build=-2,$skin_color=-2,$eyes_color=-2,$hair_color=-2,$height_range=-2,$age_range=-2,$filter_categories=-2,$name_p='_n')
+	function applicants_list($id=NULL,$page=1,$applies_state=0,$sex=-2,$build=-2,$skin_color=-2,$eyes_color=-2,$hair_color=-2,$height_range=-2,$age_range=-2,$filter_categories=-2,$name_p='')
 	{
 		if($this->session->userdata('logged_in') && isset($id))
 		{
