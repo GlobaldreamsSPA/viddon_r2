@@ -322,7 +322,7 @@
 					<!-- enlaces creadores/llamadores de la funcion -->
 					
 					<!-- LA TABLA DE PREGUNTAS -->
-					<table id="tablapreguntas" name="latabla">
+					<table class="table" id="tablapreguntas" name="latabla">
 			          <thead>
 			            <tr>
 			              <th>Tipo</th>
