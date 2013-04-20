@@ -148,7 +148,6 @@
 					string_options = string_options.substring(0, string_options.length-2);
 				}
 
-				console.log(string_options);
 				addQuestionData(value, title_text, string_options);
 			}
 			else
