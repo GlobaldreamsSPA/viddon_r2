@@ -9,11 +9,21 @@
 			return value;
 		}
 
-		function load_form()
+		function clean_modal_body_form()
 		{
-			value = get_index_value();
+			load_form('select');
+			title_text = document.getElementById('added_question').value = "";
+		}
 
-			document.getElementById('modal-body').removeChild(document.getElementById('modal-body').getElementsByTagName('div')[0]);
+		function load_form(value)
+		{
+			if(typeof value == 'undefined')
+			{
+				value = get_index_value();
+			}
+
+			modal_body = document.getElementById('modal-body');
+			modal_body.removeChild(modal_body.getElementsByTagName('div')[0]);
 
 			var element = document.createElement('div');
 			var div = document.getElementById('modal-body').appendChild(element);
@@ -29,7 +39,6 @@
 				{
 					textarea.setAttribute(atribute[i], value[i]);
 				}
-
 				div.appendChild(textarea);
 			}
 
@@ -56,6 +65,7 @@
 				input_text.setAttribute('type', 'text');
 				input_text.setAttribute('onkeypress', "tab_event(event)");
 				input_text.setAttribute('style', "margin-bottom: 10px; margin-left: 4px;");
+				input_text.setAttribute('class', 'added_option');
 
 				var anchor = document.createElement('a');
 				anchor.setAttribute('onclick', 'add_question(this)');
@@ -90,6 +100,7 @@
 			input_text.setAttribute('type', 'text');
 			input_text.setAttribute('style', 'margin-left: 4px; margin-bottom: 10px;');
 			input_text.setAttribute('onkeypress', 'tab_event(event)');
+			input_text.setAttribute('class', 'added_option');
 
 			anchor.parentElement.appendChild(document.createElement('br'));
 			anchor.parentElement.appendChild(input_sel);
@@ -110,10 +121,36 @@
 			}
 		}
 
+		function save_options()
+		{
+			value = get_index_value();
+
+			title_text = document.getElementById('added_question').value;
+
+			if(value != "text")
+			{
+				var options = document.getElementById('modal-body').getElementsByClassName('added_option');
+				var string_options = options.item(0).value.trim() + "|#";
+
+				for(var i=1; i< options.length; i++)
+				{
+					string_options = string_options.concat(options.item(i).value.trim() + "|#");
+				}
+
+				string_options = string_options.substring(0, string_options.length-2);
+				addQuestionData(value, title_text, string_options);
+			}
+			else
+			{
+				addQuestionData(value, title_text, '');
+			}
+			//Limpiar formulario
+			clean_modal_body_form();
+		}
+
 	</script>
     <div id="add_question" class="modal hide fade" style="width: 430px !important;" tabindex="-1" role="dialog" aria-labelledby="AgregaVideo" aria-hidden="true">
-      <form class="form-horizontal" id="photo_upload_form" enctype="multipart/form-data" action="#" method="post">
-        
+      <form class="form-horizontal">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           <h3 id="myModalLabel">Agregar Pregunta</h3>
@@ -125,17 +162,17 @@
 					<option value="select" selected="selected">Pregunta de selección puntual</option>
 				</select>
 			<h4>Ingresar pregunta</h4>
-			<input type="text" placeholder='Ingresar pregunta acá' style="width: 97%;"/>
+			<input type="text" placeholder='Ingresar pregunta acá' id="added_question" style="width: 97%;"/>
 			<div>
 				<h4>Ingresar alternativas</h4>
 				<input type="radio" style="position: relative; top: -06px;"/>
-				<input type="text" style="margin-bottom: 10px;" onkeypress="tab_event(event)"/>
+				<input type="text" class="added_option" style="margin-bottom: 10px;" onkeypress="tab_event(event)"/>
 				<a onclick="add_question(this)" style="margin-left: 5px; position: relative; top: -4px; cursor: pointer;">Agregar otro campo</a>
             </div>
         </div>
         <div class="modal-footer" style="height: 30px;">
-          <button type="submit" class="btn btn-primary">Guardar</button>
-          <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+          <a class="btn btn-primary" data-dismiss="modal" onclick="save_options(this)">Guardar</a>
+          <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="clean_modal_body_form()">Cerrar</button>
         </div>
       </form>
     </div>      <!-- MODAL-->
@@ -249,7 +286,7 @@
 						 * @param type Tipo de pregunta
 						 * @param value Los valores de las posibles respuesta, en caso de ser de seleccion
 						 */
-						function addQuestionData(type,title,value)
+						function addQuestionData(type, title, value)
 						{	
 							//obtener el numero de la pregunta previa
 							var separador1 = '|$';
@@ -258,7 +295,8 @@
 							var hidden_data = "<input type='hidden' value='type|$"+type+"|*title|$"+title+"|*valores|$"+value+"' class='pregunta' name='question_"+question_number+"' />";
 							$('#tablapreguntas').find('tbody:last').append(hidden_data);
 							 
-							var reguleque = new RegExp('%#','g'); //cambia el %# por comas para mostrar las opciones en la tabla							
+							var reguleque = new RegExp('[|#]','g');
+							
 							value = value.replace(reguleque,',');
 							$('#tablapreguntas').find('tbody:last').append("<tr><td>"+type+"</td><td>"+title+"</td><td>"+value+"</td></tr>");
 							
@@ -267,8 +305,8 @@
 					 
 					<!-- enlaces creadores/llamadores de la funcion -->
 					<a href="#latabla" onclick="addQuestionData('text','Preguntita','NADA')">AgregarTextual</a>
-					<a href="#latabla" onclick="addQuestionData('select','Preguntass','op1%#op2%#op3')">AgregarSelect</a>
-					<a href="#latabla" onclick="addQuestionData('multiselect','PreguntONAs','op1%#op2%#op3%#op4')">AgregarMultiSelect</a>
+					<a href="#latabla" onclick="addQuestionData('select','Preguntass','op1|#op2|#op3')">AgregarSelect</a>
+					<a href="#latabla" onclick="addQuestionData('multiselect','PreguntONAs','op1|#op2|#op3|#op4')">AgregarMultiSelect</a>
 					
 					
 					
