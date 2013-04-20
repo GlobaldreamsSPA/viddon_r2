@@ -61,7 +61,7 @@ class Applies_model extends CI_Model
 	}
 	
 	function get_filtered_user_applies_by($filtered_ids,$casting_id,$sex=NULL, $eyes_color=NULL, $hair_color=NULL, $build=NULL, $skin_color=NULL, $height_range=NULL, $age_range=NULL,$page=NULL,$cant=5){
-		$this->db->select('A.user_id,A.id,A.state');
+		$this->db->select("A.user_id,A.id,A.state, FLOOR(DATEDIFF(CURDATE(),STR_TO_DATE(U.birth_date,'%Y-%M-%D'))/365) AS age");
 		$this->db->from('applies AS A');
 		$this->db->join('users AS U', 'A.user_id = U.id', 'INNER');
     	$this->db->where('A.casting_id', $casting_id);
