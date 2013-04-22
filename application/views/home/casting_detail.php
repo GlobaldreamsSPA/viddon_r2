@@ -67,48 +67,48 @@
 						<li>G&eacutenero preferido: <?php echo $casting['sex'] ?>.</li>
 					</ul>
 					<div class="space2"></div>
-
-					<?php 
+					<form action="<?php echo HOME.'/home/apply_casting/'.$casting['id']; ?>" method="POST">
+					<?php
 						if($custom_options)
 						{
-							foreach ($custom_options as $custom_option) {
-								if(strcmp($custom_option['type'], 'text') == 0)
+							for($i=0; $i < count($custom_options); $i++) {
+								if(strcmp($custom_options[$i]['type'], 'text') == 0)
 								{
 									//Pregunta va h5 y texto es textarea
-									echo "<h5>".$custom_option['text']."</h5>";
-									echo "<textarea style='resize: none; width: 97%; margin-top: 15px;' cols='50' rows='3' placeholder='La respuesta del postulante iría acá'></textarea>";
+									echo "<h5>".$custom_options[$i]['text']."</h5>";
+									echo "<textarea name='custom_text_answer_".$custom_options[$i]['id']."'style='resize: none; width: 97%; margin-top: 15px;' cols='50' rows='3' placeholder='La respuesta del postulante iría acá'></textarea>";
 								}
-								if(strcmp($custom_option['type'], 'select') == 0)
+								if(strcmp($custom_options[$i]['type'], 'select') == 0)
 								{
 									//Pregunta va h5 y se crea un select con varios options
-									echo "<h5>".$custom_option['text']."</h5>";
-									echo "<select>";
-									foreach ($custom_option['options'] as $option)
+									echo "<h5>".$custom_options[$i]['text']."</h5>";
+									echo "<select name='custom_select_answer_".$custom_options[$i]['id']."'>";
+									foreach ($custom_options[$i]['options'] as $option)
 									{
-										echo "<option value='".$option['option']."'>".$option['option']."</option>";
+										echo "<option value='".$option['id']."'>".$option['option']."</option>";
 									}
 									echo "</select>";
 								}
-
-								if(strcmp($custom_option['type'], 'multiselect') == 0)
+								if(strcmp($custom_options[$i]['type'], 'multiselect') == 0)
 								{
 									//Pregunta va h5 y se crea un select chozen
-									echo "<h5>".$custom_option['text']."</h5>";
+									echo "<h5>".$custom_options[$i]['text']."</h5>";
 
 									$options =  array();
-									foreach ($custom_option['options'] as $option)
+									foreach ($custom_options[$i]['options'] as $option)
 									{
-										$options[] = $option['option'];
+										$options[$option['id']] = $option['option'];
 									}
 
-									echo form_multiselect('options[]',$options ,NULL,"class='chzn-select chosen_filter' style='width:60%' data-placeholder='Selecciona los tags...'");
+									echo form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $options ,NULL,"class='chzn-select chosen_filter' style='width:60%' data-placeholder='Selecciona los tags...'");
 								}
 							}
 						}
 					?>
 
 					<div class="space2"></div>
-					<a style="margin-left:10%;" href="<?php echo HOME."/home/apply_casting/".$casting['id'];?>" id="participate_button" class="btn btn-large btn-success" type="submit" name="apply">POSTULAR</a>
+					<button style="margin-left:10%;" id="participate_button" class="btn btn-large btn-success" type="submit">POSTULAR</button>
+					</form>
 					<div class="space4"></div>
 				</div>
 			</div>

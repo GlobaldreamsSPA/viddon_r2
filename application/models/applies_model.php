@@ -499,7 +499,7 @@ class Applies_model extends CI_Model
 
 			$this->db->insert('videos_applies', $videos_applies);
 
-			return TRUE;
+			return $apply_result['id'];
 		}
 		else
 			return FALSE;

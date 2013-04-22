@@ -8,7 +8,7 @@ class Home extends CI_Controller {
 		$this->load->helper(array('url', 'form'));
 
 		//Modelos
-		$this->load->model(array('videos_model','contact_model','photos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model','custom_options_model','custom_questions_model'));
+		$this->load->model(array('videos_model','contact_model','photos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model','custom_options_model','custom_questions_model', 'custom_answers_model'));
 	
 	}
 
@@ -193,14 +193,14 @@ class Home extends CI_Controller {
 
 			for($i =0; $i < count($custom_questions); $i++)
 			{
-				$custom_options[$i] = array('type' => $custom_questions[$i]['type'], 'text' => $custom_questions[$i]['text'], 'options' => array());
+				$custom_options[$i] = array('id' => $custom_questions[$i]['id'], 'type' => $custom_questions[$i]['type'], 'text' => $custom_questions[$i]['text'], 'options' => array());
 				$opciones = $this->custom_options_model->getOptionsByQuestion($custom_questions[$i]['id']);
 
 				if((!$opciones == 0))
 				{
 					//hay opciones
 					foreach ($opciones as $option) {
-						$custom_options[$i]['options'][] = array('option' => $option['option']);	
+						$custom_options[$i]['options'][] = array('id' => $option['id'], 'option' => $option['option']);	
 					}
 				}
 			}
@@ -244,15 +244,46 @@ class Home extends CI_Controller {
 			if($this->session->userdata('type'))
 			{
 				if($this->castings_model->check_status_active($id_casting))			
-				{	
+				{
 					if ($this->videos_model->verify_videos($this->session->userdata('id')) != 0) 
 					{
-									if($this->applies_model->apply($this->session->userdata('id'),$id_casting))
+						$apply_id = $this->applies_model->apply($this->session->userdata('id'), $id_casting);
+
+						if($apply_id !== FALSE)
+						{
+							$postulation_message = "Postulaci&oacute;n Exitosa.";
+							
+							//Ahora guardas las preguntas custom
+							foreach($this->input->post() as $post_data_name => $post_data_answ)
+							{
+								$data = explode("_", $post_data_name);
+
+								if(strcmp($data[1], "text") == 0 || strcmp($data[1], "select") == 0)
+								{
+									if(strcmp($post_data_answ, "") != 0)
 									{
-										$postulation_message = "Postulaci&oacute;n Exitosa.";
+										$answers['custom_questions_id'] = $data[3];
+										$answers['answer'] = $post_data_answ;
 									}
-									else
-										$postulation_message = "Ya Postulaste a este Casting.";
+									$this->custom_answers_model->save($answers, $apply_id);
+								}
+								if(strcmp($data[1], "multiselect") == 0)
+								{
+									$answers['custom_questions_id'] = $data[3];
+									$answers['answer'] = "";
+									
+									foreach ($post_data_answ as $answ) {
+										if(strcmp($answ,"") != 0)
+											$answers['answer'] = $answers['answer'].$answ.", ";
+									}
+									
+									$answers['answer'] = substr($answers['answer'], 0, -2);
+									$this->custom_answers_model->save($answers, $apply_id);
+								}
+							}
+						}
+						else
+							$postulation_message = "Ya Postulaste a este Casting.";
 					}
 					else
 						$postulation_message = "No tienes un video para poder postular.";
@@ -265,11 +296,9 @@ class Home extends CI_Controller {
 				
 		}
 		else 
-			$postulation_message = "Debes iniciar sesi&oacute;n";		
-		
+			$postulation_message = "Debes iniciar sesi&oacute;n";	
 		
 		$this->session->set_userdata('msj', $postulation_message);
-		
 		redirect(HOME."/home/casting_detail/".$id_casting);
 	}
 }
