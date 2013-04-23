@@ -20,6 +20,7 @@ class User_model extends CI_Model
 		$this->db->select('users.id,name,last_name');
 		$this->db->from('users');
 		$this->db->join('videos', 'users.id = user_id');
+		$this->db->distinct();
 		$query = $this->db->get();
 		return $query;
 

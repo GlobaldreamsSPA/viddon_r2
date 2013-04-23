@@ -74,20 +74,32 @@ class Home extends CI_Controller {
 		$args["page"]=$page;
 		$args["castings"] = $this->castings_model->get_castings(NULL, 2, 1);
 		
-		
+		$query= $this->user_model->participants();
+		$ranking= array();
+		foreach ($query->result() as $row)
+		{
+
+			$fqlResult = file_get_contents("https://graph.facebook.com/?id=http://www.viddon.com/user/index/".$row->id);
+			$fqlResult = json_decode($fqlResult);
+
+			$item["id"] = $row->id;
+			if(isset($fqlResult -> {"shares"}))
+				$item["likes"] = $fqlResult -> {"shares"};
+			else
+				$item["likes"] = 0;
+
+			$item["name"]= $row->name." ".$row->last_name;
+
+			$ranking[] = $item;
+		}
+		$args["castings"] = $this->castings_model->get_castings(NULL, 2, 1);
+		$args["ranking"] = $ranking;
     
 		$args["content"] = "home/home_view";
 		$args["inner_args"] = NULL;
 		$this->load->view('template',$args);
 	}
-	public function ranking()
-	{
-		$ranking= $this->user_model->participants();
-		foreach ($ranking->result() as $row)
-		   {
-		      var_dump($row);
-		   }
-	}
+
 
 	public function casting_list($page = 1,$actual_categories = -2)//el actual es un string de categorias
 	{
@@ -291,7 +303,7 @@ class Home extends CI_Controller {
 									
 									foreach ($post_data_answ as $answ) {
 										if(strcmp($answ,"") != 0)
-											$answers['answer'] = $answers['answer'].$answ.",";
+											$answers['answer'] = $answers['answer'].$answ.", ";
 									}
 									
 									$answers['answer'] = substr($answers['answer'], 0, -2);
@@ -315,7 +327,6 @@ class Home extends CI_Controller {
 		else 
 			$postulation_message = "Debes iniciar sesi&oacute;n";	
 		
-		$this->session->set_userdata('msj', $postulation_message);
-		//redirect(HOME."/home/casting_detail/".$id_casting);
+		redirect(HOME."/home/casting_detail/".$id_casting);
 	}
 }

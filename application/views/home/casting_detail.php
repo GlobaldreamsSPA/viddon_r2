@@ -156,7 +156,7 @@
 			<div class="span4">
 			  	<div style="border-radius: 5px; margin-left:8%; text-align:center;" id="grow" class="row-fluid">
 			  		<div class="space1"></div>
-			  		<h2 id="profile"  style="font-weight:bold;">Castings Viddon</h3>
+			  		<h2 id="profile"  style="font-weight:bold;">Casting Viddon</h3>
 			  		<?php foreach($castings as $casting){ ?>
 			  			<a href="<?php echo site_url("home/casting_detail/".$casting['id']); ?>">
 		  					<img style="margin-top: 7%; width: 84%; " src="<?php echo $casting['image']; ?>">
@@ -164,7 +164,27 @@
 		  			<?php } ?>
 					<div class= "space2"></div>
 					<div class= "space2"></div>
-					<div style="height: 41px;"></div>	
+					<div class="social_container">
+						<h3 id="profile"> Buscanos en Redes</h3>
+					
+						<div class="row">
+							<div class="span4">
+								<a href="https://twitter.com/ViddonCom" target=”_blank”>
+			  						<img style="width: 74%; " src="<?php echo HOME."/img/social_container_t.png"; ?>">
+			  					</a>
+			  				</div>
+			  				<div class="span4">	
+			  					<a  href="http://www.facebook.com/pages/Viddoncom/499177723428347?ref=hl" target=”_blank”>
+			  						<img style="width: 74%; " src="<?php echo HOME."/img/social_container_f.png"; ?>">
+			  					</a>
+			  				</div>
+			  				<div class="span4">	
+			  					<img style="width: 74%; " src="<?php echo HOME."/img/social_container_w.png"; ?>">
+			  				</div>
+		  				</div>
+					</div>
+					<div style="height: 41px;"></div>
+
 					<div style="margin-left: 5%;" class="span11">
 					<a class="twitter-timeline" href="https://twitter.com/ViddonCom" data-widget-id="316343995661959169">Tweets por @ViddonCom</a>
 					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>

@@ -15,7 +15,7 @@ a:visited {text-decoration: none}
 
 a:hover {	text-decoration: underline}
 
-#variable{min-height: 1080px;}
+#variable{min-height: 1180px;}
 
 /* formato links sociales pagina principal*/
 .social_container{
@@ -39,11 +39,11 @@ background: -ms-linear-gradient(top,  #ffffff 0%,#dad9d9 99%); /* IE10+ */
 background: linear-gradient(to bottom,  #ffffff 0%,#dad9d9 99%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dad9d9',GradientType=0 ); /* IE6-8 */
 
-height: 10%;
 padding-left: 10%;
 padding-right: 5%;
 margin-right: 5%;
 margin-left: 5%;
+padding-bottom: 5%;
 }
 
 /* Play que aparece sobre imagen de video*/

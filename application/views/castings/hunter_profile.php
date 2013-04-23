@@ -33,7 +33,7 @@
 							<!-- Carousel items -->
 								<div class="carousel-inner">
 									<?php foreach($castings as $casting){ ?>
-								    <div class="item">
+								    <div class="active item">
 										<img style="width:100%; height:100%;" id="image_casting" src=<?php echo $casting['image']?> >
 									</div>
 									<?php } ?>
