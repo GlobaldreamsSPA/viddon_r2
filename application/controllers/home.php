@@ -291,7 +291,7 @@ class Home extends CI_Controller {
 									
 									foreach ($post_data_answ as $answ) {
 										if(strcmp($answ,"") != 0)
-											$answers['answer'] = $answers['answer'].$answ.", ";
+											$answers['answer'] = $answers['answer'].$answ.",";
 									}
 									
 									$answers['answer'] = substr($answers['answer'], 0, -2);
