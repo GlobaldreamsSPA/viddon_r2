@@ -15,6 +15,15 @@ class User_model extends CI_Model
 		return $query['id_main_video'];
 	}
 		
+	function participants()
+	{
+		$this->db->select('users.id,name,last_name');
+		$this->db->from('users');
+		$this->db->join('videos', 'users.id = user_id');
+		$query = $this->db->get();
+		return $query;
+
+	}
 		
 	function has_main_video($id_user)
 	{

@@ -21,6 +21,8 @@
 </script>
 <?php } ?>
 
+
+
 <div class="content" id="content">
 	<div class="container-fluid">
 		<div class="row">
@@ -66,50 +68,89 @@
 						<li>Edad preferida: <?php echo $casting['age'] ?>.</li>
 						<li>G&eacutenero preferido: <?php echo $casting['sex'] ?>.</li>
 					</ul>
-					<div class="space2"></div>
+
 					<form action="<?php echo HOME.'/home/apply_casting/'.$casting['id']; ?>" method="POST">
-					<?php
-						if($custom_options)
-						{
-							for($i=0; $i < count($custom_options); $i++) {
-								if(strcmp($custom_options[$i]['type'], 'text') == 0)
-								{
-									//Pregunta va h5 y texto es textarea
-									echo "<h5>".$custom_options[$i]['text']."</h5>";
-									echo "<textarea name='custom_text_answer_".$custom_options[$i]['id']."'style='resize: none; width: 97%; margin-top: 15px;' cols='50' rows='3' placeholder='La respuesta del postulante iría acá'></textarea>";
-								}
-								if(strcmp($custom_options[$i]['type'], 'select') == 0)
-								{
-									//Pregunta va h5 y se crea un select con varios options
-									echo "<h5>".$custom_options[$i]['text']."</h5>";
-									echo "<select name='custom_select_answer_".$custom_options[$i]['id']."'>";
-									foreach ($custom_options[$i]['options'] as $option)
-									{
-										echo "<option value='".$option['id']."'>".$option['option']."</option>";
-									}
-									echo "</select>";
-								}
-								if(strcmp($custom_options[$i]['type'], 'multiselect') == 0)
-								{
-									//Pregunta va h5 y se crea un select chozen
-									echo "<h5>".$custom_options[$i]['text']."</h5>";
-
-									$options =  array();
-									foreach ($custom_options[$i]['options'] as $option)
-									{
-										$options[$option['id']] = $option['option'];
-									}
-
-									echo form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $options ,NULL,"class='chzn-select chosen_filter' style='width:60%' data-placeholder='Selecciona los tags...'");
-								}
-							}
-						}
-					?>
-
 					<div class="space2"></div>
-					<button style="margin-left:10%;" id="participate_button" class="btn btn-large btn-success" type="submit">POSTULAR</button>
+					<div id="postulation-modal" class="modal hide fade in" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-header">
+							<a class="close" data-dismiss="modal"><i class="icon-remove"></i></a>  
+						    <h3 id="myModalLabel">Contesta las siguientes preguntas</h3>
+						</div>
+						<div class="modal-body">
+							<?php
+								if($custom_options != FALSE)
+								{
+									for($i=0; $i < count($custom_options); $i++) {
+										echo "<div style='padding-left:3%'class='row'";
+										if(strcmp($custom_options[$i]['type'], 'text') == 0)
+										{
+											//Pregunta va h5 y texto es textarea
+											echo "<h5>".$custom_options[$i]['text']."</h5>";
+											echo "<br>";
+											echo "<textarea name='custom_text_answer_".$custom_options[$i]['id']."'style='resize: none; width: 97%; margin-top: 15px;' placeholder='La respuesta del postulante iría acá'></textarea>";
+										}
+										if(strcmp($custom_options[$i]['type'], 'select') == 0)
+										{
+											//Pregunta va h5 y se crea un select con varios options
+											echo "<h5>".$custom_options[$i]['text']."</h5>";
+											echo "<br>"; 
+											echo "<br>";
+
+											echo "<select name='custom_select_answer_".$custom_options[$i]['id']."'>";
+											foreach ($custom_options[$i]['options'] as $option)
+											{
+												echo "<option value='".$option['id']."'>".$option['option']."</option>";
+											}
+											echo "</select>";
+										}
+										if(strcmp($custom_options[$i]['type'], 'multiselect') == 0)
+										{
+											//Pregunta va h5 y se crea un select chozen
+											echo "<h5>".$custom_options[$i]['text']."</h5>";
+											echo "<br>";
+											echo "<br>";
+
+
+											$options =  array();
+											foreach ($custom_options[$i]['options'] as $option)
+											{
+												$options[$option['id']] = $option['option'];
+											}
+
+											echo form_multiselect("custom_multiselect_answer_".$custom_options[$i]['id']."[]", $temp+$options ,NULL,"class='chzn-select chosen_filter' style='width:300px;' data-placeholder='Selecciona tus respuestas..'");
+										}
+										echo "</div>";
+
+									}
+								}
+							?>
+
+
+						</div>
+						<div class="modal-footer">
+						<button type="submit" style="margin-left:10%;" id="participate_button" class="btn btn-large btn-success" > Finalizar postulacion</button>
+						<a href="#" class="btn" data-dismiss="modal">Cerrar</a>
+						</div>
+					</div>
+					<?php 
+					if($custom_options != FALSE)
+					{
+					?>
+						<a href="#postulation-modal" data-toggle="modal" style="margin-left:10%;" id="participate_button" class="btn btn-large btn-success" > POSTULAR</a>
+					<?php 
+					}
+					else 
+					{ 
+					?>
+							
+						<button type="submit" style="margin-left:10%;" id="participate_button" class="btn btn-large btn-success" > POSTULAR</button>
+
+					<?php 
+					} 
+					?>
 					</form>
 					<div class="space4"></div>
+
 				</div>
 			</div>
 			<div class="span4">

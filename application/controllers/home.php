@@ -12,6 +12,8 @@ class Home extends CI_Controller {
 	
 	}
 
+
+
 	public function index($page=1)
 	{
 
@@ -78,7 +80,14 @@ class Home extends CI_Controller {
 		$args["inner_args"] = NULL;
 		$this->load->view('template',$args);
 	}
-
+	public function ranking()
+	{
+		$ranking= $this->user_model->participants();
+		foreach ($ranking->result() as $row)
+		   {
+		      var_dump($row);
+		   }
+	}
 
 	public function casting_list($page = 1,$actual_categories = -2)//el actual es un string de categorias
 	{
@@ -187,23 +196,29 @@ class Home extends CI_Controller {
 			$args["casting"] = $this->castings_model->get_full_casting($id);
 			$args["casting"]["applies"] = $this->applies_model->get_applies_cant($id);
 			
+			$args["temp"][-1]= "--  Seleccionar Todos  --";
+			$args["temp"][-2]= "--     Vaciar Campo    --";
+			
 			//carga las preguntas custom de este casting
 			$custom_questions = $this->custom_questions_model->getQuestionsBy($id);
 			$custom_options = array();
-
-			for($i =0; $i < count($custom_questions); $i++)
-			{
-				$custom_options[$i] = array('id' => $custom_questions[$i]['id'], 'type' => $custom_questions[$i]['type'], 'text' => $custom_questions[$i]['text'], 'options' => array());
-				$opciones = $this->custom_options_model->getOptionsByQuestion($custom_questions[$i]['id']);
-
-				if((!$opciones == 0))
+			if($custom_questions != 0)
+				for($i =0; $i < count($custom_questions); $i++)
 				{
-					//hay opciones
-					foreach ($opciones as $option) {
-						$custom_options[$i]['options'][] = array('id' => $option['id'], 'option' => $option['option']);	
+					$custom_options[$i] = array('id' => $custom_questions[$i]['id'], 'type' => $custom_questions[$i]['type'], 'text' => $custom_questions[$i]['text'], 'options' => array());
+					$opciones = $this->custom_options_model->getOptionsByQuestion($custom_questions[$i]['id']);
+
+					if((!$opciones == 0))
+					{
+						//hay opciones
+						foreach ($opciones as $option) {
+							$custom_options[$i]['options'][] = array('id' => $option['id'], 'option' => $option['option']);	
+						}
 					}
 				}
-			}
+
+			else
+				$custom_options = FALSE;
 
 			$args['custom_options'] = $custom_options;
 		}
@@ -252,19 +267,21 @@ class Home extends CI_Controller {
 						if($apply_id !== FALSE)
 						{
 							$postulation_message = "Postulaci&oacute;n Exitosa.";
-							
 							//Ahora guardas las preguntas custom
 							foreach($this->input->post() as $post_data_name => $post_data_answ)
 							{
 								$data = explode("_", $post_data_name);
-
+								echo "<br>";
+								var_dump($data);
 								if(strcmp($data[1], "text") == 0 || strcmp($data[1], "select") == 0)
 								{
+									$answers['custom_questions_id'] = $data[3];
+									
 									if(strcmp($post_data_answ, "") != 0)
-									{
-										$answers['custom_questions_id'] = $data[3];
 										$answers['answer'] = $post_data_answ;
-									}
+									else
+										$answers['answer'] = "omite";
+
 									$this->custom_answers_model->save($answers, $apply_id);
 								}
 								if(strcmp($data[1], "multiselect") == 0)
@@ -299,6 +316,6 @@ class Home extends CI_Controller {
 			$postulation_message = "Debes iniciar sesi&oacute;n";	
 		
 		$this->session->set_userdata('msj', $postulation_message);
-		redirect(HOME."/home/casting_detail/".$id_casting);
+		//redirect(HOME."/home/casting_detail/".$id_casting);
 	}
 }

@@ -295,7 +295,7 @@
 				<div class="space1"></div>
 
 				<!-- IMPORTANTE MAQUETA FORMULARIO-->
-				<div style="border: solid 1px black; padding: 2%;">
+				<div style="height:250px; overflow-y:scroll; padding: 1%;">
 						<div class="span8">
 				    		<h3> Preguntas Personalizadas</h3>
 
@@ -333,8 +333,8 @@
 					<!-- enlaces creadores/llamadores de la funcion -->
 					
 					<!-- LA TABLA DE PREGUNTAS -->
-					<table class="table" id="tablapreguntas" name="latabla">
-			          <thead>
+					<table class="table table-bordered table-condenced table-hover" id="tablapreguntas" name="latabla">
+			          <thead> 
 			            <tr>
 			              <th>Tipo</th>
 			              <th>Titulo</th>
