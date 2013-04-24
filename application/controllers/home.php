@@ -83,13 +83,21 @@ class Home extends CI_Controller {
 			$fqlResult = json_decode($fqlResult);
 
 			$item["id"] = $row->id;
-			if(isset($fqlResult -> {"shares"}))
+			$item["image"] = $this->user_model->get_image_profile($row->id);
+			$item["video_id_y"] = $this->user_model->get_main_video_id($row->id);
+			$item["video_id_y"] = $this->videos_model->get_main_video($item["video_id_y"]);
+ 			$item["video_title"] =$item["video_id_y"]["title"];
+ 			$item["video_id_y"] = $item["video_id_y"]["link"];
+
+ 			if(isset($fqlResult -> {"shares"}))
 				$item["likes"] = $fqlResult -> {"shares"};
 			else
 				$item["likes"] = 0;
 
-			$item["name"]= $row->name." ".$row->last_name;
-
+			$item["first_name"]= $row->name;
+			$item["last_name"]= $row->last_name;
+			$item["bio"] = $row->bio;
+			$item["video"] = $row->id_main_video;
 			$ranking[] = $item;
 		}
 		$args["castings"] = $this->castings_model->get_castings(NULL, 2, 1);
@@ -191,6 +199,17 @@ class Home extends CI_Controller {
 
 
 			$this->load->view('home/video_modal',$args);
+		}
+	}
+
+	public function video_ranking()
+	{
+		if(isset($_GET['id']))
+		{
+			$args['id_video'] = $_GET['id'];		
+			$args['title'] = $_GET['title'];			
+			$args['iduser'] = $_GET['iduser'];		
+			$this->load->view('home/video_modal_ranking',$args);
 		}
 	}
 

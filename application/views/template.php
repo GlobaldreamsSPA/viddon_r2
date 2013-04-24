@@ -138,21 +138,13 @@
 		    </div>	
 	    </div>
 		
-		<div id="lowerhalf">
-			<div class="space05"></div>
-			<div class="row offset1">
-		 		
-				
-				
-				<!--
-				<form class="form-search offset2 span3">
-			  		<input type="text" class="input-medium">
-			  		<button type="submit" class="btn search-btn">Search</button>
-				</form>
-				-->
-			</div>
-		</div>
+		
 	</div>
+
+		<div class="content" id="content">
+			<div class="space2"></div>
+			<div class="space2"></div>
+		</div>
 
 	<?php $this->load->view($content,$inner_args); ?>
 	
