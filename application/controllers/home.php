@@ -79,8 +79,21 @@ class Home extends CI_Controller {
 		foreach ($query->result() as $row)
 		{
 
-			$fqlResult = file_get_contents("https://graph.facebook.com/?id=http://www.viddon.com/user/index/".$row->id);
-			$fqlResult = json_decode($fqlResult);
+			try
+			{
+			    $fqlResult = file_get_contents("https://graph.facebook.com/?id=http://www.viddon.com/user/index/".$row->id);
+				$fqlResult = json_decode($fqlResult);
+				
+				if(isset($fqlResult -> {"shares"}))
+					$item["likes"] = $fqlResult -> {"shares"};
+				else
+					$item["likes"] = 0;
+			}
+			catch (SomeException $e)
+			{
+			      // do nothing... php will ignore and continue    
+			}
+			
 
 			$item["id"] = $row->id;
 			$item["image"] = $this->user_model->get_image_profile($row->id);
@@ -90,10 +103,7 @@ class Home extends CI_Controller {
  			$item["video_title"] =$item["video_id_y"]["title"];
  			$item["video_id_y"] = $item["video_id_y"]["link"];
 
- 			if(isset($fqlResult -> {"shares"}))
-				$item["likes"] = $fqlResult -> {"shares"};
-			else
-				$item["likes"] = 0;
+ 			
 
 			$item["first_name"]= $row->name;
 			$item["last_name"]= $row->last_name;
