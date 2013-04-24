@@ -147,7 +147,7 @@
 								            	<a class="home-video-author" href="<?php echo HOME.'/user/index/'.$applicant['id'] ?>">
 													<?php
 													if(file_exists(APPPATH.'/../img/gallery/'.$applicant["image"]) == TRUE)
-														echo "<img class='user_image_main_page' src='".HOME."'/img/gallery/'".$applicant['image']."'/>";
+														echo "<img class='user_image_main_page' src='".HOME."/img/gallery/".$applicant['image']."'/>";
 													else
 														echo "<img class='user_image_main_page' src='".HOME."/img/profile/user.jpg'/>";
 													?>
