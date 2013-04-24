@@ -84,6 +84,7 @@ class Home extends CI_Controller {
 
 			$item["id"] = $row->id;
 			$item["image"] = $this->user_model->get_image_profile($row->id);
+			$item["image"] = $this->photos_model->get_name($item["image"]);
 			$item["video_id_y"] = $this->user_model->get_main_video_id($row->id);
 			$item["video_id_y"] = $this->videos_model->get_main_video($item["video_id_y"]);
  			$item["video_title"] =$item["video_id_y"]["title"];
