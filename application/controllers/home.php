@@ -81,7 +81,7 @@ class Home extends CI_Controller {
 
 			try
 			{
-			    $fqlResult = file_get_contents("https://graph.facebook.com/?id=http://www.viddon.com/user/index/".$row->id);
+			    $fqlResult = file_get_contents("http://graph.facebook.com/?id=http://www.viddon.com/user/index/".$row->id);
 				$fqlResult = json_decode($fqlResult);
 				
 				if(isset($fqlResult -> {"shares"}))
