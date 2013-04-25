@@ -355,8 +355,9 @@ class Home extends CI_Controller {
 				
 		}
 		else 
-			$postulation_message = "Debes iniciar sesi&oacute;n";	
-		
+			$postulation_message = "Debes iniciar sesi&oacute;n";
+				
+		$this->session->set_userdata('msj', $postulation_message);
 		redirect(HOME."/home/casting_detail/".$id_casting);
 	}
 }
