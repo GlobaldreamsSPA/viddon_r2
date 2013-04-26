@@ -1,4 +1,6 @@
 <div class="content" id="content">	
+	<div class="space2"></div>
+	<div class="space2"></div>
 	<div class="container-fluid">
 			<div style="border-radius: 5px;" class="row-fluid">
 			

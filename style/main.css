@@ -148,10 +148,31 @@ overflow-y: auto;
 	min-height: 180px;
 }
 
+/* Font mensaje hunter */
+
+div.hunter_msj
+{
+	margin-top: 20%; 
+	margin-left:20%;
+	color:white; 
+	max-width: 60%; 
+	text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.7);
+}
+
 /* Fondo Contenido */
 div.content
 {
 	background: url('../img/bg_viddon.png') no-repeat;
+	background-size: 100% auto;
+}
+
+/* Fondo Login Hunter , quienes somos*/
+
+div.content_lh
+{
+	background: url('../img/bg_viddon.png') !important;
+	-webkit-background-size: cover !important;	
+	background-size: cover !important;
 }
 
 /*Estilo del boton superior*/
@@ -215,7 +236,7 @@ div.space4
 {
     vertical-align: middle;
 	padding-top: 13px;
-	font-size: 12px;
+	font-size: 13px;
 }
 
 
@@ -487,6 +508,7 @@ div.button-home-page
 	font-size: 13px;
 	color: #FFFFFF;
 	font-weight: bold;
+	margin-left: -10%;
 }
 
 /* menu hunter*/
@@ -506,6 +528,7 @@ footer
 	background: #1a1a1a;
 	min-height: 90px;
 	position: relative;
+	bottom: 0;
 	padding-top: 30px;
 }
 

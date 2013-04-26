@@ -12,12 +12,14 @@
 </div>
 
 <div class="content" id="content">
+	<div class="space2"></div>
+	<div class="space2"></div>
 	<div class="container-fluid">
 		<div class="row">
-			<div class= "span8">
-		  		<div style="border-radius: 5px; margin-left:3%;" id="variable" class="row-fluid">
-		  			<div style="padding-top:2.8%; border-top-left-radius: 5px; border-top-right-radius: 5px; padding-bottom:0.5%; background:url(<?php echo HOME."/img/bgslide.png" ?>)">
-			  			<div style="margin-left: 2.5%; width: 95%;" id="myCarousel" class="carousel slide">
+			<div class= "span8" id="variable">
+		  		<div style="border-radius: 5px; margin-left:3%;"  class="row-fluid">
+		  			<div style="padding-top:1.5%; border-top-left-radius: 5px; border-top-right-radius: 5px; padding-bottom:1.5%; background:url(<?php echo HOME."/img/bgslide.png" ?>)">
+			  			<div style="margin-left: 1.5%; width: 97%; margin-bottom:0px;" id="myCarousel" class="carousel slide">
 							<!-- Carousel items -->
 							<div class="carousel-inner">
 							    <div class="active item">
@@ -36,8 +38,12 @@
 							<a style="margin-top:2%;" class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 						</div>
 					</div>
-					
-					<div class="space1"></div>
+				</div>
+
+				<div class="space2"></div>
+
+				<div style="border-radius: 5px; margin-left:3%;"  class="row-fluid">
+					<div class="space05"></div>
 
 					<ul  class="nav nav-tabs">
 						<li class="active"><a class="home_tabs" href="#videos" data-toggle="tab">Últimos Videos</a></li>
@@ -193,10 +199,11 @@
 		  				</a>
 		  			<?php } ?>
 					<div class= "space2"></div>
-					<div class= "space2"></div>
+					<div class="space05"></div>
+
 					<div class="social_container">
 						<div class="space05"></div>
-						<h4 id="profile"> Buscanos en Redes</h4>
+						<h4 id="profile"> Buscanos en Redes Sociales</h4>
 					
 						<div class="row">
 							<div class="span3">

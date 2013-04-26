@@ -74,7 +74,7 @@
 					</a>
 				</div>
 				
-				<div class="span4 offset4">
+				<div class="span5 offset3">
 					<?php
 					
 						/*verificacion usuario postulante*/
@@ -101,23 +101,24 @@
 						
 						if($id)
 						{
-							echo "<div class='span11 offset1'>";						
+							echo "<div class='span10 offset2'>";						
 							echo "<li class='welcome-login'> Bienvenido ".anchor('user', $user).' '.anchor('user/logout',' (Cerrar sesi&oacuten)');
 							echo "</div>";
 						}
 						
 						elseif ($id_h) 
 						{
-							echo "<div class='span11 offset1'>";													
+							echo "<div class='span10 offset2'>";													
 							echo "<li class='welcome-login'> Bienvenido ".anchor('hunter', $name).' '.anchor('hunter/logout',' (Cerrar sesi&oacuten)');
 							echo "</div>";
 						
 						}
 						else
 						{
-							echo "<div class='span5'>";
-							echo "<i class='icon-star icon-white'></i>";
-							echo "<a href='".base_url()."home/login_hunter'>&iquestBuscas Talento?</a>";
+							echo "<div class='span7'>";
+							echo "<a href='".base_url()."home'> Pagina Principal | </a>";
+							echo "<a href='".base_url()."home/login_hunter'> Cazatalentos | </a>";
+							echo "<a href='".base_url()."home/what_is'> Quienes Somos | </a>";
 							echo "</div>";
 							
 						}
@@ -125,9 +126,9 @@
 						if(!$id && !$id_h)
 						{
 							$login_url = HOME."/user/fb_login";
-							echo "<div id='login-button-container' class='span6'>";
+							echo "<div id='login-button-container' class='span5'>";
 							echo "<a href='".$login_url."' id='login-button'>";
-							echo "<img style='margin-top: 2px;' id='login-button-image' src='".HOME."/img/fb-login.png' />";
+							echo "<img style='margin-top: 0.7%; margin-left: -7%;' id='login-button-image' src='".HOME."/img/fb-login.png' />";
 							echo "</a>";
 							echo "</div>";
 						}
@@ -140,11 +141,6 @@
 		
 		
 	</div>
-
-		<div class="content" id="content">
-			<div class="space2"></div>
-			<div class="space2"></div>
-		</div>
 
 	<?php $this->load->view($content,$inner_args); ?>
 	
