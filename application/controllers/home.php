@@ -82,10 +82,10 @@ class Home extends CI_Controller {
 
 	
 			$url = "http://www.viddon.com/user/index/".$row->id;
-			$fqlResult = json_decode(file_get_contents("http://api.facebook.com/method/fql.query?query=select%20like_count%20from%20link_stat%20where%20url='$url'&format=json"));
+			$fqlResult = json_decode(file_get_contents("http://api.facebook.com/method/fql.query?query=select+total_count+from+link_stat+where+url='$url'&format=json"));
 
-			if(isset($fqlResult[0]->like_count))
-				$item["likes"] = $fqlResult[0]->like_count;
+			if(isset($fqlResult[0]->total_count))
+				$item["likes"] = $fqlResult[0]->total_count;
 			else
 				$item["likes"] = 0;
 	
