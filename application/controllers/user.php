@@ -153,7 +153,7 @@ class User extends CI_Controller {
 				redirect(HOME);
 
 			$public = TRUE;
-			$castings= $this->castings_model->get_castings(NULL, 2, 1);
+			$castings = $this->castings_model->get_castings(NULL, 2, 1, 0);
 		}
 		else
 		{
@@ -504,7 +504,7 @@ private function _upload_image($id)
 		if(!is_null($id) && ($this->session->userdata('id') == FALSE || $id != $this->session->userdata('id')))
 		{	
 			$args = $this->user_model->select($id);
-			$args["castings"]= $this->castings_model->get_castings(NULL, 2, 1);
+			$args["castings"] = $this->castings_model->get_castings(NULL, 2, 1, 0);
 			$args['public'] = TRUE;
 			$args['id_main_video'] =$this->user_model->get_main_video_id($id);
 

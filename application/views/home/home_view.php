@@ -39,7 +39,7 @@
 					
 					<div class="space1"></div>
 
-					<ul style="border-bottom: 0px;" class="nav nav-tabs">
+					<ul  class="nav nav-tabs">
 						<li class="active"><a class="home_tabs" href="#videos" data-toggle="tab">Últimos Videos</a></li>
 						<li><a href="#ranking" class="home_tabs" data-toggle="tab">Artistas más populares</a></li>
 					</ul>
@@ -195,20 +195,24 @@
 					<div class= "space2"></div>
 					<div class= "space2"></div>
 					<div class="social_container">
-						<h3 id="profile"> Buscanos en Redes</h3>
+						<div class="space05"></div>
+						<h4 id="profile"> Buscanos en Redes</h4>
 					
 						<div class="row">
-							<div class="span4">
+							<div class="span3">
 								<a href="https://twitter.com/ViddonCom" target=”_blank”>
 			  						<img style="margin-top: 7%; width: 74%; " src="<?php echo HOME."/img/social_container_t.png"; ?>">
 			  					</a>
 			  				</div>
-			  				<div class="span4">	
+			  				<div class="span3">	
 			  					<a  href="http://www.facebook.com/pages/Viddoncom/499177723428347?ref=hl" target=”_blank”>
 			  						<img style="margin-top: 7%; width: 74%; " src="<?php echo HOME."/img/social_container_f.png"; ?>">
 			  					</a>
 			  				</div>
-			  				<div class="span4">	
+			  				<div class="span3">	
+			  					<img style="margin-top: 7%; width: 74%; " src="<?php echo HOME."/img/social_container_y.png"; ?>">
+			  				</div>
+			  				<div class="span3">	
 			  					<img style="margin-top: 7%; width: 74%; " src="<?php echo HOME."/img/social_container_w.png"; ?>">
 			  				</div>
 		  				</div>

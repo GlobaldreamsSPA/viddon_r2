@@ -57,143 +57,158 @@
 <div class="span8 offset1 user-profile-right">
 		
 	<div class="space1"></div>
-	<h2 class="profile-title"> <?php echo $name." ".$last_name; ?> 
-	</h2> 
-<div style="margin-left: 10px;" class="fb-like" data-href="<?php echo HOME.'/user/index/'.$user_id; ?>" data-send="true" data-width="450" data-show-faces="false"></div>				
-	<?php
-		echo '<ul class="skills-list">';
-		foreach ($tags as $tag) {
-			echo '<li> <a href="#">'.$tag.'</a></li>';
-		}
-		echo '</ul>';
-	?>
-	<div class="space1"></div>
-	<h3 id="profile">Con&oacute;ceme</h2>
-	<div class="justify profile-content"><?php echo $bio;?></div>
-	<div class="space1"></div>
-			
-
-	<legend style="font-weight: bold;">Video Principal</legend>
-	<?php if(isset($video_ID)){?>
-		<div class="video-title">
-			
-
+	
+	<?php if($public) { ?>
+		<div class="row">
 			<div class="span9">
-				<label style="font-size: 110%;"id="profile" ><?php echo $video_title;?></label>
+	<?php } ?>
+				<h2 class="profile-title"> <?php echo $name." ".$last_name; ?></h2>
+	<?php if($public) { ?>
+			</div> 
+			<div style="margin-top: 3%" class="span3">
+				<a href="<?php echo HOME.'/user/video_gallery/'.$user_id?>" style="width:70% !important;"class="btn btn-primary" type="submit" name="apply">
+					<i class="icon-film"></i> Galeria
+				</a>
 			</div>
-			<div style="margin-top: -1%" class="span3">
+		</div>
+	<?php } ?>
 
-				<?php if(!$public) {?>
-					<a href="<?php echo HOME.'/user/video_gallery/'?>" style="width:70% !important;"class="btn btn-primary" type="submit" name="apply">
-				<?php }
-				else { ?>
-					<a href="<?php echo HOME.'/user/video_gallery/'.$user_id?>" style="width:70% !important;"class="btn btn-primary" type="submit" name="apply">
+	<div style="margin-left: 10px;" class="fb-like" data-href="<?php echo HOME.'/user/index/'.$user_id; ?>" data-send="true" data-width="450" data-show-faces="false"></div>				
+		<?php
+			echo '<ul class="skills-list">';
+			foreach ($tags as $tag) {
+				echo '<li> <a href="#">'.$tag.'</a></li>';
+			}
+			echo '</ul>';
+		?>
+		<div class="space1"></div>
+		<h3 id="profile">Con&oacute;ceme</h2>
+		<div class="justify profile-content"><?php echo $bio;?></div>
+		<div class="space1"></div>
+				
+
+		<legend style="font-weight: bold;">Video Principal</legend>
+		<?php if(isset($video_ID)){?>
+			<div class="video-title">
+				
+				<?php if(!$public) { ?>
+				<div class="span9">
 				<?php } ?>
-				<i class="icon-film"></i> Galeria</a>
-			</div>
-							
 
-		</div>
-
-
-		<iframe style="margin-top: 5px;" width="100%" height="300" src="http://www.youtube.com/embed/<?php echo $video_ID."?rel=0";?>" frameborder="0" allowfullscreen></iframe>
-		<div class="space05"></div>
-		<!--
-		<div class="social_data_container">			
-			<div class="fb-like" data-href="http://www.youtube.com/watch?v=<?php echo $video_ID ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>			    							
-			<label class="youtubedata">
-			<?php
-				//echo "<span id='youtubedata' class='badge badge-important'><i class='icon-thumbs-down icon-white'></i>$dislikes</span>";
-				//echo "<span id='youtubedata' class='badge badge-success'><i class='icon-thumbs-up icon-white'></i>$likes</span>";
-				//echo "<span id='youtubedata' class='badge badge-info'><i class='icon-eye-open '></i>$views</span>";
+				<label style="font-size: 110%;"id="profile" ><?php echo $video_title;?></label>
 				
+				<?php if(!$public) { ?>
+				</div>
+				<div style="margin-top: -1%" class="span3">
 
-			?>
-			</label>
-		</div>
-		-->
-		<div style= "overflow-y: scroll; min-height: 110px;"class="justify"><?php echo $video_description;?></div>
-				
-	<?php 
-	} 
-	else
-	{?>
-		<!-- CARGO EL MODAL-->
-		<div id="add_video" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="AgregaVideo" aria-hidden="true">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					<h3 id="myModalLabel">Agregar video</h3>
+						<a href="<?php echo HOME.'/user/video_gallery/'?>" style="width:70% !important;"class="btn btn-primary" type="submit" name="apply">
+							<i class="icon-film"></i> Galeria
+						</a>
 				</div>
-				<div class="modal-body">
-						<ul class="nav nav-tabs">
-						  <li class="active"><a href="#enlazar" data-toggle="tab">Desde Youtube</a></li>
-						  <li><a href="#pc" data-toggle="tab">Desde tu PC</a></li>
-						</ul>
-						
-						<div class="tab-content">
-						  <div class="tab-pane active" id="enlazar">
-						  	<form id="video_upload_form" action="<?php echo HOME.'/user/'?>" method="post">
-						  		<div style="padding:2%;"class="row">
-							  		<div class="span6">	
-										<input name="url_ytb" style="width:96%" type="text" placeholder="Dirección - URL Video" value="" required="required">											
-										<input name="name_ytb" style="width:96%" type="text" placeholder="Titulo del Video">
-										<div class="space1"></div>
-										<div style="margin-top: 1%; font-size: 100%;"class="justify">
-												Debes pegar la dirección URL de tu video. La que se aprecia en la barra del navegador	Ej:   
-												<ul>
-													<li>http://www.youtube.com/watch?v=LautYzjYv3A</li>
-													<li>http://youtu.be/LautYzjYv3A</li>
-												</ul>
-											</div>	
-									</div>
-									<div class="span6">	
-										<h4 style="line-height: 18px; margin: 0; margin-bottom: 2%;">Descripci&oacute;n</h4>
-										<textarea class="rich_textarea_pop_up" name="description_ytb" rows="6" placeholder="Descripción"></textarea>
-										<div class="space1"></div>	
-										<button type="submit" class="btn btn-primary">Guardar</button>
-										<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
-						  			</div>
-						  		</div>
-						  	</form>
-						  </div>
-						  <div class="tab-pane" id="pc">
-						  	<?php 
-						  		$this->load->view('upload_form'); 
-						  	?>
-						  </div>
-						</div>
-						<div class="justify" style="-webkit-box-shadow: 3px 3px 2px rgba(50, 50, 50, 0.43); -moz-box-shadow:    3px 3px 2px rgba(50, 50, 50, 0.43); box-shadow:         3px 3px 2px rgba(50, 50, 50, 0.43);background-color:#e5e5e5; padding:1%; font-size:82%;">*Si tienes una cuenta de gmail te recomendamos intentar subir tu video utilizando Youtube, para luego enlazarlo (pestaña "desde youtube"), desde el siguiente enlace: <a href="http://www.youtube.com/upload" target="_blank">Youtube Upload</a>. Si tienes algún problema, <a href="mailto:contacto@viddon.com">Cont&aacutectanos</a>.</div>
-				</div>
-				<!-- 
-				<div class="modal-footer" style="height: 30px;">
-				</div>
-				-->
-		</div>    	
-								
-		<div style="padding-left: 38%; background-color: black; padding-top: 30%; padding-bottom: 30%;  border: 1px solid #d0d0d0;">
-			<?php if(!$public) {?> <button data-toggle="modal"  href="#add_video" class="btn btn-primary">Agregar Video</button> <?php } ?>
-		</div>
-		<div class="space2"> </div>
-	<?php
-	/*
-	<form id="video_upload_form" action="" method="post">
-		 
-
-		<div>
-				
-			<input name="url_ytb" class="input-xlarge" type="text" placeholder="Dirección Video" value="">
-			<input name="name_ytb" class="input-xlarge" type="text" placeholder="Nombre Video">
-			<div class="space1"></div>	
-			<textarea class="rich_textarea" name="description_ytb" rows="8" placeholder="Descripción Video"></textarea>
-			<div class="space1"></div>	
-			<button type="submit" class="btn btn-primary">Guardar</button>					
+				<?php } ?>
 		
-		</div>
-	</form>
-	*/
-	}
 
-	?>			
-	<div class="fb-comments" style="width: 100% !important;"  data-href="<?php echo HOME."/user/index/".$user_id; ?> "  data-num-posts="10"></div>													
-</div>		
+			</div>
+
+
+			<iframe style="margin-top: 5px;" width="100%" height="300" src="http://www.youtube.com/embed/<?php echo $video_ID."?rel=0";?>" frameborder="0" allowfullscreen></iframe>
+			<div class="space05"></div>
+			<!--
+			<div class="social_data_container">			
+				<div class="fb-like" data-href="http://www.youtube.com/watch?v=<?php echo $video_ID ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>			    							
+				<label class="youtubedata">
+				<?php
+					//echo "<span id='youtubedata' class='badge badge-important'><i class='icon-thumbs-down icon-white'></i>$dislikes</span>";
+					//echo "<span id='youtubedata' class='badge badge-success'><i class='icon-thumbs-up icon-white'></i>$likes</span>";
+					//echo "<span id='youtubedata' class='badge badge-info'><i class='icon-eye-open '></i>$views</span>";
+					
+
+				?>
+				</label>
+			</div>
+			-->
+			<div style= "overflow-y: scroll; min-height: 110px;"class="justify"><?php echo $video_description;?></div>
+					
+		<?php 
+		} 
+		else
+		{?>
+			<!-- CARGO EL MODAL-->
+			<div id="add_video" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="AgregaVideo" aria-hidden="true">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h3 id="myModalLabel">Agregar video</h3>
+					</div>
+					<div class="modal-body">
+							<ul class="nav nav-tabs">
+							  <li class="active"><a href="#enlazar" data-toggle="tab">Desde Youtube</a></li>
+							  <li><a href="#pc" data-toggle="tab">Desde tu PC</a></li>
+							</ul>
+							
+							<div class="tab-content">
+							  <div class="tab-pane active" id="enlazar">
+							  	<form id="video_upload_form" action="<?php echo HOME.'/user/'?>" method="post">
+							  		<div style="padding:2%;"class="row">
+								  		<div class="span6">	
+											<input name="url_ytb" style="width:96%" type="text" placeholder="Dirección - URL Video" value="" required="required">											
+											<input name="name_ytb" style="width:96%" type="text" placeholder="Titulo del Video">
+											<div class="space1"></div>
+											<div style="margin-top: 1%; font-size: 100%;"class="justify">
+													Debes pegar la dirección URL de tu video. La que se aprecia en la barra del navegador	Ej:   
+													<ul>
+														<li>http://www.youtube.com/watch?v=LautYzjYv3A</li>
+														<li>http://youtu.be/LautYzjYv3A</li>
+													</ul>
+												</div>	
+										</div>
+										<div class="span6">	
+											<h4 style="line-height: 18px; margin: 0; margin-bottom: 2%;">Descripci&oacute;n</h4>
+											<textarea class="rich_textarea_pop_up" name="description_ytb" rows="6" placeholder="Descripción"></textarea>
+											<div class="space1"></div>	
+											<button type="submit" class="btn btn-primary">Guardar</button>
+											<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+							  			</div>
+							  		</div>
+							  	</form>
+							  </div>
+							  <div class="tab-pane" id="pc">
+							  	<?php 
+							  		$this->load->view('upload_form'); 
+							  	?>
+							  </div>
+							</div>
+							<div class="justify" style="-webkit-box-shadow: 3px 3px 2px rgba(50, 50, 50, 0.43); -moz-box-shadow:    3px 3px 2px rgba(50, 50, 50, 0.43); box-shadow:         3px 3px 2px rgba(50, 50, 50, 0.43);background-color:#e5e5e5; padding:1%; font-size:82%;">*Si tienes una cuenta de gmail te recomendamos intentar subir tu video utilizando Youtube, para luego enlazarlo (pestaña "desde youtube"), desde el siguiente enlace: <a href="http://www.youtube.com/upload" target="_blank">Youtube Upload</a>. Si tienes algún problema, <a href="mailto:contacto@viddon.com">Cont&aacutectanos</a>.</div>
+					</div>
+					<!-- 
+					<div class="modal-footer" style="height: 30px;">
+					</div>
+					-->
+			</div>    	
+									
+			<div style="padding-left: 38%; background-color: black; padding-top: 30%; padding-bottom: 30%;  border: 1px solid #d0d0d0;">
+				<?php if(!$public) {?> <button data-toggle="modal"  href="#add_video" class="btn btn-primary">Agregar Video</button> <?php } ?>
+			</div>
+			<div class="space2"> </div>
+		<?php
+		/*
+		<form id="video_upload_form" action="" method="post">
+			 
+
+			<div>
+					
+				<input name="url_ytb" class="input-xlarge" type="text" placeholder="Dirección Video" value="">
+				<input name="name_ytb" class="input-xlarge" type="text" placeholder="Nombre Video">
+				<div class="space1"></div>	
+				<textarea class="rich_textarea" name="description_ytb" rows="8" placeholder="Descripción Video"></textarea>
+				<div class="space1"></div>	
+				<button type="submit" class="btn btn-primary">Guardar</button>					
+			
+			</div>
+		</form>
+		*/
+		}
+
+		?>			
+		<div class="fb-comments" style="width: 100% !important;"  data-href="<?php echo HOME."/user/index/".$user_id; ?> "  data-num-posts="10"></div>													
+	</div>		
 </div>

@@ -5,6 +5,8 @@ class Home extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
+		error_reporting(0);
+
 		$this->load->helper(array('url', 'form'));
 
 		//Modelos
@@ -72,28 +74,21 @@ class Home extends CI_Controller {
 		
 		
 		$args["page"]=$page;
-		$args["castings"] = $this->castings_model->get_castings(NULL, 2, 1);
 		
 		$query= $this->user_model->participants();
 		$ranking= array();
 		foreach ($query->result() as $row)
 		{
 
-			try
-			{
-			    $fqlResult = file_get_contents("http://graph.facebook.com/?id=http://www.viddon.com/user/index/".$row->id);
-				$fqlResult = json_decode($fqlResult);
-				
-				if(isset($fqlResult -> {"shares"}))
-					$item["likes"] = $fqlResult -> {"shares"};
-				else
-					$item["likes"] = 0;
-			}
-			catch (SomeException $e)
-			{
-			      // do nothing... php will ignore and continue    
-			}
+	
+		    $fqlResult = file_get_contents("http://graph.facebook.com/?id=http://www.viddon.com/user/index/".$row->id);
+			$fqlResult = json_decode($fqlResult);
 			
+			if(isset($fqlResult -> {"shares"}))
+				$item["likes"] = $fqlResult -> {"shares"};
+			else
+				$item["likes"] = 0;
+	
 
 			$item["id"] = $row->id;
 			$item["image"] = $this->user_model->get_image_profile($row->id);
@@ -111,7 +106,7 @@ class Home extends CI_Controller {
 			$item["video"] = $row->id_main_video;
 			$ranking[] = $item;
 		}
-		$args["castings"] = $this->castings_model->get_castings(NULL, 2, 1);
+		$args["castings"] = $this->castings_model->get_castings(NULL, 2, 1, 0);
 		$args["ranking"] = $ranking;
     
 		$args["content"] = "home/home_view";
@@ -273,7 +268,7 @@ class Home extends CI_Controller {
 		}
 		
 		$gender_interpreter= array("Ambos","Masculino","Femenino");		
-		$args["castings"] = $this->castings_model->get_castings(NULL, 2, 1);
+		$args["castings"] = $this->castings_model->get_castings(NULL, 2, 1, 0);
 		if(isset($args["casting"]['sex']))
 			$args["casting"]['sex'] = $gender_interpreter[$args["casting"]['sex']]; 
 
