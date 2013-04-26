@@ -81,11 +81,11 @@ class Home extends CI_Controller {
 		{
 
 	
-		    $fqlResult = file_get_contents("http://graph.facebook.com/?id=http://www.viddon.com/user/index/".$row->id);
-			$fqlResult = json_decode($fqlResult);
-			
-			if(isset($fqlResult -> {"shares"}))
-				$item["likes"] = $fqlResult -> {"shares"};
+			$url = "http://www.viddon.com/user/index/".$row->id;
+			$fqlResult = json_decode(file_get_contents("http://api.facebook.com/method/fql.query?query=select%20like_count%20from%20link_stat%20where%20url='$url'&format=json"));
+
+			if(isset($fqlResult[0]->like_count))
+				$item["likes"] = $fqlResult[0]->like_count;
 			else
 				$item["likes"] = 0;
 	
