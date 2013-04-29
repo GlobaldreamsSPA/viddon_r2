@@ -81,13 +81,8 @@ class Home extends CI_Controller {
 		{
 
 	
-			$url = "http://www.viddon.com/user/index/".$row->id;
-			$fqlResult = json_decode(file_get_contents("http://api.facebook.com/method/fql.query?query=select+total_count+from+link_stat+where+url='$url'&format=json"));
-
-			if(isset($fqlResult[0]->total_count))
-				$item["likes"] = $fqlResult[0]->total_count;
-			else
-				$item["likes"] = 0;
+			
+			$item["likes"] = $row->likes;
 	
 
 			$item["id"] = $row->id;
@@ -149,6 +144,40 @@ class Home extends CI_Controller {
 		$args["inner_args"]=NULL;
 		
 		$this->load->view('template',$args);
+	}
+
+	public function likes_update()
+	{
+
+		$query= $this->user_model->participants();
+		$ranking= array();
+		foreach ($query->result() as $row)
+		{
+
+	
+			$url = "http://www.viddon.com/user/index/".$row->id;
+			$fqlResult = json_decode(file_get_contents("http://api.facebook.com/method/fql.query?query=select+total_count+from+link_stat+where+url='$url'&format=json"));
+
+			$data["likes"] = $fqlResult[0]->total_count;
+			$data["id"] = $row->id;
+
+	
+			$data["name"]= $row->name." ".$row->last_name;
+
+			$this->user_model->update_likes($data);
+
+			echo "NOMBRE: ".$data["name"];
+			echo "<br>";
+			echo "PERFIL: <a href='".HOME."/user/index/".$data["id"]." TARGET = '_blank'> ir </a>";
+			echo "<br>";
+			echo "LIKES: ".$data["likes"];
+			echo "<br>";
+			echo "<br>";
+
+
+		}
+
+
 	}
 
 	public function login_hunter()

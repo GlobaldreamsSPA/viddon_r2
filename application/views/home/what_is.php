@@ -1,6 +1,6 @@
-<div class="content content_lh" id="content">	
-		<div class="space4">
-		</div>
+<div class="content content_lh" id="content">
+	<div class="space4"></div>
+	<div class="space4"></div>
 		<div class="content-fluid">
 				<div class="row">
 					<div class="span11 offset1">

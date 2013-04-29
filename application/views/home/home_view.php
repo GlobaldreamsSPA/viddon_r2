@@ -12,8 +12,9 @@
 </div>
 
 <div class="content" id="content">
-	<div class="space2"></div>
-	<div class="space2"></div>
+	<div class="space4"></div>
+	<div class="space4"></div>
+
 	<div class="container-fluid">
 		<div class="row">
 			<div class= "span8" id="variable">
@@ -168,7 +169,7 @@
 								            		(ver m&aacute;s)
 								            	</a>
 								            </td>
-								            <td style="width: 30%; vertical-align:middle;">
+								            <td style="width: 35%; vertical-align:middle;">
 								            	<a href="<?php echo HOME.'/home/video_ranking?id='.urlencode($applicant["video_id_y"]).'&title='. urlencode($applicant["video_title"]).'&iduser='.urlencode($applicant['id']) ?>" data-target="#playermodal" data-toggle="modal">							
 													<div class="image">
 														<img class="fade_new" src="<?php echo 'http://img.youtube.com/vi/'.$applicant["video_id_y"].'/0.jpg'; ?>" alt=""/>
@@ -176,7 +177,7 @@
 													</div>
 												</a>
 								            </td>
-								            <td style="font-weight:bold;vertical-align:middle;"><?php echo $applicant["likes"]?></td>
+								            <td style="width: 15%; color:#1097db; font-size:16px; font-weight:bold;vertical-align:middle; text-align:center"><?php echo $applicant["likes"]?></td>
 							            </tr>    
 					              	<?php }?>
 				          		</tbody>
@@ -201,6 +202,15 @@
 					<div class= "space2"></div>
 					<div class="space05"></div>
 
+
+					<div style="margin-left: 5%; margin-right: 5%;">
+						<a class="twitter-timeline" href="https://twitter.com/ViddonCom" data-widget-id="316343995661959169">Tweets por @ViddonCom</a>
+						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+					</div>
+
+					<div class= "space2"></div>
+
+
 					<div class="social_container">
 						<div class="space05"></div>
 						<h4 id="profile"> Buscanos en Redes Sociales</h4>
@@ -223,13 +233,6 @@
 			  					<img style="margin-top: 7%; width: 74%; " src="<?php echo HOME."/img/social_container_w.png"; ?>">
 			  				</div>
 		  				</div>
-					</div>
-					
-					<div class= "space2"></div>
-
-					<div style="margin-left: 5%;" class="span11">
-					<a class="twitter-timeline" href="https://twitter.com/ViddonCom" data-widget-id="316343995661959169">Tweets por @ViddonCom</a>
-					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 					</div>
 				</div>
 			</div>	

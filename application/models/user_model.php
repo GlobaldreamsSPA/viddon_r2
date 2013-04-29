@@ -17,7 +17,7 @@ class User_model extends CI_Model
 		
 	function participants()
 	{
-		$this->db->select('users.id,bio,id_main_video,name,last_name');
+		$this->db->select('users.id,bio,likes,id_main_video,name,last_name');
 		$this->db->from('users');
 		$this->db->join('videos', 'users.id = user_id');
 		$this->db->distinct();
@@ -64,6 +64,17 @@ class User_model extends CI_Model
 
 		$this->db->where('id', $profile['id']);
 		$this->db->update('users', $data);
+	}
+
+
+	function update_likes($data)
+	{
+		$info = array(
+				'likes' => $data['likes']
+			);
+
+		$this->db->where('id', $data['id']);
+		$this->db->update('users', $info);
 	}
 
 	function select($id)

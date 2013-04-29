@@ -22,8 +22,8 @@
 
 
 <div class="content content_lh" id="content">
-	<div class="space2"></div>
-	<div class="space2"></div>
+	<div class="space4"></div>
+	<div class="space4"></div>
 	<div class="container-fluid">
 	  	<div class="row">
 	  		<div class="span8">

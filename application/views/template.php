@@ -60,21 +60,21 @@
 		  
 	?>
 
-	<div id="headercontent">
+	<div class="navbar-fixed-top" id="headercontent">
 	    <div id="upperhalf">
 		    <div class="row-fluid" >
-		    	<div class="span2">
+		    	<div style="padding-top: 1%;" class="span2">
 					<a href="<?php echo HOME?>"  style="margin-left: 40px;"title="Volver a la P&aacute;ina Principal">
 						<img class="image-logo" src="<?php echo base_url(); ?>img/logo.png"/>
 					</a>
 				</div>
-				<div class="span2 header-text-left">
-					<a href="<?php echo HOME?>/home/what_is" style="margin-left: -60px;" style="color:white;">
-						Tu Talento, Nuestra Pasi&oacute;n
+				<div style="padding-top: 1%;" class="span2 header-text-left">
+					<a href="<?php echo HOME?>/home/what_is" class="slogan" style="margin-left: -60px;">
+						Donde el talento es descubierto
 					</a>
 				</div>
 				
-				<div class="span5 offset3">
+				<div  class="span6 offset2">
 					<?php
 					
 						/*verificacion usuario postulante*/
@@ -101,24 +101,46 @@
 						
 						if($id)
 						{
-							echo "<div class='span10 offset2'>";						
+							echo "<div class='span4 offset2'>";
+								echo "<div style='padding-top:6%' class='span6 menu'>";
+									echo "<a href='".base_url()."home'>Pagina Principal</a>";
+								echo "</div>";
+								echo "<div style='padding-top: 6%' class='span6 menu'>";
+									echo "<a href='".base_url()."home/what_is'>Quienes Somos</a>";
+								echo "</div>";
+							echo "</div>";
+							echo "<div style='margin-top:2%;' class='span6'>";						
 							echo "<li class='welcome-login'> Bienvenido ".anchor('user', $user).' '.anchor('user/logout',' (Cerrar sesi&oacuten)');
 							echo "</div>";
 						}
 						
 						elseif ($id_h) 
 						{
-							echo "<div class='span10 offset2'>";													
-							echo "<li class='welcome-login'> Bienvenido ".anchor('hunter', $name).' '.anchor('hunter/logout',' (Cerrar sesi&oacuten)');
+							echo "<div class='span4 offset2'>";
+								echo "<div style='padding-top:6%' class='span6 menu'>";
+									echo "<a href='".base_url()."home'>Pagina Principal</a>";
+								echo "</div>";
+								echo "<div style='padding-top: 6%' class='span6 menu'>";
+									echo "<a href='".base_url()."home/what_is'>Quienes Somos</a>";
+								echo "</div>";
+							echo "</div>";
+							echo "<div style='margin-top:2%;' class='span6'>";														
+								echo "<li class='welcome-login'> Bienvenido ".anchor('hunter', $name).' '.anchor('hunter/logout',' (Cerrar sesi&oacuten)');
 							echo "</div>";
 						
 						}
 						else
 						{
-							echo "<div class='span7'>";
-							echo "<a href='".base_url()."home'> Pagina Principal | </a>";
-							echo "<a href='".base_url()."home/login_hunter'> Cazatalentos | </a>";
-							echo "<a href='".base_url()."home/what_is'> Quienes Somos | </a>";
+							echo "<div class='span6 offset2'>";
+								echo "<div class='span4 menu'>";
+									echo "<a href='".base_url()."home'>Pagina Principal</a>";
+								echo "</div>";
+								echo "<div class='span4 menu'>";
+									echo "<a href='".base_url()."home/what_is'>Quienes Somos</a>";
+								echo "</div>";
+								echo "<div class='span4 menu'>";
+									echo "<a href='".base_url()."home/login_hunter'>Cazatalentos</a>";
+								echo "</div>";
 							echo "</div>";
 							
 						}
@@ -126,9 +148,9 @@
 						if(!$id && !$id_h)
 						{
 							$login_url = HOME."/user/fb_login";
-							echo "<div id='login-button-container' class='span5'>";
+							echo "<div style='padding-top: 2.3%;' id='login-button-container' class='span4'>";
 							echo "<a href='".$login_url."' id='login-button'>";
-							echo "<img style='margin-top: 0.7%; margin-left: -7%;' id='login-button-image' src='".HOME."/img/fb-login.png' />";
+							echo "<img style='margin-left: -8%;' id='login-button-image' src='".HOME."/img/fb-login.png' />";
 							echo "</a>";
 							echo "</div>";
 						}
@@ -370,6 +392,12 @@
 				});
 			}
 		}
+
+		$('.menu').css({
+			'height': $('#headercontent').outerHeight()
+		});
+			    	
+
 		
 		if($(".chosen_filter").length > 0)
 		{
