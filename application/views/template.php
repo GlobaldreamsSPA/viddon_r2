@@ -114,12 +114,12 @@
 						if($id)
 						{
 							echo "<div class='span4 offset2'>";
-								echo "<div style='padding-top:6%' class='span6 menu'>";
-									echo "<a href='".base_url()."home'>Pagina Principal</a>";
-								echo "</div>";
-								echo "<div style='padding-top: 6%' class='span6 menu'>";
-									echo "<a href='".base_url()."home/what_is'>Quienes Somos</a>";
-								echo "</div>";
+								echo "<a href='".base_url()."home' style='padding-top:6%' class='span6 menu'>";
+									echo "Pagina Principal";
+								echo "</a>";
+								echo "<a href='".base_url()."home/what_is' style='padding-top: 6%' class='span6 menu'>";
+									echo "Quienes Somos";
+								echo "</a>";
 							echo "</div>";
 							echo "<div style='margin-top:2%;' class='span6'>";						
 							echo "<li class='welcome-login'> Bienvenido ".anchor('user', $user).' '.anchor('user/logout',' (Cerrar sesi&oacuten)');
@@ -129,12 +129,12 @@
 						elseif ($id_h) 
 						{
 							echo "<div class='span4 offset2'>";
-								echo "<div style='padding-top:6%' class='span6 menu'>";
-									echo "<a href='".base_url()."home'>Pagina Principal</a>";
-								echo "</div>";
-								echo "<div style='padding-top: 6%' class='span6 menu'>";
-									echo "<a href='".base_url()."home/what_is'>Quienes Somos</a>";
-								echo "</div>";
+								echo "<a href='".base_url()."home' style='padding-top:6%' class='span6 menu'>";
+									echo "Pagina Principal";
+								echo "</a>";
+								echo "<a href='".base_url()."home/what_is' style='padding-top:6%' class='span6 menu'>";
+									echo "Quienes Somos";
+								echo "</a>";
 							echo "</div>";
 							echo "<div style='margin-top:2%;' class='span6'>";														
 								echo "<li class='welcome-login'> Bienvenido ".anchor('hunter', $name).' '.anchor('hunter/logout',' (Cerrar sesi&oacuten)');
@@ -144,15 +144,15 @@
 						else
 						{
 							echo "<div class='span6 offset2'>";
-								echo "<div class='span4 menu'>";
-									echo "<a href='".base_url()."home'>Pagina Principal</a>";
-								echo "</div>";
-								echo "<div class='span4 menu'>";
-									echo "<a href='".base_url()."home/what_is'>Quienes Somos</a>";
-								echo "</div>";
-								echo "<div class='span4 menu'>";
-									echo "<a href='".base_url()."home/login_hunter'>Cazatalentos</a>";
-								echo "</div>";
+								echo "<a href='".base_url()."home' class='span4 menu'>";
+									echo "Pagina Principal";
+								echo "</a>";
+								echo "<a href='".base_url()."home/what_is' class='span4 menu'>";
+									echo "Quienes Somos";
+								echo "</a>";
+								echo "<a href='".base_url()."home/login_hunter' class='span4 menu'>";
+									echo "Cazatalentos";
+								echo "</a>";
 							echo "</div>";
 							
 						}
