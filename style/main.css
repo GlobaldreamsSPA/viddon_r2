@@ -46,6 +46,10 @@ margin-left: 5%;
 padding-bottom: 5%;
 }
 
+ .fb-comments, .fb-comments span, .fb-comments.fb_iframe_widget span iframe {
+    width: 100% !important;
+}
+
 /* formato tabs home page*/
 .home_tabs
 {

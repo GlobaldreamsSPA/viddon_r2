@@ -135,7 +135,7 @@
 			    	<div class="tab-pane" id="ranking">
 			    		<div class="space1"></div>
 		  				<div class="row" style="padding-right: 5%;padding-left: 4%">
-		  					<table id="rankingdatatable" class="table">
+		  					<table style="width: 100%;" width="100%" id="rankingdatatable" class="table">
 			          			<thead>
 						            <tr>
 							            <th>Imagen</th>
@@ -150,7 +150,7 @@
 					          	 if(isset($ranking))
 						          	foreach ($ranking as $applicant) {?>
 										<tr>
-								            <td style="width: 15%; vertical-align:middle;">
+								            <td style="max-width: 10px; min-width: 10px; vertical-align:middle;">
 								            	<a class="home-video-author" href="<?php echo HOME.'/user/index/'.$applicant['id'] ?>">
 													<?php
 													if(file_exists(APPPATH.'/../img/gallery/'.$applicant["image"]) == TRUE)
@@ -160,7 +160,7 @@
 													?>
 												</a>
 											</td>
-								            <td style="vertical-align:middle;">
+								            <td style="max-width: 150px; min-width: 150px; vertical-align:middle;">
 								            	<a class="home-video-author" href="<?php echo HOME.'/user/index/'.$applicant['id'] ?>">
 								            		<?php echo $applicant["first_name"]." ".$applicant["last_name"]?>
 								            	</a>
@@ -169,7 +169,7 @@
 								            		(ver m&aacute;s)
 								            	</a>
 								            </td>
-								            <td style="width: 35%; vertical-align:middle;">
+								            <td style="max-width: 150px; min-width: 150px; vertical-align:middle;">
 								            	<a href="<?php echo HOME.'/home/video_ranking?id='.urlencode($applicant["video_id_y"]).'&title='. urlencode($applicant["video_title"]).'&iduser='.urlencode($applicant['id']) ?>" data-target="#playermodal" data-toggle="modal">							
 													<div class="image">
 														<img class="fade_new" src="<?php echo 'http://img.youtube.com/vi/'.$applicant["video_id_y"].'/0.jpg'; ?>" alt=""/>
@@ -177,7 +177,7 @@
 													</div>
 												</a>
 								            </td>
-								            <td style="width: 15%; color:#1097db; font-size:16px; font-weight:bold;vertical-align:middle; text-align:center"><?php echo $applicant["likes"]?></td>
+								            <td style="max-width: 10px; min-width: 10px; color:#1097db; font-size:16px; font-weight:bold;vertical-align:middle; text-align:center"><?php echo $applicant["likes"]?></td>
 							            </tr>    
 					              	<?php }?>
 				          		</tbody>
