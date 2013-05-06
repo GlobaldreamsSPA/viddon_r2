@@ -91,16 +91,13 @@ class Videos_model extends CI_Model
 	{
 		$this->db->where('user_id', $id_user);
 		$query = $this->db->get('videos')->first_row('array');
-		$result["video_id"]=$query['link'];
-		$result["video_title"] = $query['title'];
-		$result["video_description"] = $query['description'];
 
 		return $result;
 	}
 
 	function search_videos($search, $page, $cant)
 	{
-		$this->db->select('title, description, link, user_id,count(id)');
+		$this->db->select('*,count(id)');
 		$search_value = array();
 		$search_value = explode(' ', $search);
 		$flag = FALSE;
@@ -121,14 +118,14 @@ class Videos_model extends CI_Model
 		$result = array();
 		foreach ($query->result_array() as $value) 
 		{
-			$result[] = array($value['title'], $value['link'], $value['user_id'],$value['description']);
+			$result[] = array($value['title'], $value['link'], $value['user_id'],$value['description'],$value['id'],$value['reproductions']);
 		}
 		return $result;
 	}
 
 	function count_search_videos($search)
 	{
-		$this->db->select('title, link, user_id,count(id)');
+		$this->db->select('id,count(id)');
 		$search_value = array();
 		$search_value = explode(' ', $search);
 		$flag = FALSE;
@@ -185,7 +182,7 @@ class Videos_model extends CI_Model
 	
 	function get_main_video($id_video)
 	{
-		$this->db->select('link, title, description');
+		$this->db->select('*');
 		$this->db->where('id', $id_video);
 		$query = $this->db->get('videos');
 		if($query->num_rows() > 0)
@@ -204,7 +201,7 @@ class Videos_model extends CI_Model
 		$result = array();
 		foreach ($query->result_array() as $value) 
 		{
-			$result[] = array($value['title'], $value['link'], $value['user_id'],$value['description']);
+			$result[] = array($value['title'], $value['link'], $value['user_id'],$value['description'],$value['id'],$value['reproductions']);
 		}
 		return $result;
 	}
@@ -284,7 +281,7 @@ class Videos_model extends CI_Model
 		$result = array();
 		foreach ($query->result_array() as $value) 
 		{
-			$result[] = array($value['title'], $value['link'], $value['description'],$value['id']);
+			$result[] = array($value['title'], $value['link'], $value['description'],$value['id'],$value['reproductions']);
 		}
 		return $result;
 	}
@@ -311,5 +308,65 @@ class Videos_model extends CI_Model
 		$result["video_description"] = $query['description'];
 
 		return $result;
+	}
+	function get_videos_update_repro()
+	{
+		$this->db->select('id,link');
+		$query = $this->db->get('videos');
+
+		return $query->result_array();
+	}
+
+	function get_votes($id)
+	{
+		$this->db->select('upvotes,downvotes');
+		$this->db->where('id', $id);	
+		$query = $this->db->get('videos');
+
+		return $query->result_array();
+	}
+
+	function update_repro($data)
+	{
+		$info = array(
+               'reproductions' => $data["views"]
+            );
+
+		$this->db->where('id', $data["id"]);
+		$this->db->update('videos', $info); 
+	}
+
+	function update_votes($data)
+	{
+		$flag=TRUE;
+
+		if($data["type"] == 1)
+		{
+			$this->db->select('upvotes');
+			$this->db->where('id',$data["video_id"]);
+			$query = $this->db->get('videos');
+			$info["upvotes"] = $query->result_array();
+			$info["upvotes"] = (int) $info["upvotes"][0]["upvotes"];
+			$info["upvotes"] = $info["upvotes"] + 1;
+
+
+		}elseif($data["type"] == 0)
+		{
+			$this->db->select('downvotes');
+			$this->db->where('id',$data["video_id"]);
+			$query = $this->db->get('videos');
+			$info["downvotes"] = $query->result_array();
+			$info["downvotes"] = (int) $info["downvotes"][0]["downvotes"];
+			$info["downvotes"] = $info["downvotes"] + 1;
+		}
+		else
+			$flag=FALSE;
+			
+
+		if($flag)
+		{	
+			$this->db->where('id', $data["video_id"]);
+			$this->db->update('videos', $info); 
+		}
 	}
 }

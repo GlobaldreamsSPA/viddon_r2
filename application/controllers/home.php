@@ -10,7 +10,7 @@ class Home extends CI_Controller {
 		$this->load->helper(array('url', 'form'));
 
 		//Modelos
-		$this->load->model(array('videos_model','contact_model','photos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model','custom_options_model','custom_questions_model', 'custom_answers_model'));
+		$this->load->model(array('videos_model','video_votes_model','contact_model','photos_model','user_model', 'hunter_model', 'castings_model','applies_model','skills_model','casting_categories_model','custom_options_model','custom_questions_model', 'custom_answers_model'));
 	
 	}
 
@@ -88,14 +88,13 @@ class Home extends CI_Controller {
 			$item["id"] = $row->id;
 			$item["image"] = $this->user_model->get_image_profile($row->id);
 			$item["image"] = $this->photos_model->get_name($item["image"]);
-			$item["video_id_y"] = $this->user_model->get_main_video_id($row->id);
-			$item["video_id_y"] = $this->videos_model->get_main_video($item["video_id_y"]);
+			$item["video_id"] = $this->user_model->get_main_video_id($row->id);
+			$item["video_id_y"] = $this->videos_model->get_main_video($item["video_id"]);
  			$item["video_title"] =$item["video_id_y"]["title"];
- 			$item["video_id_y"] = $item["video_id_y"]["link"];
-
- 			
-
-			$item["first_name"]= $row->name;
+ 			$item["video_description"] =$item["video_id_y"]["description"];
+ 			$item["video_reproductions"] = $item["video_id_y"]["reproductions"];
+ 			$item["video_id_y"] = $item["video_id_y"]["link"]; 			
+ 			$item["first_name"]= $row->name;
 			$item["last_name"]= $row->last_name;
 			$item["bio"] = $row->bio;
 			$item["video"] = $row->id_main_video;
@@ -150,7 +149,6 @@ class Home extends CI_Controller {
 	{
 
 		$query= $this->user_model->participants();
-		$ranking= array();
 		foreach ($query->result() as $row)
 		{
 
@@ -168,7 +166,7 @@ class Home extends CI_Controller {
 
 			echo "NOMBRE: ".$data["name"];
 			echo "<br>";
-			echo "PERFIL: <a href='".HOME."/user/index/".$data["id"]." TARGET = '_blank'> ir </a>";
+			echo "ID: ".$data["id"];
 			echo "<br>";
 			echo "LIKES: ".$data["likes"];
 			echo "<br>";
@@ -177,8 +175,62 @@ class Home extends CI_Controller {
 
 		}
 
+	}
+
+	public function video_reproductions_update()
+	{
+
+		$query= $this->videos_model->get_videos_update_repro();
+		foreach ($query as $video)
+		{
+			$JSON = file_get_contents("https://gdata.youtube.com/feeds/api/videos/{$video['link']}?v=2&alt=json");
+			$JSON_Data = json_decode($JSON);
+			$data=array();
+			$data["id"]= $video["id"];
+			if(array_key_exists('yt$statistics', $JSON_Data->{'entry'}))
+			{
+				$data["views"] = $JSON_Data->{'entry'}->{'yt$statistics'}->{'viewCount'};
+			}
+			else
+			{
+				$data["views"] = "0";
+			}		
+	
+			$this->videos_model->update_repro($data);
+
+			echo "idvideo: ".$data["id"];
+			echo "<br>";
+			echo "reproducciones: ".$data["views"];
+			echo "<br>";
+			echo "<br>";
+
+		}
 
 	}
+
+	public function vote($type,$video_id)
+	{
+		if(isset($video_id) && isset($type))
+		{
+			$data["type"] = $type;
+			$data["video_id"] = $video_id;
+			$data["ip"] = $_SERVER['REMOTE_ADDR'];
+			if($this->session->userdata('id'))
+				$data["user_id"] = $this->session->userdata('id');
+
+			$this->videos_model->update_votes($data);
+			
+			$this->video_votes_model->insert($data);
+
+			$new_votes_count= $this->videos_model->get_votes($video_id);
+
+			echo $new_votes_count[0]["upvotes"]."-".$new_votes_count[0]["downvotes"];
+
+		}		
+		else
+			redirect(HOME);
+	}
+
 
 	public function login_hunter()
 	{
@@ -229,8 +281,13 @@ class Home extends CI_Controller {
 			$args['username'] = $_GET['username'];	
 			$args['userlastname'] = $_GET['userlastname'];		
 			$args['image'] = $_GET['image'];	
-			$args['iduser'] = $_GET['iduser'];		
-	
+			$args['iduser'] = $_GET['iduser'];
+			$args['id_bdd_video'] = $_GET['id_bdd'];	
+			$args['video_reproductions'] = $_GET['video_reproductions'];	
+			$votes = $this->videos_model->get_votes($args['id_bdd_video']);
+			$args['upvotes'] = $votes[0]['upvotes'];	
+			$args['downvotes'] = $votes[0]['downvotes'];	
+						
 
 
 			$this->load->view('home/video_modal',$args);
@@ -243,7 +300,14 @@ class Home extends CI_Controller {
 		{
 			$args['id_video'] = $_GET['id'];		
 			$args['title'] = $_GET['title'];			
-			$args['iduser'] = $_GET['iduser'];		
+			$args['iduser'] = $_GET['iduser'];
+			$args['id_bdd_video'] = $_GET['id_bdd'];
+			$args['video_reproductions'] = $_GET['video_reproductions'];
+			$args['description'] = $_GET['description'];
+			$votes = $this->videos_model->get_votes($args['id_bdd_video']);	
+			$args['upvotes'] = $votes[0]['upvotes'];	
+			$args['downvotes'] = $votes[0]['downvotes'];	
+		
 			$this->load->view('home/video_modal_ranking',$args);
 		}
 	}

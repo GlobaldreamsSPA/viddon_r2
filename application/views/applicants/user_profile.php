@@ -1,3 +1,34 @@
+<script>
+$(document).ready(function(){
+	$('.upvote').bind('click',function(event){
+		event.preventDefault();
+		$.get(this.href,{},function(response){
+			var votes = response.split("-");
+
+			$('#substraction').html(votes[0] - votes[1]);
+			$('#upvotes').html("+"+votes[0]);
+			$('#downvotes').html("-"+votes[1]);
+
+		}) 
+	})
+});
+
+$(document).ready(function(){
+	$('.downvote').bind('click',function(event){
+		event.preventDefault();
+		$.get(this.href,{},function(response){
+			var votes = response.split("-");
+
+			$('#substraction').html(votes[0] - votes[1]);
+			$('#upvotes').html("+"+votes[0]);
+			$('#downvotes').html("-"+votes[1]);
+
+		}) 
+	})
+});
+
+</script>
+
 <div class="row-fluid">
 <div class="span3 user-profile-left">
 	<div class="row">
@@ -113,20 +144,22 @@
 
 			<iframe style="margin-top: 5px;" width="100%" height="300" src="http://www.youtube.com/embed/<?php echo $video_ID."?rel=0";?>" frameborder="0" allowfullscreen></iframe>
 			<div class="space05"></div>
-			<!--
-			<div class="social_data_container">			
-				<div class="fb-like" data-href="http://www.youtube.com/watch?v=<?php echo $video_ID ?>" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true"></div>			    							
-				<label class="youtubedata">
-				<?php
-					//echo "<span id='youtubedata' class='badge badge-important'><i class='icon-thumbs-down icon-white'></i>$dislikes</span>";
-					//echo "<span id='youtubedata' class='badge badge-success'><i class='icon-thumbs-up icon-white'></i>$likes</span>";
-					//echo "<span id='youtubedata' class='badge badge-info'><i class='icon-eye-open '></i>$views</span>";
-					
-
-				?>
-				</label>
+			<div style="padding-left:2%; padding-top:2%;">
+				<div class="span2">
+					<a class="upvote" href="<?php echo HOME.'/home/vote/1/'.$id_bdd_video ?>"><image src="<?php echo HOME.'/img/like.png'?>" /></a>  
+					<a class="downvote" href="<?php echo HOME.'/home/vote/0/'.$id_bdd_video ?>"><image src="<?php echo HOME.'/img/dislike.png'?>"/></a>  
+				</div>
+				<div style="margin-top: 1%;" class="span3">
+						<p id="substraction" style="font-size:22px; font-weight:bold; display:inline;"><?php echo $upvotes-$downvotes;?></p>
+						<p style="display:inline;">(</p> 
+						<p id="upvotes" style="color:green; display:inline;"><?php echo "+".$upvotes;?></p>
+						<p id="downvotes" style="color:red; display:inline;"><?php echo "-".$downvotes;?></p>
+						<p style="display:inline;">)</p> 
+				</div>
+				<div class="span7" style="text-align: right">
+					<p style="font-weight:bold; margin-top: 2%;">Reproducciones: <?php echo $video_reproductions; ?></p>
+				</div>
 			</div>
-			-->
 			<div style= "overflow-y: scroll; min-height: 110px;"class="justify"><?php echo $video_description;?></div>
 					
 		<?php 

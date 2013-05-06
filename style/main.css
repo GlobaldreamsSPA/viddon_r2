@@ -129,12 +129,33 @@ padding-bottom: 5%;
 /* Modal donde aparece el video de youtube*/
 #playermodal{
   position: fixed;
+  top: 40%;
+  left: 40%;
+  margin: -14% 0 0 -25%;
+  padding-top: 1%; 
+  padding-bottom: 1%; 
+  width: 70% !important;
+}
+
+#playermodal .modal-body
+{
+	max-height: 600px !important;
+}
+
+/* Modal donde aparece el video de youtube sin descripción*/
+#playermodal_simple{
+  position: fixed;
   top: 50%;
   left: 50%;
-  margin: -17% 0 0 -25%;
+  margin: -18% 0 0 -25%;
   padding-top: 1%; 
   padding-bottom: 1%; 
   width: 50% !important;
+}
+
+#playermodal_simple .modal-body
+{
+	max-height: 600px !important;
 }
 
 /* Modal para agregar video */

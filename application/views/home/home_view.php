@@ -11,6 +11,11 @@
 	</div>
 </div>
 
+<div class="modal fade hide" id="playermodal_simple" tabindex="-1" role="dialog" aria-hidden="true">
+	<div style="padding: 0px;" class="modal-body">
+	</div>
+</div>
+
 <div class="content" id="content">
 	<div class="space4"></div>
 	<div class="space4"></div>
@@ -73,7 +78,7 @@
 							?>
 							<div id="main_videos_list" class='span4'>
 								<div class="space1"></div>
-								<a href="<?php echo HOME.'/home/video?id='.urlencode($video[1]).'&name='. urlencode($video[0]).'&iduser='.urlencode($video[2]).'&username='.urlencode($video[4]).'&description='.urlencode($video[3]).'&userlastname='.urlencode($video[6]).'&image='.urlencode($video[5]) ?>" data-target="#playermodal" data-toggle="modal">							
+								<a href="<?php echo HOME.'/home/video?id='.urlencode($video[1]).'&id_bdd='. urlencode($video[4]).'&video_reproductions='. urlencode($video[5]).'&name='. urlencode($video[0]).'&iduser='.urlencode($video[2]).'&username='.urlencode($video[6]).'&description='.urlencode($video[3]).'&userlastname='.urlencode($video[8]).'&image='.urlencode($video[7]) ?>" data-target="#playermodal" data-toggle="modal">							
 									<div class="image">
 										<img class="fade_new" src="<?php echo 'http://img.youtube.com/vi/'.$video[1].'/0.jpg'; ?>" alt=""/>
 									    <img class="hoverimage" src="<?php echo HOME.'/img/player_arrow.png'; ?>" alt="" />
@@ -86,8 +91,8 @@
 										<div class="span3 offset1">
 										<a class="home-video-author" href="<?php echo HOME.'/user/index/'.$video[2]; ?>">
 											<?php
-											if(file_exists(APPPATH.'/../img/gallery/'.$video[5]) == TRUE)
-												echo "<img class='user_image_main_page' src='".HOME.'/img/gallery/'.$video[5]."'/>";
+											if(file_exists(APPPATH.'/../img/gallery/'.$video[7]) == TRUE)
+												echo "<img class='user_image_main_page' src='".HOME.'/img/gallery/'.$video[7]."'/>";
 											else
 												echo "<img class='user_image_main_page' src='".HOME."/img/profile/user.jpg'/>";
 											?>
@@ -95,7 +100,7 @@
 										</div>
 										<div class="span7">
 											<div style="margin-bottom: 7px;"class="home-video-title"><?php echo $video[0]; ?></div>
-											<span class="home-video-author">por </span><a class="home-video-author" href="<?php echo HOME.'/user/index/'.$video[2]; ?>"><?php echo $video[4]; ?></a>								
+											<span class="home-video-author">por </span><a class="home-video-author" href="<?php echo HOME.'/user/index/'.$video[2]; ?>"><?php echo $video[6]; ?></a>								
 										</div>
 									</div>
 								</div>
@@ -170,7 +175,7 @@
 								            	</a>
 								            </td>
 								            <td style="max-width: 150px; min-width: 150px; vertical-align:middle;">
-								            	<a href="<?php echo HOME.'/home/video_ranking?id='.urlencode($applicant["video_id_y"]).'&title='. urlencode($applicant["video_title"]).'&iduser='.urlencode($applicant['id']) ?>" data-target="#playermodal" data-toggle="modal">							
+								            	<a href="<?php echo HOME.'/home/video_ranking?id='.urlencode($applicant["video_id_y"]).'&id_bdd='. urlencode($applicant["video_id"]).'&video_reproductions='. urlencode($applicant["video_reproductions"]).'&description='. urlencode($applicant["video_description"]).'&title='. urlencode($applicant["video_title"]).'&iduser='.urlencode($applicant['id']) ?>" data-target="#playermodal_simple" data-toggle="modal">							
 													<div class="image">
 														<img class="fade_new" src="<?php echo 'http://img.youtube.com/vi/'.$applicant["video_id_y"].'/0.jpg'; ?>" alt=""/>
 													    <img class="hoverimage" src="<?php echo HOME.'/img/player_arrow.png'; ?>" alt="" />

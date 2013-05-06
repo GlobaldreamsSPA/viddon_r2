@@ -213,7 +213,7 @@
 						<?php } ?>
 				</div>
 
-				<a href="<?php echo HOME.'/home/video?id='.urlencode($video[1]).'&name='. urlencode($video[0]).'&iduser='.urlencode($user_id).'&username='.urlencode($name).'&description='.urlencode($video[2]).'&userlastname='.urlencode($last_name).'&image='.urlencode($image_profile_name) ?>" data-target="#playermodal" data-toggle="modal">							
+				<a href="<?php echo HOME.'/home/video?id='.urlencode($video[1]).'&id_bdd='.urlencode($video[3]).'&video_reproductions='.urlencode($video[4]).'&name='. urlencode($video[0]).'&iduser='.urlencode($user_id).'&username='.urlencode($name).'&description='.urlencode($video[2]).'&userlastname='.urlencode($last_name).'&image='.urlencode($image_profile_name) ?>" data-target="#playermodal" data-toggle="modal">							
 					<div class="image">
 						<div>
 						<img class="fade_new" src="<?php echo 'http://img.youtube.com/vi/'.$video[1].'/0.jpg'; ?>" alt=""/>

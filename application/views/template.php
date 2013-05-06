@@ -39,15 +39,7 @@
 	<link href="<?php echo base_url()?>style/datepicker.css" rel="stylesheet"/>
 	<link href="<?php echo base_url()?>style/chosen.css" rel="stylesheet"/>
 
- 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>	
- 	<script src="<?php echo base_url()?>js/chosen.jquery.js"></script>
-	<script src="<?php echo base_url()?>js/bootstrap.js"></script>
-	<script src="<?php echo base_url()?>js/jquery.cleditor.js"></script>
-	<script src="<?php echo base_url()?>js/jquery.uniform.js"></script>
-	<script src="<?php echo base_url()?>js/jquery.dataTables.js"></script>
-	<script src="<?php echo base_url()?>js/bootstrap-datepicker.js"></script>	
-	<script src="<?php echo base_url()?>js/chosen.jquery.js"></script>
-	<script src="<?php echo base_url()?>js/jquery.ba-resize.js"></script>
+
 	<script type="text/javascript">
 	var fb_param = {};
 	fb_param.pixel_id = '6007047054806';
@@ -65,12 +57,18 @@
 
 </head>
 
-<body>	
+<body>
+ 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>	
+ 	<script src="<?php echo base_url()?>js/chosen.jquery.js"></script>
+	<script src="<?php echo base_url()?>js/bootstrap.js"></script>
+	<script src="<?php echo base_url()?>js/jquery.cleditor.js"></script>
+	<script src="<?php echo base_url()?>js/jquery.uniform.js"></script>
+	<script src="<?php echo base_url()?>js/jquery.dataTables.js"></script>
+	<script src="<?php echo base_url()?>js/bootstrap-datepicker.js"></script>	
+	<script src="<?php echo base_url()?>js/chosen.jquery.js"></script>
+	<script src="<?php echo base_url()?>js/jquery.ba-resize.js"></script>
+		
 	<div id="fb-root"></div>
-	<!-- Codigo para el boton de loggin de google -->
-	<?php
-		  
-	?>
 
 	<div class="navbar-fixed-top" id="headercontent">
 	    <div id="upperhalf">
@@ -178,6 +176,7 @@
 
 	<?php $this->load->view($content,$inner_args); ?>
 	
+
 	<script type="text/javascript">
 	      
 	    if($(".chzn-select").length > 0)
@@ -278,6 +277,23 @@
 
 			jQuery(".modal-backdrop, #playermodal .close, #playermodal .btn").live("click", function() {
 	        jQuery("#playermodal iframe").attr("src", null);
+			});
+		}
+
+      	if($("#playermodal_simple").length > 0)
+      	{
+	      	$("a[data-target=#playermodal_simple]").click(function(ev) {
+			    ev.preventDefault();
+			    var target = $(this).attr("href");
+
+			    // load the url and show modal on success
+			    $("#playermodal_simple .modal-body").load(target, function() { 
+			         $("#playermodal_simple").modal("show"); 
+			    });
+			});
+
+			jQuery(".modal-backdrop, #playermodal_simple .close, #playermodal_simple .btn").live("click", function() {
+	        jQuery("#playermodal_simple iframe").attr("src", null);
 			});
 		}
 

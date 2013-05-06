@@ -5,6 +5,7 @@ class User extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
+		error_reporting(0);
 		$this->load->library(array('upload', 'image_lib'));
 		$this->load->helper(array('url', 'file', 'form'));
 		
@@ -269,24 +270,23 @@ class User extends CI_Controller {
 				$args['video_ID']=$video["link"];
 				$args["video_title"] = $video["title"];
 				$args["video_description"] = $video["description"];
-				
+				$args["video_reproductions"] = $video["reproductions"];
+				$args["id_bdd_video"] = $video["id"];
+				$args["upvotes"] = $video["upvotes"];
+				$args["downvotes"] = $video["downvotes"];			
 			}else
 			{
 				$video = $this->videos_model->get_video($id); //saca el primer video registrado
-				$args['video_ID']=$video["video_id"];
-				$args["video_title"] = $video["video_title"];
-				$args["video_description"] = $video["video_description"];
+				$args['video_ID']=$video["link"];
+				$args["video_title"] = $video["title"];
+				$args["video_description"] = $video["description"];
+				$args["video_reproductions"] = $video["reproductions"];
+				$args["id_bdd_video"] = $video["id"];
+				$args["upvotes"] = $video["upvotes"];
+				$args["downvotes"] = $video["downvotes"];
 				
 			}
 			
-			/*
-			$JSON = file_get_contents("https://gdata.youtube.com/feeds/api/videos/{$args['video_ID']}?v=2&alt=json");
-			$JSON_Data = json_decode($JSON);
-			$JSON_Data_entry = $JSON_Data->{'entry'};
-			
-			$args["views"] = "0";
-			$args["dislikes"] = "0";
-			$args["likes"] = "0";*/
 		}
 		else//si no tiene videos, seteo lo que se necesite
 		{
