@@ -5,9 +5,8 @@ $(document).ready(function(){
 		$.get(this.href,{},function(response){
 			var votes = response.split("-");
 
-			$('#substraction').html(votes[0] - votes[1]);
-			$('#upvotes').html("+"+votes[0]);
-			$('#downvotes').html("-"+votes[1]);
+			$('#upvotes_r').html(votes[0]);
+			$('#downvotes_r').html(votes[1]);
 
 		}) 
 	})
@@ -19,9 +18,8 @@ $(document).ready(function(){
 		$.get(this.href,{},function(response){
 			var votes = response.split("-");
 
-			$('#substraction').html(votes[0] - votes[1]);
-			$('#upvotes').html("+"+votes[0]);
-			$('#downvotes').html("-"+votes[1]);
+			$('#upvotes_r').html(votes[0]);
+			$('#downvotes_r').html(votes[1]);
 
 		}) 
 	})
@@ -44,22 +42,15 @@ $(document).ready(function(){
 			<iframe width="100%" height="270px" src="http://www.youtube.com/embed/<?php echo $id_video.'?rel=0&autoplay=1&showinfo=0'?>" frameborder="0" allowfullscreen></iframe> 
 		</div>
 	</div>
-	<div style="padding-left:2%;">
-		<div class="span2">
-			<a class="upvote" href="<?php echo HOME.'/home/vote/1/'.$id_bdd_video ?>"><image src="<?php echo HOME.'/img/like.png'?>" /></a>  
-			<a class="downvote" href="<?php echo HOME.'/home/vote/0/'.$id_bdd_video ?>"><image src="<?php echo HOME.'/img/dislike.png'?>"/></a>  
+	<div style="padding-top:2%;">
+			<div class="span5">
+				<a class="upvote" href="<?php echo HOME.'/home/vote/1/'.$id_bdd_video ?>">	<p id="upvotes_r" style="display:inline;"><?php echo $upvotes;?></p></a>  
+				<a class="downvote" href="<?php echo HOME.'/home/vote/0/'.$id_bdd_video ?>"> <p id="downvotes_r" style="display:inline;"><?php echo $downvotes;?></p></a>  
+			</div>
+			<div class="span7" style="text-align: right">
+				<p style="font-weight:bold; margin-top: 2%;">Reproducciones: <?php echo $video_reproductions; ?></p>
+			</div>
 		</div>
-		<div style="margin-top: 1%;" class="span3">
-				<p id="substraction" style="font-size:22px; font-weight:bold; display:inline;"><?php echo $upvotes-$downvotes;?></p>
-				<p style="display:inline;">(</p> 
-				<p id="upvotes" style="color:green; display:inline;"><?php echo "+".$upvotes;?></p>
-				<p id="downvotes" style="color:red; display:inline;"><?php echo "-".$downvotes;?></p>
-				<p style="display:inline;">)</p> 
-		</div>
-		<div class="span7" style="text-align: right">
-			<p style="font-weight:bold; margin-top: 2%;">Reproducciones: <?php echo $video_reproductions; ?></p>
-		</div>
-	</div>
 
 	<div class="span12">
 		<div style="margin-top: 1.5%; overflow-y: scroll; min-height: 60px; max-height:60px; width: 100%;"><?php echo $description;?></div>

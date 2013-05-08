@@ -297,7 +297,16 @@
 			});
 		}
 
+		if($("#spotmodal").length > 0)
+      	{
 
+
+			jQuery(".modal-backdrop, #spotmodal .close, #spotmodal .btn").live("click", function() {
+	        var url = $('#spotiframe').attr('src');
+			$('#spotiframe').attr('src', '');
+			$('#spotiframe').attr('src', url);
+			});
+		}
 
 		if($("#dp1").length > 0)
 			$(function(){

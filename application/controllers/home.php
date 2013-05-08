@@ -43,24 +43,7 @@ class Home extends CI_Controller {
 		
 		foreach ($video_list as $video_data)
 		{
-			/*
-			$JSON = file_get_contents("https://gdata.youtube.com/feeds/api/videos/{$video_data[1]}?v=2&alt=json");
-			$JSON_Data = json_decode($JSON);
-							
-			if(array_key_exists('yt$statistics', $JSON_Data->{'entry'}))
-			{
-				$views = $JSON_Data->{'entry'}->{'yt$statistics'}->{'viewCount'};
-				$dislikes = $JSON_Data->{'entry'}->{'yt$rating'}->{'numDislikes'};
-				$likes = $JSON_Data->{'entry'}->{'yt$rating'}->{'numLikes'};
-			}
-			else
-			{
-				$views = "0";
-				$dislikes = "0";
-				$likes = "0";
-			}
-			array_push($video_data, $views, $dislikes,$likes);
-			*/
+			
 			$user_data= $this->user_model->select($video_data["2"]);
 			if($user_data['image_profile']!=0)
 				$user_data['image_profile'] = $this->photos_model->get_name($user_data['image_profile']);
@@ -86,6 +69,8 @@ class Home extends CI_Controller {
 	
 
 			$item["id"] = $row->id;
+			$item["tags"] = $this->skills_model->get_user_skills($item["id"]);
+			sort($item["tags"]);
 			$item["image"] = $this->user_model->get_image_profile($row->id);
 			$item["image"] = $this->photos_model->get_name($item["image"]);
 			$item["video_id"] = $this->user_model->get_main_video_id($row->id);
@@ -201,6 +186,32 @@ class Home extends CI_Controller {
 			echo "idvideo: ".$data["id"];
 			echo "<br>";
 			echo "reproducciones: ".$data["views"];
+			echo "<br>";
+			echo "<br>";
+
+		}
+
+	}
+
+	public function video_creation_date_update()
+	{
+
+		$query= $this->videos_model->get_videos_update_creation();
+		foreach ($query as $video)
+		{
+			$JSON = file_get_contents("https://gdata.youtube.com/feeds/api/videos/{$video['link']}?v=2&alt=json");
+			$JSON_Data = json_decode($JSON);
+			$data=array();
+			$data["id"]= $video["id"];
+			
+			$data["date"] = $JSON_Data->{'entry'}->{'published'}->{'$t'};
+			$data["date"] = substr($data["date"],0,10);
+
+			$this->videos_model->update_date($data);
+
+			echo "idvideo: ".$data["id"];
+			echo "<br>";
+			echo "fecha: ".$data["date"];
 			echo "<br>";
 			echo "<br>";
 

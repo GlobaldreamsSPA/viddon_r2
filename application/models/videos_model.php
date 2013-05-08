@@ -309,18 +309,28 @@ class Videos_model extends CI_Model
 
 		return $result;
 	}
-	function get_videos_update_repro()
+
+	function get_videos_update_creation()
 	{
 		$this->db->select('id,link');
+		$this->db->where('creation_date', '0000-00-00');			
 		$query = $this->db->get('videos');
-
 		return $query->result_array();
 	}
 
-	function get_votes($id)
+	function update_date($data)
 	{
-		$this->db->select('upvotes,downvotes');
-		$this->db->where('id', $id);	
+		$info = array(
+               'creation_date' => $data["date"]
+            );
+
+		$this->db->where('id', $data["id"]);
+		$this->db->update('videos', $info); 
+	}
+
+	function get_videos_update_repro()
+	{
+		$this->db->select('id,link');
 		$query = $this->db->get('videos');
 
 		return $query->result_array();
@@ -335,6 +345,16 @@ class Videos_model extends CI_Model
 		$this->db->where('id', $data["id"]);
 		$this->db->update('videos', $info); 
 	}
+
+	function get_votes($id)
+	{
+		$this->db->select('upvotes,downvotes');
+		$this->db->where('id', $id);	
+		$query = $this->db->get('videos');
+
+		return $query->result_array();
+	}
+
 
 	function update_votes($data)
 	{

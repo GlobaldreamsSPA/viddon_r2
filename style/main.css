@@ -17,6 +17,61 @@ a:hover {	text-decoration: underline}
 
 #variable{min-height: 1180px;}
 
+
+/*bg like and dilike vote button */
+
+.upvote
+{
+	background: url('../img/b1.png') no-repeat;
+	background-size: 100% 100%;
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
+	padding-left: 35px !important;
+	padding-right: 15px !important;
+	color:#969696;
+
+}
+
+.upvote:hover
+{
+	text-decoration: none !important;
+	background: url('../img/b11.png') no-repeat;
+	background-size: 100% 100%;
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
+	padding-left: 35px !important;
+	padding-right: 15px !important;
+	color:white;
+
+}
+
+.downvote
+{
+	margin-left: -5px;
+	background: url('../img/b2.png') no-repeat;
+	background-size: 100% 100%;
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
+	padding-left: 35px !important;
+	padding-right: 15px !important;
+	color:#969696;
+
+
+}
+
+.downvote:hover
+{
+	text-decoration: none !important;
+	background: url('../img/b22.png') no-repeat;
+	background-size: 100% 100%;
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
+	padding-left: 35px !important;
+	padding-right: 15px !important;
+	color:white;
+
+}
+
 /* formato links sociales pagina principal*/
 .social_container{
 -webkit-border-radius: 5px;
@@ -141,6 +196,23 @@ padding-bottom: 5%;
 {
 	max-height: 600px !important;
 }
+
+/* Modal donde aparece el video del spot en el home*/
+#spotmodal{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: -18% 0 0 -25%;
+  padding-top: 1%; 
+  padding-bottom: 1%; 
+  width: 50% !important;
+}
+
+#spotmodal .modal-body
+{
+	max-height: 600px !important;
+}
+
 
 /* Modal donde aparece el video de youtube sin descripción*/
 #playermodal_simple{

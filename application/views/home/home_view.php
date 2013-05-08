@@ -16,6 +16,15 @@
 	</div>
 </div>
 
+<div class="modal fade hide" id="spotmodal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div style="padding: 0px;" class="modal-body">
+		<a class="close" style="margin-right:3%;" data-dismiss="modal"><i class="icon-remove"></i></a>  
+		<div style="padding:5%; text-align: center">
+			<iframe id="spotiframe" width="100%" height="300px" src="http://www.youtube.com/embed/HrtEzkemBgY?rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe> 
+		</div>
+	</div>
+</div>
+
 <div class="content" id="content">
 	<div class="space4"></div>
 	<div class="space4"></div>
@@ -29,6 +38,11 @@
 							<!-- Carousel items -->
 							<div class="carousel-inner">
 							    <div class="active item">
+							    	<a href="#spotmodal" data-toggle="modal">	
+				  						<img style="height:100%; width:100%;" src="<?php echo HOME."/img/bgspot.jpg" ?>">
+				  					</a>
+								</div>
+							    <div class="item">
 							    	<a href="<?php echo base_url().'user/fb_login'; ?>">	
 				  						<img style="height:100%; width:100%;" src="<?php echo HOME."/img/concurso200k.png" ?>">
 				  					</a>
@@ -143,8 +157,7 @@
 		  					<table style="width: 100%;" width="100%" id="rankingdatatable" class="table">
 			          			<thead>
 						            <tr>
-							            <th>Imagen</th>
-							            <th>Bio</th>
+							            <th>Ficha del Artista</th>
 							            <th>Video Principal</th>
 							            <th>Likes</th>
 						            </tr>
@@ -155,26 +168,41 @@
 					          	 if(isset($ranking))
 						          	foreach ($ranking as $applicant) {?>
 										<tr>
-								            <td style="max-width: 10px; min-width: 10px; vertical-align:middle;">
-								            	<a class="home-video-author" href="<?php echo HOME.'/user/index/'.$applicant['id'] ?>">
-													<?php
-													if(file_exists(APPPATH.'/../img/gallery/'.$applicant["image"]) == TRUE)
-														echo "<img class='user_image_main_page' src='".HOME."/img/gallery/".$applicant['image']."'/>";
-													else
-														echo "<img class='user_image_main_page' src='".HOME."/img/profile/user.jpg'/>";
-													?>
-												</a>
-											</td>
-								            <td style="max-width: 150px; min-width: 150px; vertical-align:middle;">
-								            	<a class="home-video-author" href="<?php echo HOME.'/user/index/'.$applicant['id'] ?>">
-								            		<?php echo $applicant["first_name"]." ".$applicant["last_name"]?>
-								            	</a>
-								            	<br>
-								            	<?php echo substr(strip_tags($applicant['bio']),0,120)."..";?> <a href="<?php echo HOME.'/user/index/'.$applicant['id'] ?>">
-								            		(ver m&aacute;s)
-								            	</a>
+								            <td style="max-width: 250px; min-width: 250px; vertical-align:middle;">
+								            	<div class="row">
+								            	<div class="span4">
+									            	<a class="home-video-author" href="<?php echo HOME.'/user/index/'.$applicant['id'] ?>">
+														<?php
+														if(file_exists(APPPATH.'/../img/gallery/'.$applicant["image"]) == TRUE)
+															echo "<img class='user_image_main_page' src='".HOME."/img/gallery/".$applicant['image']."'/>";
+														else
+															echo "<img class='user_image_main_page' src='".HOME."/img/profile/user.jpg'/>";
+														?>
+													</a>
+												</div>
+
+								            	<div style="position:relative; top: -20px;"class="span8">
+									            	<a class="home-video-author" href="<?php echo HOME.'/user/index/'.$applicant['id'] ?>">
+									            		<?php echo $applicant["first_name"]." ".$applicant["last_name"]?>
+									            	</a>
+									            	<br>
+									            	<p style="text-align: justify">
+										            	<?php echo substr(strip_tags($applicant['bio']),0,120)."..";?>
+										            	<a href="<?php echo HOME.'/user/index/'.$applicant['id'] ?>">
+										            		(ver m&aacute;s)
+										            	</a> 
+									            	</p>
+								            	</div>
+								            	</div>
+								            	<?php
+												echo '<ul class="skills-list">';
+												foreach ($applicant["tags"] as $tag) {
+													echo '<li> <a href="#">'.$tag.'</a></li>';
+												}
+													echo '</ul>';
+												?>
 								            </td>
-								            <td style="max-width: 150px; min-width: 150px; vertical-align:middle;">
+								            <td style="max-width: 180px; min-width: 180px; padding-top:1%;padding-bottom:1%; vertical-align:middle;">
 								            	<a href="<?php echo HOME.'/home/video_ranking?id='.urlencode($applicant["video_id_y"]).'&id_bdd='. urlencode($applicant["video_id"]).'&video_reproductions='. urlencode($applicant["video_reproductions"]).'&description='. urlencode($applicant["video_description"]).'&title='. urlencode($applicant["video_title"]).'&iduser='.urlencode($applicant['id']) ?>" data-target="#playermodal_simple" data-toggle="modal">							
 													<div class="image">
 														<img class="fade_new" src="<?php echo 'http://img.youtube.com/vi/'.$applicant["video_id_y"].'/0.jpg'; ?>" alt=""/>
