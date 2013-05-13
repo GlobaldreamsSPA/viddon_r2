@@ -82,20 +82,14 @@
 		  		?>
 				<div style="border-radius: 5px; margin-left:8%; text-align:center;" id="grow" class="row-fluid">
 			  		<div class="space1"></div>
-			  		<h2 id="profile"  style="font-weight:bold;">Castings Viddon</h3>
+			  		<h2 id="profile"  style="font-weight:bold;">Casting Viddon</h3>
 			  		<?php foreach($castings as $casting){ ?>
 			  			<a href="<?php echo site_url("home/casting_detail/".$casting['id']); ?>">
 		  					<img style="margin-top: 44px; width: 84%; " src="<?php echo $casting['image']; ?>">
 		  				</a>
 		  			<?php } ?>
 					<div class= "space2"></div>
-					<div class="space05"></div>
-					<div style="margin-left: 5%; margin-right: 5%;">
-						<a class="twitter-timeline" href="https://twitter.com/ViddonCom" data-widget-id="316343995661959169">Tweets por @ViddonCom</a>
-						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-					</div>
-					<div class= "space2"></div>
-
+					
 					<div class="social_container">
 						<div class="space05"></div>
 						<h4 id="profile"> Buscanos en Redes Sociales</h4>
@@ -115,10 +109,22 @@
 			  					<img style="margin-top: 7%; width: 74%; " src="<?php echo HOME."/img/social_container_y.png"; ?>">
 			  				</div>
 			  				<div class="span3">	
-			  					<img style="margin-top: 7%; width: 74%; " src="<?php echo HOME."/img/social_container_w.png"; ?>">
+			  					<a  href="http://www.viddon.com/blog" target=”_blank”>
+			  						<img style="margin-top: 7%; width: 74%; " src="<?php echo HOME."/img/social_container_w.png"; ?>">
+			  					</a>
 			  				</div>
 		  				</div>
 					</div>
+
+					<div class="space1"></div>
+
+
+					<div style="margin-left: 5%; margin-right: 5%;">
+						<a class="twitter-timeline" href="https://twitter.com/ViddonCom" data-widget-id="316343995661959169">Tweets por @ViddonCom</a>
+						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+					</div>
+
+					<div class= "space2"></div>
 
 				</div>
 				<?php }?>

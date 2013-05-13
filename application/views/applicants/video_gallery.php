@@ -4,6 +4,12 @@
  -webkit-box-shadow: 3px 3px 2px rgba(50, 50, 50, 0.43); -moz-box-shadow:    3px 3px 2px rgba(50, 50, 50, 0.43); box-shadow:         3px 3px 2px rgba(50, 50, 50, 0.43);
  margin-bottom: 1%;
 }
+
+.chzn-container,
+.chzn-container .chzn-drop,
+.chzn-container .default {
+    width: 100% !important;
+}
 </style>
 
 <div class="modal fade hide"  style="padding-right: 1%; padding-left: 0.3%" id="playermodal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -108,10 +114,11 @@
 							  	<form id="video_upload_form" action="<?php echo HOME.'/user/'?>" method="post">
 							  		<div style="padding:2%;"class="row">
 								  		<div class="span6">	
-											<input name="url_ytb" style="width:96%" type="text" placeholder="Dirección - URL Video" value="" required="required">											
-											<input name="name_ytb" style="width:96%" type="text" placeholder="Titulo del Video">
+											<input name="url_ytb" style="width:96%" type="text" placeholder="Dirección - URL video" value="" required="required">											
+											<input name="name_ytb" style="width:96%" type="text" placeholder="Titulo del video">
+											<?php echo form_multiselect('video_categories[]', $video_categories_list, null,"class='chzn-select chosen_filter' data-placeholder='Selecciona las categorias...'"); ?>
 											<div class="space1"></div>
-											<div style="margin-top: 1%; font-size: 100%;"class="justify">
+											<div style="margin-top: 1%; font-size: 95%;"class="justify">
  												Debes pegar la dirección URL de tu video. La que se aprecia en la barra del navegador	Ej:   
  												<ul>
  													<li>http://www.youtube.com/watch?v=LautYzjYv3A</li>
@@ -124,7 +131,7 @@
 											<textarea class="rich_textarea_pop_up" name="description_ytb" rows="6" placeholder="Descripción"></textarea>
 											<input type="hidden" name="from_gallery" value="yes" />
 											<div class="space1"></div>	
-											<button type="submit" class="btn btn-primary">Guardar</button>
+											<button type="submit" class="btn btn-primary">Subir</button>
 											<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
 							  			</div>
 							  		</div>
@@ -164,6 +171,9 @@
 					<div class="modal-body">
 							<div>	
 								<input name="nombre_video_edit" style="width:96%" type="text" value="<?php echo $video[0];?>" placeholder="Nombre">
+								<?php 
+							
+								echo form_multiselect('video_categories_edit[]', $video_categories_list, $video[5],"class='chzn-select chosen_filter' data-placeholder='Selecciona las categorias...'"); ?>
 								<div class="space1"></div>	
 								<textarea class="rich_textarea_pop_up" name="description_video_edit" rows="6" placeholder="Descripción"><?php echo $video[2];?></textarea>
 								<input type="hidden" name="id_editando" value="<?php echo $video[3];?>" />

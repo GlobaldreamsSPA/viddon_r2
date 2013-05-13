@@ -28,7 +28,7 @@ class Subevideo extends CI_Controller
 
 	}
 	
-	public function subir_video($titulo_video=NULL, $descripcion_video=NULL)
+	public function subir_video($titulo_video=NULL, $descripcion_video=NULL, $categories =NULL)
 	{
 		if($this->session->userdata('id') == FALSE) redirect(HOME);
 		else $userid = $this->session->userdata('id');
@@ -43,6 +43,25 @@ class Subevideo extends CI_Controller
 		{
 			$descripcion_video = $_POST['uploaded_desc'];
 		}
+
+		if(is_null($categories) && isset($_POST))
+		{
+			$video_categories = $_POST['video_categories'];
+
+			$temp="";
+			$flag=0;
+			foreach ($video_categories as $value) {
+				if($flag==0)
+					$temp= $value;
+				else
+					$temp= $temp."-".$value;
+
+				$flag=$flag+1;
+
+			}
+
+			$video_categories = $temp;
+		}
 		
 		//se analiza toda la información necesaria respecto al usuario, username, correo, etc.
 		//se carga en el arreglo $mDATA la información correspondiente, con el que se generará el metadata del video.
@@ -51,7 +70,8 @@ class Subevideo extends CI_Controller
 				'link' => '',
 				'type' => 'youtube',
 				'description' => $descripcion_video,
-				'user_id' => $userid
+				'user_id' => $userid,
+				'categories' => $video_categories
 			);	
 		
 		unset($config);	

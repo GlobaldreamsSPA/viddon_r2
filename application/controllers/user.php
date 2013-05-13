@@ -15,9 +15,8 @@ class User extends CI_Controller {
 		$this->load->model('skills_model');
 		$this->load->model('castings_model');
 		$this->load->model('photos_model');
-		$this->load->model('comment_model');
 		$this->load->model('likes_model');
-
+		$this->load->model('video_categories_model');
 		$this->load->model('education_model');
 
 		parse_str( $_SERVER['QUERY_STRING'], $_REQUEST );
@@ -105,43 +104,6 @@ class User extends CI_Controller {
 
     }
 
-	public function comments()
-	{
-		/* Datos devueltos:
-		0: El usuario no esta loggeado. 
-		1: El usuario ha escrito el mismo comentario mas de una vez el mismo dia.
-		2: El comentario fue ingresado exitosamente.*/
-
-		$comment = $this->input->post('comment');
-		if(strcmp($this->session->userdata('id'),'') == 0)
-		{
-			echo 0;
-		}
-		else
-		{
-			$user_id = $this->session->userdata('id');
-			$result = $this->comment_model->insert_comment($user_id, $comment);
-			if ($result == 2)
-			{
-				echo 2;
-			}
-		}
-	}
-	
-	private function _isValidYoutubeUrl($url_input=NULL)
-	{
-		var_dump($url_input);
-		if(!is_null($url_input))
-		{
-			var_dump(preg_match(YOUTUBEURL_REGEX, $url_input));
-			if(preg_match(YOUTUBEURL_REGEX, $url_input) == 1) return true; //ver constants.php
-		}
-		else
-		{
-			return false;
-		}
-		return false;
-	}
 
 	public function index($id = NULL, $first_time = FALSE)
 	{
@@ -166,14 +128,19 @@ class User extends CI_Controller {
 		}
 
 		$args = $this->user_model->select($id);
+
 		if($args['image_profile']!=0)
 			$args['image_profile_name'] = $this->photos_model->get_name($args['image_profile']);
+		
 		else
 			$args['image_profile_name'] = 0;
 
 		$args["castings"]= $castings;
 
 
+		$temp[-1]= "--  Seleccionar Todos  --";
+		$temp[-2]= "--     Vaciar Campo    --";
+		$args["video_categories_list"] = $temp+$this->video_categories_model->get();		
 		$args['public'] = $public;
 		$args["tags"] = $this->skills_model->get_user_skills($id);
 		$args["user"] = $this->user_model->welcome_name($id);
@@ -195,12 +162,30 @@ class User extends CI_Controller {
 				{
 					if((strlen ($link['v']) == 11))
 					{
+
+						$video_categories = $_POST['video_categories'];
+
+						$temp="";
+						$flag=0;
+						foreach ($video_categories as $value) 
+						{
+							if($flag==0)
+								$temp= $value;
+							else
+								$temp= $temp."-".$value;
+
+							$flag=$flag+1;
+						}
+
+						$video_categories = $temp;
+					
 						$video_to_save = array(
 						'title' => $_POST["name_ytb"],
 						'link' => $link['v'],
 						'type' => 'youtube',
 						'description' => $_POST["description_ytb"],
-						'user_id' => $id
+						'user_id' => $id,
+						'categories' => $video_categories
 						);
 						//Insertar estos datos
 						$first = $this->videos_model->insert($video_to_save);
@@ -222,12 +207,30 @@ class User extends CI_Controller {
 
 				if(strlen ($link) == 11)
 				{
+
+					$video_categories = $_POST['video_categories'];
+
+					$temp="";
+					$flag=0;
+					foreach ($video_categories as $value) 
+					{
+						if($flag == 0)
+							$temp= $value;
+						else
+							$temp= $temp."-".$value;
+
+						$flag=$flag+1;
+					}
+
+					$video_categories = $temp;
+
 					$video_to_save = array(
 					'title' => $_POST["name_ytb"],
 					'link' => $link,
 					'type' => 'youtube',
 					'description' => $_POST["description_ytb"],
-					'user_id' => $id
+					'user_id' => $id,
+					'categories' => $video_categories
 					);
 					//Insertar estos datos
 					$first = $this->videos_model->insert($video_to_save);
@@ -387,24 +390,7 @@ private function _upload_image($id)
       'user_id' => $id
       );
     
-    $this->photos_model->insert($photo_to_save);//INSERTA REGISTRO EN BASE DE DATOS , TABLA "photos"
-    
-    /*
-    //ahora ajustar la imagen
-    $image = $this->upload->data('image_profile');
-
-    $config = array(
-      'image_library' => 'gd2',
-      'source_image' => $image['full_path'],
-      'new_image' => realpath(APPPATH.IMAGES_DIR),
-      'maintain_ratio' => TRUE,
-      'width' => '230',
-      'height' => '230'
-    );
-    
-    $this->image_lib->initialize($config);
-    $this->image_lib->resize();
-    */
+    $this->photos_model->insert($photo_to_save);
 }
 
 	public function photo_gallery($ope=NULL,$id_photo_objetivo=NULL) //TODO: TERMINAR
@@ -519,8 +505,23 @@ private function _upload_image($id)
 			if(isset($_POST['id_editando']))
 			{
 				//agregar validaciones aquí
-				
-				$this->videos_model->update($_POST['id_editando'],$_POST['nombre_video_edit'],$_POST['description_video_edit']);
+				$video_categories = $_POST['video_categories_edit'];
+
+				$temp="";
+				$flag=0;
+				foreach ($video_categories as $value) 
+				{
+					if($flag == 0)
+						$temp= $value;
+					else
+						$temp= $temp."-".$value;
+
+					$flag=$flag+1;
+				}
+
+				$video_categories = $temp;
+
+				$this->videos_model->update($_POST['id_editando'],$_POST['nombre_video_edit'],$_POST['description_video_edit'],$video_categories);
 				redirect(HOME."/user/video_gallery"); //vuelve a cargar
 			}
 
@@ -557,7 +558,6 @@ private function _upload_image($id)
 						break;
 				} 
 			}
-
 		}
 		
 		
@@ -569,9 +569,17 @@ private function _upload_image($id)
 		
 		//AHORA OBTENGO LOS ELEMENTOS NECESARIOS PARA LA GALERIA
 		$args['videos'] = $this->videos_model->get_videos_by_user($id,$page);
+
+		foreach ($args['videos'] as &$video)
+			$video[5]=explode("-",$video[5]);
+		
 		$args['page']=$page;
 		$args["chunks"]=ceil($this->videos_model->count_videos_by_user($id)/8);	
 		
+		$temp[-1]= "--  Seleccionar Todos  --";
+		$temp[-2]= "--     Vaciar Campo    --";
+		$args["video_categories_list"] = $temp+$this->video_categories_model->get();
+
 		
 		$args["content"]="applicants/applicants_template";
 		$inner_args["applicant_content"]="applicants/video_gallery";
@@ -831,9 +839,9 @@ private function _upload_image($id)
 
 		if($castings_id != 0)
 		{
-			foreach ($castings_id as $temp) {
+			foreach ($castings_id as $temp) 
 				$apply_id_dictionary[$temp['casting_id']]=$apply_status_dictionary[$temp["state"]];
-			}
+			
 			$args['castings'] = $this->castings_model->get_castings_especific($castings_id,array("1","2"));
 						
 			foreach($args['castings'] as &$casting)
@@ -841,7 +849,6 @@ private function _upload_image($id)
 				$casting["apply_status"]=$apply_id_dictionary[$casting["id"]];
 			}			
 		}
-		
 		
 		
 		if($this->videos_model->verify_videos($id) != 1)

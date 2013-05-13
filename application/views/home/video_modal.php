@@ -64,11 +64,11 @@ $(document).ready(function(){
 		</div>
 		<div style="padding-left:2%; padding-top:2%;">
 			<div class="span5">
-				<a class="upvote" href="<?php echo HOME.'/home/vote/1/'.$id_bdd_video ?>">	<p id="upvotes" style="display:inline;"><?php echo $upvotes;?></p></a>  
-				<a class="downvote" href="<?php echo HOME.'/home/vote/0/'.$id_bdd_video ?>"> <p id="downvotes" style="display:inline;"><?php echo $downvotes;?></p></a>  
+				<a class="upvote vote" href="<?php echo HOME.'/home/vote/1/'.$id_bdd_video ?>"> <img class="greyvote" src='<?php echo HOME."/img/upgrey.png" ?>'/> <img class="whitevote" src='<?php echo HOME."/img/upwhite.png" ?>'/> <p id="upvotes" style="display:inline;"><?php echo $upvotes;?></p></a>  
+				<a class="downvote vote" href="<?php echo HOME.'/home/vote/0/'.$id_bdd_video ?>"> <img class="greyvote" src='<?php echo HOME."/img/downgrey.png" ?>'/> <img class="whitevote" src='<?php echo HOME."/img/downwhite.png" ?>'/> <p id="downvotes" style="display:inline;"><?php echo $downvotes;?></p></a>  
 			</div>
 			<div class="span7" style="text-align: right">
-				<p style="font-weight:bold; margin-top: 2%;">Reproducciones: <?php echo $video_reproductions; ?></p>
+				<p style="font-weight:bold;">Reproducciones: <?php echo $video_reproductions; ?></p>
 			</div>
 		</div>
 	</div>

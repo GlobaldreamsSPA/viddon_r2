@@ -1,3 +1,12 @@
+<style>
+
+.chzn-container,
+.chzn-container .chzn-drop,
+.chzn-container .default {
+    width: 100% !important;
+}
+</style>
+
 <script>
 $(document).ready(function(){
 	$('.upvote').bind('click',function(event){
@@ -5,9 +14,8 @@ $(document).ready(function(){
 		$.get(this.href,{},function(response){
 			var votes = response.split("-");
 
-			$('#substraction').html(votes[0] - votes[1]);
-			$('#upvotes').html("+"+votes[0]);
-			$('#downvotes').html("-"+votes[1]);
+			$('#upvotes').html(votes[0]);
+			$('#downvotes').html(votes[1]);
 
 		}) 
 	})
@@ -19,9 +27,8 @@ $(document).ready(function(){
 		$.get(this.href,{},function(response){
 			var votes = response.split("-");
 
-			$('#substraction').html(votes[0] - votes[1]);
-			$('#upvotes').html("+"+votes[0]);
-			$('#downvotes').html("-"+votes[1]);
+			$('#upvotes').html(votes[0]);
+			$('#downvotes').html(votes[1]);
 
 		}) 
 	})
@@ -145,19 +152,12 @@ $(document).ready(function(){
 			<iframe style="margin-top: 5px;" width="100%" height="300" src="http://www.youtube.com/embed/<?php echo $video_ID."?rel=0";?>" frameborder="0" allowfullscreen></iframe>
 			<div class="space05"></div>
 			<div style="padding-left:2%; padding-top:2%;">
-				<div class="span2">
-					<a class="upvote" href="<?php echo HOME.'/home/vote/1/'.$id_bdd_video ?>"><image src="<?php echo HOME.'/img/like.png'?>" /></a>  
-					<a class="downvote" href="<?php echo HOME.'/home/vote/0/'.$id_bdd_video ?>"><image src="<?php echo HOME.'/img/dislike.png'?>"/></a>  
-				</div>
-				<div style="margin-top: 1%;" class="span3">
-						<p id="substraction" style="font-size:22px; font-weight:bold; display:inline;"><?php echo $upvotes-$downvotes;?></p>
-						<p style="display:inline;">(</p> 
-						<p id="upvotes" style="color:green; display:inline;"><?php echo "+".$upvotes;?></p>
-						<p id="downvotes" style="color:red; display:inline;"><?php echo "-".$downvotes;?></p>
-						<p style="display:inline;">)</p> 
+				<div class="span5">
+					<a class="upvote vote" href="<?php echo HOME.'/home/vote/1/'.$id_bdd_video ?>"> <img class="greyvote" src='<?php echo HOME."/img/upgrey.png" ?>'/> <img class="whitevote" src='<?php echo HOME."/img/upwhite.png" ?>'/> <p id="upvotes" style="display:inline;"><?php echo $upvotes;?></p></a>  
+					<a class="downvote vote" href="<?php echo HOME.'/home/vote/0/'.$id_bdd_video ?>"> <img class="greyvote" src='<?php echo HOME."/img/downgrey.png" ?>'/> <img class="whitevote" src='<?php echo HOME."/img/downwhite.png" ?>'/> <p id="downvotes" style="display:inline;"><?php echo $downvotes;?></p></a>  
 				</div>
 				<div class="span7" style="text-align: right">
-					<p style="font-weight:bold; margin-top: 2%;">Reproducciones: <?php echo $video_reproductions; ?></p>
+					<p style="font-weight:bold;">Reproducciones: <?php echo $video_reproductions; ?></p>
 				</div>
 			</div>
 			<div style= "overflow-y: scroll; min-height: 110px;"class="justify"><?php echo $video_description;?></div>
@@ -183,10 +183,11 @@ $(document).ready(function(){
 							  	<form id="video_upload_form" action="<?php echo HOME.'/user/'?>" method="post">
 							  		<div style="padding:2%;"class="row">
 								  		<div class="span6">	
-											<input name="url_ytb" style="width:96%" type="text" placeholder="Dirección - URL Video" value="" required="required">											
-											<input name="name_ytb" style="width:96%" type="text" placeholder="Titulo del Video">
+											<input name="url_ytb" style="width:96%" type="text" placeholder="Dirección - URL video" value="" required="required">											
+											<input name="name_ytb" style="width:96%" type="text" placeholder="Titulo del video">
+											<?php echo form_multiselect('video_categories[]', $video_categories_list, null,"class='chzn-select chosen_filter' data-placeholder='Selecciona las categorias...'"); ?>
 											<div class="space1"></div>
-											<div style="margin-top: 1%; font-size: 100%;"class="justify">
+											<div style="margin-top: 1%; font-size: 95%;"class="justify">
 													Debes pegar la dirección URL de tu video. La que se aprecia en la barra del navegador	Ej:   
 													<ul>
 														<li>http://www.youtube.com/watch?v=LautYzjYv3A</li>
@@ -198,7 +199,7 @@ $(document).ready(function(){
 											<h4 style="line-height: 18px; margin: 0; margin-bottom: 2%;">Descripci&oacute;n</h4>
 											<textarea class="rich_textarea_pop_up" name="description_ytb" rows="6" placeholder="Descripción"></textarea>
 											<div class="space1"></div>	
-											<button type="submit" class="btn btn-primary">Guardar</button>
+											<button type="submit" class="btn btn-primary">Subir</button>
 											<button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
 							  			</div>
 							  		</div>

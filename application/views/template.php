@@ -181,7 +181,7 @@
 	      
 	    if($(".chzn-select").length > 0)
 			$(".chzn-select").chosen({no_results_text: "No se encontraron resultados"});
-
+		
 		if($(".rich_textarea").length > 0)	      
 	        $("document").ready(function() {
 			    $("textarea.rich_textarea").cleditor({

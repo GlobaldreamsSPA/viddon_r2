@@ -1,9 +1,21 @@
 <script>
 	$(document).ready(function() {
 		$('#rankingdatatable').dataTable( {
-			"aaSorting": [[ 3, "desc" ]]
+			"aaSorting": [[ 2, "desc" ]]
 		} );
 	} );
+
+	var tag = document.createElement('script');
+
+	tag.src = "https://www.youtube.com/iframe_api";
+	var firstScriptTag = document.getElementsByTagName('script')[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+	var player;
+	function onYouTubeIframeAPIReady() {
+	  player = new YT.Player('spotiframe');
+	}
+
 </script>
 
 <div class="modal fade hide" id="playermodal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -38,7 +50,7 @@
 							<!-- Carousel items -->
 							<div class="carousel-inner">
 							    <div class="active item">
-							    	<a href="#spotmodal" data-toggle="modal">	
+							    	<a href="#spotmodal" data-toggle="modal" onclick='player.playVideo()'>	
 				  						<img style="height:100%; width:100%;" src="<?php echo HOME."/img/bgspot.jpg" ?>">
 				  					</a>
 								</div>
@@ -66,19 +78,27 @@
 					<div class="space05"></div>
 
 					<ul  class="nav nav-tabs">
-						<li class="active"><a class="home_tabs" href="#videos" data-toggle="tab">Últimos Videos</a></li>
+						<li class="active"><a class="home_tabs" href="#videos" data-toggle="tab">Video Talentos</a></li>
 						<li><a href="#ranking" class="home_tabs" data-toggle="tab">Artistas más populares</a></li>
 					</ul>
 
 					<div class="tab-content">
 						<div class="tab-pane active" id="videos">		
-			  			<div class="row">
-				  			<?php echo form_open('home',array('method' => 'get')); ?>
-								<div style="margin-left: 6%; margin-top:15px;" class="span3">
-									<input id='filter' style='width:110%;' placeholder="Busca por t&iacute;tulo" name="search_terms"></input>
+			  			<div style="margin-left:3%;" class="row">
+				  			<?php echo form_open('home',array('method' => 'get', 'class' => 'form-inline')); ?>
+			  					<div style="margin-top:15px;" class="span4">
+									<input id='filter' style='width:95%;' placeholder="Busca por t&iacute;tulo" name="search_terms" value="<?php echo $search_values["search_terms"] ?>"></input>
 								</div>
-								<div style="margin-top:15px;" class="span2">
-									<input type="submit" style="position: relative; bottom: 03px; left: 15px;" id="filter_button" class="btn btn-info" value="Buscar"/>
+								<div class="span6" style="margin-top:15px; margin-left:0 !important;">
+									
+									<?php echo form_dropdown("order",$order_options,$search_values["order"],'data-placeholder="Ordenar por" class="chzn-select-deselect" style="width:45%;margin-right: 2%"') ?>
+									
+									<?php echo form_dropdown("category",$category_options,$search_values["category"],'data-placeholder="Categorías" class="chzn-select-deselect" style="width:35%;"') ?>
+
+										
+								</div>
+								<div style="margin-top:15px; text-align:right;" class="span2">
+									<input type="submit"  id="filter_button" class="btn btn-info" value="Buscar"/>
 								</div>
 							</form>
 						</div>
@@ -117,12 +137,37 @@
 											<span class="home-video-author">por </span><a class="home-video-author" href="<?php echo HOME.'/user/index/'.$video[2]; ?>"><?php echo $video[6]; ?></a>								
 										</div>
 									</div>
+									<div class="row">
+										<div class="span5 offset1">
+											<img src='<?php echo HOME."/img/upgrey.png" ?>'/>
+											<p id="upvotes" style="display:inline;"><?php echo $video[9];?></p>  
+											<img src='<?php echo HOME."/img/downgrey.png" ?>'/>											
+											<p id="downvotes" style="display:inline;"><?php echo $video[10];?></p> 
+										</div>
+										<div class="span5" style="text-align: right;">
+											<p style="font-weight:bold;"><i class="icon-play"></i> <?php echo $video[5]; ?></p>
+										</div>
+									</div>
 								</div>
 							</div>
 						<?php 
 							if($i%3 == 0 || $i == count($video_list)) 
 								echo "</div>"; 
-						}?>
+						}
+
+						if(count($video_list)==0)
+						{
+							?>
+								<div style='margin-left:3%;' class="row">
+									<div class="space4"></div>
+									No se encontraron resultados.
+									<div class="space4"></div>
+								</div>
+						
+							<?php
+						}
+
+						?>
 						<div class="row">
 							<div class="space1"></div>
 							<div class="pagination">  
@@ -159,7 +204,7 @@
 						            <tr>
 							            <th>Ficha del Artista</th>
 							            <th>Video Principal</th>
-							            <th>Likes</th>
+							            <th>Likes Perfil</th>
 						            </tr>
 			          			</thead>
 				          		<tbody>
@@ -233,17 +278,7 @@
 		  				</a>
 		  			<?php } ?>
 					<div class= "space2"></div>
-					<div class="space05"></div>
-
-
-					<div style="margin-left: 5%; margin-right: 5%;">
-						<a class="twitter-timeline" href="https://twitter.com/ViddonCom" data-widget-id="316343995661959169">Tweets por @ViddonCom</a>
-						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-					</div>
-
-					<div class= "space2"></div>
-
-
+					
 					<div class="social_container">
 						<div class="space05"></div>
 						<h4 id="profile"> Buscanos en Redes Sociales</h4>
@@ -263,10 +298,24 @@
 			  					<img style="margin-top: 7%; width: 74%; " src="<?php echo HOME."/img/social_container_y.png"; ?>">
 			  				</div>
 			  				<div class="span3">	
-			  					<img style="margin-top: 7%; width: 74%; " src="<?php echo HOME."/img/social_container_w.png"; ?>">
+			  					<a  href="http://www.viddon.com/blog" target=”_blank”>
+			  						<img style="margin-top: 7%; width: 74%; " src="<?php echo HOME."/img/social_container_w.png"; ?>">
+			  					</a>
 			  				</div>
 		  				</div>
 					</div>
+
+					<div class="space1"></div>
+
+
+					<div style="margin-left: 5%; margin-right: 5%;">
+						<a class="twitter-timeline" href="https://twitter.com/ViddonCom" data-widget-id="316343995661959169">Tweets por @ViddonCom</a>
+						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+					</div>
+
+					<div class= "space2"></div>
+
+
 				</div>
 			</div>	
 		</div>

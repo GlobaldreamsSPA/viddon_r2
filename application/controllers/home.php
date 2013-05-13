@@ -5,7 +5,7 @@ class Home extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		error_reporting(0);
+		//error_reporting(0);
 
 		$this->load->helper(array('url', 'form'));
 
@@ -19,20 +19,37 @@ class Home extends CI_Controller {
 	public function index($page=1)
 	{
 
+		/* Codigo para hacer feed, esta a medias
+
+		$rss = new DOMDocument();
+		$rss->load('http://www.viddon.com/blog/?cat=23&feed=rss2');
+		
+		$feed = array();
+		foreach ($rss->getElementsByTagName('item') as $node) 
+		{
+			array_push($feed, $item);
+		}
+		
+		*/
 		$args = array();
 		
 		$args["get_uri"] ="";
 		
-		if(isset($_GET['search_terms']))
+		if(isset($_GET["search_terms"]))
 		{
-			$args["get_uri"] = "/?search_terms=".str_replace(' ', '+', $_GET['search_terms']);
-
-			$video_list = $this->videos_model->search_videos($_GET['search_terms'], $page, 9);
 			
-			$args["chunks"]=ceil($this->videos_model->count_search_videos($_GET['search_terms']) / 9);
+			$args["get_uri"] = "/?search_terms=".str_replace(' ', '+', $_GET["search_terms"])."&order=".$_GET["order"]."&category=".$_GET["category"];
+			$args["search_values"]=$_GET;
+
+			$video_list = $this->videos_model->search_videos($_GET, $page, 9);
+			
+			$args["chunks"]=ceil($this->videos_model->count_search_videos($_GET) / 9);
 		}
 		else
 		{
+			$args["search_values"]["search_terms"] = NULL;
+			$args["search_values"]["order"] = NULL;
+			$args["search_values"]["category"] = NULL;
 			$video_list = $this->videos_model->get_videos($page, 9);
 			$args["chunks"]=ceil($this->videos_model->count() / 9);
 
@@ -48,7 +65,8 @@ class Home extends CI_Controller {
 			if($user_data['image_profile']!=0)
 				$user_data['image_profile'] = $this->photos_model->get_name($user_data['image_profile']);
 
-			array_push($video_data,$user_data["name"],$user_data["image_profile"], $user_data["last_name"]);
+			$video_votes= $this->videos_model->get_votes($video_data["4"]);
+			array_push($video_data,$user_data["name"],$user_data["image_profile"], $user_data["last_name"],$video_votes[0]["upvotes"],$video_votes[0]["downvotes"]);
 			array_push($args["video_list"], $video_data);
 		}
     
@@ -87,7 +105,8 @@ class Home extends CI_Controller {
 		}
 		$args["castings"] = $this->castings_model->get_castings(NULL, 2, 1, 0);
 		$args["ranking"] = $ranking;
-    
+    	$args["order_options"]= array("" => "", "creation_date" => "Los más nuevos", "votes" => "Los más votados", "reproductions" => "Los más vistos");
+		$args["category_options"]= array(""=>"","1"=>"Canto","2"=>"Actuación","3"=>"Humor","5"=>"Cover","6"=>"Instrumentos","7"=>"Danza","9"=>"Música","10"=>"Grupo","8"=>"Otros");
 		$args["content"] = "home/home_view";
 		$args["inner_args"] = NULL;
 		$this->load->view('template',$args);
@@ -223,19 +242,25 @@ class Home extends CI_Controller {
 	{
 		if(isset($video_id) && isset($type))
 		{
-			$data["type"] = $type;
-			$data["video_id"] = $video_id;
 			$data["ip"] = $_SERVER['REMOTE_ADDR'];
-			if($this->session->userdata('id'))
-				$data["user_id"] = $this->session->userdata('id');
+			$data["video_id"] = $video_id;
 
-			$this->videos_model->update_votes($data);
-			
-			$this->video_votes_model->insert($data);
+
+			if(!$this->video_votes_model->ip_time_check($data["ip"],$data["video_id"]))
+			{
+				$data["type"] = $type;
+				if($this->session->userdata('id'))
+					$data["user_id"] = $this->session->userdata('id');
+
+				$this->videos_model->update_votes($data);
+				
+				$this->video_votes_model->insert($data);
+			}
 
 			$new_votes_count= $this->videos_model->get_votes($video_id);
 
 			echo $new_votes_count[0]["upvotes"]."-".$new_votes_count[0]["downvotes"];
+
 
 		}		
 		else

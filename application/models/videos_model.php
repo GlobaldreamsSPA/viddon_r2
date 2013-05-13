@@ -7,11 +7,12 @@ class Videos_model extends CI_Model
         parent::__construct();
     }
 
-	function update($id_video,$titulo_video,$descripcion)
+	function update($id_video,$titulo_video,$descripcion,$categories)
 	{
 		$data = array(
                'title' => $titulo_video,
-               'description' => $descripcion
+               'description' => $descripcion,
+               'categories' => $categories
             );
 
 		$this->db->where('id', $id_video);
@@ -97,21 +98,40 @@ class Videos_model extends CI_Model
 
 	function search_videos($search, $page, $cant)
 	{
-		$this->db->select('*,count(id)');
-		$search_value = array();
-		$search_value = explode(' ', $search);
-		$flag = FALSE;
-		$where = "";
-		foreach ($search_value as $iter) 
+		$this->db->select('*,count(id),upvotes - downvotes as votes');
+		
+		if($search["search_terms"])
 		{
-			if($flag)
-				$this->db->or_like('title', $iter); 
-			else
-				$this->db->like('title', $iter);
+			$search_value = array();
+			$search_value = explode(' ', $search["search_terms"]);
+			$flag = FALSE;
+			$where="";
+			foreach ($search_value as $iter) 
+			{
+				if($flag)
+					$where= $where." OR `title` LIKE '%".$iter."%'"; 
+				else
+					$where = "(`title` LIKE '%".$iter."%'";
 
-			$flag =TRUE;
+				$flag =TRUE;
+			}
+			$where= $where.")";
+
+			$this->db->where($where);
 		}
-		$this->db->order_by("count(id)", "desc");	
+
+		if($search["category"] != "")
+				$this->db->like('categories', $search["category"]);
+
+
+
+		if($search["order"] != "")
+			$this->db->order_by($search["order"], "desc");	
+		else
+			$this->db->order_by("count(id)", "desc");	
+
+
+		
 		$this->db->group_by('id');
 
 		$query = $this->db->get('videos', $cant, ($page-1)*$cant);
@@ -125,20 +145,32 @@ class Videos_model extends CI_Model
 
 	function count_search_videos($search)
 	{
-		$this->db->select('id,count(id)');
-		$search_value = array();
-		$search_value = explode(' ', $search);
-		$flag = FALSE;
-		$where = "";
-		foreach ($search_value as $iter) 
+		$this->db->select('*,upvotes - downvotes as votes');
+		
+		if($search["search_terms"])
 		{
-			if($flag)
-				$this->db->or_like('title', $iter); 
-			else
-				$this->db->like('title', $iter);
+			$search_value = array();
+			$search_value = explode(' ', $search["search_terms"]);
+			$flag = FALSE;
+			$where="";
+			foreach ($search_value as $iter) 
+			{
+				if($flag)
+					$where= $where." OR `title` LIKE '%".$iter."%'"; 
+				else
+					$where = "(`title` LIKE '%".$iter."%'";
 
-			$flag =TRUE;
+				$flag =TRUE;
+			}
+			$where= $where.")";
+
+			$this->db->where($where);
 		}
+
+		if($search["category"] != "")
+				$this->db->like('categories', $search["category"]);
+
+		
 		$this->db->group_by('id');
 
 		$query = $this->db->get('videos');
@@ -281,7 +313,7 @@ class Videos_model extends CI_Model
 		$result = array();
 		foreach ($query->result_array() as $value) 
 		{
-			$result[] = array($value['title'], $value['link'], $value['description'],$value['id'],$value['reproductions']);
+			$result[] = array($value['title'], $value['link'], $value['description'],$value['id'],$value['reproductions'],$value['categories']);
 		}
 		return $result;
 	}

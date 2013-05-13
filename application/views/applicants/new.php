@@ -96,16 +96,8 @@
 							<div style="margin-left:5px;">
 								<h5>Selecciona tus habilidades</h5>
 									<?php 
-									$skill_selected= array();
-									for ($i=0; $i<3; $i++)
-									{
-										if(isset($update_user_skills[$i]))
-											$skill_selected[$i]=$update_user_skills[$i];
-										else 
-											$skill_selected[$i]=0;
-											
-									}
-									echo form_multiselect('skills[]', $skills, $skill_selected,"class='chzn-select' style='width:245px' data-placeholder='Selecciona los tags...'");
+									
+									echo form_multiselect('skills[]', $skills, $update_user_skills,"class='chzn-select' style='width:245px' data-placeholder='Selecciona los tags...'");
 									?>
 								<?php echo form_error('skills'); ?>
 
