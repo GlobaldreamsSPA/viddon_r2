@@ -498,96 +498,13 @@
 
 		};	
 
+		/* filtro en home/casting list */
 		if($("#filter").length > 0)
 		{
 			$("#filter").change({regexp: '/[0-9]+/[0-9_-]+/',target: '#filter_button'},update_chosen_filter);
 			$('#filter').trigger('change');
 		}
-
-		if($("#filter_a1").length > 0)
-		{
-			$("#filter_a1").change({regexp: '/applicants_list/[0-9]+/[0-9]+/[0-3]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/',target: '#filter_button'},update_chosen_filter);
-			$('#filter_a1').trigger('change');
-		}
-
-		if($("#filter_a8").length > 0)
-		{
-			$("#filter_a8").change({regexp: '/applicants_list/[0-9]+/[0-9]+/[0-3]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/',target: '#filter_button'},update_chosen_filter);
-			$('#filter_a8').trigger('change');
-		}
-
-		if($("#filter_a7").length > 0)
-		{
-			$("#filter_a7").change({regexp: '/applicants_list/[0-9]+/[0-9]+/[0-3]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/',target: '#filter_button'},update_chosen_filter);
-			$('#filter_a7').trigger('change');
-		}
-
-		if($("#filter_a6").length > 0)
-		{
-			$("#filter_a6").change({regexp: '/applicants_list/[0-9]+/[0-9]+/[0-3]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/',target: '#filter_button'},update_chosen_filter);
-			$('#filter_a6').trigger('change');
-		}
-
-		if($("#filter_a5").length > 0)
-		{
-			$("#filter_a5").change({regexp: '/applicants_list/[0-9]+/[0-9]+/[0-3]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/',target: '#filter_button'},update_chosen_filter);
-			$('#filter_a5').trigger('change');
-		}
-
-		if($("#filter_a4").length > 0)
-		{
-			$("#filter_a4").change({regexp: '/applicants_list/[0-9]+/[0-9]+/[0-3]+/[0-9_-]+/[0-9_-]+/[0-9_-]+/',target: '#filter_button'},update_chosen_filter);
-			$('#filter_a4').trigger('change');
-		}
-
-		if($("#filter_a3").length > 0)
-		{
-			$("#filter_a3").change({regexp: '/applicants_list/[0-9]+/[0-9]+/[0-3]+/[0-9_-]+/[0-9_-]+/',target: '#filter_button'},update_chosen_filter);
-			$('#filter_a3').trigger('change');
-		}
-
-		if($("#filter_a2").length > 0)
-		{
-			$("#filter_a2").change({regexp: '/applicants_list/[0-9]+/[0-9]+/[0-3]+/[0-9_-]+/',target: '#filter_button'},update_chosen_filter);
-			$('#filter_a2').trigger('change');
-		}
-
-		var update_input_filter = function (event) 
-		{
-			
-			var regExp1 = new RegExp(event.data.regexp); 
-	        var result = regExp1.exec($(event.data.target).attr("href"));
-	        var temp = (""+result).substr(0,(""+result).length - 1);
-	        
-	        temp = temp.substr(0,temp.lastIndexOf('/')+1)
-	        
-
-
-	        var temp2 = this.value.split(" ");
-	        var uri="";
-
-	        $.each(temp2, function(index, value) {
-			   	uri= uri + value+"_";
-			});
-
-			uri= uri.substr(0,uri.length - 1);
-			if(uri=="")
-				uri="";
-
-			
-			result = temp + uri + "/";
-			    
-			$(event.data.target).attr("href",$(event.data.target).attr("href").replace(regExp1,result));
-
-		};
-
-		if($(".filter_input_a1").length > 0)
-		{
-			$(".filter_input_a1").change({regexp: '/[0-9_-]+/[A-Za-z_ñ]*/',target: '#filter_button'},update_input_filter);
-			$('.filter_input_a1').trigger('change');
-		}
 		
-
 		var update_state_filter = function (event) 
 		{
 			
@@ -601,13 +518,7 @@
 
 		};	
 		
-		if($("#apply_status").length > 0)
-		{
-			
-			$("#apply_status").change({regexp: '/applicants_list/[0-9]+/[0-9]+/[0-3]/',target: '#filter_button',src: '#apply_status'},update_state_filter);
-			$('#apply_status').trigger('change');
-		}
-
+		/* filtro en hunter/casting_list*/
 		if($("#casting_status").length > 0)
 		{				
 			$("#casting_status").change({regexp: '/[0-9]+/[0-3]/',target: '#filter_button',src: '#casting_status'},update_state_filter);

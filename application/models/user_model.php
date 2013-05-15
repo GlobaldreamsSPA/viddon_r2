@@ -183,4 +183,114 @@ class User_model extends CI_Model
 		
 		return 'Usuario';
 	}
+
+	function filter_user($filtered_ids,$sex,$age_range,$name,$page=null,$cant=5)
+	{
+		$this->db->select("id");		
+		//SEXO
+		if(!is_null($sex)) //genera la condicion where ( sex = N or sex = P) y la adjunta a string
+		{
+			$flag = FALSE;
+			$sex_where="(";
+			foreach ($sex as $sexi) 
+			{
+				if($flag)
+					$sex_where=$sex_where." OR ";
+				$sex_where = $sex_where." sex=".$sexi;
+				$flag =TRUE;
+			}
+			$sex_where=$sex_where.")";
+			$this->db->where($sex_where,NULL,FALSE);//se agrega a la consulta		
+		}
+		
+		//EDAD
+		if(!is_null($age_range))
+		{
+
+			$age_list= array(0=>"10",1=>"10-15",2=>"15-20",3=>"20-25",4=>"25-30",5=>"30-35",6=>"35-40",7=>"40");	
+
+			$rango_variable = array();
+			$flag = FALSE;
+			$age_where = "("; 
+						
+			foreach ($age_range as $edad) 
+			{
+				if($flag)
+					$age_where= $age_where." OR ";
+
+				switch($edad)//dependiendo de la clave seleccionada
+				{
+					case 0://si es la primera
+						$rango_variable=array(0=>0,1=>$age_list[$edad]);//hace que sea desde 0 a el valor inicial
+						break;
+					case (sizeof($age_list)-1)://si es la ultima
+						$rango_variable=array(0=>$age_list[$edad],1=>200);//hace que sea desde el valor maximo a 200
+						break;
+					default://si es de los internos lo separa tal cual
+						$rango_variable=explode("-", $age_list[$edad]);
+						break;
+				}
+				$age_where = $age_where." FLOOR(DATEDIFF(CURDATE(),STR_TO_DATE(birth_date,'%Y-%m-%d'))/365) BETWEEN ".$rango_variable[0]." AND ".$rango_variable[1];
+				$flag =TRUE;
+			}
+			$age_where = $age_where.")";
+			$this->db->where($age_where,NULL,FALSE);//se agrega a la consulta		
+		}
+
+
+
+		//WHERE DE NOMBRES O PALABRAS
+		if($name != "")
+		{
+			$name = explode(" ", $name);
+			$flag = FALSE;
+			$name_where = "("; 
+			
+			foreach ($name as $word) 
+			{
+				if($flag)
+					$name_where=$name_where." OR ";
+				$name_where = $name_where." name LIKE '%".$word."%'";
+				$flag =TRUE;
+			}
+			$name_where = $name_where.")"; 
+			$this->db->where($name_where,NULL,FALSE);//se agrega a la consulta		
+
+		}
+
+		$flag = FALSE;
+		$users_where = "(";
+		foreach ($filtered_ids as $user_id) 
+		{
+			if($flag)
+				$users_where=$users_where." OR ";
+
+			$users_where = $users_where." id = ".$user_id["user_id"];
+			$flag =TRUE;
+		}
+		$users_where=$users_where.")";
+		$this->db->where($users_where,NULL,FALSE);//se agrega a la consulta		
+		
+	
+		if(!is_null($page)){
+			$this->db->limit($cant,($page-1)*$cant);
+		}
+		
+		$query = $this->db->get("users");
+
+		if($query->num_rows == 0)
+			return 0;
+		else
+		{
+			$temp=array();
+
+			foreach ($query->result_array() as $value) {
+
+				$temp[$value["id"]]= $value["id"];
+			}
+
+			return $temp;
+		}
+	}
+
 }

@@ -60,16 +60,16 @@ class Skills_model extends CI_Model
 		return $result;
 	}
 	
-		function get_name($id)
-		{
-			$this->db->select('name');
-			$this->db->from('skills');
-			$this->db->where('id',$id);
-			$query = $this->db->get()->first_row('array');
-			return $query['name'];
-	    	
-		}
-	
+	function get_name($id)
+	{
+		$this->db->select('name');
+		$this->db->from('skills');
+		$this->db->where('id',$id);
+		$query = $this->db->get()->first_row('array');
+		return $query['name'];
+    	
+	}
+
 	function link_skills($profile)
 	{
 		//Primero borrar todas las habilidades linkeadas del usuario anteriormente existentes
@@ -98,18 +98,17 @@ class Skills_model extends CI_Model
 		
 	}
 
-	function filter_user_categories($users,$skills, $page, $cant=5)
+	function filter_user_categories($users,$skills, $page=null, $cant=5)
 	{
     	$this->db->select('user_id, count(user_id)');
 		$flag = FALSE;
 		$where = "(";
-		$this->db->group_by("user_id"); 
 		
 		foreach ($users as $user) 
 		{
 			if($flag)
 				$where=$where." OR ";
-			$where = $where." user_id= ".$user["user_id"];
+			$where = $where." user_id= ".$user;
 			$flag =TRUE;
 		}
 		$where = $where.")";
@@ -128,65 +127,30 @@ class Skills_model extends CI_Model
 		
 		$this->db->where($where, NULL, FALSE);
 		
+		$this->db->group_by("user_id"); 
+
 		$this->db->order_by("count(user_id)", "desc"); 
 		
-        $query = $this->db->get('users_skills', $cant, ($page-1)*$cant);
 		
-		$result= $query->result_array();
-		$temp_skills_dictionary_state= array();
-		$temp_skills_dictionary_id= array();
-		
-		foreach ($users as $user) {
-				$temp_skills_dictionary_state[$user["user_id"]]=$user["state"];
-				$temp_skills_dictionary_id[$user["user_id"]]=$user["id"];			
-		}	
-				
-		foreach ($result as &$temp) {
-		
-			$temp["id"]=	$temp_skills_dictionary_id[$temp["user_id"]];
-			$temp["state"]=	$temp_skills_dictionary_state[$temp["user_id"]];
-			
+		if(!is_null($page)){
+			$this->db->limit($cant,($page-1)*$cant);
 		}
 		
-		return $result;
-			
-	}
+		$query = $this->db->get("users_skills");
 
-	function count_filter_user_categories($users,$skills)
-	{
-    	$this->db->select('user_id');
-		$flag = FALSE;
-		$where = "(";
-		$this->db->distinct(); 
-		
-		foreach ($users as $user) 
+		if($query->num_rows == 0)
+			return 0;
+		else
 		{
-			if($flag)
-				$where=$where." OR ";
-			$where = $where." user_id= ".$user["user_id"];
-			$flag =TRUE;
+			$temp=array();
+
+			foreach ($query->result_array() as $value) {
+
+				$temp[$value["user_id"]]= $value["user_id"];
+			}
+
+			return $temp;
 		}
-		$where = $where.")";
-		$this->db->where($where, NULL, FALSE);	
-		
-		$flag = FALSE;		
-		$where = "(";
-		foreach ($skills as $skill) 
-		{
-			if($flag)
-				$where=$where." OR ";
-			$where = $where." skill_id= ".$skill;
-			$flag =TRUE;
-		}
-		$where = $where.")";
-		
-		$this->db->where($where, NULL, FALSE);
-		
-		
-        $query = $this->db->get('users_skills');
-		
-		$result= $query->result_array();
-		return count($result);
 			
 	}
 	

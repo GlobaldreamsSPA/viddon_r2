@@ -512,29 +512,8 @@ class Hunter extends CI_Controller {
 			redirect(HOME);
 	}
 	
-	//revisa si algún(por lo menos 1) filtro físico está presente
-	private function _has_physical_filter($sex,$build,$skin_color,$eyes_color,$hair_color,$height_range,$age_range)
-	{
-		$parametros = array($sex,$build,$skin_color,$eyes_color,$hair_color,$height_range,$age_range);
-		foreach($parametros as $variable)
-		{
-			if($variable != -2)
-			{
-				return TRUE;
-			}
-		}
-		return FALSE;
-	}
-	
-	//revisa si algún(por lo menos 1) filtro físico está presente
-	private function _has_word_filter($words)
-	{
-		if($words != "") return true;
-		else return false;
-	}
-	
 
-	function applicants_list($id=NULL,$page=1,$applies_state=0,$sex=-2,$build=-2,$skin_color=-2,$eyes_color=-2,$hair_color=-2,$height_range=-2,$age_range=-2,$filter_categories=-2,$name_p='')
+	function applicants_list($id=NULL,$page=1)
 	{
 		if($this->session->userdata('logged_in') && isset($id))
 		{
@@ -559,151 +538,100 @@ class Hunter extends CI_Controller {
 
 			$args["status"]= array(0=>"Sin Revisar",1=>"Aceptados",2=>"Rechazados",3=>"Todos");
 			
-			$args["build_list"]= $temp + array(0=>"Delgado",1=>"Normal",2=>"Grueso",3=>"Atletico");
-			
 			$args["sex_list"]= $temp + array(0=>"Femenino",1=>"Masculino");
-
-			$args["skin_list"]= $temp + array(0=>"Blanca",1=>"Morena", 2 =>"Negra");
-
-			$args["eyes_list"]= $temp + array(0=>"Verde",1=>"Azul", 2 =>"Gris",3=>"Casta&ntilde;o",4=>"Ambar",5=>"Pardos");
-
-			$args["hair_list"]= $temp + array(0=>"Casta&ntilde;o",1=>"Negro", 2 =>"Rubio",3=>"Blanco",4=>"Gris",5=>"Colorin",6=>"Otros");
-									
-			$args["height_list"] = $temp + array(0=>"150cm o menos",1=>"150-160cm",2=>"170-180cm",3=>"180-190cm",4=>"190-200cm",5=>"200 cm o m&aacutes");
-			
+	
 			$args["age_list"] = $temp + array(0=>"10 a&ntildeos o menos",1=>"10-15 a&ntildeos",2=>"15-20 a&ntildeos",3=>"20-25 a&ntildeos",4=>"20-30 a&ntildeos",5=>"30-35 a&ntildeos",6=>"35-40 a&ntildeos",7=>"40-45 a&ntildeos o m&aacutes");	
 
 			$temp = $this->castings_model->get_full_casting($id);
 			$args["name_casting"]= $temp["title"];
-			$args["filter_categories_url"] = $filter_categories;
 			
+			$unfiltered_applicants= $this->applies_model->get_castings_applies($id,null,0);
 			
-			if($sex != -2)
-				$args["sex"]=explode("_",$sex);
-			else
-				$args["sex"] = $sex;
-
-			if($eyes_color != -2)	
-				$args["eyes_color"]=explode("_",$eyes_color);
-			else
-				$args["eyes_color"] = $eyes_color;
-
-			if($hair_color != -2)	
-				$args["hair_color"]=explode("_",$hair_color);
-			else
-				$args["hair_color"] = $hair_color;
-
-			if($build != -2)	
-				$args["build"]=explode("_",$build);
-			else
-				$args["build"] = $build;
-
-			if($height_range != -2)	
-				$args["height_range"]=explode("_",$height_range);
-			else
-				$args["height_range"] = $height_range;
-
-			if($age_range != -2)	
-				$args["age_range"]=explode("_",$age_range);
-			else
-				$args["age_range"] = $age_range;
-
-			if($skin_color != -2)	
-				$args["skin_color"]=explode("_",$skin_color);
-			else
-				$args["skin_color"]=$skin_color;
-			
-			
-			
-			
-			//guarda si tiene o no filtros físicos
-			$has_physical_filter = $this->_has_physical_filter($sex, $build, $skin_color, $eyes_color, $hair_color, $height_range, $age_range);
-			$has_word_filter = $this->_has_word_filter($name_p);
-			
-			$words = array();
-			
-			if($has_word_filter)//transforma la palabras o nombres en un arrreglo
+			if(isset($_GET["status"]))
 			{
-				$tempo = explode("_",$name_p);
-				foreach ($tempo as $parte) 
-				{
-					$words[] = $parte;
-				}
-			}
-			
-			if($filter_categories!= -2)
-			{
-				$args["filter_categories"] = explode("_",$filter_categories);//PARAMETROS FILTRO URL
-				$id_applicants= $this->applies_model->get_castings_applies($id,null,$applies_state);
-				$unfiltered_applicants = $id_applicants; //COPIA DE LOS APLICANTES SIN FILTRAR, PARA USAR EN LA COMPROBACION PARA FINALIZAR EL CASTING
-				if($has_physical_filter) //si tiene filtros fisicos
-				{
-					//SE APLICAN LOS FILTROS FISICOS SOBRE LOS APLICANTS YA RESCATADOS
-					$id_applicants = $this->_physical_filter($id, $id_applicants,$args["sex"],$args["eyes_color"],$args["hair_color"],$args["build"],$args["skin_color"],$args["height_range"],$args["age_range"]);	
-				}
-				if($has_word_filter) //si tiene filtros por palabras
-				{
-					//SE APLICAN LOS FILTROS FISICOS SOBRE LOS APLICANTS YA RESCATADOS
-					$id_applicants = $this->_word_filter($id, $id_applicants,$words);	
-				}
+				$id_applicants= $this->applies_model->get_castings_applies($id,null,$_GET["status"]);
 				
+				$args["applies_state"] = $_GET["status"];
+				$args["name_p"] = $_GET["name"];
+				
+				$args["get_uri"] = "/?status=".$_GET["status"]."&name=".str_replace(' ', '+', $_GET["name"]);
+
+				if(isset($_GET["skills"]))
+				{
+					$args["filter_skills"] = $_GET["skills"];
+					foreach ($args["filter_skills"] as $value)
+						$args["get_uri"] = $args["get_uri"]."&skills%5B%5D=".$value;
+				}
+				else
+					$args["filter_skills"] = null;
+
+				if(isset($_GET["sex"]))
+				{
+					$args["filter_sex"] = $_GET["sex"];
+					foreach ($args["filter_sex"] as $value)
+						$args["get_uri"] = $args["get_uri"]."&sex%5B%5D=".$value;
+				}
+				else
+					$args["filter_sex"] = null;
+				
+				if(isset($_GET["age"]))
+				{
+					$args["age_range"] = $_GET["age"];
+					foreach ($args["age_range"] as $value)
+						$args["get_uri"] = $args["get_uri"]."&age%5B%5D=".$value;
+				}
+				else
+					$args["age_range"] = null;
+
+					
+ 
+
+
 				if($id_applicants!=0)				
 				{
-					$args["chunks"]=ceil($this->skills_model->count_filter_user_categories($id_applicants,$args["filter_categories"])/5);	
-					$id_applicants=$this->skills_model->filter_user_categories($id_applicants,$args["filter_categories"],$page);
+					$all_data_postulation_data= $id_applicants;
+
+					if(!is_null($args["filter_skills"]))
+					{
+						$id_applicants = $this->user_model->filter_user($id_applicants,$args["filter_sex"],$args["age_range"],$args["name_p"]);
+						
+						
+						$args["chunks"]=ceil(count($this->skills_model->filter_user_categories($id_applicants,$args["filter_skills"]))/5);	
+
+						$id_applicants = $this->skills_model->filter_user_categories($id_applicants,$args["filter_skills"],$page);
+					}
+					else
+					{
+						$args["chunks"]=ceil(count($this->user_model->filter_user($id_applicants,$args["filter_sex"],$args["age_range"],$args["name_p"]))/5);	
+						$id_applicants = $this->user_model->filter_user($id_applicants,$args["filter_sex"],$args["age_range"],$args["name_p"],$page);
+					}
+
+					if($id_applicants != 0)
+					{
+						$temp = array();
+						foreach ($all_data_postulation_data as $value) 
+							if(isset($id_applicants[$value["user_id"]]))
+								array_push($temp, $value);
+						$id_applicants = $temp;
+					}
+
 				}
 				else
 					$args["chunks"]=0;
+			
 			}
 			else
 			{
-				//TODO:  FILTRA LOS ELEMENTOS POR PAGINA, DEBE FILTRAR ANTES O DURANTE LA PAGINACION
-				$args["filter_categories"] = $filter_categories;
+				$args["chunks"]=ceil($this->applies_model->count_casting_applies($id,0)/5);					
+				$id_applicants= $this->applies_model->get_castings_applies($id,$page,0);
+				$args["applies_state"] = 0;
+				$args["name_p"] = null;
+				$args["filter_skills"] = null;
+				$args["filter_sex"] = null;
+				$args["age_range"] = null;
 
-				if($has_physical_filter) //si tiene filtros fisicos
-				{
-					//SE APLICAN LOS FILTROS FISICOS SOBRE LOS APLICANTS YA RESCATADOS
-					$id_applicants_temp= $this->applies_model->get_castings_applies($id,NULL,$applies_state);
-					$id_applicants = $this->_physical_filter($id, $id_applicants_temp,$args["sex"],$args["eyes_color"],$args["hair_color"],$args["build"],$args["skin_color"],$args["height_range"],$args["age_range"],$page);	
-					$args["chunks"]=ceil(sizeof($this->_physical_filter($id, $id_applicants_temp,$args["sex"],$args["eyes_color"],$args["hair_color"],$args["build"],$args["skin_color"],$args["height_range"],$args["age_range"]))/5);			
-
-				}				
-				elseif($has_word_filter) //si tiene filtros por palabras
-				{
-					//SE APLICAN LOS FILTROS POR PALABRA SOBRE LOS APLICANTS YA RESCATADOS
-					if($has_physical_filter)
-						$id_applicants_temp = $id_applicants;
-					else
-						$id_applicants_temp= $this->applies_model->get_castings_applies($id,NULL,$applies_state);
-					
-					$id_applicants = $this->_word_filter($id, $id_applicants_temp,$words,$page);
-					$args["chunks"]=ceil(sizeof($this->_word_filter($id, $id_applicants_temp,$words))/5);			
-						
-				}
-				else
-				{
-					$args["chunks"]=ceil($this->applies_model->count_casting_applies($id,$applies_state)/5);			
-					$id_applicants= $this->applies_model->get_castings_applies($id,$page,$applies_state);
-
-				}
-				$unfiltered_applicants = $this->applies_model->get_castings_applies($id,NULL,$applies_state); //COPIA DE LOS APLICANTES SIN FILTRAR, PARA USAR EN LA COMPROBACION PARA FINALIZAR EL CASTING
 			}
 			$args["page"] = $page;
-			$args["applies_state"]=$applies_state;
-
-
-			$args["sex_url"]=$sex;
-			$args["eyes_color_url"]=$eyes_color;
-			$args["hair_color_url"]=$hair_color;
-			$args["build_url"]=$build;
-			$args["skin_color_url"]=$skin_color;
-			
-			$args["height_range_url"]=$height_range;
-			$args["age_range_url"]=$age_range;
-
-			$args["skin_color_url"]=$skin_color;
-			$args["name_p"]=$name_p;
-
 			if($id_applicants!= 0)
 			{
 				//define si se puede finalizar el casting o no(toma el array anterior(sin filtrar) como parametro)
@@ -734,7 +662,8 @@ class Hunter extends CI_Controller {
 					array_push($args["applicants"],$applicant_info);
 				}				
 			}
-			$this->load->view('template', $args);	
+
+			$this->load->view('template', $args);
 		}
 		else
 			redirect(HOME);
