@@ -546,7 +546,8 @@ class Hunter extends CI_Controller {
 			$args["name_casting"]= $temp["title"];
 			
 			$unfiltered_applicants= $this->applies_model->get_castings_applies($id,null,0);
-			
+			$args["get_uri"] = null;
+
 			if(isset($_GET["status"]))
 			{
 				$id_applicants= $this->applies_model->get_castings_applies($id,null,$_GET["status"]);
