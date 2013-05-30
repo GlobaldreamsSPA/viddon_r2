@@ -54,11 +54,6 @@
 				  						<img style="height:100%; width:100%;" src="<?php echo HOME."/img/bgspot.jpg" ?>">
 				  					</a>
 								</div>
-							    <div class="item">
-							    	<a href="<?php echo base_url().'user/fb_login'; ?>">	
-				  						<img style="height:100%; width:100%;" src="<?php echo HOME."/img/concurso200k.png" ?>">
-				  					</a>
-								</div>
 								<div class="item">
 							    	<a href="<?php echo base_url().'user/fb_login'; ?>">	
 				  						<img style="height:100%; width:100%;" src="<?php echo HOME."/img/home_viddon_graphic.jpg" ?>">
