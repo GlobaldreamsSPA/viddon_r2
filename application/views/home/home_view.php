@@ -77,9 +77,10 @@
 				<div style="border-radius: 5px; margin-left:3%;"  class="row-fluid">
 					<div class="space05"></div>
 
+
 					<ul  class="nav nav-tabs">
 						<li class="active"><a class="home_tabs" href="#videos" data-toggle="tab">Video Talentos</a></li>
-						<li><a href="#ranking" class="home_tabs" data-toggle="tab">Artistas más populares</a></li>
+						<?php /* ?><li><a href="#ranking" class="home_tabs" data-toggle="tab">Artistas más populares</a></li> <?php*/ ?>
 					</ul>
 
 					<div class="tab-content">
@@ -196,6 +197,8 @@
 							<div class="space1"></div>	
 						</div>	
 					</div>
+
+					<?php /*?>
 			    	<div class="tab-pane" id="ranking">
 			    		<div class="space1"></div>
 		  				<div class="row" style="padding-right: 5%;padding-left: 4%">
@@ -265,6 +268,7 @@
 
 			    		</div>
 			  		</div>
+			  		<?php */?>
 				</div>
 			</div>
 		</div>
